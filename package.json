@@ -2,25 +2,41 @@
   "name": "vovk-perf-test",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "vovk dev --next-dev -- --turbopack",
+    "dev-exit": "vovk dev --next-dev --exit -- --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "biome check",
-    "format": "biome format --write"
+    "format": "biome format --write",
+    "prebuild": "vovk generate",
+    "create-modules": "ts-node ./scripts/createModules.ts",
+    "perf-one": "tsx ./scripts/perf/one.ts",
+    "perf-ten": "tsx ./scripts/perf/ten.ts",
+    "perf-hundred": "tsx ./scripts/perf/hundred.ts",
+    "perf-thousand": "tsx ./scripts/perf/thousand.ts",
+    "perf-ten-thousand": "tsx ./scripts/perf/tenThousand.ts",
+    "perf-test": "npm run perf-one && npm run perf-ten && npm run perf-hundred && npm run perf-thousand && npm run perf-ten-thousand"
   },
   "dependencies": {
+    "next": "15.5.4",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "next": "15.5.4"
+    "tinybench": "^5.0.1",
+    "vovk": "^3.0.0-draft.430",
+    "vovk-ajv": "^0.0.0-draft.103",
+    "vovk-client": "^0.0.4-draft.131"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@biomejs/biome": "2.2.0",
+    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
     "tailwindcss": "^4",
-    "@biomejs/biome": "2.2.0"
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.2",
+    "vovk-cli": "^0.0.1-draft.369"
   }
 }

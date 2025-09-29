@@ -1,0 +1,22 @@
+import { prefix, get, post, operation, type KnownAny } from "vovk";
+
+@prefix("hns")
+export default class HnController {
+  @operation({
+    summary: "Get Hns",
+  })
+  @get()
+  static getHns = (_req: unknown, params: KnownAny) => {
+    if ("id" in params) throw new Error("Unexpected id param");
+    return null;
+  };
+
+  @operation({
+    summary: "Create Hn",
+  })
+  @post("{id}")
+  static createHn = (_req: unknown, params: KnownAny) => {
+    if (!("id" in params)) throw new Error("Missing id param");
+    return null;
+  };
+}

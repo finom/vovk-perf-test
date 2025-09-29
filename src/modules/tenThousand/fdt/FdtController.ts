@@ -1,0 +1,22 @@
+import { prefix, get, post, operation, type KnownAny } from "vovk";
+
+@prefix("fdts")
+export default class FdtController {
+  @operation({
+    summary: "Get Fdts",
+  })
+  @get()
+  static getFdts = (_req: unknown, params: KnownAny) => {
+    if ("id" in params) throw new Error("Unexpected id param");
+    return null;
+  };
+
+  @operation({
+    summary: "Create Fdt",
+  })
+  @post("{id}")
+  static createFdt = (_req: unknown, params: KnownAny) => {
+    if (!("id" in params)) throw new Error("Missing id param");
+    return null;
+  };
+}

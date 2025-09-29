@@ -1,0 +1,22 @@
+import { prefix, get, post, operation, type KnownAny } from "vovk";
+
+@prefix("bls")
+export default class BlController {
+  @operation({
+    summary: "Get Bls",
+  })
+  @get()
+  static getBls = (_req: unknown, params: KnownAny) => {
+    if ("id" in params) throw new Error("Unexpected id param");
+    return null;
+  };
+
+  @operation({
+    summary: "Create Bl",
+  })
+  @post("{id}")
+  static createBl = (_req: unknown, params: KnownAny) => {
+    if (!("id" in params)) throw new Error("Missing id param");
+    return null;
+  };
+}
