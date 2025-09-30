@@ -11,20 +11,23 @@
     "lint": "biome check",
     "format": "biome format --write",
     "prebuild": "vovk generate",
-    "create-modules": "ts-node ./scripts/createModules.ts",
+    "create-modules": "tsx ./scripts/createModules.ts",
     "perf-one": "tsx ./scripts/perf/one.ts",
     "perf-ten": "tsx ./scripts/perf/ten.ts",
     "perf-hundred": "tsx ./scripts/perf/hundred.ts",
     "perf-thousand": "tsx ./scripts/perf/thousand.ts",
     "perf-ten-thousand": "tsx ./scripts/perf/tenThousand.ts",
-    "perf-test": "npm run perf-one && npm run perf-ten && npm run perf-hundred && npm run perf-thousand && npm run perf-ten-thousand"
+    "perf-test": "npm run perf-one && npm run perf-ten && npm run perf-hundred && npm run perf-thousand && npm run perf-ten-thousand && npm run create-cold-start-tests && npm run cold-start-perf-test",
+    "create-cold-start-tests": "tsx ./scripts/createColdStartTests.ts",
+    "cold-start-perf-test": "tsx ./generated_coldStartPerf.ts"
   },
   "dependencies": {
     "next": "15.5.4",
+    "prettier": "^3.6.2",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "tinybench": "^5.0.1",
-    "vovk": "^3.0.0-draft.430",
+    "vovk": "^3.0.0-draft.432",
     "vovk-ajv": "^0.0.0-draft.103",
     "vovk-client": "^0.0.4-draft.131"
   },

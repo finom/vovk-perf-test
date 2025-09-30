@@ -1,26 +1,34 @@
-import { Bench } from 'tinybench';
-import { GET as tenThousandGET } from '../../src/app/api/tenThousand/[[...vovk]]/route.ts';
-import { POST as tenThousandPOST } from '../../src/app/api/tenThousand/[[...vovk]]/route.ts';
+import { Bench } from "tinybench";
+import { GET as tenThousandGET } from "../../src/app/api/tenThousand/[[...vovk]]/route.ts";
+import { POST as tenThousandPOST } from "../../src/app/api/tenThousand/[[...vovk]]/route.ts";
 
-import type { NextRequest } from 'next/server.js';
+import type { NextRequest } from "next/server.js";
 
 const bench = new Bench({ time: 100 });
 const dummyReq = {} as unknown as NextRequest;
-const dummyGETParams = { params: Promise.resolve({
-    vovk: ['ntps']
-}) };
+const dummyGETParams = {
+  params: Promise.resolve({
+    vovk: ["ntps"],
+  }),
+};
 
-const dummyPOSTParams = { params: Promise.resolve({
-    vovk: ['ntps', '123']
-}) };
+const dummyPOSTParams = {
+  params: Promise.resolve({
+    vovk: ["ntps", "123"],
+  }),
+};
 
 let coldStartIndex = 0;
 
 bench
-    .add('10_000 controller GET', async () => await tenThousandGET(dummyReq, dummyGETParams))
-    .add('10_000 controller POST', async () => await tenThousandPOST(dummyReq, dummyPOSTParams))
-    .add('Cold start import', () => import('../../src/app/api/tenThousand/[[...vovk]]/route.ts?cacheBust=' + (coldStartIndex++)));
-;
+  .add(
+    "10_000 controller GET",
+    async () => await tenThousandGET(dummyReq, dummyGETParams),
+  )
+  .add(
+    "10_000 controller POST",
+    async () => await tenThousandPOST(dummyReq, dummyPOSTParams),
+  )
 
 await bench.run();
 console.table(bench.table());
