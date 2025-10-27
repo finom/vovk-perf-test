@@ -12,14 +12,14 @@
     "format": "biome format --write",
     "prebuild": "vovk generate",
     "create-modules": "tsx ./scripts/createModules.ts",
-    "perf-one": "tsx ./scripts/perf/one.ts",
-    "perf-ten": "tsx ./scripts/perf/ten.ts",
-    "perf-hundred": "tsx ./scripts/perf/hundred.ts",
-    "perf-thousand": "tsx ./scripts/perf/thousand.ts",
-    "perf-ten-thousand": "tsx ./scripts/perf/tenThousand.ts",
+    "perf-one": "tsx ./scripts/requestOverheadPerfTests/one.ts",
+    "perf-ten": "tsx ./scripts/requestOverheadPerfTests/ten.ts",
+    "perf-hundred": "tsx ./scripts/requestOverheadPerfTests/hundred.ts",
+    "perf-thousand": "tsx ./scripts/requestOverheadPerfTests/thousand.ts",
+    "perf-ten-thousand": "tsx ./scripts/requestOverheadPerfTests/tenThousand.ts",
     "perf-test": "npm run perf-one && npm run perf-ten && npm run perf-hundred && npm run perf-thousand && npm run perf-ten-thousand && npm run create-cold-start-tests && npm run cold-start-perf-test",
     "create-cold-start-tests": "tsx ./scripts/createColdStartTests.ts",
-    "cold-start-perf-test": "tsx ./generated_coldStartPerf.ts"
+    "cold-start-perf-test": "tsx ./generated_coldStartPerfTest.ts"
   },
   "dependencies": {
     "next": "15.5.4",

@@ -91,5 +91,5 @@ class ${controllerName} {
 
   result += ` await bench.run();
 console.table(bench.table());`;
-  await fs.writeFile(path.join(`generated_coldStartPerf.ts`), await prettier.format(result, { parser: "typescript" }));
+  await fs.writeFile(path.join(`generated_coldStartPerfTest.ts`), await prettier.format(result, { parser: "typescript" }));
 })();

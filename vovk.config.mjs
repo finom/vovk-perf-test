@@ -1,7 +1,7 @@
 // @ts-check
 /** @type {import('vovk').VovkConfig} */
 const config = {
-  generatorConfig: {
+  outputConfig: {
     imports: {
       validateOnClient: "vovk-ajv",
     },
