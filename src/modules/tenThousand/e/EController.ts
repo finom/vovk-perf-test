@@ -1,4 +1,4 @@
-import { prefix, get, post, operation, type KnownAny } from "vovk";
+import { procedure, prefix, get, post, operation } from "vovk";
 
 @prefix("es")
 export default class EController {
@@ -6,17 +6,23 @@ export default class EController {
     summary: "Get ES",
   })
   @get()
-  static getES = (_req: unknown, params: KnownAny) => {
-    if ("id" in params) throw new Error("Unexpected id param");
-    return null;
-  };
+  static getES = procedure({
+    handle: (_req, params: unknown) => {
+      if (params && typeof params === "object" && "id" in params)
+        throw new Error("Unexpected id param");
+      return null;
+    },
+  });
 
   @operation({
     summary: "Create E",
   })
   @post("{id}")
-  static createE = (_req: unknown, params: KnownAny) => {
-    if (!("id" in params)) throw new Error("Missing id param");
-    return null;
-  };
+  static createE = procedure({
+    handle: (_req, params: unknown) => {
+      if (!(params && typeof params === "object" && "id" in params))
+        throw new Error("Missing id param");
+      return null;
+    },
+  });
 }

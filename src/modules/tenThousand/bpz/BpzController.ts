@@ -1,4 +1,4 @@
-import { prefix, get, post, operation, type KnownAny } from "vovk";
+import { procedure, prefix, get, post, operation } from "vovk";
 
 @prefix("bpzs")
 export default class BpzController {
@@ -6,17 +6,23 @@ export default class BpzController {
     summary: "Get Bpzs",
   })
   @get()
-  static getBpzs = (_req: unknown, params: KnownAny) => {
-    if ("id" in params) throw new Error("Unexpected id param");
-    return null;
-  };
+  static getBpzs = procedure({
+    handle: (_req, params: unknown) => {
+      if (params && typeof params === "object" && "id" in params)
+        throw new Error("Unexpected id param");
+      return null;
+    },
+  });
 
   @operation({
     summary: "Create Bpz",
   })
   @post("{id}")
-  static createBpz = (_req: unknown, params: KnownAny) => {
-    if (!("id" in params)) throw new Error("Missing id param");
-    return null;
-  };
+  static createBpz = procedure({
+    handle: (_req, params: unknown) => {
+      if (!(params && typeof params === "object" && "id" in params))
+        throw new Error("Missing id param");
+      return null;
+    },
+  });
 }

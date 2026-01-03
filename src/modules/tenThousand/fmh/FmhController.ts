@@ -1,4 +1,4 @@
-import { prefix, get, post, operation, type KnownAny } from "vovk";
+import { procedure, prefix, get, post, operation } from "vovk";
 
 @prefix("fmhs")
 export default class FmhController {
@@ -6,17 +6,23 @@ export default class FmhController {
     summary: "Get Fmhs",
   })
   @get()
-  static getFmhs = (_req: unknown, params: KnownAny) => {
-    if ("id" in params) throw new Error("Unexpected id param");
-    return null;
-  };
+  static getFmhs = procedure({
+    handle: (_req, params: unknown) => {
+      if (params && typeof params === "object" && "id" in params)
+        throw new Error("Unexpected id param");
+      return null;
+    },
+  });
 
   @operation({
     summary: "Create Fmh",
   })
   @post("{id}")
-  static createFmh = (_req: unknown, params: KnownAny) => {
-    if (!("id" in params)) throw new Error("Missing id param");
-    return null;
-  };
+  static createFmh = procedure({
+    handle: (_req, params: unknown) => {
+      if (!(params && typeof params === "object" && "id" in params))
+        throw new Error("Missing id param");
+      return null;
+    },
+  });
 }

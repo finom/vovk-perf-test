@@ -1,4 +1,4 @@
-import { prefix, get, post, operation, type KnownAny } from "vovk";
+import { procedure, prefix, get, post, operation } from "vovk";
 
 @prefix("nis")
 export default class NiController {
@@ -6,17 +6,23 @@ export default class NiController {
     summary: "Get Nis",
   })
   @get()
-  static getNis = (_req: unknown, params: KnownAny) => {
-    if ("id" in params) throw new Error("Unexpected id param");
-    return null;
-  };
+  static getNis = procedure({
+    handle: (_req, params: unknown) => {
+      if (params && typeof params === "object" && "id" in params)
+        throw new Error("Unexpected id param");
+      return null;
+    },
+  });
 
   @operation({
     summary: "Create Ni",
   })
   @post("{id}")
-  static createNi = (_req: unknown, params: KnownAny) => {
-    if (!("id" in params)) throw new Error("Missing id param");
-    return null;
-  };
+  static createNi = procedure({
+    handle: (_req, params: unknown) => {
+      if (!(params && typeof params === "object" && "id" in params))
+        throw new Error("Missing id param");
+      return null;
+    },
+  });
 }

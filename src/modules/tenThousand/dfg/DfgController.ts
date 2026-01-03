@@ -1,4 +1,4 @@
-import { prefix, get, post, operation, type KnownAny } from "vovk";
+import { procedure, prefix, get, post, operation } from "vovk";
 
 @prefix("dfgs")
 export default class DfgController {
@@ -6,17 +6,23 @@ export default class DfgController {
     summary: "Get Dfgs",
   })
   @get()
-  static getDfgs = (_req: unknown, params: KnownAny) => {
-    if ("id" in params) throw new Error("Unexpected id param");
-    return null;
-  };
+  static getDfgs = procedure({
+    handle: (_req, params: unknown) => {
+      if (params && typeof params === "object" && "id" in params)
+        throw new Error("Unexpected id param");
+      return null;
+    },
+  });
 
   @operation({
     summary: "Create Dfg",
   })
   @post("{id}")
-  static createDfg = (_req: unknown, params: KnownAny) => {
-    if (!("id" in params)) throw new Error("Missing id param");
-    return null;
-  };
+  static createDfg = procedure({
+    handle: (_req, params: unknown) => {
+      if (!(params && typeof params === "object" && "id" in params))
+        throw new Error("Missing id param");
+      return null;
+    },
+  });
 }

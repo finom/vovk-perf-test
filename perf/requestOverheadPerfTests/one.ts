@@ -18,8 +18,6 @@ const dummyPOSTParams = {
   }),
 };
 
-let coldStartIndex = 0;
-
 bench
   .add("1 controller GET", async () => await oneGET(dummyReq, dummyGETParams))
   .add(

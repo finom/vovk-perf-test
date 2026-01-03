@@ -11,7 +11,7 @@ import prettier from 'prettier';
     tenThousand: 10_000,
   };
 
-  let result = `import { createVovkApp, operation, type KnownAny } from "vovk";
+  let result = `import { procedure, prefix, post, initSegment, operation } from "vovk";
 import { Bench } from 'tinybench';
 
 function noopDecorator(arg?: KnownAny) {
@@ -37,7 +37,6 @@ const bench = new Bench({ time: 100 });`;
 
 bench
     .add('Cold start for ${count} controllers', async () => {
-    const { prefix, post, initSegment } = createVovkApp();
 const controllers: Record<string, Function> = {};`;
     for (let i = 0; i < count; i++) {
       const controllerName = `${name.charAt(0).toUpperCase() + name.slice(1) + i}Controller`;
@@ -48,9 +47,9 @@ class ${controllerName} {
     summary: "Create",
   })
   @post("{id}")
-  static create = (_req: unknown, params: KnownAny) => {
-    return null;
-  };
+  static create = procedure({
+    handle: () => null,
+  });
 }
 
 controllers["${controllerName}"] = ${controllerName};
@@ -91,5 +90,5 @@ class ${controllerName} {
 
   result += ` await bench.run();
 console.table(bench.table());`;
-  await fs.writeFile(path.join(`generated_coldStartPerfTest.ts`), await prettier.format(result, { parser: "typescript" }));
+  await fs.writeFile(path.join(`perf/generated_coldStartPerfTest.ts`), await prettier.format(result, { parser: "typescript" }));
 })();
