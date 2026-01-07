@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("mgis")
+@prefix("mgi")
 export default class MgiController {
   @operation({
-    summary: "Get Mgis",
+    summary: "Get Mgi",
   })
   @get()
-  static getMgis = procedure({
+  static getMgi = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

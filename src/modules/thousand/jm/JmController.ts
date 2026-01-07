@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("jms")
+@prefix("jm")
 export default class JmController {
   @operation({
-    summary: "Get Jms",
+    summary: "Get Jm",
   })
   @get()
-  static getJms = procedure({
+  static getJm = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

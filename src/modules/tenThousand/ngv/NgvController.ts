@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("ngvs")
+@prefix("ngv")
 export default class NgvController {
   @operation({
-    summary: "Get Ngvs",
+    summary: "Get Ngv",
   })
   @get()
-  static getNgvs = procedure({
+  static getNgv = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

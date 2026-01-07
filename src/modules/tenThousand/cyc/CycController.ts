@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("cycs")
+@prefix("cyc")
 export default class CycController {
   @operation({
-    summary: "Get Cycs",
+    summary: "Get Cyc",
   })
   @get()
-  static getCycs = procedure({
+  static getCyc = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

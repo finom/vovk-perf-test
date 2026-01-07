@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("nfts")
+@prefix("nft")
 export default class NftController {
   @operation({
-    summary: "Get Nfts",
+    summary: "Get Nft",
   })
   @get()
-  static getNfts = procedure({
+  static getNft = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

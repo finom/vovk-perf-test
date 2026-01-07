@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("ngas")
+@prefix("nga")
 export default class NgaController {
   @operation({
-    summary: "Get Ngas",
+    summary: "Get Nga",
   })
   @get()
-  static getNgas = procedure({
+  static getNga = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("adbs")
+@prefix("adb")
 export default class AdbController {
   @operation({
-    summary: "Get Adbs",
+    summary: "Get Adb",
   })
   @get()
-  static getAdbs = procedure({
+  static getAdb = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

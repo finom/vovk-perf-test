@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("dljs")
+@prefix("dlj")
 export default class DljController {
   @operation({
-    summary: "Get Dljs",
+    summary: "Get Dlj",
   })
   @get()
-  static getDljs = procedure({
+  static getDlj = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

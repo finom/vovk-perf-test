@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("mmos")
+@prefix("mmo")
 export default class MmoController {
   @operation({
-    summary: "Get Mmos",
+    summary: "Get Mmo",
   })
   @get()
-  static getMmos = procedure({
+  static getMmo = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

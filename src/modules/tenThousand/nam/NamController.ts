@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("nams")
+@prefix("nam")
 export default class NamController {
   @operation({
-    summary: "Get Nams",
+    summary: "Get Nam",
   })
   @get()
-  static getNams = procedure({
+  static getNam = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

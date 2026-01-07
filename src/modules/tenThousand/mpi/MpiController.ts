@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("mpis")
+@prefix("mpi")
 export default class MpiController {
   @operation({
-    summary: "Get Mpis",
+    summary: "Get Mpi",
   })
   @get()
-  static getMpis = procedure({
+  static getMpi = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

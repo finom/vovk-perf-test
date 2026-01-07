@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("nims")
+@prefix("nim")
 export default class NimController {
   @operation({
-    summary: "Get Nims",
+    summary: "Get Nim",
   })
   @get()
-  static getNims = procedure({
+  static getNim = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

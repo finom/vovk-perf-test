@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("muses")
+@prefix("mus")
 export default class MusController {
   @operation({
-    summary: "Get Muses",
+    summary: "Get Mus",
   })
   @get()
-  static getMuses = procedure({
+  static getMus = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

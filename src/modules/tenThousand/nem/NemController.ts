@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("nems")
+@prefix("nem")
 export default class NemController {
   @operation({
-    summary: "Get Nems",
+    summary: "Get Nem",
   })
   @get()
-  static getNems = procedure({
+  static getNem = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

@@ -11,13 +11,13 @@ compiledName: <%= t.TheThing + 'RPC' %>
 
 import { procedure, prefix, get, post, operation } from 'vovk';
 
-@prefix('<%= t['the-things'] %>')
+@prefix('<%= t['the-thing'] %>')
 export default class <%= vars.ControllerName %> {
     @operation({
-        summary: 'Get <%= t.TheThings %>',
+        summary: 'Get <%= t.TheThing %>',
     })
     @get()
-    static get<%= t.TheThings %> = procedure({
+    static get<%= t.TheThing %> = procedure({
         handle: (_req, params: unknown) => {
              if (params && typeof params === "object" && "id" in params) throw new Error("Unexpected id param");
             return null;

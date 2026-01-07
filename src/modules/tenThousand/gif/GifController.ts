@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("gifs")
+@prefix("gif")
 export default class GifController {
   @operation({
-    summary: "Get Gifs",
+    summary: "Get Gif",
   })
   @get()
-  static getGifs = procedure({
+  static getGif = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("mics")
+@prefix("mic")
 export default class MicController {
   @operation({
-    summary: "Get Mics",
+    summary: "Get Mic",
   })
   @get()
-  static getMics = procedure({
+  static getMic = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

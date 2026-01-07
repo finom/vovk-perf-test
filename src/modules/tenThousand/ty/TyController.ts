@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("ties")
+@prefix("ty")
 export default class TyController {
   @operation({
-    summary: "Get Ties",
+    summary: "Get Ty",
   })
   @get()
-  static getTies = procedure({
+  static getTy = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

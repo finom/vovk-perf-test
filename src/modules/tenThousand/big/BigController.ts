@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("bigs")
+@prefix("big")
 export default class BigController {
   @operation({
-    summary: "Get Bigs",
+    summary: "Get Big",
   })
   @get()
-  static getBigs = procedure({
+  static getBig = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

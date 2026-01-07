@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("apas")
+@prefix("apa")
 export default class ApaController {
   @operation({
-    summary: "Get Apas",
+    summary: "Get Apa",
   })
   @get()
-  static getApas = procedure({
+  static getApa = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

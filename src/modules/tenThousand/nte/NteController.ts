@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("ntes")
+@prefix("nte")
 export default class NteController {
   @operation({
-    summary: "Get Ntes",
+    summary: "Get Nte",
   })
   @get()
-  static getNtes = procedure({
+  static getNte = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

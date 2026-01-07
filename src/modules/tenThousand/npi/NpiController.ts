@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("npis")
+@prefix("npi")
 export default class NpiController {
   @operation({
-    summary: "Get Npis",
+    summary: "Get Npi",
   })
   @get()
-  static getNpis = procedure({
+  static getNpi = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

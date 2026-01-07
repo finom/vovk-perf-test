@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("gnus")
+@prefix("gnu")
 export default class GnuController {
   @operation({
-    summary: "Get Gnus",
+    summary: "Get Gnu",
   })
   @get()
-  static getGnus = procedure({
+  static getGnu = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

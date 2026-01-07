@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("dufs")
+@prefix("duf")
 export default class DufController {
   @operation({
-    summary: "Get Dufs",
+    summary: "Get Duf",
   })
   @get()
-  static getDufs = procedure({
+  static getDuf = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

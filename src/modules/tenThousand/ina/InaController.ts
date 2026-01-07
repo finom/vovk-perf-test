@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("inas")
+@prefix("ina")
 export default class InaController {
   @operation({
-    summary: "Get Inas",
+    summary: "Get Ina",
   })
   @get()
-  static getInas = procedure({
+  static getIna = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

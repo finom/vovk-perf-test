@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("jwts")
+@prefix("jwt")
 export default class JwtController {
   @operation({
-    summary: "Get Jwts",
+    summary: "Get Jwt",
   })
   @get()
-  static getJwts = procedure({
+  static getJwt = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

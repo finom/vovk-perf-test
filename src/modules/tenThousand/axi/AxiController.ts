@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("axis")
+@prefix("axi")
 export default class AxiController {
   @operation({
-    summary: "Get Axis",
+    summary: "Get Axi",
   })
   @get()
-  static getAxis = procedure({
+  static getAxi = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

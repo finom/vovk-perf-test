@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("enas")
+@prefix("ena")
 export default class EnaController {
   @operation({
-    summary: "Get Enas",
+    summary: "Get Ena",
   })
   @get()
-  static getEnas = procedure({
+  static getEna = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

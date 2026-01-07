@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("mins")
+@prefix("min")
 export default class MinController {
   @operation({
-    summary: "Get Mins",
+    summary: "Get Min",
   })
   @get()
-  static getMins = procedure({
+  static getMin = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

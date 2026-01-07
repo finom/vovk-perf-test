@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("alts")
+@prefix("alt")
 export default class AltController {
   @operation({
-    summary: "Get Alts",
+    summary: "Get Alt",
   })
   @get()
-  static getAlts = procedure({
+  static getAlt = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

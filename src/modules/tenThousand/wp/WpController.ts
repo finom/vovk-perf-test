@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("wps")
+@prefix("wp")
 export default class WpController {
   @operation({
-    summary: "Get Wps",
+    summary: "Get Wp",
   })
   @get()
-  static getWps = procedure({
+  static getWp = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

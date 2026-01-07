@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("ncms")
+@prefix("ncm")
 export default class NcmController {
   @operation({
-    summary: "Get Ncms",
+    summary: "Get Ncm",
   })
   @get()
-  static getNcms = procedure({
+  static getNcm = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

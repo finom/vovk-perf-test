@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("gits")
+@prefix("git")
 export default class GitController {
   @operation({
-    summary: "Get Gits",
+    summary: "Get Git",
   })
   @get()
-  static getGits = procedure({
+  static getGit = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

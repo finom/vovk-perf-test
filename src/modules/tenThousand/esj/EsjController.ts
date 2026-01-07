@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("esjs")
+@prefix("esj")
 export default class EsjController {
   @operation({
-    summary: "Get Esjs",
+    summary: "Get Esj",
   })
   @get()
-  static getEsjs = procedure({
+  static getEsj = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

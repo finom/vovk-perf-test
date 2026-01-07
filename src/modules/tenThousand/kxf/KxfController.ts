@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("kxfs")
+@prefix("kxf")
 export default class KxfController {
   @operation({
-    summary: "Get Kxfs",
+    summary: "Get Kxf",
   })
   @get()
-  static getKxfs = procedure({
+  static getKxf = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

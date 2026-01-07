@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("bios")
+@prefix("bio")
 export default class BioController {
   @operation({
-    summary: "Get Bios",
+    summary: "Get Bio",
   })
   @get()
-  static getBios = procedure({
+  static getBio = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

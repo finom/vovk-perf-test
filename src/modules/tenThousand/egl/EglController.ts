@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("egls")
+@prefix("egl")
 export default class EglController {
   @operation({
-    summary: "Get Egls",
+    summary: "Get Egl",
   })
   @get()
-  static getEgls = procedure({
+  static getEgl = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

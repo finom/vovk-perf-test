@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("dirs")
+@prefix("dir")
 export default class DirController {
   @operation({
-    summary: "Get Dirs",
+    summary: "Get Dir",
   })
   @get()
-  static getDirs = procedure({
+  static getDir = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

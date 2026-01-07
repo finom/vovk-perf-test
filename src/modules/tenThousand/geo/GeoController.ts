@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("geos")
+@prefix("geo")
 export default class GeoController {
   @operation({
-    summary: "Get Geos",
+    summary: "Get Geo",
   })
   @get()
-  static getGeos = procedure({
+  static getGeo = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

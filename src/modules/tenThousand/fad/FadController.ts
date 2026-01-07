@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("fads")
+@prefix("fad")
 export default class FadController {
   @operation({
-    summary: "Get Fads",
+    summary: "Get Fad",
   })
   @get()
-  static getFads = procedure({
+  static getFad = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

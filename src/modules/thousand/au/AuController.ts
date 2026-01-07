@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("aus")
+@prefix("au")
 export default class AuController {
   @operation({
-    summary: "Get Aus",
+    summary: "Get Au",
   })
   @get()
-  static getAus = procedure({
+  static getAu = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

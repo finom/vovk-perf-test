@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("nfgs")
+@prefix("nfg")
 export default class NfgController {
   @operation({
-    summary: "Get Nfgs",
+    summary: "Get Nfg",
   })
   @get()
-  static getNfgs = procedure({
+  static getNfg = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

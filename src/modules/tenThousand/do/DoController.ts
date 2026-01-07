@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("dos")
+@prefix("do")
 export default class DoController {
   @operation({
-    summary: "Get Dos",
+    summary: "Get Do",
   })
   @get()
-  static getDos = procedure({
+  static getDo = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

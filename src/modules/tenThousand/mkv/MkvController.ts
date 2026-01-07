@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("mkvs")
+@prefix("mkv")
 export default class MkvController {
   @operation({
-    summary: "Get Mkvs",
+    summary: "Get Mkv",
   })
   @get()
-  static getMkvs = procedure({
+  static getMkv = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

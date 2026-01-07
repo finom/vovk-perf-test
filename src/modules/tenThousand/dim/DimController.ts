@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("dims")
+@prefix("dim")
 export default class DimController {
   @operation({
-    summary: "Get Dims",
+    summary: "Get Dim",
   })
   @get()
-  static getDims = procedure({
+  static getDim = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

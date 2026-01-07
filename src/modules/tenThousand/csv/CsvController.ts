@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("csvs")
+@prefix("csv")
 export default class CsvController {
   @operation({
-    summary: "Get Csvs",
+    summary: "Get Csv",
   })
   @get()
-  static getCsvs = procedure({
+  static getCsv = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

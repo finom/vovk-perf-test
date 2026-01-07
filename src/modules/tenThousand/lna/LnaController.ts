@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("lnas")
+@prefix("lna")
 export default class LnaController {
   @operation({
-    summary: "Get Lnas",
+    summary: "Get Lna",
   })
   @get()
-  static getLnas = procedure({
+  static getLna = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

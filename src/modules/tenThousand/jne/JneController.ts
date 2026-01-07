@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("jnes")
+@prefix("jne")
 export default class JneController {
   @operation({
-    summary: "Get Jnes",
+    summary: "Get Jne",
   })
   @get()
-  static getJnes = procedure({
+  static getJne = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

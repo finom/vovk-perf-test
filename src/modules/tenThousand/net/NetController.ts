@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("nets")
+@prefix("net")
 export default class NetController {
   @operation({
-    summary: "Get Nets",
+    summary: "Get Net",
   })
   @get()
-  static getNets = procedure({
+  static getNet = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("degs")
+@prefix("deg")
 export default class DegController {
   @operation({
-    summary: "Get Degs",
+    summary: "Get Deg",
   })
   @get()
-  static getDegs = procedure({
+  static getDeg = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

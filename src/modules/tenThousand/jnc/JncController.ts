@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("jncs")
+@prefix("jnc")
 export default class JncController {
   @operation({
-    summary: "Get Jncs",
+    summary: "Get Jnc",
   })
   @get()
-  static getJncs = procedure({
+  static getJnc = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

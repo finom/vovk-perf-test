@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("npas")
+@prefix("npa")
 export default class NpaController {
   @operation({
-    summary: "Get Npas",
+    summary: "Get Npa",
   })
   @get()
-  static getNpas = procedure({
+  static getNpa = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

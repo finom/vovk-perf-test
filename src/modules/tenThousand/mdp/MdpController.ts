@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("mdps")
+@prefix("mdp")
 export default class MdpController {
   @operation({
-    summary: "Get Mdps",
+    summary: "Get Mdp",
   })
   @get()
-  static getMdps = procedure({
+  static getMdp = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("gaps")
+@prefix("gap")
 export default class GapController {
   @operation({
-    summary: "Get Gaps",
+    summary: "Get Gap",
   })
   @get()
-  static getGaps = procedure({
+  static getGap = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

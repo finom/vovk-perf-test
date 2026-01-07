@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("mucs")
+@prefix("muc")
 export default class MucController {
   @operation({
-    summary: "Get Mucs",
+    summary: "Get Muc",
   })
   @get()
-  static getMucs = procedure({
+  static getMuc = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

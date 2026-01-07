@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("jgps")
+@prefix("jgp")
 export default class JgpController {
   @operation({
-    summary: "Get Jgps",
+    summary: "Get Jgp",
   })
   @get()
-  static getJgps = procedure({
+  static getJgp = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

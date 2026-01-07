@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("luas")
+@prefix("lua")
 export default class LuaController {
   @operation({
-    summary: "Get Luas",
+    summary: "Get Lua",
   })
   @get()
-  static getLuas = procedure({
+  static getLua = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

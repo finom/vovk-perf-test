@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("nies")
+@prefix("nie")
 export default class NieController {
   @operation({
-    summary: "Get Nies",
+    summary: "Get Nie",
   })
   @get()
-  static getNies = procedure({
+  static getNie = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

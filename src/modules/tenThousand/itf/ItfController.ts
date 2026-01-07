@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("itfs")
+@prefix("itf")
 export default class ItfController {
   @operation({
-    summary: "Get Itfs",
+    summary: "Get Itf",
   })
   @get()
-  static getItfs = procedure({
+  static getItf = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

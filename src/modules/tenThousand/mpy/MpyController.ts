@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("mpies")
+@prefix("mpy")
 export default class MpyController {
   @operation({
-    summary: "Get Mpies",
+    summary: "Get Mpy",
   })
   @get()
-  static getMpies = procedure({
+  static getMpy = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

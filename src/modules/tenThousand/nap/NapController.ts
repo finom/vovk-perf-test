@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("naps")
+@prefix("nap")
 export default class NapController {
   @operation({
-    summary: "Get Naps",
+    summary: "Get Nap",
   })
   @get()
-  static getNaps = procedure({
+  static getNap = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

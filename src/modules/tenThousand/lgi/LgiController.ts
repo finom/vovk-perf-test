@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("lgis")
+@prefix("lgi")
 export default class LgiController {
   @operation({
-    summary: "Get Lgis",
+    summary: "Get Lgi",
   })
   @get()
-  static getLgis = procedure({
+  static getLgi = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

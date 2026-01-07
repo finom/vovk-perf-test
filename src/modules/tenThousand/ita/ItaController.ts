@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("itas")
+@prefix("ita")
 export default class ItaController {
   @operation({
-    summary: "Get Itas",
+    summary: "Get Ita",
   })
   @get()
-  static getItas = procedure({
+  static getIta = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

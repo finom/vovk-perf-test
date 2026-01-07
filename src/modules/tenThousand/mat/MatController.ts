@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("mats")
+@prefix("mat")
 export default class MatController {
   @operation({
-    summary: "Get Mats",
+    summary: "Get Mat",
   })
   @get()
-  static getMats = procedure({
+  static getMat = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

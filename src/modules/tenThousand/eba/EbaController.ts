@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("ebas")
+@prefix("eba")
 export default class EbaController {
   @operation({
-    summary: "Get Ebas",
+    summary: "Get Eba",
   })
   @get()
-  static getEbas = procedure({
+  static getEba = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

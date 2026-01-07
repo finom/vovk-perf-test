@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("bats")
+@prefix("bat")
 export default class BatController {
   @operation({
-    summary: "Get Bats",
+    summary: "Get Bat",
   })
   @get()
-  static getBats = procedure({
+  static getBat = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

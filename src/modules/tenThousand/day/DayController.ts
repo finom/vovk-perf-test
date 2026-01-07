@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("days")
+@prefix("day")
 export default class DayController {
   @operation({
-    summary: "Get Days",
+    summary: "Get Day",
   })
   @get()
-  static getDays = procedure({
+  static getDay = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

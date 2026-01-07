@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("fwms")
+@prefix("fwm")
 export default class FwmController {
   @operation({
-    summary: "Get Fwms",
+    summary: "Get Fwm",
   })
   @get()
-  static getFwms = procedure({
+  static getFwm = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

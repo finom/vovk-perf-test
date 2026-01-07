@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("jnus")
+@prefix("jnu")
 export default class JnuController {
   @operation({
-    summary: "Get Jnus",
+    summary: "Get Jnu",
   })
   @get()
-  static getJnus = procedure({
+  static getJnu = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

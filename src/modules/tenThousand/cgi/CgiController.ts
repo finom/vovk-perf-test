@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("cgis")
+@prefix("cgi")
 export default class CgiController {
   @operation({
-    summary: "Get Cgis",
+    summary: "Get Cgi",
   })
   @get()
-  static getCgis = procedure({
+  static getCgi = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

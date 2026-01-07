@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("eras")
+@prefix("era")
 export default class EraController {
   @operation({
-    summary: "Get Eras",
+    summary: "Get Era",
   })
   @get()
-  static getEras = procedure({
+  static getEra = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

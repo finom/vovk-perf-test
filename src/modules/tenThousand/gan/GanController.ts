@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("gans")
+@prefix("gan")
 export default class GanController {
   @operation({
-    summary: "Get Gans",
+    summary: "Get Gan",
   })
   @get()
-  static getGans = procedure({
+  static getGan = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

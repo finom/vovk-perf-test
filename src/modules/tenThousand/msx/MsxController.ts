@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("msxes")
+@prefix("msx")
 export default class MsxController {
   @operation({
-    summary: "Get Msxes",
+    summary: "Get Msx",
   })
   @get()
-  static getMsxes = procedure({
+  static getMsx = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

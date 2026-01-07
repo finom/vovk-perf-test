@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("cdfs")
+@prefix("cdf")
 export default class CdfController {
   @operation({
-    summary: "Get Cdfs",
+    summary: "Get Cdf",
   })
   @get()
-  static getCdfs = procedure({
+  static getCdf = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

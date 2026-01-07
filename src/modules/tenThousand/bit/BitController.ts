@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("bits")
+@prefix("bit")
 export default class BitController {
   @operation({
-    summary: "Get Bits",
+    summary: "Get Bit",
   })
   @get()
-  static getBits = procedure({
+  static getBit = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("gmus")
+@prefix("gmu")
 export default class GmuController {
   @operation({
-    summary: "Get Gmus",
+    summary: "Get Gmu",
   })
   @get()
-  static getGmus = procedure({
+  static getGmu = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

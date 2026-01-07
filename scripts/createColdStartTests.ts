@@ -14,18 +14,18 @@ import prettier from 'prettier';
   let result = `import { procedure, prefix, post, initSegment, operation } from "vovk";
 import { Bench } from 'tinybench';
 
-function noopDecorator(arg?: KnownAny) {
+function noopDecorator(arg?: any) {
   return function <T>(
-    target: KnownAny,
+    target: any,
     propertyKey: string,
     descriptor?: TypedPropertyDescriptor<T>
-  ): KnownAny {
+  ): any {
     return descriptor;
   };
 }
 
 function noopClassDecorator(message?: string) {
-  return function <T extends { new(...args: KnownAny[]): {} }>(constructor: T) {
+  return function <T extends { new(...args: any[]): {} }>(constructor: T) {
     return constructor;
   };
 }
@@ -76,7 +76,7 @@ class ${controllerName} {
     summary: "Create",
   })
   @noopDecorator("{id}")
-  static create = (_req: unknown, params: KnownAny) => {
+  static create = (_req: unknown, params: any) => {
     return null;
   };
 }

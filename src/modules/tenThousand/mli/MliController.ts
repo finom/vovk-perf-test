@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("mlis")
+@prefix("mli")
 export default class MliController {
   @operation({
-    summary: "Get Mlis",
+    summary: "Get Mli",
   })
   @get()
-  static getMlis = procedure({
+  static getMli = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

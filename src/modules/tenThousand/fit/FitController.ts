@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("fits")
+@prefix("fit")
 export default class FitController {
   @operation({
-    summary: "Get Fits",
+    summary: "Get Fit",
   })
   @get()
-  static getFits = procedure({
+  static getFit = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

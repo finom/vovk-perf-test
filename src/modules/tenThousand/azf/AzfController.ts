@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("azfs")
+@prefix("azf")
 export default class AzfController {
   @operation({
-    summary: "Get Azfs",
+    summary: "Get Azf",
   })
   @get()
-  static getAzfs = procedure({
+  static getAzf = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

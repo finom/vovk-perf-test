@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("ntas")
+@prefix("nta")
 export default class NtaController {
   @operation({
-    summary: "Get Ntas",
+    summary: "Get Nta",
   })
   @get()
-  static getNtas = procedure({
+  static getNta = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

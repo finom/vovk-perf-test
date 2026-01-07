@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("lens")
+@prefix("len")
 export default class LenController {
   @operation({
-    summary: "Get Lens",
+    summary: "Get Len",
   })
   @get()
-  static getLens = procedure({
+  static getLen = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");

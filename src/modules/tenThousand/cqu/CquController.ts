@@ -1,12 +1,12 @@
 import { procedure, prefix, get, post, operation } from "vovk";
 
-@prefix("cqus")
+@prefix("cqu")
 export default class CquController {
   @operation({
-    summary: "Get Cqus",
+    summary: "Get Cqu",
   })
   @get()
-  static getCqus = procedure({
+  static getCqu = procedure({
     handle: (_req, params: unknown) => {
       if (params && typeof params === "object" && "id" in params)
         throw new Error("Unexpected id param");
