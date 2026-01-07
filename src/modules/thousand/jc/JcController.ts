@@ -7,10 +7,8 @@ export default class JcController {
   })
   @get()
   static getJc = procedure({
-    handle: (_req, params: unknown) => {
-      if (params && typeof params === "object" && "id" in params)
-        throw new Error("Unexpected id param");
-      return null;
+    handle: () => {
+      return { get: true };
     },
   });
 
@@ -19,10 +17,8 @@ export default class JcController {
   })
   @post("{id}")
   static createJc = procedure({
-    handle: (_req, params: unknown) => {
-      if (!(params && typeof params === "object" && "id" in params))
-        throw new Error("Missing id param");
-      return null;
+    handle: (_req, params: any) => {
+      return { post: true, id: params.id };
     },
   });
 }

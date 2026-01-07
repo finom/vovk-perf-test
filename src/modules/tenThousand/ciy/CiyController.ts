@@ -7,10 +7,8 @@ export default class CiyController {
   })
   @get()
   static getCiy = procedure({
-    handle: (_req, params: unknown) => {
-      if (params && typeof params === "object" && "id" in params)
-        throw new Error("Unexpected id param");
-      return null;
+    handle: () => {
+      return { get: true };
     },
   });
 
@@ -19,10 +17,8 @@ export default class CiyController {
   })
   @post("{id}")
   static createCiy = procedure({
-    handle: (_req, params: unknown) => {
-      if (!(params && typeof params === "object" && "id" in params))
-        throw new Error("Missing id param");
-      return null;
+    handle: (_req, params: any) => {
+      return { post: true, id: params.id };
     },
   });
 }

@@ -7,10 +7,8 @@ export default class IsyController {
   })
   @get()
   static getIsy = procedure({
-    handle: (_req, params: unknown) => {
-      if (params && typeof params === "object" && "id" in params)
-        throw new Error("Unexpected id param");
-      return null;
+    handle: () => {
+      return { get: true };
     },
   });
 
@@ -19,10 +17,8 @@ export default class IsyController {
   })
   @post("{id}")
   static createIsy = procedure({
-    handle: (_req, params: unknown) => {
-      if (!(params && typeof params === "object" && "id" in params))
-        throw new Error("Missing id param");
-      return null;
+    handle: (_req, params: any) => {
+      return { post: true, id: params.id };
     },
   });
 }

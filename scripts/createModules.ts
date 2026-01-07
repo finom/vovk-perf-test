@@ -1,24 +1,12 @@
 import { spawn } from "child_process";
 
-function runCommand(command: string, args: string[] = []): Promise<string> {
+function runCommand(command: string, args: string[] = []): Promise<void> {
   return new Promise((resolve, reject) => {
-    const child = spawn(command, args);
-
-    let output = "";
-
-    child.stdout.on("data", (data) => {
-      const text = data.toString();
-      process.stdout.write(text); // live stream
-      output += text;
-    });
-
-    child.stderr.on("data", (data) => {
-      process.stderr.write(data.toString()); // show errors live
-    });
+    const child = spawn(command, args, { stdio: "inherit" });
 
     child.on("close", (code) => {
       if (code === 0) {
-        resolve(output);
+        resolve();
       } else {
         reject(new Error(`Command failed with code ${code}`));
       }

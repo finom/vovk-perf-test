@@ -1,6 +1,6 @@
+import { deepStrictEqual } from "node:assert/strict";
 import { Bench } from "tinybench";
-import { GET as hundredGET } from "../../src/app/api/hundred/[[...vovk]]/route.ts";
-import { POST as hundredPOST } from "../../src/app/api/hundred/[[...vovk]]/route.ts";
+import { GET as hundredGET, POST as hundredPOST } from "../../src/app/api/hundred/[[...vovk]]/route.ts";
 
 import type { NextRequest } from "next/server.js";
 
@@ -8,15 +8,18 @@ const bench = new Bench({ time: 100 });
 const dummyReq = {} as unknown as NextRequest;
 const dummyGETParams = {
   params: Promise.resolve({
-    vovk: ["cvs"],
+    vovk: ["cv"],
   }),
 };
 
 const dummyPOSTParams = {
   params: Promise.resolve({
-    vovk: ["cvs", "123"],
+    vovk: ["cv", "123"],
   }),
 };
+
+deepStrictEqual(await (await hundredGET(dummyReq, dummyGETParams)).json(), { get: true });
+deepStrictEqual((await (await hundredPOST(dummyReq, dummyPOSTParams)).json()), { post: true, id: "123" });
 
 bench
   .add(

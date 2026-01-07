@@ -1,6 +1,6 @@
+import { deepStrictEqual } from "node:assert/strict";
 import { Bench } from "tinybench";
-import { GET as tenGET } from "../../src/app/api/ten/[[...vovk]]/route.ts";
-import { POST as tenPOST } from "../../src/app/api/ten/[[...vovk]]/route.ts";
+import { GET as tenGET, POST as tenPOST } from "../../src/app/api/ten/[[...vovk]]/route.ts";
 
 import type { NextRequest } from "next/server.js";
 
@@ -8,15 +8,18 @@ const bench = new Bench({ time: 100 });
 const dummyReq = {} as unknown as NextRequest;
 const dummyGETParams = {
   params: Promise.resolve({
-    vovk: ["js"],
+    vovk: ["j"],
   }),
 };
 
 const dummyPOSTParams = {
   params: Promise.resolve({
-    vovk: ["js", "123"],
+    vovk: ["j", "123"],
   }),
 };
+
+deepStrictEqual(await (await tenGET(dummyReq, dummyGETParams)).json(), { get: true });
+deepStrictEqual((await (await tenPOST(dummyReq, dummyPOSTParams)).json()), { post: true, id: "123" });
 
 bench
   .add("10 controller GET", async () => await tenGET(dummyReq, dummyGETParams))
