@@ -23,11 +23,11 @@ deepStrictEqual((await (await hundredPOST(dummyReq, dummyPOSTParams)).json()), {
 
 bench
   .add(
-    "100 controller GET",
+    "100 controllers GET",
     async () => await hundredGET(dummyReq, dummyGETParams),
   )
   .add(
-    "100 controller POST",
+    "100 controllers POST",
     async () => await hundredPOST(dummyReq, dummyPOSTParams),
   );
 
