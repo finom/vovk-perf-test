@@ -1,4 +1,5 @@
 import { procedure, prefix, get, post, operation } from "vovk";
+import z from "zod";
 
 @prefix("lcf")
 export default class LcfController {
@@ -17,8 +18,10 @@ export default class LcfController {
   })
   @post("{id}")
   static createLcf = procedure({
-    handle: (_req, params: any) => {
-      return { post: true, id: params.id };
+    disableServerSideValidation: ["params"],
+    params: z.object({ id: z.string() }),
+    handle: (_req, { id }) => {
+      return { post: true, id };
     },
   });
 }

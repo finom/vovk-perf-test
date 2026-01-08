@@ -1,4 +1,5 @@
 import { procedure, prefix, get, post, operation } from "vovk";
+import z from "zod";
 
 @prefix("fts")
 export default class FtsController {
@@ -17,8 +18,10 @@ export default class FtsController {
   })
   @post("{id}")
   static createFts = procedure({
-    handle: (_req, params: any) => {
-      return { post: true, id: params.id };
+    disableServerSideValidation: ["params"],
+    params: z.object({ id: z.string() }),
+    handle: (_req, { id }) => {
+      return { post: true, id };
     },
   });
 }

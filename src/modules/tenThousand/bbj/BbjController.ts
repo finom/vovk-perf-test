@@ -1,4 +1,5 @@
 import { procedure, prefix, get, post, operation } from "vovk";
+import z from "zod";
 
 @prefix("bbj")
 export default class BbjController {
@@ -17,8 +18,10 @@ export default class BbjController {
   })
   @post("{id}")
   static createBbj = procedure({
-    handle: (_req, params: any) => {
-      return { post: true, id: params.id };
+    disableServerSideValidation: ["params"],
+    params: z.object({ id: z.string() }),
+    handle: (_req, { id }) => {
+      return { post: true, id };
     },
   });
 }

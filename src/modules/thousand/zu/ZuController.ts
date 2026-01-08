@@ -1,4 +1,5 @@
 import { procedure, prefix, get, post, operation } from "vovk";
+import z from "zod";
 
 @prefix("zu")
 export default class ZuController {
@@ -17,8 +18,10 @@ export default class ZuController {
   })
   @post("{id}")
   static createZu = procedure({
-    handle: (_req, params: any) => {
-      return { post: true, id: params.id };
+    disableServerSideValidation: ["params"],
+    params: z.object({ id: z.string() }),
+    handle: (_req, { id }) => {
+      return { post: true, id };
     },
   });
 }
