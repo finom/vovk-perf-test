@@ -80,7 +80,7 @@ class ${controllerName} {
     summary: "Create",
   })
   @noopDecorator("{id}")
-  static create = (_req: unknown, params: any) => {
+  static create = () => {
     return null;
   };
 }
