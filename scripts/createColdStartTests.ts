@@ -13,6 +13,9 @@ import prettier from 'prettier';
 
   let result = `import { procedure, prefix, post, initSegment, operation } from "vovk";
 import { Bench } from 'tinybench';
+import { z } from 'zod';
+
+const params = z.object({ id: z.string() });
 
 function noopDecorator(arg?: any) {
   return function <T>(
@@ -48,6 +51,7 @@ class ${controllerName} {
   })
   @post("{id}")
   static create = procedure({
+    params,
     handle: () => null,
   });
 }
