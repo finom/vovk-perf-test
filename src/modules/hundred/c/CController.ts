@@ -7,10 +7,8 @@ export default class CController {
     summary: "Get C",
   })
   @get()
-  static getC = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getC = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CController {
   static createC = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

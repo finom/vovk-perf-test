@@ -7,10 +7,8 @@ export default class DbController {
     summary: "Get Db",
   })
   @get()
-  static getDb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DbController {
   static createDb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

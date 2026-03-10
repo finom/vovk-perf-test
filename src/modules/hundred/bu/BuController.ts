@@ -7,10 +7,8 @@ export default class BuController {
     summary: "Get Bu",
   })
   @get()
-  static getBu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BuController {
   static createBu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

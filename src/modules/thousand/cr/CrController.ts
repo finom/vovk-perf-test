@@ -7,10 +7,8 @@ export default class CrController {
     summary: "Get Cr",
   })
   @get()
-  static getCr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CrController {
   static createCr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

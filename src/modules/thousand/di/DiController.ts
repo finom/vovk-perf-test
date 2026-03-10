@@ -7,10 +7,8 @@ export default class DiController {
     summary: "Get Di",
   })
   @get()
-  static getDi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DiController {
   static createDi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

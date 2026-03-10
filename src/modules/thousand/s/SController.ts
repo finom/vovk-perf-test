@@ -7,10 +7,8 @@ export default class SController {
     summary: "Get S",
   })
   @get()
-  static getS = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getS = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class SController {
   static createS = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

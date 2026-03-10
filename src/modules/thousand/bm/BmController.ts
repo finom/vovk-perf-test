@@ -7,10 +7,8 @@ export default class BmController {
     summary: "Get Bm",
   })
   @get()
-  static getBm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BmController {
   static createBm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class DmController {
     summary: "Get Dm",
   })
   @get()
-  static getDm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DmController {
   static createDm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

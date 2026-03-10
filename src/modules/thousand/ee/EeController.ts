@@ -7,10 +7,8 @@ export default class EeController {
     summary: "Get Ee",
   })
   @get()
-  static getEe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EeController {
   static createEe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

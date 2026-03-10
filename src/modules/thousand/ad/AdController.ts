@@ -7,10 +7,8 @@ export default class AdController {
     summary: "Get Ad",
   })
   @get()
-  static getAd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AdController {
   static createAd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

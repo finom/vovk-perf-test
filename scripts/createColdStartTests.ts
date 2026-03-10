@@ -50,10 +50,7 @@ class ${controllerName} {
     summary: "Create",
   })
   @post("{id}")
-  static create = procedure({
-    params,
-    handle: () => null,
-  });
+  static create = procedure({ params }).handle(() => null);
 }
 
 controllers["${controllerName}"] = ${controllerName};

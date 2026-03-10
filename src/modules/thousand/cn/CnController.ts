@@ -7,10 +7,8 @@ export default class CnController {
     summary: "Get Cn",
   })
   @get()
-  static getCn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CnController {
   static createCn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

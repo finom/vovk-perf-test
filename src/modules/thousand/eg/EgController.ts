@@ -7,10 +7,8 @@ export default class EgController {
     summary: "Get Eg",
   })
   @get()
-  static getEg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EgController {
   static createEg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class DnController {
     summary: "Get Dn",
   })
   @get()
-  static getDn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DnController {
   static createDn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

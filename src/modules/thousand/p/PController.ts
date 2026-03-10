@@ -7,10 +7,8 @@ export default class PController {
     summary: "Get P",
   })
   @get()
-  static getP = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getP = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class PController {
   static createP = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class CqController {
     summary: "Get Cq",
   })
   @get()
-  static getCq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CqController {
   static createCq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }
