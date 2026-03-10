@@ -7,10 +7,8 @@ export default class AhtController {
     summary: "Get Aht",
   })
   @get()
-  static getAht = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAht = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AhtController {
   static createAht = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

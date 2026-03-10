@@ -7,10 +7,8 @@ export default class AdbController {
     summary: "Get Adb",
   })
   @get()
-  static getAdb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAdb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AdbController {
   static createAdb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

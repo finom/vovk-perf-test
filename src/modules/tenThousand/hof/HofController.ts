@@ -7,10 +7,8 @@ export default class HofController {
     summary: "Get Hof",
   })
   @get()
-  static getHof = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHof = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HofController {
   static createHof = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

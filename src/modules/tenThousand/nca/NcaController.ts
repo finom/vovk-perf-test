@@ -7,10 +7,8 @@ export default class NcaController {
     summary: "Get Nca",
   })
   @get()
-  static getNca = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNca = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NcaController {
   static createNca = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

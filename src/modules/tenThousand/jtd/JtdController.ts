@@ -7,10 +7,8 @@ export default class JtdController {
     summary: "Get Jtd",
   })
   @get()
-  static getJtd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJtd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JtdController {
   static createJtd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

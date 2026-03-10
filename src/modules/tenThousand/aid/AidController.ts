@@ -7,10 +7,8 @@ export default class AidController {
     summary: "Get Aid",
   })
   @get()
-  static getAid = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAid = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AidController {
   static createAid = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

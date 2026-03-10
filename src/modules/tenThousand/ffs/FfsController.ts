@@ -7,10 +7,8 @@ export default class FfsController {
     summary: "Get Ffs",
   })
   @get()
-  static getFfs = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFfs = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FfsController {
   static createFfs = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

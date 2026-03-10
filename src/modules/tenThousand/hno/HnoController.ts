@@ -7,10 +7,8 @@ export default class HnoController {
     summary: "Get Hno",
   })
   @get()
-  static getHno = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHno = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HnoController {
   static createHno = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

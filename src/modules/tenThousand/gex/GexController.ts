@@ -7,10 +7,8 @@ export default class GexController {
     summary: "Get Gex",
   })
   @get()
-  static getGex = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGex = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GexController {
   static createGex = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

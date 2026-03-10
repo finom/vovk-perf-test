@@ -7,10 +7,8 @@ export default class DtsController {
     summary: "Get Dts",
   })
   @get()
-  static getDts = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDts = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DtsController {
   static createDts = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

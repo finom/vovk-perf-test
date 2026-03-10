@@ -7,10 +7,8 @@ export default class KomController {
     summary: "Get Kom",
   })
   @get()
-  static getKom = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKom = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KomController {
   static createKom = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class CfcController {
     summary: "Get Cfc",
   })
   @get()
-  static getCfc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCfc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CfcController {
   static createCfc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

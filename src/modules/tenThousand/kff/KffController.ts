@@ -7,10 +7,8 @@ export default class KffController {
     summary: "Get Kff",
   })
   @get()
-  static getKff = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKff = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KffController {
   static createKff = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

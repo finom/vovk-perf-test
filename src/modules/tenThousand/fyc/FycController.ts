@@ -7,10 +7,8 @@ export default class FycController {
     summary: "Get Fyc",
   })
   @get()
-  static getFyc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFyc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FycController {
   static createFyc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

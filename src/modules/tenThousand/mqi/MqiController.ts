@@ -7,10 +7,8 @@ export default class MqiController {
     summary: "Get Mqi",
   })
   @get()
-  static getMqi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMqi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MqiController {
   static createMqi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

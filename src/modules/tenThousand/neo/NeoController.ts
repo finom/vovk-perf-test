@@ -7,10 +7,8 @@ export default class NeoController {
     summary: "Get Neo",
   })
   @get()
-  static getNeo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNeo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NeoController {
   static createNeo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class UyController {
     summary: "Get Uy",
   })
   @get()
-  static getUy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getUy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class UyController {
   static createUy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

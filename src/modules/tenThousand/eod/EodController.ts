@@ -7,10 +7,8 @@ export default class EodController {
     summary: "Get Eod",
   })
   @get()
-  static getEod = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEod = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EodController {
   static createEod = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

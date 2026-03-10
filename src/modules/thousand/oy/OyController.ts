@@ -7,10 +7,8 @@ export default class OyController {
     summary: "Get Oy",
   })
   @get()
-  static getOy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getOy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class OyController {
   static createOy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

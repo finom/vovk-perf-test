@@ -7,10 +7,8 @@ export default class GbsController {
     summary: "Get Gbs",
   })
   @get()
-  static getGbs = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGbs = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GbsController {
   static createGbs = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

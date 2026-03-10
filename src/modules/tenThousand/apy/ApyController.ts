@@ -7,10 +7,8 @@ export default class ApyController {
     summary: "Get Apy",
   })
   @get()
-  static getApy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getApy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ApyController {
   static createApy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

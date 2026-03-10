@@ -7,10 +7,8 @@ export default class NkaController {
     summary: "Get Nka",
   })
   @get()
-  static getNka = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNka = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NkaController {
   static createNka = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

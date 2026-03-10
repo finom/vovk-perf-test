@@ -7,10 +7,8 @@ export default class MriController {
     summary: "Get Mri",
   })
   @get()
-  static getMri = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMri = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MriController {
   static createMri = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

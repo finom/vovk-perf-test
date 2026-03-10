@@ -7,10 +7,8 @@ export default class FgeController {
     summary: "Get Fge",
   })
   @get()
-  static getFge = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFge = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FgeController {
   static createFge = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class LvwController {
     summary: "Get Lvw",
   })
   @get()
-  static getLvw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLvw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LvwController {
   static createLvw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IkzController {
     summary: "Get Ikz",
   })
   @get()
-  static getIkz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIkz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IkzController {
   static createIkz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

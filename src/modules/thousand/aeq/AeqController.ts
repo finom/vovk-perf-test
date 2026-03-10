@@ -7,10 +7,8 @@ export default class AeqController {
     summary: "Get Aeq",
   })
   @get()
-  static getAeq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAeq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AeqController {
   static createAeq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

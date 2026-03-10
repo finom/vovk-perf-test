@@ -7,10 +7,8 @@ export default class MnsController {
     summary: "Get Mns",
   })
   @get()
-  static getMns = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMns = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MnsController {
   static createMns = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

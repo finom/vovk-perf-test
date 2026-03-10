@@ -7,10 +7,8 @@ export default class LsfController {
     summary: "Get Lsf",
   })
   @get()
-  static getLsf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLsf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LsfController {
   static createLsf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

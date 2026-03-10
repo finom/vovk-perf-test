@@ -7,10 +7,8 @@ export default class CtfController {
     summary: "Get Ctf",
   })
   @get()
-  static getCtf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCtf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CtfController {
   static createCtf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class MtkController {
     summary: "Get Mtk",
   })
   @get()
-  static getMtk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMtk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MtkController {
   static createMtk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

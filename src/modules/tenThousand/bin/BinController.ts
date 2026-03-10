@@ -7,10 +7,8 @@ export default class BinController {
     summary: "Get Bin",
   })
   @get()
-  static getBin = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBin = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BinController {
   static createBin = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

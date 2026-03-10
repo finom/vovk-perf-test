@@ -7,10 +7,8 @@ export default class JedController {
     summary: "Get Jed",
   })
   @get()
-  static getJed = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJed = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JedController {
   static createJed = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

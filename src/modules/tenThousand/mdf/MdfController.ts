@@ -7,10 +7,8 @@ export default class MdfController {
     summary: "Get Mdf",
   })
   @get()
-  static getMdf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMdf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MdfController {
   static createMdf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

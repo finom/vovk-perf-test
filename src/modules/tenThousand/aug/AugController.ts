@@ -7,10 +7,8 @@ export default class AugController {
     summary: "Get Aug",
   })
   @get()
-  static getAug = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAug = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AugController {
   static createAug = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

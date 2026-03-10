@@ -7,10 +7,8 @@ export default class GjsController {
     summary: "Get Gjs",
   })
   @get()
-  static getGjs = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGjs = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GjsController {
   static createGjs = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

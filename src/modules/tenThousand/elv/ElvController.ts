@@ -7,10 +7,8 @@ export default class ElvController {
     summary: "Get Elv",
   })
   @get()
-  static getElv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getElv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ElvController {
   static createElv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

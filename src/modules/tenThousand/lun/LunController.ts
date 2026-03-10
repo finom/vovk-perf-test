@@ -7,10 +7,8 @@ export default class LunController {
     summary: "Get Lun",
   })
   @get()
-  static getLun = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLun = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LunController {
   static createLun = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

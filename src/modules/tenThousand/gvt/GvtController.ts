@@ -7,10 +7,8 @@ export default class GvtController {
     summary: "Get Gvt",
   })
   @get()
-  static getGvt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGvt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GvtController {
   static createGvt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

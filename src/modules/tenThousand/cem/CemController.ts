@@ -7,10 +7,8 @@ export default class CemController {
     summary: "Get Cem",
   })
   @get()
-  static getCem = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCem = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CemController {
   static createCem = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class LedController {
     summary: "Get Led",
   })
   @get()
-  static getLed = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLed = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LedController {
   static createLed = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

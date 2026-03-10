@@ -7,10 +7,8 @@ export default class KumController {
     summary: "Get Kum",
   })
   @get()
-  static getKum = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKum = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KumController {
   static createKum = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

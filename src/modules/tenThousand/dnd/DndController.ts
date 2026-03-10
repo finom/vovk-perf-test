@@ -7,10 +7,8 @@ export default class DndController {
     summary: "Get Dnd",
   })
   @get()
-  static getDnd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDnd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DndController {
   static createDnd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class EtnController {
     summary: "Get Etn",
   })
   @get()
-  static getEtn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEtn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EtnController {
   static createEtn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

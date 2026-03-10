@@ -7,10 +7,8 @@ export default class HtmController {
     summary: "Get Htm",
   })
   @get()
-  static getHtm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHtm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HtmController {
   static createHtm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class KspController {
     summary: "Get Ksp",
   })
   @get()
-  static getKsp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKsp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KspController {
   static createKsp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

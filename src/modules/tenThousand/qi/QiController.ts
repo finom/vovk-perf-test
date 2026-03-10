@@ -7,10 +7,8 @@ export default class QiController {
     summary: "Get Qi",
   })
   @get()
-  static getQi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getQi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class QiController {
   static createQi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class AgdController {
     summary: "Get Agd",
   })
   @get()
-  static getAgd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAgd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AgdController {
   static createAgd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

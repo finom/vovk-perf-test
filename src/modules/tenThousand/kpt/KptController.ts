@@ -7,10 +7,8 @@ export default class KptController {
     summary: "Get Kpt",
   })
   @get()
-  static getKpt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKpt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KptController {
   static createKpt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

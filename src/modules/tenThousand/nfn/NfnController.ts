@@ -7,10 +7,8 @@ export default class NfnController {
     summary: "Get Nfn",
   })
   @get()
-  static getNfn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNfn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NfnController {
   static createNfn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

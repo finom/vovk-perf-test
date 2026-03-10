@@ -7,10 +7,8 @@ export default class HluController {
     summary: "Get Hlu",
   })
   @get()
-  static getHlu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHlu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HluController {
   static createHlu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

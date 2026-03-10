@@ -7,10 +7,8 @@ export default class MypController {
     summary: "Get Myp",
   })
   @get()
-  static getMyp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMyp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MypController {
   static createMyp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

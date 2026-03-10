@@ -7,10 +7,8 @@ export default class MeiController {
     summary: "Get Mei",
   })
   @get()
-  static getMei = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMei = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MeiController {
   static createMei = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

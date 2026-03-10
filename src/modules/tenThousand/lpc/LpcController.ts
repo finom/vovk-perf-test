@@ -7,10 +7,8 @@ export default class LpcController {
     summary: "Get Lpc",
   })
   @get()
-  static getLpc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLpc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LpcController {
   static createLpc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

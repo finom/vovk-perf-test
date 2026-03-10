@@ -7,10 +7,8 @@ export default class MqzController {
     summary: "Get Mqz",
   })
   @get()
-  static getMqz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMqz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MqzController {
   static createMqz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

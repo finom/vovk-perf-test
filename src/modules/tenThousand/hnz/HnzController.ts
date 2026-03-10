@@ -7,10 +7,8 @@ export default class HnzController {
     summary: "Get Hnz",
   })
   @get()
-  static getHnz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHnz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HnzController {
   static createHnz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

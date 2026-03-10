@@ -7,10 +7,8 @@ export default class AzaController {
     summary: "Get Aza",
   })
   @get()
-  static getAza = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAza = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AzaController {
   static createAza = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

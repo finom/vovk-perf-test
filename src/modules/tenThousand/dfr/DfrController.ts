@@ -7,10 +7,8 @@ export default class DfrController {
     summary: "Get Dfr",
   })
   @get()
-  static getDfr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDfr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DfrController {
   static createDfr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

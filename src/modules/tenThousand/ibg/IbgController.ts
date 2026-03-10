@@ -7,10 +7,8 @@ export default class IbgController {
     summary: "Get Ibg",
   })
   @get()
-  static getIbg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIbg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IbgController {
   static createIbg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

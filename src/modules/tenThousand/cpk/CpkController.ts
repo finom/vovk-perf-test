@@ -7,10 +7,8 @@ export default class CpkController {
     summary: "Get Cpk",
   })
   @get()
-  static getCpk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCpk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CpkController {
   static createCpk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

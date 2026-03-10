@@ -7,10 +7,8 @@ export default class MmvController {
     summary: "Get Mmv",
   })
   @get()
-  static getMmv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMmv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MmvController {
   static createMmv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class CdmController {
     summary: "Get Cdm",
   })
   @get()
-  static getCdm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCdm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CdmController {
   static createCdm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

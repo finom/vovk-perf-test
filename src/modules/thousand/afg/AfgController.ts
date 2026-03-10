@@ -7,10 +7,8 @@ export default class AfgController {
     summary: "Get Afg",
   })
   @get()
-  static getAfg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAfg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AfgController {
   static createAfg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

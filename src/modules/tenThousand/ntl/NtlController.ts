@@ -7,10 +7,8 @@ export default class NtlController {
     summary: "Get Ntl",
   })
   @get()
-  static getNtl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNtl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NtlController {
   static createNtl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

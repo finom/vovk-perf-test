@@ -7,10 +7,8 @@ export default class CtxController {
     summary: "Get Ctx",
   })
   @get()
-  static getCtx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCtx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CtxController {
   static createCtx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

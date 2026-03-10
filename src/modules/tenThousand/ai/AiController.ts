@@ -7,10 +7,8 @@ export default class AiController {
     summary: "Get Ai",
   })
   @get()
-  static getAi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AiController {
   static createAi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

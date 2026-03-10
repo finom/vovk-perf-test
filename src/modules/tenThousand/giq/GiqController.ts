@@ -7,10 +7,8 @@ export default class GiqController {
     summary: "Get Giq",
   })
   @get()
-  static getGiq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGiq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GiqController {
   static createGiq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

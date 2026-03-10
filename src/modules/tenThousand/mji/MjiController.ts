@@ -7,10 +7,8 @@ export default class MjiController {
     summary: "Get Mji",
   })
   @get()
-  static getMji = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMji = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MjiController {
   static createMji = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

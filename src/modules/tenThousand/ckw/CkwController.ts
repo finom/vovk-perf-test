@@ -7,10 +7,8 @@ export default class CkwController {
     summary: "Get Ckw",
   })
   @get()
-  static getCkw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCkw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CkwController {
   static createCkw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

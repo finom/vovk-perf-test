@@ -7,10 +7,8 @@ export default class JyqController {
     summary: "Get Jyq",
   })
   @get()
-  static getJyq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJyq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JyqController {
   static createJyq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

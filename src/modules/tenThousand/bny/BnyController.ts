@@ -7,10 +7,8 @@ export default class BnyController {
     summary: "Get Bny",
   })
   @get()
-  static getBny = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBny = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BnyController {
   static createBny = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

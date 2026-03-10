@@ -7,10 +7,8 @@ export default class TrController {
     summary: "Get Tr",
   })
   @get()
-  static getTr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getTr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class TrController {
   static createTr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class BygController {
     summary: "Get Byg",
   })
   @get()
-  static getByg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getByg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BygController {
   static createByg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class EdsController {
     summary: "Get Eds",
   })
   @get()
-  static getEds = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEds = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EdsController {
   static createEds = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

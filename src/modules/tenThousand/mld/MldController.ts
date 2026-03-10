@@ -7,10 +7,8 @@ export default class MldController {
     summary: "Get Mld",
   })
   @get()
-  static getMld = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMld = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MldController {
   static createMld = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

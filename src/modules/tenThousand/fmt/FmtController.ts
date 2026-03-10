@@ -7,10 +7,8 @@ export default class FmtController {
     summary: "Get Fmt",
   })
   @get()
-  static getFmt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFmt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FmtController {
   static createFmt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class InnController {
     summary: "Get Inn",
   })
   @get()
-  static getInn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getInn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class InnController {
   static createInn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

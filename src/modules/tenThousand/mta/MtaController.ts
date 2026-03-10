@@ -7,10 +7,8 @@ export default class MtaController {
     summary: "Get Mta",
   })
   @get()
-  static getMta = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMta = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MtaController {
   static createMta = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

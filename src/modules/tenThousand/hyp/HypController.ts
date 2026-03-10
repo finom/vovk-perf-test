@@ -7,10 +7,8 @@ export default class HypController {
     summary: "Get Hyp",
   })
   @get()
-  static getHyp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHyp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HypController {
   static createHyp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class NruController {
     summary: "Get Nru",
   })
   @get()
-  static getNru = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNru = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NruController {
   static createNru = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

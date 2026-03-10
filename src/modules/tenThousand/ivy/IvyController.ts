@@ -7,10 +7,8 @@ export default class IvyController {
     summary: "Get Ivy",
   })
   @get()
-  static getIvy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIvy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IvyController {
   static createIvy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

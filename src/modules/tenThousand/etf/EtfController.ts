@@ -7,10 +7,8 @@ export default class EtfController {
     summary: "Get Etf",
   })
   @get()
-  static getEtf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEtf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EtfController {
   static createEtf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

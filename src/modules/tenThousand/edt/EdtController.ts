@@ -7,10 +7,8 @@ export default class EdtController {
     summary: "Get Edt",
   })
   @get()
-  static getEdt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEdt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EdtController {
   static createEdt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

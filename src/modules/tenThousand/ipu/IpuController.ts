@@ -7,10 +7,8 @@ export default class IpuController {
     summary: "Get Ipu",
   })
   @get()
-  static getIpu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIpu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IpuController {
   static createIpu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

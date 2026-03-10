@@ -7,10 +7,8 @@ export default class ImrController {
     summary: "Get Imr",
   })
   @get()
-  static getImr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getImr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ImrController {
   static createImr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

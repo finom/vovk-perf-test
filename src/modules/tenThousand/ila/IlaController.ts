@@ -7,10 +7,8 @@ export default class IlaController {
     summary: "Get Ila",
   })
   @get()
-  static getIla = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIla = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IlaController {
   static createIla = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

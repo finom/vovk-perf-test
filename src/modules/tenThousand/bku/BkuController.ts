@@ -7,10 +7,8 @@ export default class BkuController {
     summary: "Get Bku",
   })
   @get()
-  static getBku = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBku = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BkuController {
   static createBku = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

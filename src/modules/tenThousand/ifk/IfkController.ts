@@ -7,10 +7,8 @@ export default class IfkController {
     summary: "Get Ifk",
   })
   @get()
-  static getIfk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIfk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IfkController {
   static createIfk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

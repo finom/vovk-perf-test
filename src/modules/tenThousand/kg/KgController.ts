@@ -7,10 +7,8 @@ export default class KgController {
     summary: "Get Kg",
   })
   @get()
-  static getKg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KgController {
   static createKg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

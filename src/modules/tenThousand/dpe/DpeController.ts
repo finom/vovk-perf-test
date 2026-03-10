@@ -7,10 +7,8 @@ export default class DpeController {
     summary: "Get Dpe",
   })
   @get()
-  static getDpe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDpe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DpeController {
   static createDpe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

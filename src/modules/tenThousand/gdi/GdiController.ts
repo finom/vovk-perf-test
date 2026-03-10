@@ -7,10 +7,8 @@ export default class GdiController {
     summary: "Get Gdi",
   })
   @get()
-  static getGdi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGdi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GdiController {
   static createGdi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

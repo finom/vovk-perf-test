@@ -7,10 +7,8 @@ export default class OrController {
     summary: "Get Or",
   })
   @get()
-  static getOr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getOr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class OrController {
   static createOr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class EqvController {
     summary: "Get Eqv",
   })
   @get()
-  static getEqv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEqv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EqvController {
   static createEqv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

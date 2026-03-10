@@ -7,10 +7,8 @@ export default class JdbController {
     summary: "Get Jdb",
   })
   @get()
-  static getJdb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJdb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JdbController {
   static createJdb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

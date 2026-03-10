@@ -7,10 +7,8 @@ export default class RzController {
     summary: "Get Rz",
   })
   @get()
-  static getRz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getRz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class RzController {
   static createRz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

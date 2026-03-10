@@ -7,10 +7,8 @@ export default class FlmController {
     summary: "Get Flm",
   })
   @get()
-  static getFlm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFlm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FlmController {
   static createFlm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

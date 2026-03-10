@@ -7,10 +7,8 @@ export default class XtController {
     summary: "Get Xt",
   })
   @get()
-  static getXt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getXt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class XtController {
   static createXt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

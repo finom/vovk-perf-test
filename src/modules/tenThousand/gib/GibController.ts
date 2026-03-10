@@ -7,10 +7,8 @@ export default class GibController {
     summary: "Get Gib",
   })
   @get()
-  static getGib = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGib = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GibController {
   static createGib = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

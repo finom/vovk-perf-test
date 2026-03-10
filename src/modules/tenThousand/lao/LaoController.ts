@@ -7,10 +7,8 @@ export default class LaoController {
     summary: "Get Lao",
   })
   @get()
-  static getLao = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLao = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LaoController {
   static createLao = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

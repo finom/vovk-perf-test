@@ -7,10 +7,8 @@ export default class DuiController {
     summary: "Get Dui",
   })
   @get()
-  static getDui = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDui = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DuiController {
   static createDui = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

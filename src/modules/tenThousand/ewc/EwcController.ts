@@ -7,10 +7,8 @@ export default class EwcController {
     summary: "Get Ewc",
   })
   @get()
-  static getEwc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEwc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EwcController {
   static createEwc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

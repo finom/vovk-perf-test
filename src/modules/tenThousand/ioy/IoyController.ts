@@ -7,10 +7,8 @@ export default class IoyController {
     summary: "Get Ioy",
   })
   @get()
-  static getIoy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIoy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IoyController {
   static createIoy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

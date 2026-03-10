@@ -7,10 +7,8 @@ export default class FujController {
     summary: "Get Fuj",
   })
   @get()
-  static getFuj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFuj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FujController {
   static createFuj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

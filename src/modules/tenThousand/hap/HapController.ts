@@ -7,10 +7,8 @@ export default class HapController {
     summary: "Get Hap",
   })
   @get()
-  static getHap = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHap = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HapController {
   static createHap = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

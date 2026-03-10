@@ -7,10 +7,8 @@ export default class MlbController {
     summary: "Get Mlb",
   })
   @get()
-  static getMlb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMlb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MlbController {
   static createMlb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class ChoController {
     summary: "Get Cho",
   })
   @get()
-  static getCho = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCho = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ChoController {
   static createCho = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

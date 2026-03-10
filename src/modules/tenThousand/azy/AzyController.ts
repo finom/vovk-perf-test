@@ -7,10 +7,8 @@ export default class AzyController {
     summary: "Get Azy",
   })
   @get()
-  static getAzy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAzy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AzyController {
   static createAzy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

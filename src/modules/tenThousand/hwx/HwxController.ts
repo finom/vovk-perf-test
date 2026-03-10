@@ -7,10 +7,8 @@ export default class HwxController {
     summary: "Get Hwx",
   })
   @get()
-  static getHwx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHwx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HwxController {
   static createHwx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

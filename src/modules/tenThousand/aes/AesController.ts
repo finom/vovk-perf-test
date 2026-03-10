@@ -7,10 +7,8 @@ export default class AesController {
     summary: "Get Aes",
   })
   @get()
-  static getAes = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAes = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AesController {
   static createAes = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

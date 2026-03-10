@@ -7,10 +7,8 @@ export default class BetController {
     summary: "Get Bet",
   })
   @get()
-  static getBet = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBet = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BetController {
   static createBet = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

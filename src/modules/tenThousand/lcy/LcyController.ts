@@ -7,10 +7,8 @@ export default class LcyController {
     summary: "Get Lcy",
   })
   @get()
-  static getLcy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLcy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LcyController {
   static createLcy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

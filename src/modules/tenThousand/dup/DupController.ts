@@ -7,10 +7,8 @@ export default class DupController {
     summary: "Get Dup",
   })
   @get()
-  static getDup = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDup = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DupController {
   static createDup = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

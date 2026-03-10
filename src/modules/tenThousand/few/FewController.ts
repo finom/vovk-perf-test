@@ -7,10 +7,8 @@ export default class FewController {
     summary: "Get Few",
   })
   @get()
-  static getFew = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFew = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FewController {
   static createFew = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

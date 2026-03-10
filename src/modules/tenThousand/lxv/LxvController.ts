@@ -7,10 +7,8 @@ export default class LxvController {
     summary: "Get Lxv",
   })
   @get()
-  static getLxv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLxv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LxvController {
   static createLxv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

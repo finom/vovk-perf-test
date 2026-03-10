@@ -7,10 +7,8 @@ export default class LcoController {
     summary: "Get Lco",
   })
   @get()
-  static getLco = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLco = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LcoController {
   static createLco = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

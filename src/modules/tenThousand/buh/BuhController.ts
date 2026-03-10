@@ -7,10 +7,8 @@ export default class BuhController {
     summary: "Get Buh",
   })
   @get()
-  static getBuh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBuh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BuhController {
   static createBuh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

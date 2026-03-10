@@ -7,10 +7,8 @@ export default class EfgController {
     summary: "Get Efg",
   })
   @get()
-  static getEfg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEfg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EfgController {
   static createEfg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

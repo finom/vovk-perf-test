@@ -7,10 +7,8 @@ export default class KdiController {
     summary: "Get Kdi",
   })
   @get()
-  static getKdi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKdi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KdiController {
   static createKdi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

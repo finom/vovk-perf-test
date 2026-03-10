@@ -7,10 +7,8 @@ export default class DccController {
     summary: "Get Dcc",
   })
   @get()
-  static getDcc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDcc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DccController {
   static createDcc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

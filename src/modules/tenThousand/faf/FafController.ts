@@ -7,10 +7,8 @@ export default class FafController {
     summary: "Get Faf",
   })
   @get()
-  static getFaf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFaf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FafController {
   static createFaf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IngController {
     summary: "Get Ing",
   })
   @get()
-  static getIng = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIng = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IngController {
   static createIng = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

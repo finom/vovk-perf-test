@@ -7,10 +7,8 @@ export default class IdiController {
     summary: "Get Idi",
   })
   @get()
-  static getIdi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIdi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IdiController {
   static createIdi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class CwtController {
     summary: "Get Cwt",
   })
   @get()
-  static getCwt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCwt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CwtController {
   static createCwt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

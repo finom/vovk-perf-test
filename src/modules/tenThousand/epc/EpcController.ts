@@ -7,10 +7,8 @@ export default class EpcController {
     summary: "Get Epc",
   })
   @get()
-  static getEpc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEpc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EpcController {
   static createEpc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class GkeController {
     summary: "Get Gke",
   })
   @get()
-  static getGke = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGke = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GkeController {
   static createGke = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class BmjController {
     summary: "Get Bmj",
   })
   @get()
-  static getBmj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBmj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BmjController {
   static createBmj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IanController {
     summary: "Get Ian",
   })
   @get()
-  static getIan = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIan = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IanController {
   static createIan = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

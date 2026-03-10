@@ -7,10 +7,8 @@ export default class JloController {
     summary: "Get Jlo",
   })
   @get()
-  static getJlo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJlo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JloController {
   static createJlo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

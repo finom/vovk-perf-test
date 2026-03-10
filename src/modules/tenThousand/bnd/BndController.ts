@@ -7,10 +7,8 @@ export default class BndController {
     summary: "Get Bnd",
   })
   @get()
-  static getBnd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBnd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BndController {
   static createBnd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

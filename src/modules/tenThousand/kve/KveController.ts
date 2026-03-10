@@ -7,10 +7,8 @@ export default class KveController {
     summary: "Get Kve",
   })
   @get()
-  static getKve = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKve = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KveController {
   static createKve = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

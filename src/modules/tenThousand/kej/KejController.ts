@@ -7,10 +7,8 @@ export default class KejController {
     summary: "Get Kej",
   })
   @get()
-  static getKej = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKej = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KejController {
   static createKej = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

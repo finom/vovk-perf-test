@@ -7,10 +7,8 @@ export default class JqeController {
     summary: "Get Jqe",
   })
   @get()
-  static getJqe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJqe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JqeController {
   static createJqe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class BeqController {
     summary: "Get Beq",
   })
   @get()
-  static getBeq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBeq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BeqController {
   static createBeq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class XpController {
     summary: "Get Xp",
   })
   @get()
-  static getXp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getXp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class XpController {
   static createXp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

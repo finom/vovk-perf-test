@@ -7,10 +7,8 @@ export default class NmzController {
     summary: "Get Nmz",
   })
   @get()
-  static getNmz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNmz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NmzController {
   static createNmz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

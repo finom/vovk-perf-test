@@ -7,10 +7,8 @@ export default class IjdController {
     summary: "Get Ijd",
   })
   @get()
-  static getIjd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIjd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IjdController {
   static createIjd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

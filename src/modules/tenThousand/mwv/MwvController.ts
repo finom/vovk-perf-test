@@ -7,10 +7,8 @@ export default class MwvController {
     summary: "Get Mwv",
   })
   @get()
-  static getMwv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMwv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MwvController {
   static createMwv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

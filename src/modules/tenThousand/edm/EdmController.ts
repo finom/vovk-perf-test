@@ -7,10 +7,8 @@ export default class EdmController {
     summary: "Get Edm",
   })
   @get()
-  static getEdm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEdm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EdmController {
   static createEdm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

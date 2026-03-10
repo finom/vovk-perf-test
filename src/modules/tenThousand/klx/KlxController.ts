@@ -7,10 +7,8 @@ export default class KlxController {
     summary: "Get Klx",
   })
   @get()
-  static getKlx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKlx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KlxController {
   static createKlx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

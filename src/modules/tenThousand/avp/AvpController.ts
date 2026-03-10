@@ -7,10 +7,8 @@ export default class AvpController {
     summary: "Get Avp",
   })
   @get()
-  static getAvp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAvp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AvpController {
   static createAvp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class CosController {
     summary: "Get Cos",
   })
   @get()
-  static getCos = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCos = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CosController {
   static createCos = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

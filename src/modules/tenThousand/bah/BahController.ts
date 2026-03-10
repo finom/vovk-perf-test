@@ -7,10 +7,8 @@ export default class BahController {
     summary: "Get Bah",
   })
   @get()
-  static getBah = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBah = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BahController {
   static createBah = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

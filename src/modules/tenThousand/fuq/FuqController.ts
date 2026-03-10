@@ -7,10 +7,8 @@ export default class FuqController {
     summary: "Get Fuq",
   })
   @get()
-  static getFuq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFuq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FuqController {
   static createFuq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

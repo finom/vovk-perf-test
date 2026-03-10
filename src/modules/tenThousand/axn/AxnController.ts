@@ -7,10 +7,8 @@ export default class AxnController {
     summary: "Get Axn",
   })
   @get()
-  static getAxn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAxn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AxnController {
   static createAxn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

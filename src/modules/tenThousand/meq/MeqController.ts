@@ -7,10 +7,8 @@ export default class MeqController {
     summary: "Get Meq",
   })
   @get()
-  static getMeq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMeq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MeqController {
   static createMeq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

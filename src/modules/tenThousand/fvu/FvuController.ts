@@ -7,10 +7,8 @@ export default class FvuController {
     summary: "Get Fvu",
   })
   @get()
-  static getFvu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFvu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FvuController {
   static createFvu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

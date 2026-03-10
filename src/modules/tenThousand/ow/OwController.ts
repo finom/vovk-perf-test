@@ -7,10 +7,8 @@ export default class OwController {
     summary: "Get Ow",
   })
   @get()
-  static getOw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getOw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class OwController {
   static createOw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

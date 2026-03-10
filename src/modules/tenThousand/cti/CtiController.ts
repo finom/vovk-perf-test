@@ -7,10 +7,8 @@ export default class CtiController {
     summary: "Get Cti",
   })
   @get()
-  static getCti = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCti = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CtiController {
   static createCti = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

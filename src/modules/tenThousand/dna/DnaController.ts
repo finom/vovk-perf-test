@@ -7,10 +7,8 @@ export default class DnaController {
     summary: "Get Dna",
   })
   @get()
-  static getDna = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDna = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DnaController {
   static createDna = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

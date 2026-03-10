@@ -7,10 +7,8 @@ export default class EndController {
     summary: "Get End",
   })
   @get()
-  static getEnd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEnd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EndController {
   static createEnd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class DfnController {
     summary: "Get Dfn",
   })
   @get()
-  static getDfn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDfn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DfnController {
   static createDfn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

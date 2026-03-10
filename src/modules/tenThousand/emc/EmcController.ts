@@ -7,10 +7,8 @@ export default class EmcController {
     summary: "Get Emc",
   })
   @get()
-  static getEmc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEmc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EmcController {
   static createEmc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

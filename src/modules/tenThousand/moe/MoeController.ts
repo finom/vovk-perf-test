@@ -7,10 +7,8 @@ export default class MoeController {
     summary: "Get Moe",
   })
   @get()
-  static getMoe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMoe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MoeController {
   static createMoe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

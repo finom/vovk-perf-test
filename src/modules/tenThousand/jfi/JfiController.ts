@@ -7,10 +7,8 @@ export default class JfiController {
     summary: "Get Jfi",
   })
   @get()
-  static getJfi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJfi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JfiController {
   static createJfi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

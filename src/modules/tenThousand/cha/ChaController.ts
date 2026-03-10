@@ -7,10 +7,8 @@ export default class ChaController {
     summary: "Get Cha",
   })
   @get()
-  static getCha = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCha = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ChaController {
   static createCha = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

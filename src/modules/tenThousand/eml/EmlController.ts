@@ -7,10 +7,8 @@ export default class EmlController {
     summary: "Get Eml",
   })
   @get()
-  static getEml = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEml = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EmlController {
   static createEml = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

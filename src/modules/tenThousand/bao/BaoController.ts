@@ -7,10 +7,8 @@ export default class BaoController {
     summary: "Get Bao",
   })
   @get()
-  static getBao = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBao = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BaoController {
   static createBao = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

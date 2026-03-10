@@ -7,10 +7,8 @@ export default class ArqController {
     summary: "Get Arq",
   })
   @get()
-  static getArq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getArq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ArqController {
   static createArq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

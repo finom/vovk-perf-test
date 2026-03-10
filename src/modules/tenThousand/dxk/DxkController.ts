@@ -7,10 +7,8 @@ export default class DxkController {
     summary: "Get Dxk",
   })
   @get()
-  static getDxk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDxk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DxkController {
   static createDxk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

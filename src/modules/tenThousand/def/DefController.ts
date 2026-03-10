@@ -7,10 +7,8 @@ export default class DefController {
     summary: "Get Def",
   })
   @get()
-  static getDef = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDef = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DefController {
   static createDef = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

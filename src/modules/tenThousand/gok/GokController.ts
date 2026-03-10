@@ -7,10 +7,8 @@ export default class GokController {
     summary: "Get Gok",
   })
   @get()
-  static getGok = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGok = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GokController {
   static createGok = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

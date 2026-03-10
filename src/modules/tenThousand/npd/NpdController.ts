@@ -7,10 +7,8 @@ export default class NpdController {
     summary: "Get Npd",
   })
   @get()
-  static getNpd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNpd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NpdController {
   static createNpd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

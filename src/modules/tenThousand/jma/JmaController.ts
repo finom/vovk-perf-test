@@ -7,10 +7,8 @@ export default class JmaController {
     summary: "Get Jma",
   })
   @get()
-  static getJma = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJma = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JmaController {
   static createJma = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

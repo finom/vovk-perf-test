@@ -7,10 +7,8 @@ export default class EcrController {
     summary: "Get Ecr",
   })
   @get()
-  static getEcr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEcr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EcrController {
   static createEcr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

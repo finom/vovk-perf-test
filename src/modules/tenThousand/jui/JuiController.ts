@@ -7,10 +7,8 @@ export default class JuiController {
     summary: "Get Jui",
   })
   @get()
-  static getJui = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJui = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JuiController {
   static createJui = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

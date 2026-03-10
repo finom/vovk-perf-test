@@ -7,10 +7,8 @@ export default class MxdController {
     summary: "Get Mxd",
   })
   @get()
-  static getMxd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMxd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MxdController {
   static createMxd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

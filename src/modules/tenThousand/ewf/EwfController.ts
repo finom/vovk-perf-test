@@ -7,10 +7,8 @@ export default class EwfController {
     summary: "Get Ewf",
   })
   @get()
-  static getEwf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEwf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EwfController {
   static createEwf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

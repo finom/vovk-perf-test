@@ -7,10 +7,8 @@ export default class LokController {
     summary: "Get Lok",
   })
   @get()
-  static getLok = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLok = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LokController {
   static createLok = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

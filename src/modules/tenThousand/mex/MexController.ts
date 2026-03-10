@@ -7,10 +7,8 @@ export default class MexController {
     summary: "Get Mex",
   })
   @get()
-  static getMex = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMex = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MexController {
   static createMex = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

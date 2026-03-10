@@ -7,10 +7,8 @@ export default class JeeController {
     summary: "Get Jee",
   })
   @get()
-  static getJee = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJee = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JeeController {
   static createJee = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

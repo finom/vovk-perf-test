@@ -7,10 +7,8 @@ export default class DpxController {
     summary: "Get Dpx",
   })
   @get()
-  static getDpx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDpx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DpxController {
   static createDpx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

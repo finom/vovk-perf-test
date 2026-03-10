@@ -7,10 +7,8 @@ export default class QxController {
     summary: "Get Qx",
   })
   @get()
-  static getQx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getQx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class QxController {
   static createQx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

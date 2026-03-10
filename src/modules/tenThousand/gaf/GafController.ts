@@ -7,10 +7,8 @@ export default class GafController {
     summary: "Get Gaf",
   })
   @get()
-  static getGaf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGaf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GafController {
   static createGaf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

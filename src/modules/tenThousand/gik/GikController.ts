@@ -7,10 +7,8 @@ export default class GikController {
     summary: "Get Gik",
   })
   @get()
-  static getGik = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGik = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GikController {
   static createGik = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

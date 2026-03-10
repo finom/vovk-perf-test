@@ -7,10 +7,8 @@ export default class EwkController {
     summary: "Get Ewk",
   })
   @get()
-  static getEwk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEwk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EwkController {
   static createEwk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

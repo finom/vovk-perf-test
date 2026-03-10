@@ -7,10 +7,8 @@ export default class NfoController {
     summary: "Get Nfo",
   })
   @get()
-  static getNfo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNfo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NfoController {
   static createNfo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

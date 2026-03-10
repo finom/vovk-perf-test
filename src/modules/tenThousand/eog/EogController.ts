@@ -7,10 +7,8 @@ export default class EogController {
     summary: "Get Eog",
   })
   @get()
-  static getEog = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEog = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EogController {
   static createEog = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

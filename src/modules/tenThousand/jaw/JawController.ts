@@ -7,10 +7,8 @@ export default class JawController {
     summary: "Get Jaw",
   })
   @get()
-  static getJaw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJaw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JawController {
   static createJaw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class AyrController {
     summary: "Get Ayr",
   })
   @get()
-  static getAyr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAyr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AyrController {
   static createAyr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

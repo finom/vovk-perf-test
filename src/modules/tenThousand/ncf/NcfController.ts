@@ -7,10 +7,8 @@ export default class NcfController {
     summary: "Get Ncf",
   })
   @get()
-  static getNcf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNcf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NcfController {
   static createNcf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

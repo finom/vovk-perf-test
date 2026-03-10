@@ -7,10 +7,8 @@ export default class MxbController {
     summary: "Get Mxb",
   })
   @get()
-  static getMxb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMxb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MxbController {
   static createMxb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

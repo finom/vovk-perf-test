@@ -7,10 +7,8 @@ export default class KldController {
     summary: "Get Kld",
   })
   @get()
-  static getKld = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKld = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KldController {
   static createKld = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class BbfController {
     summary: "Get Bbf",
   })
   @get()
-  static getBbf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBbf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BbfController {
   static createBbf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

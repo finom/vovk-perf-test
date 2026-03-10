@@ -7,10 +7,8 @@ export default class LoiController {
     summary: "Get Loi",
   })
   @get()
-  static getLoi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLoi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LoiController {
   static createLoi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

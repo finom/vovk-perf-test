@@ -7,10 +7,8 @@ export default class ChrController {
     summary: "Get Chr",
   })
   @get()
-  static getChr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getChr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ChrController {
   static createChr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

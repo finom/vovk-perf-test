@@ -7,10 +7,8 @@ export default class VxController {
     summary: "Get Vx",
   })
   @get()
-  static getVx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getVx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class VxController {
   static createVx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

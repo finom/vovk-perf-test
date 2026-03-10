@@ -7,10 +7,8 @@ export default class McfController {
     summary: "Get Mcf",
   })
   @get()
-  static getMcf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMcf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class McfController {
   static createMcf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

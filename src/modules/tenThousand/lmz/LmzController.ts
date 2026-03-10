@@ -7,10 +7,8 @@ export default class LmzController {
     summary: "Get Lmz",
   })
   @get()
-  static getLmz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLmz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LmzController {
   static createLmz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

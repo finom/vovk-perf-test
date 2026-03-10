@@ -7,10 +7,8 @@ export default class MjrController {
     summary: "Get Mjr",
   })
   @get()
-  static getMjr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMjr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MjrController {
   static createMjr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

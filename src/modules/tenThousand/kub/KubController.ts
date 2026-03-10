@@ -7,10 +7,8 @@ export default class KubController {
     summary: "Get Kub",
   })
   @get()
-  static getKub = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKub = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KubController {
   static createKub = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

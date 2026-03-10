@@ -7,10 +7,8 @@ export default class JrfController {
     summary: "Get Jrf",
   })
   @get()
-  static getJrf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJrf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JrfController {
   static createJrf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

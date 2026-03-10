@@ -7,10 +7,8 @@ export default class AndController {
     summary: "Get And",
   })
   @get()
-  static getAnd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAnd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AndController {
   static createAnd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

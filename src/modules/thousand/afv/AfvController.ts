@@ -7,10 +7,8 @@ export default class AfvController {
     summary: "Get Afv",
   })
   @get()
-  static getAfv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAfv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AfvController {
   static createAfv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

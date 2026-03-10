@@ -7,10 +7,8 @@ export default class MbiController {
     summary: "Get Mbi",
   })
   @get()
-  static getMbi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMbi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MbiController {
   static createMbi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

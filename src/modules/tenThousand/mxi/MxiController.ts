@@ -7,10 +7,8 @@ export default class MxiController {
     summary: "Get Mxi",
   })
   @get()
-  static getMxi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMxi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MxiController {
   static createMxi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

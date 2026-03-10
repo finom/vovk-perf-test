@@ -7,10 +7,8 @@ export default class DngController {
     summary: "Get Dng",
   })
   @get()
-  static getDng = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDng = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DngController {
   static createDng = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

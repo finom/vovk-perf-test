@@ -7,10 +7,8 @@ export default class NhsController {
     summary: "Get Nhs",
   })
   @get()
-  static getNhs = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNhs = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NhsController {
   static createNhs = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

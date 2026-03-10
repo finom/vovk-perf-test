@@ -7,10 +7,8 @@ export default class MpzController {
     summary: "Get Mpz",
   })
   @get()
-  static getMpz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMpz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MpzController {
   static createMpz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

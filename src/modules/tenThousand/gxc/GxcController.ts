@@ -7,10 +7,8 @@ export default class GxcController {
     summary: "Get Gxc",
   })
   @get()
-  static getGxc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGxc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GxcController {
   static createGxc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

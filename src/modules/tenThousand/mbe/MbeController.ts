@@ -7,10 +7,8 @@ export default class MbeController {
     summary: "Get Mbe",
   })
   @get()
-  static getMbe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMbe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MbeController {
   static createMbe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class JzkController {
     summary: "Get Jzk",
   })
   @get()
-  static getJzk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJzk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JzkController {
   static createJzk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

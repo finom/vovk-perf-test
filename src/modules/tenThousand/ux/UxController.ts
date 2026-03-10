@@ -7,10 +7,8 @@ export default class UxController {
     summary: "Get Ux",
   })
   @get()
-  static getUx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getUx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class UxController {
   static createUx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

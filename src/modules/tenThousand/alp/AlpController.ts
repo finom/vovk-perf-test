@@ -7,10 +7,8 @@ export default class AlpController {
     summary: "Get Alp",
   })
   @get()
-  static getAlp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAlp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AlpController {
   static createAlp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

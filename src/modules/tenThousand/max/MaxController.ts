@@ -7,10 +7,8 @@ export default class MaxController {
     summary: "Get Max",
   })
   @get()
-  static getMax = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMax = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MaxController {
   static createMax = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

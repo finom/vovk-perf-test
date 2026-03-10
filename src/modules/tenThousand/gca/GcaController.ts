@@ -7,10 +7,8 @@ export default class GcaController {
     summary: "Get Gca",
   })
   @get()
-  static getGca = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGca = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GcaController {
   static createGca = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

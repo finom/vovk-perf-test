@@ -7,10 +7,8 @@ export default class ArtController {
     summary: "Get Art",
   })
   @get()
-  static getArt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getArt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ArtController {
   static createArt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

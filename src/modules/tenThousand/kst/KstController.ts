@@ -7,10 +7,8 @@ export default class KstController {
     summary: "Get Kst",
   })
   @get()
-  static getKst = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKst = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KstController {
   static createKst = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

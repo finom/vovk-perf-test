@@ -7,10 +7,8 @@ export default class NodController {
     summary: "Get Nod",
   })
   @get()
-  static getNod = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNod = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NodController {
   static createNod = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

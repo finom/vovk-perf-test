@@ -7,10 +7,8 @@ export default class BsiController {
     summary: "Get Bsi",
   })
   @get()
-  static getBsi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBsi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BsiController {
   static createBsi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

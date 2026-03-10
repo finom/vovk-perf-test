@@ -7,10 +7,8 @@ export default class AslController {
     summary: "Get Asl",
   })
   @get()
-  static getAsl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAsl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AslController {
   static createAsl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

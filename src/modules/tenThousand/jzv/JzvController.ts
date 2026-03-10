@@ -7,10 +7,8 @@ export default class JzvController {
     summary: "Get Jzv",
   })
   @get()
-  static getJzv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJzv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JzvController {
   static createJzv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

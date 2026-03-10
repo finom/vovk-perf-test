@@ -7,10 +7,8 @@ export default class BatController {
     summary: "Get Bat",
   })
   @get()
-  static getBat = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBat = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BatController {
   static createBat = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

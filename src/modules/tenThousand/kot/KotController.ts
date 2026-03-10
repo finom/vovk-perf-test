@@ -7,10 +7,8 @@ export default class KotController {
     summary: "Get Kot",
   })
   @get()
-  static getKot = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKot = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KotController {
   static createKot = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

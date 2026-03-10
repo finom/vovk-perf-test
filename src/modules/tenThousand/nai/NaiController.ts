@@ -7,10 +7,8 @@ export default class NaiController {
     summary: "Get Nai",
   })
   @get()
-  static getNai = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNai = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NaiController {
   static createNai = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class AcgController {
     summary: "Get Acg",
   })
   @get()
-  static getAcg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAcg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AcgController {
   static createAcg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

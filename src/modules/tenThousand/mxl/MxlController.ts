@@ -7,10 +7,8 @@ export default class MxlController {
     summary: "Get Mxl",
   })
   @get()
-  static getMxl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMxl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MxlController {
   static createMxl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class LzlController {
     summary: "Get Lzl",
   })
   @get()
-  static getLzl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLzl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LzlController {
   static createLzl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class MvlController {
     summary: "Get Mvl",
   })
   @get()
-  static getMvl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMvl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MvlController {
   static createMvl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

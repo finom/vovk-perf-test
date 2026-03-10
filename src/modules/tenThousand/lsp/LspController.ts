@@ -7,10 +7,8 @@ export default class LspController {
     summary: "Get Lsp",
   })
   @get()
-  static getLsp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLsp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LspController {
   static createLsp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

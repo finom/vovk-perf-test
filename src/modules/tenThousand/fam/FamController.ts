@@ -7,10 +7,8 @@ export default class FamController {
     summary: "Get Fam",
   })
   @get()
-  static getFam = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFam = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FamController {
   static createFam = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

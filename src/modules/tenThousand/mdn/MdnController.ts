@@ -7,10 +7,8 @@ export default class MdnController {
     summary: "Get Mdn",
   })
   @get()
-  static getMdn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMdn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MdnController {
   static createMdn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

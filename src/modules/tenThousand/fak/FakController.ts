@@ -7,10 +7,8 @@ export default class FakController {
     summary: "Get Fak",
   })
   @get()
-  static getFak = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFak = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FakController {
   static createFak = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

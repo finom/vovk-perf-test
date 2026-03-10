@@ -7,10 +7,8 @@ export default class DysController {
     summary: "Get Dys",
   })
   @get()
-  static getDys = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDys = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DysController {
   static createDys = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

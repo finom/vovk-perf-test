@@ -7,10 +7,8 @@ export default class FudController {
     summary: "Get Fud",
   })
   @get()
-  static getFud = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFud = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FudController {
   static createFud = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class EguController {
     summary: "Get Egu",
   })
   @get()
-  static getEgu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEgu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EguController {
   static createEgu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class KofController {
     summary: "Get Kof",
   })
   @get()
-  static getKof = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKof = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KofController {
   static createKof = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class DpkController {
     summary: "Get Dpk",
   })
   @get()
-  static getDpk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDpk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DpkController {
   static createDpk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

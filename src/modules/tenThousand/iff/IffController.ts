@@ -7,10 +7,8 @@ export default class IffController {
     summary: "Get Iff",
   })
   @get()
-  static getIff = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIff = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IffController {
   static createIff = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

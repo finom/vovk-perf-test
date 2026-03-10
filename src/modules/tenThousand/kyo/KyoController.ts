@@ -7,10 +7,8 @@ export default class KyoController {
     summary: "Get Kyo",
   })
   @get()
-  static getKyo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKyo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KyoController {
   static createKyo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

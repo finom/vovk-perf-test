@@ -7,10 +7,8 @@ export default class LamController {
     summary: "Get Lam",
   })
   @get()
-  static getLam = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLam = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LamController {
   static createLam = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

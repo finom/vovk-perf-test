@@ -7,10 +7,8 @@ export default class AsvController {
     summary: "Get Asv",
   })
   @get()
-  static getAsv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAsv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AsvController {
   static createAsv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

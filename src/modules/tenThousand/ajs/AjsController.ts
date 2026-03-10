@@ -7,10 +7,8 @@ export default class AjsController {
     summary: "Get Ajs",
   })
   @get()
-  static getAjs = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAjs = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AjsController {
   static createAjs = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

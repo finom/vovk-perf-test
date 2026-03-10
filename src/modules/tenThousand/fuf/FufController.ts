@@ -7,10 +7,8 @@ export default class FufController {
     summary: "Get Fuf",
   })
   @get()
-  static getFuf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFuf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FufController {
   static createFuf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

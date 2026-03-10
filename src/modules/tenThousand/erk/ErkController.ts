@@ -7,10 +7,8 @@ export default class ErkController {
     summary: "Get Erk",
   })
   @get()
-  static getErk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getErk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ErkController {
   static createErk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

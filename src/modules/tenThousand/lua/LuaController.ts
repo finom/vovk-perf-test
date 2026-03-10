@@ -7,10 +7,8 @@ export default class LuaController {
     summary: "Get Lua",
   })
   @get()
-  static getLua = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLua = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LuaController {
   static createLua = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

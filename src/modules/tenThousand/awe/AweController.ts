@@ -7,10 +7,8 @@ export default class AweController {
     summary: "Get Awe",
   })
   @get()
-  static getAwe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAwe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AweController {
   static createAwe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class KiController {
     summary: "Get Ki",
   })
   @get()
-  static getKi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KiController {
   static createKi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

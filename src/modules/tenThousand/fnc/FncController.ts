@@ -7,10 +7,8 @@ export default class FncController {
     summary: "Get Fnc",
   })
   @get()
-  static getFnc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFnc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FncController {
   static createFnc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

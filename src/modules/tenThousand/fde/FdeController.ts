@@ -7,10 +7,8 @@ export default class FdeController {
     summary: "Get Fde",
   })
   @get()
-  static getFde = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFde = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FdeController {
   static createFde = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class LpgController {
     summary: "Get Lpg",
   })
   @get()
-  static getLpg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLpg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LpgController {
   static createLpg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

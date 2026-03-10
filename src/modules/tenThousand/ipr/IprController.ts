@@ -7,10 +7,8 @@ export default class IprController {
     summary: "Get Ipr",
   })
   @get()
-  static getIpr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIpr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IprController {
   static createIpr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

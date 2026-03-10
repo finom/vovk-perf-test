@@ -7,10 +7,8 @@ export default class NpuController {
     summary: "Get Npu",
   })
   @get()
-  static getNpu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNpu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NpuController {
   static createNpu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

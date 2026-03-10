@@ -7,10 +7,8 @@ export default class NemController {
     summary: "Get Nem",
   })
   @get()
-  static getNem = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNem = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NemController {
   static createNem = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

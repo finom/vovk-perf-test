@@ -7,10 +7,8 @@ export default class JylController {
     summary: "Get Jyl",
   })
   @get()
-  static getJyl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJyl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JylController {
   static createJyl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

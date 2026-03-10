@@ -7,10 +7,8 @@ export default class JfxController {
     summary: "Get Jfx",
   })
   @get()
-  static getJfx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJfx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JfxController {
   static createJfx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

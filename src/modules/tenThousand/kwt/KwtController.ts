@@ -7,10 +7,8 @@ export default class KwtController {
     summary: "Get Kwt",
   })
   @get()
-  static getKwt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKwt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KwtController {
   static createKwt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

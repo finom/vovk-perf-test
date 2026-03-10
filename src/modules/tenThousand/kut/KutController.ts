@@ -7,10 +7,8 @@ export default class KutController {
     summary: "Get Kut",
   })
   @get()
-  static getKut = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKut = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KutController {
   static createKut = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

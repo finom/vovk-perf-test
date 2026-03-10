@@ -7,10 +7,8 @@ export default class HrController {
     summary: "Get Hr",
   })
   @get()
-  static getHr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HrController {
   static createHr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class CkdController {
     summary: "Get Ckd",
   })
   @get()
-  static getCkd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCkd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CkdController {
   static createCkd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class BriController {
     summary: "Get Bri",
   })
   @get()
-  static getBri = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBri = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BriController {
   static createBri = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

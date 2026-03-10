@@ -7,10 +7,8 @@ export default class MaaController {
     summary: "Get Maa",
   })
   @get()
-  static getMaa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMaa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MaaController {
   static createMaa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

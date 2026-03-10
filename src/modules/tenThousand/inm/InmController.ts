@@ -7,10 +7,8 @@ export default class InmController {
     summary: "Get Inm",
   })
   @get()
-  static getInm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getInm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class InmController {
   static createInm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

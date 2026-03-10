@@ -7,10 +7,8 @@ export default class NciController {
     summary: "Get Nci",
   })
   @get()
-  static getNci = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNci = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NciController {
   static createNci = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

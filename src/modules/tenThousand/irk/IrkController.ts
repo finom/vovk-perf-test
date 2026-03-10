@@ -7,10 +7,8 @@ export default class IrkController {
     summary: "Get Irk",
   })
   @get()
-  static getIrk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIrk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IrkController {
   static createIrk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

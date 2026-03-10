@@ -7,10 +7,8 @@ export default class QkController {
     summary: "Get Qk",
   })
   @get()
-  static getQk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getQk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class QkController {
   static createQk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

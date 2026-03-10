@@ -7,10 +7,8 @@ export default class JprController {
     summary: "Get Jpr",
   })
   @get()
-  static getJpr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJpr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JprController {
   static createJpr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

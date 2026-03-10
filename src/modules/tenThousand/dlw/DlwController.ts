@@ -7,10 +7,8 @@ export default class DlwController {
     summary: "Get Dlw",
   })
   @get()
-  static getDlw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDlw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DlwController {
   static createDlw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

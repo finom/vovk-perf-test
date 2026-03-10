@@ -7,10 +7,8 @@ export default class HizController {
     summary: "Get Hiz",
   })
   @get()
-  static getHiz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHiz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HizController {
   static createHiz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

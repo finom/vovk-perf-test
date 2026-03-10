@@ -7,10 +7,8 @@ export default class BaqController {
     summary: "Get Baq",
   })
   @get()
-  static getBaq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBaq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BaqController {
   static createBaq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

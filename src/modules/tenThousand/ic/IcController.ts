@@ -7,10 +7,8 @@ export default class IcController {
     summary: "Get Ic",
   })
   @get()
-  static getIc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IcController {
   static createIc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

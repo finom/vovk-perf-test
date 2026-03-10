@@ -7,10 +7,8 @@ export default class DypController {
     summary: "Get Dyp",
   })
   @get()
-  static getDyp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDyp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DypController {
   static createDyp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

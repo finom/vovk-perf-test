@@ -7,10 +7,8 @@ export default class AtjController {
     summary: "Get Atj",
   })
   @get()
-  static getAtj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAtj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AtjController {
   static createAtj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

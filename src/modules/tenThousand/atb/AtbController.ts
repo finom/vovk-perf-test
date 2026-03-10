@@ -7,10 +7,8 @@ export default class AtbController {
     summary: "Get Atb",
   })
   @get()
-  static getAtb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAtb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AtbController {
   static createAtb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class JsfController {
     summary: "Get Jsf",
   })
   @get()
-  static getJsf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJsf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JsfController {
   static createJsf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

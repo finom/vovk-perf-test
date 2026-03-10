@@ -7,10 +7,8 @@ export default class IgmController {
     summary: "Get Igm",
   })
   @get()
-  static getIgm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIgm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IgmController {
   static createIgm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

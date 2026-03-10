@@ -7,10 +7,8 @@ export default class EnxController {
     summary: "Get Enx",
   })
   @get()
-  static getEnx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEnx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EnxController {
   static createEnx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

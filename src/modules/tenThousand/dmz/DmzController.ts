@@ -7,10 +7,8 @@ export default class DmzController {
     summary: "Get Dmz",
   })
   @get()
-  static getDmz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDmz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DmzController {
   static createDmz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

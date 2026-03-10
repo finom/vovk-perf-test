@@ -7,10 +7,8 @@ export default class MesController {
     summary: "Get Mes",
   })
   @get()
-  static getMes = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMes = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MesController {
   static createMes = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

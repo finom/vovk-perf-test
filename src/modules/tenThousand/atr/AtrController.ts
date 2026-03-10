@@ -7,10 +7,8 @@ export default class AtrController {
     summary: "Get Atr",
   })
   @get()
-  static getAtr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAtr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AtrController {
   static createAtr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

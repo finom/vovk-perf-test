@@ -7,10 +7,8 @@ export default class IliController {
     summary: "Get Ili",
   })
   @get()
-  static getIli = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIli = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IliController {
   static createIli = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

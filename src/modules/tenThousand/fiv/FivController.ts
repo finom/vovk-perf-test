@@ -7,10 +7,8 @@ export default class FivController {
     summary: "Get Fiv",
   })
   @get()
-  static getFiv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFiv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FivController {
   static createFiv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

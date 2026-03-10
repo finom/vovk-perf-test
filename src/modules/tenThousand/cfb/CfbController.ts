@@ -7,10 +7,8 @@ export default class CfbController {
     summary: "Get Cfb",
   })
   @get()
-  static getCfb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCfb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CfbController {
   static createCfb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

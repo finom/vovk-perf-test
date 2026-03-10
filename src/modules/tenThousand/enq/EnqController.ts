@@ -7,10 +7,8 @@ export default class EnqController {
     summary: "Get Enq",
   })
   @get()
-  static getEnq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEnq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EnqController {
   static createEnq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

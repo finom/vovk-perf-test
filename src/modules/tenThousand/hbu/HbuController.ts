@@ -7,10 +7,8 @@ export default class HbuController {
     summary: "Get Hbu",
   })
   @get()
-  static getHbu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHbu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HbuController {
   static createHbu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IlqController {
     summary: "Get Ilq",
   })
   @get()
-  static getIlq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIlq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IlqController {
   static createIlq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

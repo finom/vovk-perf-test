@@ -7,10 +7,8 @@ export default class LknController {
     summary: "Get Lkn",
   })
   @get()
-  static getLkn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLkn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LknController {
   static createLkn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

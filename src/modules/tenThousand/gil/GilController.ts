@@ -7,10 +7,8 @@ export default class GilController {
     summary: "Get Gil",
   })
   @get()
-  static getGil = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGil = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GilController {
   static createGil = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

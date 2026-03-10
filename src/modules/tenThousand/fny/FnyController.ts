@@ -7,10 +7,8 @@ export default class FnyController {
     summary: "Get Fny",
   })
   @get()
-  static getFny = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFny = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FnyController {
   static createFny = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class MdbController {
     summary: "Get Mdb",
   })
   @get()
-  static getMdb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMdb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MdbController {
   static createMdb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

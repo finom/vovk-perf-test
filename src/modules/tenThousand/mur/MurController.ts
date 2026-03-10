@@ -7,10 +7,8 @@ export default class MurController {
     summary: "Get Mur",
   })
   @get()
-  static getMur = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMur = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MurController {
   static createMur = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

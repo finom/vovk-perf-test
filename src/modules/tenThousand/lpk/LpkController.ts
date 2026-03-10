@@ -7,10 +7,8 @@ export default class LpkController {
     summary: "Get Lpk",
   })
   @get()
-  static getLpk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLpk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LpkController {
   static createLpk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

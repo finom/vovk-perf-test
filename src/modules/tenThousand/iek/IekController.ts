@@ -7,10 +7,8 @@ export default class IekController {
     summary: "Get Iek",
   })
   @get()
-  static getIek = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIek = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IekController {
   static createIek = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

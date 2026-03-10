@@ -7,10 +7,8 @@ export default class IfnController {
     summary: "Get Ifn",
   })
   @get()
-  static getIfn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIfn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IfnController {
   static createIfn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

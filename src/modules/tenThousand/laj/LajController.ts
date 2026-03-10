@@ -7,10 +7,8 @@ export default class LajController {
     summary: "Get Laj",
   })
   @get()
-  static getLaj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLaj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LajController {
   static createLaj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

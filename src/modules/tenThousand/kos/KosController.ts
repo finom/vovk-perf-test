@@ -7,10 +7,8 @@ export default class KosController {
     summary: "Get Kos",
   })
   @get()
-  static getKos = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKos = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KosController {
   static createKos = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

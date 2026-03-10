@@ -7,10 +7,8 @@ export default class DsmController {
     summary: "Get Dsm",
   })
   @get()
-  static getDsm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDsm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DsmController {
   static createDsm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class BcmController {
     summary: "Get Bcm",
   })
   @get()
-  static getBcm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBcm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BcmController {
   static createBcm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

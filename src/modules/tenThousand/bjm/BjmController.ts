@@ -7,10 +7,8 @@ export default class BjmController {
     summary: "Get Bjm",
   })
   @get()
-  static getBjm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBjm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BjmController {
   static createBjm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class LpiController {
     summary: "Get Lpi",
   })
   @get()
-  static getLpi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLpi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LpiController {
   static createLpi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

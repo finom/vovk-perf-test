@@ -7,10 +7,8 @@ export default class IggController {
     summary: "Get Igg",
   })
   @get()
-  static getIgg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIgg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IggController {
   static createIgg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

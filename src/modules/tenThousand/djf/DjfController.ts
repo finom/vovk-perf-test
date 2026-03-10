@@ -7,10 +7,8 @@ export default class DjfController {
     summary: "Get Djf",
   })
   @get()
-  static getDjf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDjf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DjfController {
   static createDjf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

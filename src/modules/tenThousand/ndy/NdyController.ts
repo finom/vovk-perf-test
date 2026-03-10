@@ -7,10 +7,8 @@ export default class NdyController {
     summary: "Get Ndy",
   })
   @get()
-  static getNdy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNdy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NdyController {
   static createNdy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

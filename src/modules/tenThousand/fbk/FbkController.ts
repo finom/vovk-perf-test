@@ -7,10 +7,8 @@ export default class FbkController {
     summary: "Get Fbk",
   })
   @get()
-  static getFbk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFbk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FbkController {
   static createFbk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

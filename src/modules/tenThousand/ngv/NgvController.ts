@@ -7,10 +7,8 @@ export default class NgvController {
     summary: "Get Ngv",
   })
   @get()
-  static getNgv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNgv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NgvController {
   static createNgv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

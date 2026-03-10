@@ -7,10 +7,8 @@ export default class BldController {
     summary: "Get Bld",
   })
   @get()
-  static getBld = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBld = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BldController {
   static createBld = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

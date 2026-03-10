@@ -7,10 +7,8 @@ export default class ExpController {
     summary: "Get Exp",
   })
   @get()
-  static getExp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getExp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ExpController {
   static createExp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

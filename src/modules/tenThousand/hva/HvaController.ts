@@ -7,10 +7,8 @@ export default class HvaController {
     summary: "Get Hva",
   })
   @get()
-  static getHva = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHva = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HvaController {
   static createHva = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

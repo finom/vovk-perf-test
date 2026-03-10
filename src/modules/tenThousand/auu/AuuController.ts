@@ -7,10 +7,8 @@ export default class AuuController {
     summary: "Get Auu",
   })
   @get()
-  static getAuu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAuu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AuuController {
   static createAuu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

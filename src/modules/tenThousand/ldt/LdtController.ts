@@ -7,10 +7,8 @@ export default class LdtController {
     summary: "Get Ldt",
   })
   @get()
-  static getLdt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLdt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LdtController {
   static createLdt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

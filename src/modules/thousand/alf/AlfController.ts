@@ -7,10 +7,8 @@ export default class AlfController {
     summary: "Get Alf",
   })
   @get()
-  static getAlf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAlf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AlfController {
   static createAlf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IdeController {
     summary: "Get Ide",
   })
   @get()
-  static getIde = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIde = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IdeController {
   static createIde = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

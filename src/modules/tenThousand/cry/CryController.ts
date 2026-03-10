@@ -7,10 +7,8 @@ export default class CryController {
     summary: "Get Cry",
   })
   @get()
-  static getCry = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCry = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CryController {
   static createCry = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

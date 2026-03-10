@@ -7,10 +7,8 @@ export default class CnbController {
     summary: "Get Cnb",
   })
   @get()
-  static getCnb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCnb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CnbController {
   static createCnb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

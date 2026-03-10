@@ -7,10 +7,8 @@ export default class NosController {
     summary: "Get Nos",
   })
   @get()
-  static getNos = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNos = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NosController {
   static createNos = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

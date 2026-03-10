@@ -7,10 +7,8 @@ export default class LhyController {
     summary: "Get Lhy",
   })
   @get()
-  static getLhy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLhy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LhyController {
   static createLhy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

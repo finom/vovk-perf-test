@@ -7,10 +7,8 @@ export default class CtrController {
     summary: "Get Ctr",
   })
   @get()
-  static getCtr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCtr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CtrController {
   static createCtr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

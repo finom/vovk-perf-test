@@ -7,10 +7,8 @@ export default class IrmController {
     summary: "Get Irm",
   })
   @get()
-  static getIrm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIrm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IrmController {
   static createIrm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IsuController {
     summary: "Get Isu",
   })
   @get()
-  static getIsu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIsu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IsuController {
   static createIsu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class GmeController {
     summary: "Get Gme",
   })
   @get()
-  static getGme = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGme = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GmeController {
   static createGme = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

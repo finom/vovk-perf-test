@@ -7,10 +7,8 @@ export default class KkoController {
     summary: "Get Kko",
   })
   @get()
-  static getKko = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKko = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KkoController {
   static createKko = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IceController {
     summary: "Get Ice",
   })
   @get()
-  static getIce = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIce = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IceController {
   static createIce = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

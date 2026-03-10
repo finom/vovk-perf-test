@@ -7,10 +7,8 @@ export default class ClfController {
     summary: "Get Clf",
   })
   @get()
-  static getClf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getClf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ClfController {
   static createClf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

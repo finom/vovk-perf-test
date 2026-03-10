@@ -7,10 +7,8 @@ export default class LvlController {
     summary: "Get Lvl",
   })
   @get()
-  static getLvl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLvl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LvlController {
   static createLvl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

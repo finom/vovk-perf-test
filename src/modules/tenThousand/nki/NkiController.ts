@@ -7,10 +7,8 @@ export default class NkiController {
     summary: "Get Nki",
   })
   @get()
-  static getNki = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNki = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NkiController {
   static createNki = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

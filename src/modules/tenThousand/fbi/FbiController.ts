@@ -7,10 +7,8 @@ export default class FbiController {
     summary: "Get Fbi",
   })
   @get()
-  static getFbi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFbi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FbiController {
   static createFbi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

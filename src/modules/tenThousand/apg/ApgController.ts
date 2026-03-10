@@ -7,10 +7,8 @@ export default class ApgController {
     summary: "Get Apg",
   })
   @get()
-  static getApg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getApg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ApgController {
   static createApg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

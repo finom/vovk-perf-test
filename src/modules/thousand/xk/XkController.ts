@@ -7,10 +7,8 @@ export default class XkController {
     summary: "Get Xk",
   })
   @get()
-  static getXk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getXk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class XkController {
   static createXk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

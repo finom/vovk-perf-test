@@ -7,10 +7,8 @@ export default class NpiController {
     summary: "Get Npi",
   })
   @get()
-  static getNpi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNpi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NpiController {
   static createNpi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

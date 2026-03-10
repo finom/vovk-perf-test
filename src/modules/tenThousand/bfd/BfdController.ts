@@ -7,10 +7,8 @@ export default class BfdController {
     summary: "Get Bfd",
   })
   @get()
-  static getBfd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBfd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BfdController {
   static createBfd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

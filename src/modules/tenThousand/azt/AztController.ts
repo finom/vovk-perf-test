@@ -7,10 +7,8 @@ export default class AztController {
     summary: "Get Azt",
   })
   @get()
-  static getAzt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAzt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AztController {
   static createAzt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

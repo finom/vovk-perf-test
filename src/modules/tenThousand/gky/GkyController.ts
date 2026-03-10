@@ -7,10 +7,8 @@ export default class GkyController {
     summary: "Get Gky",
   })
   @get()
-  static getGky = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGky = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GkyController {
   static createGky = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

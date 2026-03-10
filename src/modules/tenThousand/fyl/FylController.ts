@@ -7,10 +7,8 @@ export default class FylController {
     summary: "Get Fyl",
   })
   @get()
-  static getFyl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFyl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FylController {
   static createFyl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

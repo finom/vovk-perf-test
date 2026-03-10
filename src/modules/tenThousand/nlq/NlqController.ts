@@ -7,10 +7,8 @@ export default class NlqController {
     summary: "Get Nlq",
   })
   @get()
-  static getNlq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNlq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NlqController {
   static createNlq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class ElyController {
     summary: "Get Ely",
   })
   @get()
-  static getEly = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEly = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ElyController {
   static createEly = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

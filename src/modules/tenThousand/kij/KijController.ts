@@ -7,10 +7,8 @@ export default class KijController {
     summary: "Get Kij",
   })
   @get()
-  static getKij = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKij = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KijController {
   static createKij = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

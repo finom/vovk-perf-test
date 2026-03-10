@@ -7,10 +7,8 @@ export default class AdpController {
     summary: "Get Adp",
   })
   @get()
-  static getAdp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAdp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AdpController {
   static createAdp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

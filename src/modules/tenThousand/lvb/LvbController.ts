@@ -7,10 +7,8 @@ export default class LvbController {
     summary: "Get Lvb",
   })
   @get()
-  static getLvb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLvb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LvbController {
   static createLvb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

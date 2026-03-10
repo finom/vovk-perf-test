@@ -7,10 +7,8 @@ export default class DogController {
     summary: "Get Dog",
   })
   @get()
-  static getDog = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDog = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DogController {
   static createDog = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

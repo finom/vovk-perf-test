@@ -7,10 +7,8 @@ export default class WzController {
     summary: "Get Wz",
   })
   @get()
-  static getWz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getWz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class WzController {
   static createWz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

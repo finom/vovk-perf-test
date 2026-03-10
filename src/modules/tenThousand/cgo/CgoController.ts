@@ -7,10 +7,8 @@ export default class CgoController {
     summary: "Get Cgo",
   })
   @get()
-  static getCgo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCgo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CgoController {
   static createCgo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

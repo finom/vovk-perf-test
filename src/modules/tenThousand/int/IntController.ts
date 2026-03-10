@@ -7,10 +7,8 @@ export default class IntController {
     summary: "Get Int",
   })
   @get()
-  static getInt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getInt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IntController {
   static createInt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

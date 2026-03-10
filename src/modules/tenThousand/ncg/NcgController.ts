@@ -7,10 +7,8 @@ export default class NcgController {
     summary: "Get Ncg",
   })
   @get()
-  static getNcg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNcg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NcgController {
   static createNcg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class NfbController {
     summary: "Get Nfb",
   })
   @get()
-  static getNfb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNfb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NfbController {
   static createNfb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

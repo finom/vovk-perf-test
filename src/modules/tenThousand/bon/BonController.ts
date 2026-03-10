@@ -7,10 +7,8 @@ export default class BonController {
     summary: "Get Bon",
   })
   @get()
-  static getBon = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBon = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BonController {
   static createBon = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

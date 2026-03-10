@@ -7,10 +7,8 @@ export default class JdeController {
     summary: "Get Jde",
   })
   @get()
-  static getJde = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJde = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JdeController {
   static createJde = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

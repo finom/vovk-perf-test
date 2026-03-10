@@ -7,10 +7,8 @@ export default class HzwController {
     summary: "Get Hzw",
   })
   @get()
-  static getHzw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHzw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HzwController {
   static createHzw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

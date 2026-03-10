@@ -7,10 +7,8 @@ export default class GifController {
     summary: "Get Gif",
   })
   @get()
-  static getGif = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGif = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GifController {
   static createGif = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

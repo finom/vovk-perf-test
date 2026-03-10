@@ -7,10 +7,8 @@ export default class MilController {
     summary: "Get Mil",
   })
   @get()
-  static getMil = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMil = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MilController {
   static createMil = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

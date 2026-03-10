@@ -7,10 +7,8 @@ export default class GwnController {
     summary: "Get Gwn",
   })
   @get()
-  static getGwn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGwn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GwnController {
   static createGwn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

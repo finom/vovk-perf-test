@@ -7,10 +7,8 @@ export default class NrsController {
     summary: "Get Nrs",
   })
   @get()
-  static getNrs = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNrs = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NrsController {
   static createNrs = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

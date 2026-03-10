@@ -7,10 +7,8 @@ export default class HuqController {
     summary: "Get Huq",
   })
   @get()
-  static getHuq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHuq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HuqController {
   static createHuq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

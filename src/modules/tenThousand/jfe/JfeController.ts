@@ -7,10 +7,8 @@ export default class JfeController {
     summary: "Get Jfe",
   })
   @get()
-  static getJfe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJfe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JfeController {
   static createJfe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

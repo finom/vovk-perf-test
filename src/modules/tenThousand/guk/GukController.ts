@@ -7,10 +7,8 @@ export default class GukController {
     summary: "Get Guk",
   })
   @get()
-  static getGuk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGuk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GukController {
   static createGuk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class MybController {
     summary: "Get Myb",
   })
   @get()
-  static getMyb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMyb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MybController {
   static createMyb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

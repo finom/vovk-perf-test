@@ -7,10 +7,8 @@ export default class AutController {
     summary: "Get Aut",
   })
   @get()
-  static getAut = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAut = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AutController {
   static createAut = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

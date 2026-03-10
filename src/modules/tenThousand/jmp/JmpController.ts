@@ -7,10 +7,8 @@ export default class JmpController {
     summary: "Get Jmp",
   })
   @get()
-  static getJmp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJmp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JmpController {
   static createJmp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

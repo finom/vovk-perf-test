@@ -7,10 +7,8 @@ export default class EwjController {
     summary: "Get Ewj",
   })
   @get()
-  static getEwj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEwj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EwjController {
   static createEwj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

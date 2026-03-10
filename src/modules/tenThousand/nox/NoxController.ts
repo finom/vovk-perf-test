@@ -7,10 +7,8 @@ export default class NoxController {
     summary: "Get Nox",
   })
   @get()
-  static getNox = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNox = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NoxController {
   static createNox = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

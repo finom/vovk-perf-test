@@ -7,10 +7,8 @@ export default class FlkController {
     summary: "Get Flk",
   })
   @get()
-  static getFlk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFlk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FlkController {
   static createFlk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

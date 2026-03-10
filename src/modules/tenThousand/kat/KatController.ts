@@ -7,10 +7,8 @@ export default class KatController {
     summary: "Get Kat",
   })
   @get()
-  static getKat = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKat = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KatController {
   static createKat = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

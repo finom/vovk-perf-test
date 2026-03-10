@@ -7,10 +7,8 @@ export default class CwyController {
     summary: "Get Cwy",
   })
   @get()
-  static getCwy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCwy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CwyController {
   static createCwy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

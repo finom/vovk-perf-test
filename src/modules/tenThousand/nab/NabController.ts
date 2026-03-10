@@ -7,10 +7,8 @@ export default class NabController {
     summary: "Get Nab",
   })
   @get()
-  static getNab = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNab = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NabController {
   static createNab = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

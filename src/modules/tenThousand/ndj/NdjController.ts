@@ -7,10 +7,8 @@ export default class NdjController {
     summary: "Get Ndj",
   })
   @get()
-  static getNdj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNdj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NdjController {
   static createNdj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

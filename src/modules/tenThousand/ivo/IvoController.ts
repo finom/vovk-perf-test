@@ -7,10 +7,8 @@ export default class IvoController {
     summary: "Get Ivo",
   })
   @get()
-  static getIvo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIvo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IvoController {
   static createIvo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

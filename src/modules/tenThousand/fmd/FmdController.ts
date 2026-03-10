@@ -7,10 +7,8 @@ export default class FmdController {
     summary: "Get Fmd",
   })
   @get()
-  static getFmd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFmd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FmdController {
   static createFmd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class DnbController {
     summary: "Get Dnb",
   })
   @get()
-  static getDnb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDnb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DnbController {
   static createDnb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

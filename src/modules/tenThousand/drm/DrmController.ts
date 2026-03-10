@@ -7,10 +7,8 @@ export default class DrmController {
     summary: "Get Drm",
   })
   @get()
-  static getDrm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDrm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DrmController {
   static createDrm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

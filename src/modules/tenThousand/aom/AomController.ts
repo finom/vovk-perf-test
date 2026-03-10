@@ -7,10 +7,8 @@ export default class AomController {
     summary: "Get Aom",
   })
   @get()
-  static getAom = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAom = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AomController {
   static createAom = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

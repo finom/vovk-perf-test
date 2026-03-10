@@ -7,10 +7,8 @@ export default class BkxController {
     summary: "Get Bkx",
   })
   @get()
-  static getBkx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBkx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BkxController {
   static createBkx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

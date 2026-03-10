@@ -7,10 +7,8 @@ export default class JmfController {
     summary: "Get Jmf",
   })
   @get()
-  static getJmf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJmf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JmfController {
   static createJmf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

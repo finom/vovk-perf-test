@@ -7,10 +7,8 @@ export default class LfyController {
     summary: "Get Lfy",
   })
   @get()
-  static getLfy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLfy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LfyController {
   static createLfy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

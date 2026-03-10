@@ -7,10 +7,8 @@ export default class AjnController {
     summary: "Get Ajn",
   })
   @get()
-  static getAjn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAjn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AjnController {
   static createAjn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

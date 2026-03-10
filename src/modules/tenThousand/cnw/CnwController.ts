@@ -7,10 +7,8 @@ export default class CnwController {
     summary: "Get Cnw",
   })
   @get()
-  static getCnw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCnw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CnwController {
   static createCnw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

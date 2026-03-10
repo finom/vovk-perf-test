@@ -7,10 +7,8 @@ export default class JuwController {
     summary: "Get Juw",
   })
   @get()
-  static getJuw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJuw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JuwController {
   static createJuw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

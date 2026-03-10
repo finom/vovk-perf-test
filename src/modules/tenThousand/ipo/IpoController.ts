@@ -7,10 +7,8 @@ export default class IpoController {
     summary: "Get Ipo",
   })
   @get()
-  static getIpo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIpo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IpoController {
   static createIpo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

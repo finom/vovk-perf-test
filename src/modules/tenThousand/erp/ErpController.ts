@@ -7,10 +7,8 @@ export default class ErpController {
     summary: "Get Erp",
   })
   @get()
-  static getErp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getErp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ErpController {
   static createErp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

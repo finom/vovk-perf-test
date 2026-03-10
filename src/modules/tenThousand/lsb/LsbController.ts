@@ -7,10 +7,8 @@ export default class LsbController {
     summary: "Get Lsb",
   })
   @get()
-  static getLsb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLsb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LsbController {
   static createLsb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

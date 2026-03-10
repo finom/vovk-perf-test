@@ -7,10 +7,8 @@ export default class TmController {
     summary: "Get Tm",
   })
   @get()
-  static getTm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getTm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class TmController {
   static createTm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

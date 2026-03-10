@@ -7,10 +7,8 @@ export default class FgaController {
     summary: "Get Fga",
   })
   @get()
-  static getFga = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFga = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FgaController {
   static createFga = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

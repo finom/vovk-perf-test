@@ -7,10 +7,8 @@ export default class BilController {
     summary: "Get Bil",
   })
   @get()
-  static getBil = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBil = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BilController {
   static createBil = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

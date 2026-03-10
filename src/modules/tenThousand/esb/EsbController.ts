@@ -7,10 +7,8 @@ export default class EsbController {
     summary: "Get Esb",
   })
   @get()
-  static getEsb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEsb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EsbController {
   static createEsb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

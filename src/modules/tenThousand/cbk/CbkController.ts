@@ -7,10 +7,8 @@ export default class CbkController {
     summary: "Get Cbk",
   })
   @get()
-  static getCbk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCbk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CbkController {
   static createCbk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class NjxController {
     summary: "Get Njx",
   })
   @get()
-  static getNjx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNjx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NjxController {
   static createNjx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

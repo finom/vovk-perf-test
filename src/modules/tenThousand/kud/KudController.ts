@@ -7,10 +7,8 @@ export default class KudController {
     summary: "Get Kud",
   })
   @get()
-  static getKud = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKud = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KudController {
   static createKud = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class CviController {
     summary: "Get Cvi",
   })
   @get()
-  static getCvi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCvi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CviController {
   static createCvi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

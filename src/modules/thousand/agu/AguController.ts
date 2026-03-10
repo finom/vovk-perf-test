@@ -7,10 +7,8 @@ export default class AguController {
     summary: "Get Agu",
   })
   @get()
-  static getAgu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAgu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AguController {
   static createAgu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

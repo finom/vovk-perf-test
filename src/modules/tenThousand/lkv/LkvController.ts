@@ -7,10 +7,8 @@ export default class LkvController {
     summary: "Get Lkv",
   })
   @get()
-  static getLkv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLkv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LkvController {
   static createLkv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

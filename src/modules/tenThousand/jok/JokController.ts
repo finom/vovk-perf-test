@@ -7,10 +7,8 @@ export default class JokController {
     summary: "Get Jok",
   })
   @get()
-  static getJok = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJok = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JokController {
   static createJok = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class KetController {
     summary: "Get Ket",
   })
   @get()
-  static getKet = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKet = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KetController {
   static createKet = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class BysController {
     summary: "Get Bys",
   })
   @get()
-  static getBys = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBys = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BysController {
   static createBys = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

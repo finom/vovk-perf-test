@@ -7,10 +7,8 @@ export default class NdiController {
     summary: "Get Ndi",
   })
   @get()
-  static getNdi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNdi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NdiController {
   static createNdi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

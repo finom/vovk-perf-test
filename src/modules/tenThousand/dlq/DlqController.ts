@@ -7,10 +7,8 @@ export default class DlqController {
     summary: "Get Dlq",
   })
   @get()
-  static getDlq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDlq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DlqController {
   static createDlq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

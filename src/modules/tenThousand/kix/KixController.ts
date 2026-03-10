@@ -7,10 +7,8 @@ export default class KixController {
     summary: "Get Kix",
   })
   @get()
-  static getKix = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKix = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KixController {
   static createKix = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

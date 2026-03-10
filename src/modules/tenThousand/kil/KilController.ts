@@ -7,10 +7,8 @@ export default class KilController {
     summary: "Get Kil",
   })
   @get()
-  static getKil = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKil = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KilController {
   static createKil = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

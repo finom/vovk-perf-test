@@ -7,10 +7,8 @@ export default class MmeController {
     summary: "Get Mme",
   })
   @get()
-  static getMme = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMme = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MmeController {
   static createMme = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

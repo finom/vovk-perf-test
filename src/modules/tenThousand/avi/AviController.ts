@@ -7,10 +7,8 @@ export default class AviController {
     summary: "Get Avi",
   })
   @get()
-  static getAvi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAvi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AviController {
   static createAvi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

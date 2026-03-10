@@ -7,10 +7,8 @@ export default class FurController {
     summary: "Get Fur",
   })
   @get()
-  static getFur = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFur = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FurController {
   static createFur = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

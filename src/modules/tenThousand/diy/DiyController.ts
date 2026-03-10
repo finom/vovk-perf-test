@@ -7,10 +7,8 @@ export default class DiyController {
     summary: "Get Diy",
   })
   @get()
-  static getDiy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDiy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DiyController {
   static createDiy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

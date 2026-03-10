@@ -7,10 +7,8 @@ export default class EvmController {
     summary: "Get Evm",
   })
   @get()
-  static getEvm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEvm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EvmController {
   static createEvm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

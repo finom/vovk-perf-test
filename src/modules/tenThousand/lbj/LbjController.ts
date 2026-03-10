@@ -7,10 +7,8 @@ export default class LbjController {
     summary: "Get Lbj",
   })
   @get()
-  static getLbj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLbj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LbjController {
   static createLbj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

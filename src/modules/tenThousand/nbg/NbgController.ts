@@ -7,10 +7,8 @@ export default class NbgController {
     summary: "Get Nbg",
   })
   @get()
-  static getNbg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNbg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NbgController {
   static createNbg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

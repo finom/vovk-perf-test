@@ -7,10 +7,8 @@ export default class BnjController {
     summary: "Get Bnj",
   })
   @get()
-  static getBnj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBnj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BnjController {
   static createBnj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

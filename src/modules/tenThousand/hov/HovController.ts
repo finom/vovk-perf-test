@@ -7,10 +7,8 @@ export default class HovController {
     summary: "Get Hov",
   })
   @get()
-  static getHov = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHov = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HovController {
   static createHov = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

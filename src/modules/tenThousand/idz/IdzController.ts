@@ -7,10 +7,8 @@ export default class IdzController {
     summary: "Get Idz",
   })
   @get()
-  static getIdz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIdz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IdzController {
   static createIdz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

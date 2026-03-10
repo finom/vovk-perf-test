@@ -7,10 +7,8 @@ export default class MvyController {
     summary: "Get Mvy",
   })
   @get()
-  static getMvy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMvy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MvyController {
   static createMvy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class CmaController {
     summary: "Get Cma",
   })
   @get()
-  static getCma = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCma = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CmaController {
   static createCma = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

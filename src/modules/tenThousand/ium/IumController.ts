@@ -7,10 +7,8 @@ export default class IumController {
     summary: "Get Ium",
   })
   @get()
-  static getIum = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIum = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IumController {
   static createIum = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

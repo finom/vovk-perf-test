@@ -7,10 +7,8 @@ export default class NiyController {
     summary: "Get Niy",
   })
   @get()
-  static getNiy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNiy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NiyController {
   static createNiy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

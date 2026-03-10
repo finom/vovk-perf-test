@@ -7,10 +7,8 @@ export default class GnkController {
     summary: "Get Gnk",
   })
   @get()
-  static getGnk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGnk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GnkController {
   static createGnk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class NhwController {
     summary: "Get Nhw",
   })
   @get()
-  static getNhw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNhw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NhwController {
   static createNhw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

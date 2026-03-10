@@ -7,10 +7,8 @@ export default class LnaController {
     summary: "Get Lna",
   })
   @get()
-  static getLna = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLna = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LnaController {
   static createLna = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

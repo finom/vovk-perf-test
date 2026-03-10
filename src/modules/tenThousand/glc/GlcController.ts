@@ -7,10 +7,8 @@ export default class GlcController {
     summary: "Get Glc",
   })
   @get()
-  static getGlc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGlc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GlcController {
   static createGlc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class CdfController {
     summary: "Get Cdf",
   })
   @get()
-  static getCdf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCdf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CdfController {
   static createCdf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

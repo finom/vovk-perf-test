@@ -7,10 +7,8 @@ export default class JtoController {
     summary: "Get Jto",
   })
   @get()
-  static getJto = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJto = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JtoController {
   static createJto = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

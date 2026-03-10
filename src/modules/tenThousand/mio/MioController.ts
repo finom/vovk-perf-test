@@ -7,10 +7,8 @@ export default class MioController {
     summary: "Get Mio",
   })
   @get()
-  static getMio = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMio = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MioController {
   static createMio = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

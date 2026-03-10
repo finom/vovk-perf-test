@@ -7,10 +7,8 @@ export default class UlController {
     summary: "Get Ul",
   })
   @get()
-  static getUl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getUl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class UlController {
   static createUl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

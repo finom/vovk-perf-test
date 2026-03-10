@@ -7,10 +7,8 @@ export default class ApxController {
     summary: "Get Apx",
   })
   @get()
-  static getApx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getApx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ApxController {
   static createApx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

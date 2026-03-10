@@ -7,10 +7,8 @@ export default class EsaController {
     summary: "Get Esa",
   })
   @get()
-  static getEsa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEsa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EsaController {
   static createEsa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

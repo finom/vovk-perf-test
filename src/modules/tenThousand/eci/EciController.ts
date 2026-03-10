@@ -7,10 +7,8 @@ export default class EciController {
     summary: "Get Eci",
   })
   @get()
-  static getEci = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEci = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EciController {
   static createEci = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

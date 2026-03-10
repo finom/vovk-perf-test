@@ -7,10 +7,8 @@ export default class ImlController {
     summary: "Get Iml",
   })
   @get()
-  static getIml = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIml = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ImlController {
   static createIml = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

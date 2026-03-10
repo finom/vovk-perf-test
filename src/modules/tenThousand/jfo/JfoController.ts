@@ -7,10 +7,8 @@ export default class JfoController {
     summary: "Get Jfo",
   })
   @get()
-  static getJfo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJfo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JfoController {
   static createJfo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

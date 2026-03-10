@@ -7,10 +7,8 @@ export default class KpxController {
     summary: "Get Kpx",
   })
   @get()
-  static getKpx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKpx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KpxController {
   static createKpx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class EtgController {
     summary: "Get Etg",
   })
   @get()
-  static getEtg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEtg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EtgController {
   static createEtg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

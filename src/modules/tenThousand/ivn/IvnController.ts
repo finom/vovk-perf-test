@@ -7,10 +7,8 @@ export default class IvnController {
     summary: "Get Ivn",
   })
   @get()
-  static getIvn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIvn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IvnController {
   static createIvn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

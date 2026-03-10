@@ -7,10 +7,8 @@ export default class EavController {
     summary: "Get Eav",
   })
   @get()
-  static getEav = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEav = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EavController {
   static createEav = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

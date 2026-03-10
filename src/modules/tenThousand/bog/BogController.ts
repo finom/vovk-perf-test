@@ -7,10 +7,8 @@ export default class BogController {
     summary: "Get Bog",
   })
   @get()
-  static getBog = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBog = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BogController {
   static createBog = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

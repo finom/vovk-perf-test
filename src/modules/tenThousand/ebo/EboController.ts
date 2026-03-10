@@ -7,10 +7,8 @@ export default class EboController {
     summary: "Get Ebo",
   })
   @get()
-  static getEbo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEbo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EboController {
   static createEbo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

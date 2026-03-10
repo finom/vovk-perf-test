@@ -7,10 +7,8 @@ export default class NguController {
     summary: "Get Ngu",
   })
   @get()
-  static getNgu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNgu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NguController {
   static createNgu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class AmqController {
     summary: "Get Amq",
   })
   @get()
-  static getAmq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAmq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AmqController {
   static createAmq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

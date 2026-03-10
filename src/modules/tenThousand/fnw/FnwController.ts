@@ -7,10 +7,8 @@ export default class FnwController {
     summary: "Get Fnw",
   })
   @get()
-  static getFnw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFnw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FnwController {
   static createFnw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

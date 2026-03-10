@@ -7,10 +7,8 @@ export default class LcsController {
     summary: "Get Lcs",
   })
   @get()
-  static getLcs = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLcs = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LcsController {
   static createLcs = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

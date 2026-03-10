@@ -7,10 +7,8 @@ export default class NjfController {
     summary: "Get Njf",
   })
   @get()
-  static getNjf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNjf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NjfController {
   static createNjf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

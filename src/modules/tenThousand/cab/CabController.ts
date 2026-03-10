@@ -7,10 +7,8 @@ export default class CabController {
     summary: "Get Cab",
   })
   @get()
-  static getCab = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCab = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CabController {
   static createCab = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

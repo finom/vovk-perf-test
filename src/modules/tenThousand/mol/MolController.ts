@@ -7,10 +7,8 @@ export default class MolController {
     summary: "Get Mol",
   })
   @get()
-  static getMol = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMol = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MolController {
   static createMol = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

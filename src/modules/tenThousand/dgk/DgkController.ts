@@ -7,10 +7,8 @@ export default class DgkController {
     summary: "Get Dgk",
   })
   @get()
-  static getDgk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDgk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DgkController {
   static createDgk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

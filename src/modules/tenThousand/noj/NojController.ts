@@ -7,10 +7,8 @@ export default class NojController {
     summary: "Get Noj",
   })
   @get()
-  static getNoj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNoj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NojController {
   static createNoj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

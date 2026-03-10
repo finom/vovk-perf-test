@@ -7,10 +7,8 @@ export default class NorController {
     summary: "Get Nor",
   })
   @get()
-  static getNor = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNor = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NorController {
   static createNor = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

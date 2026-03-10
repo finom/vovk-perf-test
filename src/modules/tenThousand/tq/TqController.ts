@@ -7,10 +7,8 @@ export default class TqController {
     summary: "Get Tq",
   })
   @get()
-  static getTq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getTq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class TqController {
   static createTq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

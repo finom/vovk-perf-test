@@ -7,10 +7,8 @@ export default class MgiController {
     summary: "Get Mgi",
   })
   @get()
-  static getMgi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMgi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MgiController {
   static createMgi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

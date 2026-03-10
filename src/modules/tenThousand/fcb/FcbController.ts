@@ -7,10 +7,8 @@ export default class FcbController {
     summary: "Get Fcb",
   })
   @get()
-  static getFcb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFcb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FcbController {
   static createFcb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

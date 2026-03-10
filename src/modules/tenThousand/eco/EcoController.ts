@@ -7,10 +7,8 @@ export default class EcoController {
     summary: "Get Eco",
   })
   @get()
-  static getEco = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEco = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EcoController {
   static createEco = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

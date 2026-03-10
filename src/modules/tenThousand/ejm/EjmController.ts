@@ -7,10 +7,8 @@ export default class EjmController {
     summary: "Get Ejm",
   })
   @get()
-  static getEjm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEjm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EjmController {
   static createEjm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

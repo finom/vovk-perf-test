@@ -7,10 +7,8 @@ export default class NotController {
     summary: "Get Not",
   })
   @get()
-  static getNot = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNot = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NotController {
   static createNot = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

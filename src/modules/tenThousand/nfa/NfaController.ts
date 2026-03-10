@@ -7,10 +7,8 @@ export default class NfaController {
     summary: "Get Nfa",
   })
   @get()
-  static getNfa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNfa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NfaController {
   static createNfa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

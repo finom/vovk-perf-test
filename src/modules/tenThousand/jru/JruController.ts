@@ -7,10 +7,8 @@ export default class JruController {
     summary: "Get Jru",
   })
   @get()
-  static getJru = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJru = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JruController {
   static createJru = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

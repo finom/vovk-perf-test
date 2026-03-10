@@ -7,10 +7,8 @@ export default class GgsController {
     summary: "Get Ggs",
   })
   @get()
-  static getGgs = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGgs = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GgsController {
   static createGgs = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

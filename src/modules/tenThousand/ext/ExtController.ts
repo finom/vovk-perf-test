@@ -7,10 +7,8 @@ export default class ExtController {
     summary: "Get Ext",
   })
   @get()
-  static getExt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getExt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ExtController {
   static createExt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

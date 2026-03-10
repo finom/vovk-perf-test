@@ -7,10 +7,8 @@ export default class CraController {
     summary: "Get Cra",
   })
   @get()
-  static getCra = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCra = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CraController {
   static createCra = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

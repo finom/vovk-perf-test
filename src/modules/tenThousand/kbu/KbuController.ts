@@ -7,10 +7,8 @@ export default class KbuController {
     summary: "Get Kbu",
   })
   @get()
-  static getKbu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKbu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KbuController {
   static createKbu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

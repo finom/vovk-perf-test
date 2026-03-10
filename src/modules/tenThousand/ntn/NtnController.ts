@@ -7,10 +7,8 @@ export default class NtnController {
     summary: "Get Ntn",
   })
   @get()
-  static getNtn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNtn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NtnController {
   static createNtn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

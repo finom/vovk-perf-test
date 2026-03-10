@@ -7,10 +7,8 @@ export default class InqController {
     summary: "Get Inq",
   })
   @get()
-  static getInq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getInq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class InqController {
   static createInq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

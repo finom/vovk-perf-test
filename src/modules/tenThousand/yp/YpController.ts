@@ -7,10 +7,8 @@ export default class YpController {
     summary: "Get Yp",
   })
   @get()
-  static getYp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getYp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class YpController {
   static createYp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

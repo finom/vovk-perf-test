@@ -7,10 +7,8 @@ export default class GdmController {
     summary: "Get Gdm",
   })
   @get()
-  static getGdm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGdm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GdmController {
   static createGdm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

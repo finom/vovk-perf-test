@@ -7,10 +7,8 @@ export default class IfeController {
     summary: "Get Ife",
   })
   @get()
-  static getIfe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIfe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IfeController {
   static createIfe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

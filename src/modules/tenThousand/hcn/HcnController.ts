@@ -7,10 +7,8 @@ export default class HcnController {
     summary: "Get Hcn",
   })
   @get()
-  static getHcn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHcn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HcnController {
   static createHcn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

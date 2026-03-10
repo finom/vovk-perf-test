@@ -7,10 +7,8 @@ export default class CvcController {
     summary: "Get Cvc",
   })
   @get()
-  static getCvc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCvc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CvcController {
   static createCvc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

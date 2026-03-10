@@ -7,10 +7,8 @@ export default class CioController {
     summary: "Get Cio",
   })
   @get()
-  static getCio = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCio = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CioController {
   static createCio = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

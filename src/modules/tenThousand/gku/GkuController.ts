@@ -7,10 +7,8 @@ export default class GkuController {
     summary: "Get Gku",
   })
   @get()
-  static getGku = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGku = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GkuController {
   static createGku = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

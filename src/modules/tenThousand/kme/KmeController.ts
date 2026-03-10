@@ -7,10 +7,8 @@ export default class KmeController {
     summary: "Get Kme",
   })
   @get()
-  static getKme = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKme = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KmeController {
   static createKme = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

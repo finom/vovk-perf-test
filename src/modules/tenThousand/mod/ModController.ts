@@ -7,10 +7,8 @@ export default class ModController {
     summary: "Get Mod",
   })
   @get()
-  static getMod = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMod = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ModController {
   static createMod = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

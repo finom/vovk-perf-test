@@ -7,10 +7,8 @@ export default class KefController {
     summary: "Get Kef",
   })
   @get()
-  static getKef = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKef = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KefController {
   static createKef = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class HufController {
     summary: "Get Huf",
   })
   @get()
-  static getHuf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHuf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HufController {
   static createHuf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

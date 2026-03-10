@@ -7,10 +7,8 @@ export default class MhaController {
     summary: "Get Mha",
   })
   @get()
-  static getMha = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMha = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MhaController {
   static createMha = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

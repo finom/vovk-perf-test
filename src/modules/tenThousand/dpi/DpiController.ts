@@ -7,10 +7,8 @@ export default class DpiController {
     summary: "Get Dpi",
   })
   @get()
-  static getDpi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDpi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DpiController {
   static createDpi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

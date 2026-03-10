@@ -7,10 +7,8 @@ export default class JetController {
     summary: "Get Jet",
   })
   @get()
-  static getJet = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJet = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JetController {
   static createJet = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

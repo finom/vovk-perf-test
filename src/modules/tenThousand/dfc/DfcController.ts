@@ -7,10 +7,8 @@ export default class DfcController {
     summary: "Get Dfc",
   })
   @get()
-  static getDfc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDfc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DfcController {
   static createDfc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

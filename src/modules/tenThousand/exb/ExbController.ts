@@ -7,10 +7,8 @@ export default class ExbController {
     summary: "Get Exb",
   })
   @get()
-  static getExb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getExb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ExbController {
   static createExb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

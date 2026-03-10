@@ -7,10 +7,8 @@ export default class EouController {
     summary: "Get Eou",
   })
   @get()
-  static getEou = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEou = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EouController {
   static createEou = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class BumController {
     summary: "Get Bum",
   })
   @get()
-  static getBum = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBum = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BumController {
   static createBum = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

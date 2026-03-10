@@ -7,10 +7,8 @@ export default class DkuController {
     summary: "Get Dku",
   })
   @get()
-  static getDku = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDku = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DkuController {
   static createDku = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class JfvController {
     summary: "Get Jfv",
   })
   @get()
-  static getJfv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJfv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JfvController {
   static createJfv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

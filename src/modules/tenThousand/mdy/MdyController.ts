@@ -7,10 +7,8 @@ export default class MdyController {
     summary: "Get Mdy",
   })
   @get()
-  static getMdy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMdy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MdyController {
   static createMdy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

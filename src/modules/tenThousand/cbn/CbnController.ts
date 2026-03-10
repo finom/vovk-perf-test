@@ -7,10 +7,8 @@ export default class CbnController {
     summary: "Get Cbn",
   })
   @get()
-  static getCbn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCbn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CbnController {
   static createCbn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class KjvController {
     summary: "Get Kjv",
   })
   @get()
-  static getKjv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKjv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KjvController {
   static createKjv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

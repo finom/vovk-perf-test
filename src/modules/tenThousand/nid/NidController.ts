@@ -7,10 +7,8 @@ export default class NidController {
     summary: "Get Nid",
   })
   @get()
-  static getNid = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNid = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NidController {
   static createNid = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

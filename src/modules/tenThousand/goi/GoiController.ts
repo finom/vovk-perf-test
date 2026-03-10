@@ -7,10 +7,8 @@ export default class GoiController {
     summary: "Get Goi",
   })
   @get()
-  static getGoi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGoi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GoiController {
   static createGoi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

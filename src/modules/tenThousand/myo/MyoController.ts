@@ -7,10 +7,8 @@ export default class MyoController {
     summary: "Get Myo",
   })
   @get()
-  static getMyo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMyo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MyoController {
   static createMyo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

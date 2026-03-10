@@ -7,10 +7,8 @@ export default class BeuController {
     summary: "Get Beu",
   })
   @get()
-  static getBeu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBeu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BeuController {
   static createBeu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

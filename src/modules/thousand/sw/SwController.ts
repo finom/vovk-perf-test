@@ -7,10 +7,8 @@ export default class SwController {
     summary: "Get Sw",
   })
   @get()
-  static getSw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getSw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class SwController {
   static createSw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

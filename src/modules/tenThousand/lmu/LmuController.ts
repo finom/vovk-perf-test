@@ -7,10 +7,8 @@ export default class LmuController {
     summary: "Get Lmu",
   })
   @get()
-  static getLmu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLmu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LmuController {
   static createLmu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class FlyController {
     summary: "Get Fly",
   })
   @get()
-  static getFly = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFly = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FlyController {
   static createFly = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

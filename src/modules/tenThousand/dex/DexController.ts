@@ -7,10 +7,8 @@ export default class DexController {
     summary: "Get Dex",
   })
   @get()
-  static getDex = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDex = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DexController {
   static createDex = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

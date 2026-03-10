@@ -7,10 +7,8 @@ export default class JelController {
     summary: "Get Jel",
   })
   @get()
-  static getJel = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJel = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JelController {
   static createJel = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

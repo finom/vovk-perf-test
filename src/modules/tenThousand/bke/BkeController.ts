@@ -7,10 +7,8 @@ export default class BkeController {
     summary: "Get Bke",
   })
   @get()
-  static getBke = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBke = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BkeController {
   static createBke = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

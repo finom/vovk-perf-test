@@ -7,10 +7,8 @@ export default class KweController {
     summary: "Get Kwe",
   })
   @get()
-  static getKwe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKwe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KweController {
   static createKwe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

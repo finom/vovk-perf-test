@@ -7,10 +7,8 @@ export default class IfxController {
     summary: "Get Ifx",
   })
   @get()
-  static getIfx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIfx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IfxController {
   static createIfx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

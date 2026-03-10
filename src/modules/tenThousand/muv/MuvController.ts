@@ -7,10 +7,8 @@ export default class MuvController {
     summary: "Get Muv",
   })
   @get()
-  static getMuv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMuv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MuvController {
   static createMuv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

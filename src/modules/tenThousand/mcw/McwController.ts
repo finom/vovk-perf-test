@@ -7,10 +7,8 @@ export default class McwController {
     summary: "Get Mcw",
   })
   @get()
-  static getMcw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMcw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class McwController {
   static createMcw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

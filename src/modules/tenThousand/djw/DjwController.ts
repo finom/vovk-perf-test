@@ -7,10 +7,8 @@ export default class DjwController {
     summary: "Get Djw",
   })
   @get()
-  static getDjw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDjw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DjwController {
   static createDjw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

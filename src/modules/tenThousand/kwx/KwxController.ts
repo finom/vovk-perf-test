@@ -7,10 +7,8 @@ export default class KwxController {
     summary: "Get Kwx",
   })
   @get()
-  static getKwx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKwx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KwxController {
   static createKwx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class FoqController {
     summary: "Get Foq",
   })
   @get()
-  static getFoq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFoq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FoqController {
   static createFoq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

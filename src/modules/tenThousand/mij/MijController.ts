@@ -7,10 +7,8 @@ export default class MijController {
     summary: "Get Mij",
   })
   @get()
-  static getMij = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMij = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MijController {
   static createMij = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

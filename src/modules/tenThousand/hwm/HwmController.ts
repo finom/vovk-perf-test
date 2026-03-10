@@ -7,10 +7,8 @@ export default class HwmController {
     summary: "Get Hwm",
   })
   @get()
-  static getHwm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHwm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HwmController {
   static createHwm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class JmkController {
     summary: "Get Jmk",
   })
   @get()
-  static getJmk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJmk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JmkController {
   static createJmk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

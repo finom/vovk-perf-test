@@ -7,10 +7,8 @@ export default class FupController {
     summary: "Get Fup",
   })
   @get()
-  static getFup = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFup = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FupController {
   static createFup = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

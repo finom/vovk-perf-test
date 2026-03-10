@@ -7,10 +7,8 @@ export default class FseController {
     summary: "Get Fse",
   })
   @get()
-  static getFse = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFse = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FseController {
   static createFse = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

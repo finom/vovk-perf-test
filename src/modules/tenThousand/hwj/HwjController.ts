@@ -7,10 +7,8 @@ export default class HwjController {
     summary: "Get Hwj",
   })
   @get()
-  static getHwj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHwj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HwjController {
   static createHwj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

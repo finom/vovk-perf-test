@@ -7,10 +7,8 @@ export default class MfpController {
     summary: "Get Mfp",
   })
   @get()
-  static getMfp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMfp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MfpController {
   static createMfp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

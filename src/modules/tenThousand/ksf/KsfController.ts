@@ -7,10 +7,8 @@ export default class KsfController {
     summary: "Get Ksf",
   })
   @get()
-  static getKsf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKsf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KsfController {
   static createKsf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

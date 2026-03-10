@@ -7,10 +7,8 @@ export default class IorController {
     summary: "Get Ior",
   })
   @get()
-  static getIor = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIor = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IorController {
   static createIor = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

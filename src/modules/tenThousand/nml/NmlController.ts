@@ -7,10 +7,8 @@ export default class NmlController {
     summary: "Get Nml",
   })
   @get()
-  static getNml = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNml = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NmlController {
   static createNml = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

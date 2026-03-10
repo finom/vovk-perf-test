@@ -7,10 +7,8 @@ export default class EsmController {
     summary: "Get Esm",
   })
   @get()
-  static getEsm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEsm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EsmController {
   static createEsm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

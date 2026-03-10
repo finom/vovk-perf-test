@@ -7,10 +7,8 @@ export default class CteController {
     summary: "Get Cte",
   })
   @get()
-  static getCte = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCte = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CteController {
   static createCte = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class ExiController {
     summary: "Get Exi",
   })
   @get()
-  static getExi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getExi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ExiController {
   static createExi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

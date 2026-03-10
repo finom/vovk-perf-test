@@ -7,10 +7,8 @@ export default class PcController {
     summary: "Get Pc",
   })
   @get()
-  static getPc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getPc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class PcController {
   static createPc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

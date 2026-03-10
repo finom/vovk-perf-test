@@ -7,10 +7,8 @@ export default class IrhController {
     summary: "Get Irh",
   })
   @get()
-  static getIrh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIrh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IrhController {
   static createIrh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

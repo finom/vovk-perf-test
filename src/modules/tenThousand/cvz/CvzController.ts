@@ -7,10 +7,8 @@ export default class CvzController {
     summary: "Get Cvz",
   })
   @get()
-  static getCvz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCvz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CvzController {
   static createCvz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

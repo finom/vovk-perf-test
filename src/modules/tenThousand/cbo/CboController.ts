@@ -7,10 +7,8 @@ export default class CboController {
     summary: "Get Cbo",
   })
   @get()
-  static getCbo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCbo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CboController {
   static createCbo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

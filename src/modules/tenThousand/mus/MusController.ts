@@ -7,10 +7,8 @@ export default class MusController {
     summary: "Get Mus",
   })
   @get()
-  static getMus = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMus = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MusController {
   static createMus = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

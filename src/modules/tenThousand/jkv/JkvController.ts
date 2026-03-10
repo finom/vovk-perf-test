@@ -7,10 +7,8 @@ export default class JkvController {
     summary: "Get Jkv",
   })
   @get()
-  static getJkv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJkv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JkvController {
   static createJkv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

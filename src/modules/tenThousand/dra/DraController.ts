@@ -7,10 +7,8 @@ export default class DraController {
     summary: "Get Dra",
   })
   @get()
-  static getDra = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDra = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DraController {
   static createDra = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

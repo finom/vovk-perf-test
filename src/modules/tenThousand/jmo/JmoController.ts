@@ -7,10 +7,8 @@ export default class JmoController {
     summary: "Get Jmo",
   })
   @get()
-  static getJmo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJmo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JmoController {
   static createJmo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class EimController {
     summary: "Get Eim",
   })
   @get()
-  static getEim = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEim = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EimController {
   static createEim = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

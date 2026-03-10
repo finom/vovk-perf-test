@@ -7,10 +7,8 @@ export default class DazController {
     summary: "Get Daz",
   })
   @get()
-  static getDaz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDaz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DazController {
   static createDaz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

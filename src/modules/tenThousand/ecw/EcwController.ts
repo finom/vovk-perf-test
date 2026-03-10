@@ -7,10 +7,8 @@ export default class EcwController {
     summary: "Get Ecw",
   })
   @get()
-  static getEcw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEcw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EcwController {
   static createEcw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

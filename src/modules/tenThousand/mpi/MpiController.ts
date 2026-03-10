@@ -7,10 +7,8 @@ export default class MpiController {
     summary: "Get Mpi",
   })
   @get()
-  static getMpi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMpi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MpiController {
   static createMpi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

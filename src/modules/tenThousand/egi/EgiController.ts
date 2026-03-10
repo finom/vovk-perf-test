@@ -7,10 +7,8 @@ export default class EgiController {
     summary: "Get Egi",
   })
   @get()
-  static getEgi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEgi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EgiController {
   static createEgi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IpnController {
     summary: "Get Ipn",
   })
   @get()
-  static getIpn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIpn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IpnController {
   static createIpn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class LypController {
     summary: "Get Lyp",
   })
   @get()
-  static getLyp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLyp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LypController {
   static createLyp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

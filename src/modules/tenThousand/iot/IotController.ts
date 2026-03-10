@@ -7,10 +7,8 @@ export default class IotController {
     summary: "Get Iot",
   })
   @get()
-  static getIot = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIot = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IotController {
   static createIot = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

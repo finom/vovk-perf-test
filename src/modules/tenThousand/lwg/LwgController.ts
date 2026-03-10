@@ -7,10 +7,8 @@ export default class LwgController {
     summary: "Get Lwg",
   })
   @get()
-  static getLwg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLwg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LwgController {
   static createLwg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

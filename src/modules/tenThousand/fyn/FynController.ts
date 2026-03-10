@@ -7,10 +7,8 @@ export default class FynController {
     summary: "Get Fyn",
   })
   @get()
-  static getFyn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFyn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FynController {
   static createFyn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class ArvController {
     summary: "Get Arv",
   })
   @get()
-  static getArv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getArv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ArvController {
   static createArv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class MsgController {
     summary: "Get Msg",
   })
   @get()
-  static getMsg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMsg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MsgController {
   static createMsg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

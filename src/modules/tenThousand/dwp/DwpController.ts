@@ -7,10 +7,8 @@ export default class DwpController {
     summary: "Get Dwp",
   })
   @get()
-  static getDwp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDwp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DwpController {
   static createDwp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

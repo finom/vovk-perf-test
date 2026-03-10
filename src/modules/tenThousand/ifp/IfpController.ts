@@ -7,10 +7,8 @@ export default class IfpController {
     summary: "Get Ifp",
   })
   @get()
-  static getIfp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIfp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IfpController {
   static createIfp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

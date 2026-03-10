@@ -7,10 +7,8 @@ export default class MzhController {
     summary: "Get Mzh",
   })
   @get()
-  static getMzh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMzh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MzhController {
   static createMzh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

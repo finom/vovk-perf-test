@@ -7,10 +7,8 @@ export default class MstController {
     summary: "Get Mst",
   })
   @get()
-  static getMst = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMst = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MstController {
   static createMst = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

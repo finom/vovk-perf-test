@@ -7,10 +7,8 @@ export default class JqfController {
     summary: "Get Jqf",
   })
   @get()
-  static getJqf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJqf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JqfController {
   static createJqf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

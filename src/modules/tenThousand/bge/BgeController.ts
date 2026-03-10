@@ -7,10 +7,8 @@ export default class BgeController {
     summary: "Get Bge",
   })
   @get()
-  static getBge = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBge = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BgeController {
   static createBge = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

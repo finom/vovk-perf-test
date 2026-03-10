@@ -7,10 +7,8 @@ export default class EvoController {
     summary: "Get Evo",
   })
   @get()
-  static getEvo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEvo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EvoController {
   static createEvo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

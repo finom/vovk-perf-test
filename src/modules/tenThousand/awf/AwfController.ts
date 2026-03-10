@@ -7,10 +7,8 @@ export default class AwfController {
     summary: "Get Awf",
   })
   @get()
-  static getAwf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAwf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AwfController {
   static createAwf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class FkdController {
     summary: "Get Fkd",
   })
   @get()
-  static getFkd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFkd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FkdController {
   static createFkd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

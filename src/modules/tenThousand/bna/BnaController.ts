@@ -7,10 +7,8 @@ export default class BnaController {
     summary: "Get Bna",
   })
   @get()
-  static getBna = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBna = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BnaController {
   static createBna = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

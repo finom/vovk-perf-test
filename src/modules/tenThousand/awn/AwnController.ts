@@ -7,10 +7,8 @@ export default class AwnController {
     summary: "Get Awn",
   })
   @get()
-  static getAwn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAwn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AwnController {
   static createAwn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

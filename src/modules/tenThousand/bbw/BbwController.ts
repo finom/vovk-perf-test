@@ -7,10 +7,8 @@ export default class BbwController {
     summary: "Get Bbw",
   })
   @get()
-  static getBbw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBbw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BbwController {
   static createBbw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class ExrController {
     summary: "Get Exr",
   })
   @get()
-  static getExr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getExr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ExrController {
   static createExr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

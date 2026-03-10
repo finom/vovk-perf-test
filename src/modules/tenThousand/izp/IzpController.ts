@@ -7,10 +7,8 @@ export default class IzpController {
     summary: "Get Izp",
   })
   @get()
-  static getIzp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIzp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IzpController {
   static createIzp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

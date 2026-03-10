@@ -7,10 +7,8 @@ export default class EcdController {
     summary: "Get Ecd",
   })
   @get()
-  static getEcd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEcd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EcdController {
   static createEcd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

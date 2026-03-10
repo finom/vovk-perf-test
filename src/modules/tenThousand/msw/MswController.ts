@@ -7,10 +7,8 @@ export default class MswController {
     summary: "Get Msw",
   })
   @get()
-  static getMsw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMsw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MswController {
   static createMsw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

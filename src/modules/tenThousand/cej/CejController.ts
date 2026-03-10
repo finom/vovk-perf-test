@@ -7,10 +7,8 @@ export default class CejController {
     summary: "Get Cej",
   })
   @get()
-  static getCej = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCej = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CejController {
   static createCej = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

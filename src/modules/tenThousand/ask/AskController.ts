@@ -7,10 +7,8 @@ export default class AskController {
     summary: "Get Ask",
   })
   @get()
-  static getAsk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAsk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AskController {
   static createAsk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

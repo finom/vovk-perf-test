@@ -7,10 +7,8 @@ export default class JinController {
     summary: "Get Jin",
   })
   @get()
-  static getJin = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJin = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JinController {
   static createJin = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

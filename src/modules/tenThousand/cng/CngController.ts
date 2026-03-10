@@ -7,10 +7,8 @@ export default class CngController {
     summary: "Get Cng",
   })
   @get()
-  static getCng = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCng = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CngController {
   static createCng = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

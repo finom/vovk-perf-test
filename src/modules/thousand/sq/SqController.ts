@@ -7,10 +7,8 @@ export default class SqController {
     summary: "Get Sq",
   })
   @get()
-  static getSq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getSq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class SqController {
   static createSq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

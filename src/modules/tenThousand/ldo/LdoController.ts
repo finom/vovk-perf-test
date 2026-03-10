@@ -7,10 +7,8 @@ export default class LdoController {
     summary: "Get Ldo",
   })
   @get()
-  static getLdo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLdo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LdoController {
   static createLdo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

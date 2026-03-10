@@ -7,10 +7,8 @@ export default class HptController {
     summary: "Get Hpt",
   })
   @get()
-  static getHpt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHpt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HptController {
   static createHpt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class CwxController {
     summary: "Get Cwx",
   })
   @get()
-  static getCwx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCwx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CwxController {
   static createCwx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

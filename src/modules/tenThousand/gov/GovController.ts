@@ -7,10 +7,8 @@ export default class GovController {
     summary: "Get Gov",
   })
   @get()
-  static getGov = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGov = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GovController {
   static createGov = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

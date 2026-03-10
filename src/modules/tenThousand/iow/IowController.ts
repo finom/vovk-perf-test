@@ -7,10 +7,8 @@ export default class IowController {
     summary: "Get Iow",
   })
   @get()
-  static getIow = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIow = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IowController {
   static createIow = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

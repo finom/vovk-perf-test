@@ -7,10 +7,8 @@ export default class MegController {
     summary: "Get Meg",
   })
   @get()
-  static getMeg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMeg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MegController {
   static createMeg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class DvController {
     summary: "Get Dv",
   })
   @get()
-  static getDv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DvController {
   static createDv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class AogController {
     summary: "Get Aog",
   })
   @get()
-  static getAog = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAog = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AogController {
   static createAog = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

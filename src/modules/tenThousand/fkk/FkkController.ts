@@ -7,10 +7,8 @@ export default class FkkController {
     summary: "Get Fkk",
   })
   @get()
-  static getFkk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFkk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FkkController {
   static createFkk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

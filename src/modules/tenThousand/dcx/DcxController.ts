@@ -7,10 +7,8 @@ export default class DcxController {
     summary: "Get Dcx",
   })
   @get()
-  static getDcx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDcx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DcxController {
   static createDcx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

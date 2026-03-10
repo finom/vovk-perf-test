@@ -7,10 +7,8 @@ export default class EuqController {
     summary: "Get Euq",
   })
   @get()
-  static getEuq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEuq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EuqController {
   static createEuq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

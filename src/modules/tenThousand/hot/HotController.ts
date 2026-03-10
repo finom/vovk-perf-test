@@ -7,10 +7,8 @@ export default class HotController {
     summary: "Get Hot",
   })
   @get()
-  static getHot = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHot = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HotController {
   static createHot = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

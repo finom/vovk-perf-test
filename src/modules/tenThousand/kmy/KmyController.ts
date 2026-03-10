@@ -7,10 +7,8 @@ export default class KmyController {
     summary: "Get Kmy",
   })
   @get()
-  static getKmy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKmy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KmyController {
   static createKmy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

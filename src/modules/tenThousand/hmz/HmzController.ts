@@ -7,10 +7,8 @@ export default class HmzController {
     summary: "Get Hmz",
   })
   @get()
-  static getHmz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHmz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HmzController {
   static createHmz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class JbController {
     summary: "Get Jb",
   })
   @get()
-  static getJb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JbController {
   static createJb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

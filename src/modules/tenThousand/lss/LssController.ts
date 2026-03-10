@@ -7,10 +7,8 @@ export default class LssController {
     summary: "Get Lss",
   })
   @get()
-  static getLss = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLss = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LssController {
   static createLss = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

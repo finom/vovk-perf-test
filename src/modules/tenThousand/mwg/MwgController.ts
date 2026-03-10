@@ -7,10 +7,8 @@ export default class MwgController {
     summary: "Get Mwg",
   })
   @get()
-  static getMwg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMwg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MwgController {
   static createMwg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

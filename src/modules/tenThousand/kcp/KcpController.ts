@@ -7,10 +7,8 @@ export default class KcpController {
     summary: "Get Kcp",
   })
   @get()
-  static getKcp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKcp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KcpController {
   static createKcp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

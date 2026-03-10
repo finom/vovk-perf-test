@@ -7,10 +7,8 @@ export default class KvaController {
     summary: "Get Kva",
   })
   @get()
-  static getKva = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKva = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KvaController {
   static createKva = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

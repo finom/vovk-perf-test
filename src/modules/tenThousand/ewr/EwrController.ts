@@ -7,10 +7,8 @@ export default class EwrController {
     summary: "Get Ewr",
   })
   @get()
-  static getEwr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEwr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EwrController {
   static createEwr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

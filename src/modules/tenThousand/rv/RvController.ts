@@ -7,10 +7,8 @@ export default class RvController {
     summary: "Get Rv",
   })
   @get()
-  static getRv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getRv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class RvController {
   static createRv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

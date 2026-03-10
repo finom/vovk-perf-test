@@ -7,10 +7,8 @@ export default class LriController {
     summary: "Get Lri",
   })
   @get()
-  static getLri = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLri = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LriController {
   static createLri = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

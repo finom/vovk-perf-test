@@ -7,10 +7,8 @@ export default class MitController {
     summary: "Get Mit",
   })
   @get()
-  static getMit = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMit = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MitController {
   static createMit = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

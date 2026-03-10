@@ -7,10 +7,8 @@ export default class LsrController {
     summary: "Get Lsr",
   })
   @get()
-  static getLsr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLsr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LsrController {
   static createLsr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class FugController {
     summary: "Get Fug",
   })
   @get()
-  static getFug = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFug = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FugController {
   static createFug = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class JxmController {
     summary: "Get Jxm",
   })
   @get()
-  static getJxm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJxm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JxmController {
   static createJxm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

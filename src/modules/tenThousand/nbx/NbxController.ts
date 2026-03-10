@@ -7,10 +7,8 @@ export default class NbxController {
     summary: "Get Nbx",
   })
   @get()
-  static getNbx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNbx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NbxController {
   static createNbx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

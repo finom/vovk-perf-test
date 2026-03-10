@@ -7,10 +7,8 @@ export default class EppController {
     summary: "Get Epp",
   })
   @get()
-  static getEpp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEpp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EppController {
   static createEpp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

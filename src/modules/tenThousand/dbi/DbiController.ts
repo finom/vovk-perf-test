@@ -7,10 +7,8 @@ export default class DbiController {
     summary: "Get Dbi",
   })
   @get()
-  static getDbi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDbi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DbiController {
   static createDbi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

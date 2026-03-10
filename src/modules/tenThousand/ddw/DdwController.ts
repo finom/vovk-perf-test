@@ -7,10 +7,8 @@ export default class DdwController {
     summary: "Get Ddw",
   })
   @get()
-  static getDdw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDdw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DdwController {
   static createDdw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

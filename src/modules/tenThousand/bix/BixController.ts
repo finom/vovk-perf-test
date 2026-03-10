@@ -7,10 +7,8 @@ export default class BixController {
     summary: "Get Bix",
   })
   @get()
-  static getBix = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBix = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BixController {
   static createBix = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

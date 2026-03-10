@@ -7,10 +7,8 @@ export default class MmpController {
     summary: "Get Mmp",
   })
   @get()
-  static getMmp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMmp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MmpController {
   static createMmp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

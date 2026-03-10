@@ -7,10 +7,8 @@ export default class AliController {
     summary: "Get Ali",
   })
   @get()
-  static getAli = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAli = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AliController {
   static createAli = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class CexController {
     summary: "Get Cex",
   })
   @get()
-  static getCex = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCex = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CexController {
   static createCex = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

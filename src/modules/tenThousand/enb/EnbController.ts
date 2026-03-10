@@ -7,10 +7,8 @@ export default class EnbController {
     summary: "Get Enb",
   })
   @get()
-  static getEnb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEnb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EnbController {
   static createEnb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

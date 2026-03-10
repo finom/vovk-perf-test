@@ -7,10 +7,8 @@ export default class JwfController {
     summary: "Get Jwf",
   })
   @get()
-  static getJwf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJwf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JwfController {
   static createJwf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class HzxController {
     summary: "Get Hzx",
   })
   @get()
-  static getHzx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHzx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HzxController {
   static createHzx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

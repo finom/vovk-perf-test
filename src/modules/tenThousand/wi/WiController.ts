@@ -7,10 +7,8 @@ export default class WiController {
     summary: "Get Wi",
   })
   @get()
-  static getWi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getWi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class WiController {
   static createWi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

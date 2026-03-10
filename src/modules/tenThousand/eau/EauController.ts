@@ -7,10 +7,8 @@ export default class EauController {
     summary: "Get Eau",
   })
   @get()
-  static getEau = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEau = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EauController {
   static createEau = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

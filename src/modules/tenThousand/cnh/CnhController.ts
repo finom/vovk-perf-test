@@ -7,10 +7,8 @@ export default class CnhController {
     summary: "Get Cnh",
   })
   @get()
-  static getCnh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCnh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CnhController {
   static createCnh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

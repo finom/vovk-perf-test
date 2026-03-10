@@ -7,10 +7,8 @@ export default class GsfController {
     summary: "Get Gsf",
   })
   @get()
-  static getGsf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGsf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GsfController {
   static createGsf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

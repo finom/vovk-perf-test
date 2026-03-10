@@ -7,10 +7,8 @@ export default class ClvController {
     summary: "Get Clv",
   })
   @get()
-  static getClv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getClv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ClvController {
   static createClv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class KtqController {
     summary: "Get Ktq",
   })
   @get()
-  static getKtq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKtq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KtqController {
   static createKtq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

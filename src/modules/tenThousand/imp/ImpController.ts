@@ -7,10 +7,8 @@ export default class ImpController {
     summary: "Get Imp",
   })
   @get()
-  static getImp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getImp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ImpController {
   static createImp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

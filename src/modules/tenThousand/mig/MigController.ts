@@ -7,10 +7,8 @@ export default class MigController {
     summary: "Get Mig",
   })
   @get()
-  static getMig = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMig = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MigController {
   static createMig = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

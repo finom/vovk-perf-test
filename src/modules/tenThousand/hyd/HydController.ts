@@ -7,10 +7,8 @@ export default class HydController {
     summary: "Get Hyd",
   })
   @get()
-  static getHyd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHyd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HydController {
   static createHyd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

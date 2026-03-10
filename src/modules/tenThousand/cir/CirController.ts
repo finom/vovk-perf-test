@@ -7,10 +7,8 @@ export default class CirController {
     summary: "Get Cir",
   })
   @get()
-  static getCir = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCir = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CirController {
   static createCir = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

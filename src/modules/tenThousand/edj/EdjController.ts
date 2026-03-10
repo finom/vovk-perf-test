@@ -7,10 +7,8 @@ export default class EdjController {
     summary: "Get Edj",
   })
   @get()
-  static getEdj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEdj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EdjController {
   static createEdj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

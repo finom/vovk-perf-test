@@ -7,10 +7,8 @@ export default class KnoController {
     summary: "Get Kno",
   })
   @get()
-  static getKno = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKno = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KnoController {
   static createKno = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

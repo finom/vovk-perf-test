@@ -7,10 +7,8 @@ export default class AofController {
     summary: "Get Aof",
   })
   @get()
-  static getAof = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAof = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AofController {
   static createAof = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

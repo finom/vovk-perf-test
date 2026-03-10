@@ -7,10 +7,8 @@ export default class NppController {
     summary: "Get Npp",
   })
   @get()
-  static getNpp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNpp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NppController {
   static createNpp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

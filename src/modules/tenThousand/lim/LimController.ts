@@ -7,10 +7,8 @@ export default class LimController {
     summary: "Get Lim",
   })
   @get()
-  static getLim = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLim = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LimController {
   static createLim = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

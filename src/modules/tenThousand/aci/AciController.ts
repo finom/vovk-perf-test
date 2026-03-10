@@ -7,10 +7,8 @@ export default class AciController {
     summary: "Get Aci",
   })
   @get()
-  static getAci = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAci = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AciController {
   static createAci = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

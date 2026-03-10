@@ -7,10 +7,8 @@ export default class HzkController {
     summary: "Get Hzk",
   })
   @get()
-  static getHzk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHzk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HzkController {
   static createHzk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

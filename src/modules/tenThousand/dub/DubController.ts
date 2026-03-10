@@ -7,10 +7,8 @@ export default class DubController {
     summary: "Get Dub",
   })
   @get()
-  static getDub = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDub = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DubController {
   static createDub = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

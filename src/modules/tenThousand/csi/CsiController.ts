@@ -7,10 +7,8 @@ export default class CsiController {
     summary: "Get Csi",
   })
   @get()
-  static getCsi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCsi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CsiController {
   static createCsi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

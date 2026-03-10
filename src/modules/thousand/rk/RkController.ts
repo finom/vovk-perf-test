@@ -7,10 +7,8 @@ export default class RkController {
     summary: "Get Rk",
   })
   @get()
-  static getRk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getRk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class RkController {
   static createRk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

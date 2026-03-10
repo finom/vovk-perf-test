@@ -7,10 +7,8 @@ export default class HekController {
     summary: "Get Hek",
   })
   @get()
-  static getHek = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHek = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HekController {
   static createHek = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

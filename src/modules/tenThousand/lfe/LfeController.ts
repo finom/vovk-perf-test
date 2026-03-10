@@ -7,10 +7,8 @@ export default class LfeController {
     summary: "Get Lfe",
   })
   @get()
-  static getLfe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLfe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LfeController {
   static createLfe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

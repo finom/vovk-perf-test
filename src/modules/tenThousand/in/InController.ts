@@ -7,10 +7,8 @@ export default class InController {
     summary: "Get In",
   })
   @get()
-  static getIn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class InController {
   static createIn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class DbeController {
     summary: "Get Dbe",
   })
   @get()
-  static getDbe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDbe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DbeController {
   static createDbe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

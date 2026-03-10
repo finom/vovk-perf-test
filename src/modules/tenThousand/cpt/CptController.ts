@@ -7,10 +7,8 @@ export default class CptController {
     summary: "Get Cpt",
   })
   @get()
-  static getCpt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCpt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CptController {
   static createCpt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

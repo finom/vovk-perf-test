@@ -7,10 +7,8 @@ export default class FtgController {
     summary: "Get Ftg",
   })
   @get()
-  static getFtg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFtg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FtgController {
   static createFtg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

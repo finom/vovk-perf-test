@@ -7,10 +7,8 @@ export default class NisController {
     summary: "Get Nis",
   })
   @get()
-  static getNis = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNis = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NisController {
   static createNis = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

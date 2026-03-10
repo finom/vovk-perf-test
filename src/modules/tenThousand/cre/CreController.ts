@@ -7,10 +7,8 @@ export default class CreController {
     summary: "Get Cre",
   })
   @get()
-  static getCre = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCre = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CreController {
   static createCre = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class EfwController {
     summary: "Get Efw",
   })
   @get()
-  static getEfw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEfw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EfwController {
   static createEfw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

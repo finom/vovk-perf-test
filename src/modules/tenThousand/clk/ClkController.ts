@@ -7,10 +7,8 @@ export default class ClkController {
     summary: "Get Clk",
   })
   @get()
-  static getClk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getClk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ClkController {
   static createClk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

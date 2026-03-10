@@ -7,10 +7,8 @@ export default class DniController {
     summary: "Get Dni",
   })
   @get()
-  static getDni = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDni = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DniController {
   static createDni = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

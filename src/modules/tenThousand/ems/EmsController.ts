@@ -7,10 +7,8 @@ export default class EmsController {
     summary: "Get Ems",
   })
   @get()
-  static getEms = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEms = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EmsController {
   static createEms = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

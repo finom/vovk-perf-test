@@ -7,10 +7,8 @@ export default class MhsController {
     summary: "Get Mhs",
   })
   @get()
-  static getMhs = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMhs = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MhsController {
   static createMhs = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

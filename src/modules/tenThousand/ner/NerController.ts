@@ -7,10 +7,8 @@ export default class NerController {
     summary: "Get Ner",
   })
   @get()
-  static getNer = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNer = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NerController {
   static createNer = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

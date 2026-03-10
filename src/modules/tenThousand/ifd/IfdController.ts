@@ -7,10 +7,8 @@ export default class IfdController {
     summary: "Get Ifd",
   })
   @get()
-  static getIfd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIfd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IfdController {
   static createIfd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

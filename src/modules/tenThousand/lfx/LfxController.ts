@@ -7,10 +7,8 @@ export default class LfxController {
     summary: "Get Lfx",
   })
   @get()
-  static getLfx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLfx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LfxController {
   static createLfx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

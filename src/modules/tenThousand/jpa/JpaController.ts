@@ -7,10 +7,8 @@ export default class JpaController {
     summary: "Get Jpa",
   })
   @get()
-  static getJpa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJpa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JpaController {
   static createJpa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

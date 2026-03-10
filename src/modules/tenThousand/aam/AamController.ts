@@ -7,10 +7,8 @@ export default class AamController {
     summary: "Get Aam",
   })
   @get()
-  static getAam = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAam = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AamController {
   static createAam = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

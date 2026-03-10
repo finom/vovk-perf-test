@@ -7,10 +7,8 @@ export default class HfsController {
     summary: "Get Hfs",
   })
   @get()
-  static getHfs = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHfs = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HfsController {
   static createHfs = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

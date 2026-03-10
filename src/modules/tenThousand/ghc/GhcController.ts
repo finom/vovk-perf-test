@@ -7,10 +7,8 @@ export default class GhcController {
     summary: "Get Ghc",
   })
   @get()
-  static getGhc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGhc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GhcController {
   static createGhc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IetController {
     summary: "Get Iet",
   })
   @get()
-  static getIet = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIet = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IetController {
   static createIet = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

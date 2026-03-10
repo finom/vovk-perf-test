@@ -7,10 +7,8 @@ export default class BdfController {
     summary: "Get Bdf",
   })
   @get()
-  static getBdf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBdf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BdfController {
   static createBdf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

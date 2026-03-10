@@ -7,10 +7,8 @@ export default class AnhController {
     summary: "Get Anh",
   })
   @get()
-  static getAnh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAnh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AnhController {
   static createAnh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

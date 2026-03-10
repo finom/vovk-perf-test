@@ -7,10 +7,8 @@ export default class IqtController {
     summary: "Get Iqt",
   })
   @get()
-  static getIqt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIqt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IqtController {
   static createIqt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

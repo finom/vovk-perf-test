@@ -7,10 +7,8 @@ export default class CbhController {
     summary: "Get Cbh",
   })
   @get()
-  static getCbh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCbh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CbhController {
   static createCbh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

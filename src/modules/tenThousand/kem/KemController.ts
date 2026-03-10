@@ -7,10 +7,8 @@ export default class KemController {
     summary: "Get Kem",
   })
   @get()
-  static getKem = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKem = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KemController {
   static createKem = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

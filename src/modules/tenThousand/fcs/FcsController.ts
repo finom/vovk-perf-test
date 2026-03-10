@@ -7,10 +7,8 @@ export default class FcsController {
     summary: "Get Fcs",
   })
   @get()
-  static getFcs = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFcs = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FcsController {
   static createFcs = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

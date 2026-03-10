@@ -7,10 +7,8 @@ export default class AavController {
     summary: "Get Aav",
   })
   @get()
-  static getAav = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAav = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AavController {
   static createAav = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

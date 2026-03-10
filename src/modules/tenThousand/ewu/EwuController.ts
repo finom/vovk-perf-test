@@ -7,10 +7,8 @@ export default class EwuController {
     summary: "Get Ewu",
   })
   @get()
-  static getEwu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEwu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EwuController {
   static createEwu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

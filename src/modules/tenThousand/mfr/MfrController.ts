@@ -7,10 +7,8 @@ export default class MfrController {
     summary: "Get Mfr",
   })
   @get()
-  static getMfr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMfr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MfrController {
   static createMfr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

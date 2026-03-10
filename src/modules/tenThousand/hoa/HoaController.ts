@@ -7,10 +7,8 @@ export default class HoaController {
     summary: "Get Hoa",
   })
   @get()
-  static getHoa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHoa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HoaController {
   static createHoa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

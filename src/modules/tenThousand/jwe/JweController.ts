@@ -7,10 +7,8 @@ export default class JweController {
     summary: "Get Jwe",
   })
   @get()
-  static getJwe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJwe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JweController {
   static createJwe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

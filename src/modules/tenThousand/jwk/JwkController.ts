@@ -7,10 +7,8 @@ export default class JwkController {
     summary: "Get Jwk",
   })
   @get()
-  static getJwk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJwk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JwkController {
   static createJwk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

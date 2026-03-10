@@ -7,10 +7,8 @@ export default class DasController {
     summary: "Get Das",
   })
   @get()
-  static getDas = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDas = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DasController {
   static createDas = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

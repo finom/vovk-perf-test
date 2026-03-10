@@ -7,10 +7,8 @@ export default class EidController {
     summary: "Get Eid",
   })
   @get()
-  static getEid = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEid = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EidController {
   static createEid = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

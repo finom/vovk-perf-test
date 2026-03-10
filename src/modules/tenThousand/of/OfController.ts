@@ -7,10 +7,8 @@ export default class OfController {
     summary: "Get Of",
   })
   @get()
-  static getOf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getOf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class OfController {
   static createOf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

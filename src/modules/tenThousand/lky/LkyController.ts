@@ -7,10 +7,8 @@ export default class LkyController {
     summary: "Get Lky",
   })
   @get()
-  static getLky = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLky = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LkyController {
   static createLky = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

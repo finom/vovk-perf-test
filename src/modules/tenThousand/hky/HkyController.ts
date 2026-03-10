@@ -7,10 +7,8 @@ export default class HkyController {
     summary: "Get Hky",
   })
   @get()
-  static getHky = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHky = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HkyController {
   static createHky = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class MgfController {
     summary: "Get Mgf",
   })
   @get()
-  static getMgf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMgf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MgfController {
   static createMgf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

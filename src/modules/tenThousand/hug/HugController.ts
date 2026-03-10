@@ -7,10 +7,8 @@ export default class HugController {
     summary: "Get Hug",
   })
   @get()
-  static getHug = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHug = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HugController {
   static createHug = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

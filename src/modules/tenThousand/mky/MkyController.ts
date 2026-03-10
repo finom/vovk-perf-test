@@ -7,10 +7,8 @@ export default class MkyController {
     summary: "Get Mky",
   })
   @get()
-  static getMky = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMky = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MkyController {
   static createMky = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class ColController {
     summary: "Get Col",
   })
   @get()
-  static getCol = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCol = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ColController {
   static createCol = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

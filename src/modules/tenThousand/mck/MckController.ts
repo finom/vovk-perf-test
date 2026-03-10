@@ -7,10 +7,8 @@ export default class MckController {
     summary: "Get Mck",
   })
   @get()
-  static getMck = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMck = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MckController {
   static createMck = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

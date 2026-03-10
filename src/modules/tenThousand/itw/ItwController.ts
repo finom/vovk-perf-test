@@ -7,10 +7,8 @@ export default class ItwController {
     summary: "Get Itw",
   })
   @get()
-  static getItw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getItw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ItwController {
   static createItw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

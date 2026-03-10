@@ -7,10 +7,8 @@ export default class WnController {
     summary: "Get Wn",
   })
   @get()
-  static getWn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getWn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class WnController {
   static createWn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

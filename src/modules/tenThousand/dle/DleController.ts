@@ -7,10 +7,8 @@ export default class DleController {
     summary: "Get Dle",
   })
   @get()
-  static getDle = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDle = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DleController {
   static createDle = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

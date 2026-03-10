@@ -7,10 +7,8 @@ export default class MpuController {
     summary: "Get Mpu",
   })
   @get()
-  static getMpu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMpu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MpuController {
   static createMpu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

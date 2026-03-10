@@ -7,10 +7,8 @@ export default class GpwController {
     summary: "Get Gpw",
   })
   @get()
-  static getGpw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGpw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GpwController {
   static createGpw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

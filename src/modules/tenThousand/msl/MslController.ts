@@ -7,10 +7,8 @@ export default class MslController {
     summary: "Get Msl",
   })
   @get()
-  static getMsl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMsl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MslController {
   static createMsl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

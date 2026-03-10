@@ -7,10 +7,8 @@ export default class HqmController {
     summary: "Get Hqm",
   })
   @get()
-  static getHqm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHqm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HqmController {
   static createHqm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

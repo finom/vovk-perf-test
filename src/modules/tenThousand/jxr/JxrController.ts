@@ -7,10 +7,8 @@ export default class JxrController {
     summary: "Get Jxr",
   })
   @get()
-  static getJxr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJxr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JxrController {
   static createJxr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

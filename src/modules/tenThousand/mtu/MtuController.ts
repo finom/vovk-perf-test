@@ -7,10 +7,8 @@ export default class MtuController {
     summary: "Get Mtu",
   })
   @get()
-  static getMtu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMtu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MtuController {
   static createMtu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

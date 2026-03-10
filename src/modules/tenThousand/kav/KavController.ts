@@ -7,10 +7,8 @@ export default class KavController {
     summary: "Get Kav",
   })
   @get()
-  static getKav = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKav = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KavController {
   static createKav = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

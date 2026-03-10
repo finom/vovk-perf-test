@@ -7,10 +7,8 @@ export default class JhoController {
     summary: "Get Jho",
   })
   @get()
-  static getJho = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJho = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JhoController {
   static createJho = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

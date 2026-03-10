@@ -7,10 +7,8 @@ export default class IovController {
     summary: "Get Iov",
   })
   @get()
-  static getIov = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIov = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IovController {
   static createIov = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

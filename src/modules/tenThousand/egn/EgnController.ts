@@ -7,10 +7,8 @@ export default class EgnController {
     summary: "Get Egn",
   })
   @get()
-  static getEgn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEgn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EgnController {
   static createEgn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class DfxController {
     summary: "Get Dfx",
   })
   @get()
-  static getDfx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDfx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DfxController {
   static createDfx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

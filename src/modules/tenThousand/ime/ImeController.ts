@@ -7,10 +7,8 @@ export default class ImeController {
     summary: "Get Ime",
   })
   @get()
-  static getIme = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIme = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ImeController {
   static createIme = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

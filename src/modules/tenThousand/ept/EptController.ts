@@ -7,10 +7,8 @@ export default class EptController {
     summary: "Get Ept",
   })
   @get()
-  static getEpt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEpt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EptController {
   static createEpt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

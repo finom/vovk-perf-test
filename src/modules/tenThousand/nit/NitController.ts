@@ -7,10 +7,8 @@ export default class NitController {
     summary: "Get Nit",
   })
   @get()
-  static getNit = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNit = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NitController {
   static createNit = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

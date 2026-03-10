@@ -7,10 +7,8 @@ export default class EqiController {
     summary: "Get Eqi",
   })
   @get()
-  static getEqi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEqi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EqiController {
   static createEqi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

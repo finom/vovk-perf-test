@@ -7,10 +7,8 @@ export default class FaoController {
     summary: "Get Fao",
   })
   @get()
-  static getFao = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFao = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FaoController {
   static createFao = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

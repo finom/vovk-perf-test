@@ -7,10 +7,8 @@ export default class EdiController {
     summary: "Get Edi",
   })
   @get()
-  static getEdi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEdi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EdiController {
   static createEdi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class KluController {
     summary: "Get Klu",
   })
   @get()
-  static getKlu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKlu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KluController {
   static createKlu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

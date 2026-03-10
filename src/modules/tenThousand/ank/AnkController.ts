@@ -7,10 +7,8 @@ export default class AnkController {
     summary: "Get Ank",
   })
   @get()
-  static getAnk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAnk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AnkController {
   static createAnk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IbmController {
     summary: "Get Ibm",
   })
   @get()
-  static getIbm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIbm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IbmController {
   static createIbm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

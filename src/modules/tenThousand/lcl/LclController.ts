@@ -7,10 +7,8 @@ export default class LclController {
     summary: "Get Lcl",
   })
   @get()
-  static getLcl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLcl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LclController {
   static createLcl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

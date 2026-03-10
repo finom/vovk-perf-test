@@ -7,10 +7,8 @@ export default class EnsController {
     summary: "Get Ens",
   })
   @get()
-  static getEns = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEns = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EnsController {
   static createEns = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class LatController {
     summary: "Get Lat",
   })
   @get()
-  static getLat = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLat = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LatController {
   static createLat = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

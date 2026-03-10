@@ -7,10 +7,8 @@ export default class KbnController {
     summary: "Get Kbn",
   })
   @get()
-  static getKbn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKbn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KbnController {
   static createKbn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

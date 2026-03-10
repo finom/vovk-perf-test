@@ -7,10 +7,8 @@ export default class GmwController {
     summary: "Get Gmw",
   })
   @get()
-  static getGmw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGmw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GmwController {
   static createGmw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

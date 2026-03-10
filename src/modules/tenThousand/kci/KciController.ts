@@ -7,10 +7,8 @@ export default class KciController {
     summary: "Get Kci",
   })
   @get()
-  static getKci = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKci = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KciController {
   static createKci = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

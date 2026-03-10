@@ -7,10 +7,8 @@ export default class IloController {
     summary: "Get Ilo",
   })
   @get()
-  static getIlo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIlo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IloController {
   static createIlo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

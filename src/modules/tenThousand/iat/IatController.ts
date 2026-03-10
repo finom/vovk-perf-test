@@ -7,10 +7,8 @@ export default class IatController {
     summary: "Get Iat",
   })
   @get()
-  static getIat = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIat = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IatController {
   static createIat = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class NiuController {
     summary: "Get Niu",
   })
   @get()
-  static getNiu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNiu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NiuController {
   static createNiu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

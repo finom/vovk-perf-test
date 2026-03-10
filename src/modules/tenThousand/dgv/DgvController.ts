@@ -7,10 +7,8 @@ export default class DgvController {
     summary: "Get Dgv",
   })
   @get()
-  static getDgv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDgv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DgvController {
   static createDgv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

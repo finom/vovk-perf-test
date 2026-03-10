@@ -7,10 +7,8 @@ export default class BciController {
     summary: "Get Bci",
   })
   @get()
-  static getBci = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBci = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BciController {
   static createBci = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class MseController {
     summary: "Get Mse",
   })
   @get()
-  static getMse = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMse = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MseController {
   static createMse = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class CcmController {
     summary: "Get Ccm",
   })
   @get()
-  static getCcm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCcm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CcmController {
   static createCcm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

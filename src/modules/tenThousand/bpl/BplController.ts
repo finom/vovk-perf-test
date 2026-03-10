@@ -7,10 +7,8 @@ export default class BplController {
     summary: "Get Bpl",
   })
   @get()
-  static getBpl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBpl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BplController {
   static createBpl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

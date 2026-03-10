@@ -7,10 +7,8 @@ export default class AgtController {
     summary: "Get Agt",
   })
   @get()
-  static getAgt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAgt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AgtController {
   static createAgt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

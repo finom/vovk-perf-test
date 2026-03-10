@@ -7,10 +7,8 @@ export default class ItvController {
     summary: "Get Itv",
   })
   @get()
-  static getItv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getItv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ItvController {
   static createItv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

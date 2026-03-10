@@ -7,10 +7,8 @@ export default class AleController {
     summary: "Get Ale",
   })
   @get()
-  static getAle = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAle = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AleController {
   static createAle = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

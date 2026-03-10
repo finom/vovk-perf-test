@@ -7,10 +7,8 @@ export default class DshController {
     summary: "Get Dsh",
   })
   @get()
-  static getDsh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDsh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DshController {
   static createDsh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

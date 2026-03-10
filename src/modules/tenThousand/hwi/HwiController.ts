@@ -7,10 +7,8 @@ export default class HwiController {
     summary: "Get Hwi",
   })
   @get()
-  static getHwi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHwi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HwiController {
   static createHwi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

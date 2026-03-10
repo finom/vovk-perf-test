@@ -7,10 +7,8 @@ export default class MrvController {
     summary: "Get Mrv",
   })
   @get()
-  static getMrv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMrv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MrvController {
   static createMrv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

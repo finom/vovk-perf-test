@@ -7,10 +7,8 @@ export default class NgtController {
     summary: "Get Ngt",
   })
   @get()
-  static getNgt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNgt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NgtController {
   static createNgt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class AjoController {
     summary: "Get Ajo",
   })
   @get()
-  static getAjo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAjo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AjoController {
   static createAjo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

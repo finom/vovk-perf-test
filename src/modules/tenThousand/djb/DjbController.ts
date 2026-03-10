@@ -7,10 +7,8 @@ export default class DjbController {
     summary: "Get Djb",
   })
   @get()
-  static getDjb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDjb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DjbController {
   static createDjb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

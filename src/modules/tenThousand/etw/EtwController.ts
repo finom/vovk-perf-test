@@ -7,10 +7,8 @@ export default class EtwController {
     summary: "Get Etw",
   })
   @get()
-  static getEtw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEtw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EtwController {
   static createEtw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class SkController {
     summary: "Get Sk",
   })
   @get()
-  static getSk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getSk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class SkController {
   static createSk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class KivController {
     summary: "Get Kiv",
   })
   @get()
-  static getKiv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKiv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KivController {
   static createKiv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

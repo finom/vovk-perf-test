@@ -7,10 +7,8 @@ export default class EnaController {
     summary: "Get Ena",
   })
   @get()
-  static getEna = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEna = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EnaController {
   static createEna = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

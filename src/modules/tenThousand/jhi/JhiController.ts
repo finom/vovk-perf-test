@@ -7,10 +7,8 @@ export default class JhiController {
     summary: "Get Jhi",
   })
   @get()
-  static getJhi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJhi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JhiController {
   static createJhi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

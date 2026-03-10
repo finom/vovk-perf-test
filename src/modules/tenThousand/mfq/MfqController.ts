@@ -7,10 +7,8 @@ export default class MfqController {
     summary: "Get Mfq",
   })
   @get()
-  static getMfq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMfq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MfqController {
   static createMfq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

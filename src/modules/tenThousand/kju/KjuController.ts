@@ -7,10 +7,8 @@ export default class KjuController {
     summary: "Get Kju",
   })
   @get()
-  static getKju = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKju = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KjuController {
   static createKju = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

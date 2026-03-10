@@ -7,10 +7,8 @@ export default class CgvController {
     summary: "Get Cgv",
   })
   @get()
-  static getCgv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCgv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CgvController {
   static createCgv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

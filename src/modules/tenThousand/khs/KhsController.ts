@@ -7,10 +7,8 @@ export default class KhsController {
     summary: "Get Khs",
   })
   @get()
-  static getKhs = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKhs = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KhsController {
   static createKhs = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

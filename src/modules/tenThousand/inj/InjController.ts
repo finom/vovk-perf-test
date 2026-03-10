@@ -7,10 +7,8 @@ export default class InjController {
     summary: "Get Inj",
   })
   @get()
-  static getInj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getInj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class InjController {
   static createInj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

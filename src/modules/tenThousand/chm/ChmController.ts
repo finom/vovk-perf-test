@@ -7,10 +7,8 @@ export default class ChmController {
     summary: "Get Chm",
   })
   @get()
-  static getChm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getChm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ChmController {
   static createChm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

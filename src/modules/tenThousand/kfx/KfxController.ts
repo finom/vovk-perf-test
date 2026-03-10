@@ -7,10 +7,8 @@ export default class KfxController {
     summary: "Get Kfx",
   })
   @get()
-  static getKfx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKfx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KfxController {
   static createKfx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

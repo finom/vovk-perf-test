@@ -7,10 +7,8 @@ export default class ApsController {
     summary: "Get Aps",
   })
   @get()
-  static getAps = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAps = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ApsController {
   static createAps = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

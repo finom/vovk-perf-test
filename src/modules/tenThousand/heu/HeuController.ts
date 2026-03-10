@@ -7,10 +7,8 @@ export default class HeuController {
     summary: "Get Heu",
   })
   @get()
-  static getHeu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHeu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HeuController {
   static createHeu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class BtyController {
     summary: "Get Bty",
   })
   @get()
-  static getBty = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBty = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BtyController {
   static createBty = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

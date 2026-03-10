@@ -7,10 +7,8 @@ export default class EkoController {
     summary: "Get Eko",
   })
   @get()
-  static getEko = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEko = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EkoController {
   static createEko = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

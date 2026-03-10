@@ -7,10 +7,8 @@ export default class AqjController {
     summary: "Get Aqj",
   })
   @get()
-  static getAqj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAqj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AqjController {
   static createAqj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

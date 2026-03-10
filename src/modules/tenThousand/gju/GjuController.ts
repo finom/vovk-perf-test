@@ -7,10 +7,8 @@ export default class GjuController {
     summary: "Get Gju",
   })
   @get()
-  static getGju = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGju = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GjuController {
   static createGju = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

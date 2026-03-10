@@ -7,10 +7,8 @@ export default class IsmController {
     summary: "Get Ism",
   })
   @get()
-  static getIsm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIsm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IsmController {
   static createIsm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

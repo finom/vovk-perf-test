@@ -7,10 +7,8 @@ export default class FomController {
     summary: "Get Fom",
   })
   @get()
-  static getFom = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFom = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FomController {
   static createFom = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

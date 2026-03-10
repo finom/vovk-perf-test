@@ -7,10 +7,8 @@ export default class CmfController {
     summary: "Get Cmf",
   })
   @get()
-  static getCmf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCmf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CmfController {
   static createCmf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

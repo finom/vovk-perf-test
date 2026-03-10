@@ -7,10 +7,8 @@ export default class AgaController {
     summary: "Get Aga",
   })
   @get()
-  static getAga = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAga = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AgaController {
   static createAga = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

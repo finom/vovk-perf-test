@@ -7,10 +7,8 @@ export default class KbrController {
     summary: "Get Kbr",
   })
   @get()
-  static getKbr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKbr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KbrController {
   static createKbr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

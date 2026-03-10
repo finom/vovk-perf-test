@@ -7,10 +7,8 @@ export default class MfdController {
     summary: "Get Mfd",
   })
   @get()
-  static getMfd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMfd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MfdController {
   static createMfd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class LkController {
     summary: "Get Lk",
   })
   @get()
-  static getLk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LkController {
   static createLk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

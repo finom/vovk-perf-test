@@ -7,10 +7,8 @@ export default class AquController {
     summary: "Get Aqu",
   })
   @get()
-  static getAqu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAqu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AquController {
   static createAqu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

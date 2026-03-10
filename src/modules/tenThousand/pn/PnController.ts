@@ -7,10 +7,8 @@ export default class PnController {
     summary: "Get Pn",
   })
   @get()
-  static getPn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getPn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class PnController {
   static createPn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

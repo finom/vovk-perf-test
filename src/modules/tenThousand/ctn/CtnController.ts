@@ -7,10 +7,8 @@ export default class CtnController {
     summary: "Get Ctn",
   })
   @get()
-  static getCtn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCtn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CtnController {
   static createCtn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

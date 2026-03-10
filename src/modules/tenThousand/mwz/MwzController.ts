@@ -7,10 +7,8 @@ export default class MwzController {
     summary: "Get Mwz",
   })
   @get()
-  static getMwz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMwz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MwzController {
   static createMwz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

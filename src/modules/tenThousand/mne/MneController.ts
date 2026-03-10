@@ -7,10 +7,8 @@ export default class MneController {
     summary: "Get Mne",
   })
   @get()
-  static getMne = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMne = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MneController {
   static createMne = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

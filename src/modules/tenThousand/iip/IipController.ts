@@ -7,10 +7,8 @@ export default class IipController {
     summary: "Get Iip",
   })
   @get()
-  static getIip = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIip = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IipController {
   static createIip = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

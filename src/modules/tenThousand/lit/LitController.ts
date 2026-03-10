@@ -7,10 +7,8 @@ export default class LitController {
     summary: "Get Lit",
   })
   @get()
-  static getLit = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLit = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LitController {
   static createLit = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class JafController {
     summary: "Get Jaf",
   })
   @get()
-  static getJaf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJaf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JafController {
   static createJaf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

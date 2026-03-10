@@ -7,10 +7,8 @@ export default class EmgController {
     summary: "Get Emg",
   })
   @get()
-  static getEmg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEmg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EmgController {
   static createEmg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

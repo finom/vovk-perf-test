@@ -7,10 +7,8 @@ export default class GcmController {
     summary: "Get Gcm",
   })
   @get()
-  static getGcm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGcm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GcmController {
   static createGcm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

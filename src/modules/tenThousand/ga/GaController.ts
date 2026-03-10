@@ -7,10 +7,8 @@ export default class GaController {
     summary: "Get Ga",
   })
   @get()
-  static getGa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GaController {
   static createGa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

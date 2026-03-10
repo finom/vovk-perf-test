@@ -7,10 +7,8 @@ export default class IrpController {
     summary: "Get Irp",
   })
   @get()
-  static getIrp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIrp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IrpController {
   static createIrp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

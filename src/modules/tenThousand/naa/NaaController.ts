@@ -7,10 +7,8 @@ export default class NaaController {
     summary: "Get Naa",
   })
   @get()
-  static getNaa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNaa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NaaController {
   static createNaa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

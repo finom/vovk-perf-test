@@ -7,10 +7,8 @@ export default class NegController {
     summary: "Get Neg",
   })
   @get()
-  static getNeg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNeg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NegController {
   static createNeg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

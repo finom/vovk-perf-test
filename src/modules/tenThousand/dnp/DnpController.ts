@@ -7,10 +7,8 @@ export default class DnpController {
     summary: "Get Dnp",
   })
   @get()
-  static getDnp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDnp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DnpController {
   static createDnp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

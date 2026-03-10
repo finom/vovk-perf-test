@@ -7,10 +7,8 @@ export default class DwnController {
     summary: "Get Dwn",
   })
   @get()
-  static getDwn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDwn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DwnController {
   static createDwn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

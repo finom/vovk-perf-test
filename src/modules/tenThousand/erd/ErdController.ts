@@ -7,10 +7,8 @@ export default class ErdController {
     summary: "Get Erd",
   })
   @get()
-  static getErd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getErd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ErdController {
   static createErd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

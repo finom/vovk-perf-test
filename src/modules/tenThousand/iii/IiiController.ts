@@ -7,10 +7,8 @@ export default class IiiController {
     summary: "Get Iii",
   })
   @get()
-  static getIii = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIii = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IiiController {
   static createIii = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

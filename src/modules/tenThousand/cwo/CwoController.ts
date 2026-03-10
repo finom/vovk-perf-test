@@ -7,10 +7,8 @@ export default class CwoController {
     summary: "Get Cwo",
   })
   @get()
-  static getCwo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCwo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CwoController {
   static createCwo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

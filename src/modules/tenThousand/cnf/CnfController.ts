@@ -7,10 +7,8 @@ export default class CnfController {
     summary: "Get Cnf",
   })
   @get()
-  static getCnf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCnf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CnfController {
   static createCnf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class LumController {
     summary: "Get Lum",
   })
   @get()
-  static getLum = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLum = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LumController {
   static createLum = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

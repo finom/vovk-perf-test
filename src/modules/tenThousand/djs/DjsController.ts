@@ -7,10 +7,8 @@ export default class DjsController {
     summary: "Get Djs",
   })
   @get()
-  static getDjs = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDjs = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DjsController {
   static createDjs = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

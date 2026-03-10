@@ -7,10 +7,8 @@ export default class QtController {
     summary: "Get Qt",
   })
   @get()
-  static getQt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getQt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class QtController {
   static createQt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

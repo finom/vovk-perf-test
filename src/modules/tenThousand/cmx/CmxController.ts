@@ -7,10 +7,8 @@ export default class CmxController {
     summary: "Get Cmx",
   })
   @get()
-  static getCmx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCmx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CmxController {
   static createCmx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class JscController {
     summary: "Get Jsc",
   })
   @get()
-  static getJsc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJsc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JscController {
   static createJsc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

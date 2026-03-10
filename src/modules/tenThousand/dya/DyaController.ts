@@ -7,10 +7,8 @@ export default class DyaController {
     summary: "Get Dya",
   })
   @get()
-  static getDya = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDya = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DyaController {
   static createDya = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class CwuController {
     summary: "Get Cwu",
   })
   @get()
-  static getCwu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCwu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CwuController {
   static createCwu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

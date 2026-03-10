@@ -7,10 +7,8 @@ export default class DfeController {
     summary: "Get Dfe",
   })
   @get()
-  static getDfe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDfe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DfeController {
   static createDfe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IvqController {
     summary: "Get Ivq",
   })
   @get()
-  static getIvq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIvq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IvqController {
   static createIvq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

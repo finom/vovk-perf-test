@@ -7,10 +7,8 @@ export default class CdaController {
     summary: "Get Cda",
   })
   @get()
-  static getCda = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCda = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CdaController {
   static createCda = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

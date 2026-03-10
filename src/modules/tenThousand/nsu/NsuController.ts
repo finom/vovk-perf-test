@@ -7,10 +7,8 @@ export default class NsuController {
     summary: "Get Nsu",
   })
   @get()
-  static getNsu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNsu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NsuController {
   static createNsu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IkhController {
     summary: "Get Ikh",
   })
   @get()
-  static getIkh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIkh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IkhController {
   static createIkh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

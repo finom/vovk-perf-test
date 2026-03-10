@@ -7,10 +7,8 @@ export default class MtbController {
     summary: "Get Mtb",
   })
   @get()
-  static getMtb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMtb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MtbController {
   static createMtb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IquController {
     summary: "Get Iqu",
   })
   @get()
-  static getIqu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIqu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IquController {
   static createIqu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

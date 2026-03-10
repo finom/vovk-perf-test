@@ -7,10 +7,8 @@ export default class JxbController {
     summary: "Get Jxb",
   })
   @get()
-  static getJxb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJxb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JxbController {
   static createJxb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

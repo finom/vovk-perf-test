@@ -7,10 +7,8 @@ export default class JrcController {
     summary: "Get Jrc",
   })
   @get()
-  static getJrc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJrc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JrcController {
   static createJrc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class EcgController {
     summary: "Get Ecg",
   })
   @get()
-  static getEcg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEcg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EcgController {
   static createEcg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

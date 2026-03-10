@@ -7,10 +7,8 @@ export default class EtsController {
     summary: "Get Ets",
   })
   @get()
-  static getEts = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEts = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EtsController {
   static createEts = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

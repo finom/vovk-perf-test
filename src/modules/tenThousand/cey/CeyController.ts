@@ -7,10 +7,8 @@ export default class CeyController {
     summary: "Get Cey",
   })
   @get()
-  static getCey = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCey = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CeyController {
   static createCey = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

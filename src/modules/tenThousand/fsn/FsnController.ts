@@ -7,10 +7,8 @@ export default class FsnController {
     summary: "Get Fsn",
   })
   @get()
-  static getFsn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFsn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FsnController {
   static createFsn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

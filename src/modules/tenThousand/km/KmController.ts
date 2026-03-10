@@ -7,10 +7,8 @@ export default class KmController {
     summary: "Get Km",
   })
   @get()
-  static getKm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KmController {
   static createKm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

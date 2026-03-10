@@ -7,10 +7,8 @@ export default class HliController {
     summary: "Get Hli",
   })
   @get()
-  static getHli = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHli = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HliController {
   static createHli = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

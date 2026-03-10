@@ -7,10 +7,8 @@ export default class FglController {
     summary: "Get Fgl",
   })
   @get()
-  static getFgl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFgl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FglController {
   static createFgl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class CizController {
     summary: "Get Ciz",
   })
   @get()
-  static getCiz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCiz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CizController {
   static createCiz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class DioController {
     summary: "Get Dio",
   })
   @get()
-  static getDio = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDio = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DioController {
   static createDio = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

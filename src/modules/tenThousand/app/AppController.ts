@@ -7,10 +7,8 @@ export default class AppController {
     summary: "Get App",
   })
   @get()
-  static getApp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getApp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AppController {
   static createApp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class GnpController {
     summary: "Get Gnp",
   })
   @get()
-  static getGnp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGnp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GnpController {
   static createGnp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

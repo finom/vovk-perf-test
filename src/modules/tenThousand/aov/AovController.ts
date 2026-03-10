@@ -7,10 +7,8 @@ export default class AovController {
     summary: "Get Aov",
   })
   @get()
-  static getAov = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAov = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AovController {
   static createAov = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

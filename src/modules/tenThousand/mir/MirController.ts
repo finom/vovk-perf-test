@@ -7,10 +7,8 @@ export default class MirController {
     summary: "Get Mir",
   })
   @get()
-  static getMir = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMir = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MirController {
   static createMir = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

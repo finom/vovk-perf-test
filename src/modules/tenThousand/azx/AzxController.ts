@@ -7,10 +7,8 @@ export default class AzxController {
     summary: "Get Azx",
   })
   @get()
-  static getAzx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAzx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AzxController {
   static createAzx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

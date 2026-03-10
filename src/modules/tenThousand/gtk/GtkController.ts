@@ -7,10 +7,8 @@ export default class GtkController {
     summary: "Get Gtk",
   })
   @get()
-  static getGtk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGtk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GtkController {
   static createGtk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

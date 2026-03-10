@@ -7,10 +7,8 @@ export default class MykController {
     summary: "Get Myk",
   })
   @get()
-  static getMyk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMyk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MykController {
   static createMyk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

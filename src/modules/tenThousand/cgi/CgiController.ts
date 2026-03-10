@@ -7,10 +7,8 @@ export default class CgiController {
     summary: "Get Cgi",
   })
   @get()
-  static getCgi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCgi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CgiController {
   static createCgi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

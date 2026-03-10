@@ -7,10 +7,8 @@ export default class LsxController {
     summary: "Get Lsx",
   })
   @get()
-  static getLsx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLsx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LsxController {
   static createLsx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IsyController {
     summary: "Get Isy",
   })
   @get()
-  static getIsy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIsy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IsyController {
   static createIsy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

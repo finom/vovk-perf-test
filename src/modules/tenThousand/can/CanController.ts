@@ -7,10 +7,8 @@ export default class CanController {
     summary: "Get Can",
   })
   @get()
-  static getCan = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCan = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CanController {
   static createCan = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

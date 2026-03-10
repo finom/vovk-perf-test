@@ -7,10 +7,8 @@ export default class CtuController {
     summary: "Get Ctu",
   })
   @get()
-  static getCtu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCtu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CtuController {
   static createCtu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

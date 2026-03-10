@@ -7,10 +7,8 @@ export default class KiqController {
     summary: "Get Kiq",
   })
   @get()
-  static getKiq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKiq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KiqController {
   static createKiq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

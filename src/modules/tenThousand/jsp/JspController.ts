@@ -7,10 +7,8 @@ export default class JspController {
     summary: "Get Jsp",
   })
   @get()
-  static getJsp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJsp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JspController {
   static createJsp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

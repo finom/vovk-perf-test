@@ -7,10 +7,8 @@ export default class MyqController {
     summary: "Get Myq",
   })
   @get()
-  static getMyq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMyq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MyqController {
   static createMyq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

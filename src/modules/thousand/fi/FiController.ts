@@ -7,10 +7,8 @@ export default class FiController {
     summary: "Get Fi",
   })
   @get()
-  static getFi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FiController {
   static createFi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

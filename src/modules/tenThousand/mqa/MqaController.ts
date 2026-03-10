@@ -7,10 +7,8 @@ export default class MqaController {
     summary: "Get Mqa",
   })
   @get()
-  static getMqa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMqa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MqaController {
   static createMqa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

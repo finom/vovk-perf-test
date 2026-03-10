@@ -7,10 +7,8 @@ export default class GbvController {
     summary: "Get Gbv",
   })
   @get()
-  static getGbv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGbv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GbvController {
   static createGbv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

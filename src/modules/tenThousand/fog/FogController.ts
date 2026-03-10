@@ -7,10 +7,8 @@ export default class FogController {
     summary: "Get Fog",
   })
   @get()
-  static getFog = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFog = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FogController {
   static createFog = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

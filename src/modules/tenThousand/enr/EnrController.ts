@@ -7,10 +7,8 @@ export default class EnrController {
     summary: "Get Enr",
   })
   @get()
-  static getEnr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEnr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EnrController {
   static createEnr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

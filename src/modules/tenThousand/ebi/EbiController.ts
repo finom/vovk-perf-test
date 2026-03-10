@@ -7,10 +7,8 @@ export default class EbiController {
     summary: "Get Ebi",
   })
   @get()
-  static getEbi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEbi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EbiController {
   static createEbi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

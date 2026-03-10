@@ -7,10 +7,8 @@ export default class CwnController {
     summary: "Get Cwn",
   })
   @get()
-  static getCwn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCwn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CwnController {
   static createCwn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

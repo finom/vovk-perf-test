@@ -7,10 +7,8 @@ export default class KtgController {
     summary: "Get Ktg",
   })
   @get()
-  static getKtg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKtg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KtgController {
   static createKtg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

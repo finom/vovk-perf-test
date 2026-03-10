@@ -7,10 +7,8 @@ export default class GenController {
     summary: "Get Gen",
   })
   @get()
-  static getGen = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGen = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GenController {
   static createGen = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

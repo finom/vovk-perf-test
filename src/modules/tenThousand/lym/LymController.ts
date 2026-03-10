@@ -7,10 +7,8 @@ export default class LymController {
     summary: "Get Lym",
   })
   @get()
-  static getLym = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLym = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LymController {
   static createLym = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

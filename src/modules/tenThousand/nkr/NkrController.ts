@@ -7,10 +7,8 @@ export default class NkrController {
     summary: "Get Nkr",
   })
   @get()
-  static getNkr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNkr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NkrController {
   static createNkr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class JieController {
     summary: "Get Jie",
   })
   @get()
-  static getJie = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJie = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JieController {
   static createJie = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

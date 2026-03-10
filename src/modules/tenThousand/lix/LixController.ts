@@ -7,10 +7,8 @@ export default class LixController {
     summary: "Get Lix",
   })
   @get()
-  static getLix = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLix = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LixController {
   static createLix = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

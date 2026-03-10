@@ -7,10 +7,8 @@ export default class BasController {
     summary: "Get Bas",
   })
   @get()
-  static getBas = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBas = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BasController {
   static createBas = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

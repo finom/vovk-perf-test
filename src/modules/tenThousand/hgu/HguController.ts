@@ -7,10 +7,8 @@ export default class HguController {
     summary: "Get Hgu",
   })
   @get()
-  static getHgu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHgu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HguController {
   static createHgu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

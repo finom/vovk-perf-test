@@ -7,10 +7,8 @@ export default class GpdController {
     summary: "Get Gpd",
   })
   @get()
-  static getGpd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGpd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GpdController {
   static createGpd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

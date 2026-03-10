@@ -7,10 +7,8 @@ export default class MtvController {
     summary: "Get Mtv",
   })
   @get()
-  static getMtv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMtv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MtvController {
   static createMtv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

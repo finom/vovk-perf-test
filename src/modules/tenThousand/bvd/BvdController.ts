@@ -7,10 +7,8 @@ export default class BvdController {
     summary: "Get Bvd",
   })
   @get()
-  static getBvd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBvd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BvdController {
   static createBvd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

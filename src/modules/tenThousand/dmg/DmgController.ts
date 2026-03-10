@@ -7,10 +7,8 @@ export default class DmgController {
     summary: "Get Dmg",
   })
   @get()
-  static getDmg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDmg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DmgController {
   static createDmg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

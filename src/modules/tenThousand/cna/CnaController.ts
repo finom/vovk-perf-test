@@ -7,10 +7,8 @@ export default class CnaController {
     summary: "Get Cna",
   })
   @get()
-  static getCna = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCna = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CnaController {
   static createCna = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

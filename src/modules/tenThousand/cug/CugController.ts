@@ -7,10 +7,8 @@ export default class CugController {
     summary: "Get Cug",
   })
   @get()
-  static getCug = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCug = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CugController {
   static createCug = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class EgoController {
     summary: "Get Ego",
   })
   @get()
-  static getEgo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEgo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EgoController {
   static createEgo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

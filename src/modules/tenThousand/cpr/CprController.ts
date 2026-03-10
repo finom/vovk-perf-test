@@ -7,10 +7,8 @@ export default class CprController {
     summary: "Get Cpr",
   })
   @get()
-  static getCpr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCpr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CprController {
   static createCpr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

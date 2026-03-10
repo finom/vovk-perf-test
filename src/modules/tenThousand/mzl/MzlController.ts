@@ -7,10 +7,8 @@ export default class MzlController {
     summary: "Get Mzl",
   })
   @get()
-  static getMzl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMzl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MzlController {
   static createMzl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

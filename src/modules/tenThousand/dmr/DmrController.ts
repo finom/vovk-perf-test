@@ -7,10 +7,8 @@ export default class DmrController {
     summary: "Get Dmr",
   })
   @get()
-  static getDmr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDmr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DmrController {
   static createDmr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

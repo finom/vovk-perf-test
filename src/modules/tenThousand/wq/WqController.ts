@@ -7,10 +7,8 @@ export default class WqController {
     summary: "Get Wq",
   })
   @get()
-  static getWq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getWq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class WqController {
   static createWq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

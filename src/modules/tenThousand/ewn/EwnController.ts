@@ -7,10 +7,8 @@ export default class EwnController {
     summary: "Get Ewn",
   })
   @get()
-  static getEwn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEwn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EwnController {
   static createEwn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

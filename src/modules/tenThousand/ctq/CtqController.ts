@@ -7,10 +7,8 @@ export default class CtqController {
     summary: "Get Ctq",
   })
   @get()
-  static getCtq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCtq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CtqController {
   static createCtq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

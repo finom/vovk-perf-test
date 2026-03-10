@@ -7,10 +7,8 @@ export default class DimController {
     summary: "Get Dim",
   })
   @get()
-  static getDim = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDim = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DimController {
   static createDim = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

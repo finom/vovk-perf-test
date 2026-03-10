@@ -7,10 +7,8 @@ export default class BjcController {
     summary: "Get Bjc",
   })
   @get()
-  static getBjc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBjc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BjcController {
   static createBjc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

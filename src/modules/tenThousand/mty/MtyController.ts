@@ -7,10 +7,8 @@ export default class MtyController {
     summary: "Get Mty",
   })
   @get()
-  static getMty = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMty = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MtyController {
   static createMty = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

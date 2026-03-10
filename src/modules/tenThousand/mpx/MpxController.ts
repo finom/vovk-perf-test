@@ -7,10 +7,8 @@ export default class MpxController {
     summary: "Get Mpx",
   })
   @get()
-  static getMpx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMpx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MpxController {
   static createMpx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

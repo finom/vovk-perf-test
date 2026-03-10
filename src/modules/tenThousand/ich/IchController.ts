@@ -7,10 +7,8 @@ export default class IchController {
     summary: "Get Ich",
   })
   @get()
-  static getIch = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIch = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IchController {
   static createIch = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class AwmController {
     summary: "Get Awm",
   })
   @get()
-  static getAwm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAwm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AwmController {
   static createAwm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

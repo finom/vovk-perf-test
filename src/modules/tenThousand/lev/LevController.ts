@@ -7,10 +7,8 @@ export default class LevController {
     summary: "Get Lev",
   })
   @get()
-  static getLev = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLev = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LevController {
   static createLev = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

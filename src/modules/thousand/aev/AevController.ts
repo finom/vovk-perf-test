@@ -7,10 +7,8 @@ export default class AevController {
     summary: "Get Aev",
   })
   @get()
-  static getAev = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAev = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AevController {
   static createAev = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

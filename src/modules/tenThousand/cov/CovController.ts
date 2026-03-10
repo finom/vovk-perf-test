@@ -7,10 +7,8 @@ export default class CovController {
     summary: "Get Cov",
   })
   @get()
-  static getCov = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCov = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CovController {
   static createCov = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

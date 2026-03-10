@@ -7,10 +7,8 @@ export default class IrwController {
     summary: "Get Irw",
   })
   @get()
-  static getIrw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIrw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IrwController {
   static createIrw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

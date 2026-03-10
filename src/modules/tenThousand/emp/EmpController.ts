@@ -7,10 +7,8 @@ export default class EmpController {
     summary: "Get Emp",
   })
   @get()
-  static getEmp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEmp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EmpController {
   static createEmp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

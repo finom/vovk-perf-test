@@ -7,10 +7,8 @@ export default class BraController {
     summary: "Get Bra",
   })
   @get()
-  static getBra = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBra = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BraController {
   static createBra = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

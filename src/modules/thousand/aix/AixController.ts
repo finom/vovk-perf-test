@@ -7,10 +7,8 @@ export default class AixController {
     summary: "Get Aix",
   })
   @get()
-  static getAix = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAix = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AixController {
   static createAix = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class NioController {
     summary: "Get Nio",
   })
   @get()
-  static getNio = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNio = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NioController {
   static createNio = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

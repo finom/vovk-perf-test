@@ -7,10 +7,8 @@ export default class DwoController {
     summary: "Get Dwo",
   })
   @get()
-  static getDwo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDwo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DwoController {
   static createDwo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

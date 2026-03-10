@@ -7,10 +7,8 @@ export default class HsoController {
     summary: "Get Hso",
   })
   @get()
-  static getHso = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHso = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HsoController {
   static createHso = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

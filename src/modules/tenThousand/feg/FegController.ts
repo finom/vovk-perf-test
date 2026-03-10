@@ -7,10 +7,8 @@ export default class FegController {
     summary: "Get Feg",
   })
   @get()
-  static getFeg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFeg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FegController {
   static createFeg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

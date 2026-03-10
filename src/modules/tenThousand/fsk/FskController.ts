@@ -7,10 +7,8 @@ export default class FskController {
     summary: "Get Fsk",
   })
   @get()
-  static getFsk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFsk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FskController {
   static createFsk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

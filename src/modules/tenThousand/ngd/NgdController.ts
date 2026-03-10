@@ -7,10 +7,8 @@ export default class NgdController {
     summary: "Get Ngd",
   })
   @get()
-  static getNgd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNgd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NgdController {
   static createNgd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

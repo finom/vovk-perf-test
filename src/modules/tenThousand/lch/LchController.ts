@@ -7,10 +7,8 @@ export default class LchController {
     summary: "Get Lch",
   })
   @get()
-  static getLch = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLch = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LchController {
   static createLch = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

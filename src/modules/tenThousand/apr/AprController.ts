@@ -7,10 +7,8 @@ export default class AprController {
     summary: "Get Apr",
   })
   @get()
-  static getApr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getApr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AprController {
   static createApr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

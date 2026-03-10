@@ -7,10 +7,8 @@ export default class JnwController {
     summary: "Get Jnw",
   })
   @get()
-  static getJnw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJnw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JnwController {
   static createJnw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

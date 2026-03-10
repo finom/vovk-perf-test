@@ -7,10 +7,8 @@ export default class CivController {
     summary: "Get Civ",
   })
   @get()
-  static getCiv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCiv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CivController {
   static createCiv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class GriController {
     summary: "Get Gri",
   })
   @get()
-  static getGri = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGri = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GriController {
   static createGri = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class NbtController {
     summary: "Get Nbt",
   })
   @get()
-  static getNbt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNbt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NbtController {
   static createNbt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

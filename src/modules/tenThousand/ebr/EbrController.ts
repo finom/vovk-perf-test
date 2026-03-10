@@ -7,10 +7,8 @@ export default class EbrController {
     summary: "Get Ebr",
   })
   @get()
-  static getEbr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEbr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EbrController {
   static createEbr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

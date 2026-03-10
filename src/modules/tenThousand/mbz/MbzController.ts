@@ -7,10 +7,8 @@ export default class MbzController {
     summary: "Get Mbz",
   })
   @get()
-  static getMbz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMbz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MbzController {
   static createMbz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

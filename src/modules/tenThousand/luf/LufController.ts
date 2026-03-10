@@ -7,10 +7,8 @@ export default class LufController {
     summary: "Get Luf",
   })
   @get()
-  static getLuf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLuf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LufController {
   static createLuf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

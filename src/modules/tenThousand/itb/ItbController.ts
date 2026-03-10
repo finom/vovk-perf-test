@@ -7,10 +7,8 @@ export default class ItbController {
     summary: "Get Itb",
   })
   @get()
-  static getItb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getItb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ItbController {
   static createItb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

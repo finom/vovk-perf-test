@@ -7,10 +7,8 @@ export default class HwkController {
     summary: "Get Hwk",
   })
   @get()
-  static getHwk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHwk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HwkController {
   static createHwk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

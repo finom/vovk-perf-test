@@ -7,10 +7,8 @@ export default class EmrController {
     summary: "Get Emr",
   })
   @get()
-  static getEmr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEmr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EmrController {
   static createEmr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

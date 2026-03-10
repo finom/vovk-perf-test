@@ -7,10 +7,8 @@ export default class DihController {
     summary: "Get Dih",
   })
   @get()
-  static getDih = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDih = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DihController {
   static createDih = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

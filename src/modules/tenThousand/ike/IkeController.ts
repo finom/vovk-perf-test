@@ -7,10 +7,8 @@ export default class IkeController {
     summary: "Get Ike",
   })
   @get()
-  static getIke = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIke = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IkeController {
   static createIke = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

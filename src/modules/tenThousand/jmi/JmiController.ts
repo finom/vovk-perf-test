@@ -7,10 +7,8 @@ export default class JmiController {
     summary: "Get Jmi",
   })
   @get()
-  static getJmi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJmi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JmiController {
   static createJmi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

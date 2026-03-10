@@ -7,10 +7,8 @@ export default class MynController {
     summary: "Get Myn",
   })
   @get()
-  static getMyn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMyn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MynController {
   static createMyn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

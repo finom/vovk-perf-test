@@ -7,10 +7,8 @@ export default class AsmController {
     summary: "Get Asm",
   })
   @get()
-  static getAsm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAsm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AsmController {
   static createAsm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

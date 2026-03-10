@@ -7,10 +7,8 @@ export default class NraController {
     summary: "Get Nra",
   })
   @get()
-  static getNra = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNra = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NraController {
   static createNra = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

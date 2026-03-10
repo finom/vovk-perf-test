@@ -7,10 +7,8 @@ export default class TxController {
     summary: "Get Tx",
   })
   @get()
-  static getTx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getTx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class TxController {
   static createTx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class GpzController {
     summary: "Get Gpz",
   })
   @get()
-  static getGpz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGpz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GpzController {
   static createGpz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

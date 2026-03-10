@@ -7,10 +7,8 @@ export default class IfoController {
     summary: "Get Ifo",
   })
   @get()
-  static getIfo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIfo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IfoController {
   static createIfo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

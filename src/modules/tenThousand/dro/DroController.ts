@@ -7,10 +7,8 @@ export default class DroController {
     summary: "Get Dro",
   })
   @get()
-  static getDro = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDro = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DroController {
   static createDro = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

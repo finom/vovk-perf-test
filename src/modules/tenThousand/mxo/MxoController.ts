@@ -7,10 +7,8 @@ export default class MxoController {
     summary: "Get Mxo",
   })
   @get()
-  static getMxo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMxo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MxoController {
   static createMxo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class KikController {
     summary: "Get Kik",
   })
   @get()
-  static getKik = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKik = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KikController {
   static createKik = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

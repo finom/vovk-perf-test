@@ -7,10 +7,8 @@ export default class JoyController {
     summary: "Get Joy",
   })
   @get()
-  static getJoy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJoy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JoyController {
   static createJoy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class HxtController {
     summary: "Get Hxt",
   })
   @get()
-  static getHxt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHxt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HxtController {
   static createHxt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class FeqController {
     summary: "Get Feq",
   })
   @get()
-  static getFeq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFeq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FeqController {
   static createFeq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class LieController {
     summary: "Get Lie",
   })
   @get()
-  static getLie = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLie = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LieController {
   static createLie = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

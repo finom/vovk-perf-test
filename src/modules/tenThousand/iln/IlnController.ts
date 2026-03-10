@@ -7,10 +7,8 @@ export default class IlnController {
     summary: "Get Iln",
   })
   @get()
-  static getIln = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIln = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IlnController {
   static createIln = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class HfwController {
     summary: "Get Hfw",
   })
   @get()
-  static getHfw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHfw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HfwController {
   static createHfw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

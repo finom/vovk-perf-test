@@ -7,10 +7,8 @@ export default class IlpController {
     summary: "Get Ilp",
   })
   @get()
-  static getIlp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIlp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IlpController {
   static createIlp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

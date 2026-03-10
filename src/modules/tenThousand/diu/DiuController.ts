@@ -7,10 +7,8 @@ export default class DiuController {
     summary: "Get Diu",
   })
   @get()
-  static getDiu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDiu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DiuController {
   static createDiu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

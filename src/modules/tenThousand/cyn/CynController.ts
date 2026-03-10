@@ -7,10 +7,8 @@ export default class CynController {
     summary: "Get Cyn",
   })
   @get()
-  static getCyn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCyn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CynController {
   static createCyn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

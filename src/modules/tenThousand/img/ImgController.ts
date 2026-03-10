@@ -7,10 +7,8 @@ export default class ImgController {
     summary: "Get Img",
   })
   @get()
-  static getImg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getImg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ImgController {
   static createImg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

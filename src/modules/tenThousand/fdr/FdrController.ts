@@ -7,10 +7,8 @@ export default class FdrController {
     summary: "Get Fdr",
   })
   @get()
-  static getFdr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFdr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FdrController {
   static createFdr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

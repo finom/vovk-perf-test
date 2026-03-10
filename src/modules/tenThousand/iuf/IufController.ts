@@ -7,10 +7,8 @@ export default class IufController {
     summary: "Get Iuf",
   })
   @get()
-  static getIuf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIuf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IufController {
   static createIuf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

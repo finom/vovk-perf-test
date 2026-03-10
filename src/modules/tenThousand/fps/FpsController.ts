@@ -7,10 +7,8 @@ export default class FpsController {
     summary: "Get Fps",
   })
   @get()
-  static getFps = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFps = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FpsController {
   static createFps = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

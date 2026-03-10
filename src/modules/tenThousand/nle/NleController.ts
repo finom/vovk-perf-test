@@ -7,10 +7,8 @@ export default class NleController {
     summary: "Get Nle",
   })
   @get()
-  static getNle = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNle = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NleController {
   static createNle = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IniController {
     summary: "Get Ini",
   })
   @get()
-  static getIni = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIni = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IniController {
   static createIni = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

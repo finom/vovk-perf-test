@@ -7,10 +7,8 @@ export default class MhiController {
     summary: "Get Mhi",
   })
   @get()
-  static getMhi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMhi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MhiController {
   static createMhi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class GdrController {
     summary: "Get Gdr",
   })
   @get()
-  static getGdr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGdr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GdrController {
   static createGdr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class OuController {
     summary: "Get Ou",
   })
   @get()
-  static getOu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getOu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class OuController {
   static createOu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

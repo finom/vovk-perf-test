@@ -7,10 +7,8 @@ export default class AdmController {
     summary: "Get Adm",
   })
   @get()
-  static getAdm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAdm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AdmController {
   static createAdm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class RdController {
     summary: "Get Rd",
   })
   @get()
-  static getRd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getRd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class RdController {
   static createRd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

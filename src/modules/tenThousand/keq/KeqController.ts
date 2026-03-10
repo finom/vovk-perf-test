@@ -7,10 +7,8 @@ export default class KeqController {
     summary: "Get Keq",
   })
   @get()
-  static getKeq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKeq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KeqController {
   static createKeq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

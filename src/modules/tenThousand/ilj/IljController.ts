@@ -7,10 +7,8 @@ export default class IljController {
     summary: "Get Ilj",
   })
   @get()
-  static getIlj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIlj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IljController {
   static createIlj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class CcuController {
     summary: "Get Ccu",
   })
   @get()
-  static getCcu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCcu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CcuController {
   static createCcu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

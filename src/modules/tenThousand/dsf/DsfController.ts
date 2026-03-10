@@ -7,10 +7,8 @@ export default class DsfController {
     summary: "Get Dsf",
   })
   @get()
-  static getDsf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDsf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DsfController {
   static createDsf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

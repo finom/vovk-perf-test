@@ -7,10 +7,8 @@ export default class ArsController {
     summary: "Get Ars",
   })
   @get()
-  static getArs = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getArs = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ArsController {
   static createArs = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class AvaController {
     summary: "Get Ava",
   })
   @get()
-  static getAva = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAva = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AvaController {
   static createAva = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

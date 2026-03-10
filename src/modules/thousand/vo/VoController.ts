@@ -7,10 +7,8 @@ export default class VoController {
     summary: "Get Vo",
   })
   @get()
-  static getVo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getVo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class VoController {
   static createVo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

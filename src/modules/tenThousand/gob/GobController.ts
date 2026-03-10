@@ -7,10 +7,8 @@ export default class GobController {
     summary: "Get Gob",
   })
   @get()
-  static getGob = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGob = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GobController {
   static createGob = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

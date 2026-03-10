@@ -7,10 +7,8 @@ export default class FipController {
     summary: "Get Fip",
   })
   @get()
-  static getFip = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFip = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FipController {
   static createFip = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

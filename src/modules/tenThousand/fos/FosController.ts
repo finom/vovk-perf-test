@@ -7,10 +7,8 @@ export default class FosController {
     summary: "Get Fos",
   })
   @get()
-  static getFos = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFos = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FosController {
   static createFos = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

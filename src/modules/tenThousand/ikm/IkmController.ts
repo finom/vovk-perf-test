@@ -7,10 +7,8 @@ export default class IkmController {
     summary: "Get Ikm",
   })
   @get()
-  static getIkm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIkm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IkmController {
   static createIkm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

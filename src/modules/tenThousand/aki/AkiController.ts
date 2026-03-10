@@ -7,10 +7,8 @@ export default class AkiController {
     summary: "Get Aki",
   })
   @get()
-  static getAki = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAki = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AkiController {
   static createAki = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

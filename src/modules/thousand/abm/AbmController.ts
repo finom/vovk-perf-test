@@ -7,10 +7,8 @@ export default class AbmController {
     summary: "Get Abm",
   })
   @get()
-  static getAbm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAbm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AbmController {
   static createAbm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

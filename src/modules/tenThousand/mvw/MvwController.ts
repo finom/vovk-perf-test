@@ -7,10 +7,8 @@ export default class MvwController {
     summary: "Get Mvw",
   })
   @get()
-  static getMvw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMvw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MvwController {
   static createMvw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

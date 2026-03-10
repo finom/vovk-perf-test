@@ -7,10 +7,8 @@ export default class CimController {
     summary: "Get Cim",
   })
   @get()
-  static getCim = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCim = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CimController {
   static createCim = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class FnxController {
     summary: "Get Fnx",
   })
   @get()
-  static getFnx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFnx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FnxController {
   static createFnx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

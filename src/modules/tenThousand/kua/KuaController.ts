@@ -7,10 +7,8 @@ export default class KuaController {
     summary: "Get Kua",
   })
   @get()
-  static getKua = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKua = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KuaController {
   static createKua = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

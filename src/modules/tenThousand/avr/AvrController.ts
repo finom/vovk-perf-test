@@ -7,10 +7,8 @@ export default class AvrController {
     summary: "Get Avr",
   })
   @get()
-  static getAvr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAvr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AvrController {
   static createAvr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

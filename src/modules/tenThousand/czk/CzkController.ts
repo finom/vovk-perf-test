@@ -7,10 +7,8 @@ export default class CzkController {
     summary: "Get Czk",
   })
   @get()
-  static getCzk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCzk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CzkController {
   static createCzk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

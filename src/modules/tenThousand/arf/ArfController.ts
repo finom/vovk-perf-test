@@ -7,10 +7,8 @@ export default class ArfController {
     summary: "Get Arf",
   })
   @get()
-  static getArf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getArf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ArfController {
   static createArf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

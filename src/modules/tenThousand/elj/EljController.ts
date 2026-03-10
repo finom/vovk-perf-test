@@ -7,10 +7,8 @@ export default class EljController {
     summary: "Get Elj",
   })
   @get()
-  static getElj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getElj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EljController {
   static createElj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IuxController {
     summary: "Get Iux",
   })
   @get()
-  static getIux = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIux = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IuxController {
   static createIux = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

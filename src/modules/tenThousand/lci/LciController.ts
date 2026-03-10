@@ -7,10 +7,8 @@ export default class LciController {
     summary: "Get Lci",
   })
   @get()
-  static getLci = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLci = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LciController {
   static createLci = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

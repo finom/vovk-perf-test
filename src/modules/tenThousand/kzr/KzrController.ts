@@ -7,10 +7,8 @@ export default class KzrController {
     summary: "Get Kzr",
   })
   @get()
-  static getKzr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKzr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KzrController {
   static createKzr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

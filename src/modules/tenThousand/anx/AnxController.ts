@@ -7,10 +7,8 @@ export default class AnxController {
     summary: "Get Anx",
   })
   @get()
-  static getAnx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAnx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AnxController {
   static createAnx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class DofController {
     summary: "Get Dof",
   })
   @get()
-  static getDof = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDof = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DofController {
   static createDof = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

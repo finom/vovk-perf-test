@@ -7,10 +7,8 @@ export default class IjzController {
     summary: "Get Ijz",
   })
   @get()
-  static getIjz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIjz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IjzController {
   static createIjz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

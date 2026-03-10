@@ -7,10 +7,8 @@ export default class FblController {
     summary: "Get Fbl",
   })
   @get()
-  static getFbl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFbl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FblController {
   static createFbl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

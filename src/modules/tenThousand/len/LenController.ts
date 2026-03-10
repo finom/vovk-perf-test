@@ -7,10 +7,8 @@ export default class LenController {
     summary: "Get Len",
   })
   @get()
-  static getLen = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLen = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LenController {
   static createLen = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

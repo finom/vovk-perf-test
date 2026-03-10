@@ -7,10 +7,8 @@ export default class FtController {
     summary: "Get Ft",
   })
   @get()
-  static getFt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FtController {
   static createFt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

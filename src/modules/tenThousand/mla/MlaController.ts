@@ -7,10 +7,8 @@ export default class MlaController {
     summary: "Get Mla",
   })
   @get()
-  static getMla = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMla = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MlaController {
   static createMla = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

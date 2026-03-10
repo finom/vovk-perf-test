@@ -7,10 +7,8 @@ export default class JsaController {
     summary: "Get Jsa",
   })
   @get()
-  static getJsa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJsa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JsaController {
   static createJsa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

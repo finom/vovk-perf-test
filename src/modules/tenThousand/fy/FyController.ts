@@ -7,10 +7,8 @@ export default class FyController {
     summary: "Get Fy",
   })
   @get()
-  static getFy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FyController {
   static createFy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

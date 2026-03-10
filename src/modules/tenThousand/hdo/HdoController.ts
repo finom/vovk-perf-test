@@ -7,10 +7,8 @@ export default class HdoController {
     summary: "Get Hdo",
   })
   @get()
-  static getHdo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHdo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HdoController {
   static createHdo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

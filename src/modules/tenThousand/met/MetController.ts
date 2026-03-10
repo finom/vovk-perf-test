@@ -7,10 +7,8 @@ export default class MetController {
     summary: "Get Met",
   })
   @get()
-  static getMet = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMet = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MetController {
   static createMet = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

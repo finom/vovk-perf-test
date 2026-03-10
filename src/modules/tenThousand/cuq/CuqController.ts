@@ -7,10 +7,8 @@ export default class CuqController {
     summary: "Get Cuq",
   })
   @get()
-  static getCuq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCuq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CuqController {
   static createCuq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class AivController {
     summary: "Get Aiv",
   })
   @get()
-  static getAiv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAiv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AivController {
   static createAiv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

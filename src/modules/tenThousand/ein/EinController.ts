@@ -7,10 +7,8 @@ export default class EinController {
     summary: "Get Ein",
   })
   @get()
-  static getEin = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEin = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EinController {
   static createEin = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

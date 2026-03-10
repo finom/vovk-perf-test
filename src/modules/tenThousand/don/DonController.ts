@@ -7,10 +7,8 @@ export default class DonController {
     summary: "Get Don",
   })
   @get()
-  static getDon = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDon = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DonController {
   static createDon = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

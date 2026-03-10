@@ -7,10 +7,8 @@ export default class EfiController {
     summary: "Get Efi",
   })
   @get()
-  static getEfi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEfi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EfiController {
   static createEfi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

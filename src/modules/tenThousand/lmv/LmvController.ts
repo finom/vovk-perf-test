@@ -7,10 +7,8 @@ export default class LmvController {
     summary: "Get Lmv",
   })
   @get()
-  static getLmv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLmv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LmvController {
   static createLmv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

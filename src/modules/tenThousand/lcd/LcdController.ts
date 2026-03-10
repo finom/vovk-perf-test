@@ -7,10 +7,8 @@ export default class LcdController {
     summary: "Get Lcd",
   })
   @get()
-  static getLcd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLcd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LcdController {
   static createLcd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

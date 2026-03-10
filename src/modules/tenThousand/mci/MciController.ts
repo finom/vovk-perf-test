@@ -7,10 +7,8 @@ export default class MciController {
     summary: "Get Mci",
   })
   @get()
-  static getMci = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMci = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MciController {
   static createMci = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

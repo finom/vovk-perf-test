@@ -7,10 +7,8 @@ export default class GbbController {
     summary: "Get Gbb",
   })
   @get()
-  static getGbb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGbb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GbbController {
   static createGbb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

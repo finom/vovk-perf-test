@@ -7,10 +7,8 @@ export default class LmoController {
     summary: "Get Lmo",
   })
   @get()
-  static getLmo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLmo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LmoController {
   static createLmo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

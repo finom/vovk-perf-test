@@ -7,10 +7,8 @@ export default class CrlController {
     summary: "Get Crl",
   })
   @get()
-  static getCrl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCrl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CrlController {
   static createCrl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

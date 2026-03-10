@@ -7,10 +7,8 @@ export default class MffController {
     summary: "Get Mff",
   })
   @get()
-  static getMff = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMff = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MffController {
   static createMff = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

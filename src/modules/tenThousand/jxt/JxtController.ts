@@ -7,10 +7,8 @@ export default class JxtController {
     summary: "Get Jxt",
   })
   @get()
-  static getJxt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJxt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JxtController {
   static createJxt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

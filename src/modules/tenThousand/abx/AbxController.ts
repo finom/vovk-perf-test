@@ -7,10 +7,8 @@ export default class AbxController {
     summary: "Get Abx",
   })
   @get()
-  static getAbx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAbx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AbxController {
   static createAbx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

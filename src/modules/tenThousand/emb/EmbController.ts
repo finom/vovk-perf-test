@@ -7,10 +7,8 @@ export default class EmbController {
     summary: "Get Emb",
   })
   @get()
-  static getEmb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEmb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EmbController {
   static createEmb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

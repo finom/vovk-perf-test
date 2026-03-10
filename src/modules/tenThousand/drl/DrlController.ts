@@ -7,10 +7,8 @@ export default class DrlController {
     summary: "Get Drl",
   })
   @get()
-  static getDrl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDrl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DrlController {
   static createDrl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

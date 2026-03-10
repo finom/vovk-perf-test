@@ -7,10 +7,8 @@ export default class FswController {
     summary: "Get Fsw",
   })
   @get()
-  static getFsw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFsw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FswController {
   static createFsw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

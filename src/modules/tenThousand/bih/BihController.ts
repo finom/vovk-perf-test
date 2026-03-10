@@ -7,10 +7,8 @@ export default class BihController {
     summary: "Get Bih",
   })
   @get()
-  static getBih = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBih = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BihController {
   static createBih = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

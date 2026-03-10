@@ -7,10 +7,8 @@ export default class DpuController {
     summary: "Get Dpu",
   })
   @get()
-  static getDpu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDpu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DpuController {
   static createDpu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

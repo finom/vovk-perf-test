@@ -7,10 +7,8 @@ export default class HzsController {
     summary: "Get Hzs",
   })
   @get()
-  static getHzs = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHzs = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HzsController {
   static createHzs = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

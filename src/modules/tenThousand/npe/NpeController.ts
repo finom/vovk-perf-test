@@ -7,10 +7,8 @@ export default class NpeController {
     summary: "Get Npe",
   })
   @get()
-  static getNpe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNpe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NpeController {
   static createNpe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

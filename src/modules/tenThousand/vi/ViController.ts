@@ -7,10 +7,8 @@ export default class ViController {
     summary: "Get Vi",
   })
   @get()
-  static getVi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getVi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ViController {
   static createVi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IcyController {
     summary: "Get Icy",
   })
   @get()
-  static getIcy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIcy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IcyController {
   static createIcy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class GymController {
     summary: "Get Gym",
   })
   @get()
-  static getGym = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGym = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GymController {
   static createGym = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class MewController {
     summary: "Get Mew",
   })
   @get()
-  static getMew = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMew = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MewController {
   static createMew = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

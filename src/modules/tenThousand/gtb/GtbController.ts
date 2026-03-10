@@ -7,10 +7,8 @@ export default class GtbController {
     summary: "Get Gtb",
   })
   @get()
-  static getGtb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGtb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GtbController {
   static createGtb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

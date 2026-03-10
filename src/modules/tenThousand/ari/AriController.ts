@@ -7,10 +7,8 @@ export default class AriController {
     summary: "Get Ari",
   })
   @get()
-  static getAri = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAri = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AriController {
   static createAri = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

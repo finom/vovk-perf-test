@@ -7,10 +7,8 @@ export default class MocController {
     summary: "Get Moc",
   })
   @get()
-  static getMoc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMoc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MocController {
   static createMoc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

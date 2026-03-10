@@ -7,10 +7,8 @@ export default class JraController {
     summary: "Get Jra",
   })
   @get()
-  static getJra = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJra = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JraController {
   static createJra = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

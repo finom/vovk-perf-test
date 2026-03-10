@@ -7,10 +7,8 @@ export default class ClbController {
     summary: "Get Clb",
   })
   @get()
-  static getClb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getClb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ClbController {
   static createClb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

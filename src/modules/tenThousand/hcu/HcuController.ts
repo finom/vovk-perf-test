@@ -7,10 +7,8 @@ export default class HcuController {
     summary: "Get Hcu",
   })
   @get()
-  static getHcu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHcu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HcuController {
   static createHcu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

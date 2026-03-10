@@ -7,10 +7,8 @@ export default class DwzController {
     summary: "Get Dwz",
   })
   @get()
-  static getDwz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDwz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DwzController {
   static createDwz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

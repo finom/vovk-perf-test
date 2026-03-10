@@ -7,10 +7,8 @@ export default class JewController {
     summary: "Get Jew",
   })
   @get()
-  static getJew = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJew = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JewController {
   static createJew = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

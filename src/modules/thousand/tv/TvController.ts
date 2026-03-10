@@ -7,10 +7,8 @@ export default class TvController {
     summary: "Get Tv",
   })
   @get()
-  static getTv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getTv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class TvController {
   static createTv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class GacController {
     summary: "Get Gac",
   })
   @get()
-  static getGac = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGac = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GacController {
   static createGac = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

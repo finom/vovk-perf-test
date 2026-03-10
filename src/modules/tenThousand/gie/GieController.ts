@@ -7,10 +7,8 @@ export default class GieController {
     summary: "Get Gie",
   })
   @get()
-  static getGie = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGie = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GieController {
   static createGie = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

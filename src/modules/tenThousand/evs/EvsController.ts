@@ -7,10 +7,8 @@ export default class EvsController {
     summary: "Get Evs",
   })
   @get()
-  static getEvs = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEvs = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EvsController {
   static createEvs = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

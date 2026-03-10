@@ -7,10 +7,8 @@ export default class KyrController {
     summary: "Get Kyr",
   })
   @get()
-  static getKyr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKyr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KyrController {
   static createKyr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

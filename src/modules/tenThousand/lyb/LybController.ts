@@ -7,10 +7,8 @@ export default class LybController {
     summary: "Get Lyb",
   })
   @get()
-  static getLyb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLyb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LybController {
   static createLyb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

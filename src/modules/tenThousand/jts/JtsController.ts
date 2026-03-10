@@ -7,10 +7,8 @@ export default class JtsController {
     summary: "Get Jts",
   })
   @get()
-  static getJts = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJts = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JtsController {
   static createJts = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

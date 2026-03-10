@@ -7,10 +7,8 @@ export default class CkvController {
     summary: "Get Ckv",
   })
   @get()
-  static getCkv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCkv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CkvController {
   static createCkv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

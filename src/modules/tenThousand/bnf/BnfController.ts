@@ -7,10 +7,8 @@ export default class BnfController {
     summary: "Get Bnf",
   })
   @get()
-  static getBnf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBnf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BnfController {
   static createBnf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

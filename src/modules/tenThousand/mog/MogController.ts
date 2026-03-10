@@ -7,10 +7,8 @@ export default class MogController {
     summary: "Get Mog",
   })
   @get()
-  static getMog = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMog = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MogController {
   static createMog = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

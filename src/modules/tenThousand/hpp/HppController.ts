@@ -7,10 +7,8 @@ export default class HppController {
     summary: "Get Hpp",
   })
   @get()
-  static getHpp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHpp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HppController {
   static createHpp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

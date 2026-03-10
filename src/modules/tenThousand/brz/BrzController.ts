@@ -7,10 +7,8 @@ export default class BrzController {
     summary: "Get Brz",
   })
   @get()
-  static getBrz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBrz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BrzController {
   static createBrz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

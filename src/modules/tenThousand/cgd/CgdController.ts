@@ -7,10 +7,8 @@ export default class CgdController {
     summary: "Get Cgd",
   })
   @get()
-  static getCgd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCgd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CgdController {
   static createCgd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

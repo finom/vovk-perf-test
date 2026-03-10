@@ -7,10 +7,8 @@ export default class NseController {
     summary: "Get Nse",
   })
   @get()
-  static getNse = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNse = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NseController {
   static createNse = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

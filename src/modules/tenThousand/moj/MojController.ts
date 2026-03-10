@@ -7,10 +7,8 @@ export default class MojController {
     summary: "Get Moj",
   })
   @get()
-  static getMoj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMoj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MojController {
   static createMoj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

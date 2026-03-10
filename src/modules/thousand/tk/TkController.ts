@@ -7,10 +7,8 @@ export default class TkController {
     summary: "Get Tk",
   })
   @get()
-  static getTk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getTk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class TkController {
   static createTk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

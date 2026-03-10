@@ -7,10 +7,8 @@ export default class NcxController {
     summary: "Get Ncx",
   })
   @get()
-  static getNcx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNcx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NcxController {
   static createNcx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

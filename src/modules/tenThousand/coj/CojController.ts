@@ -7,10 +7,8 @@ export default class CojController {
     summary: "Get Coj",
   })
   @get()
-  static getCoj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCoj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CojController {
   static createCoj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

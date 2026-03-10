@@ -7,10 +7,8 @@ export default class DteController {
     summary: "Get Dte",
   })
   @get()
-  static getDte = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDte = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DteController {
   static createDte = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

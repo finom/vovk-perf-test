@@ -7,10 +7,8 @@ export default class NtfController {
     summary: "Get Ntf",
   })
   @get()
-  static getNtf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNtf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NtfController {
   static createNtf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

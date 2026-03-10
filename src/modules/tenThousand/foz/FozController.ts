@@ -7,10 +7,8 @@ export default class FozController {
     summary: "Get Foz",
   })
   @get()
-  static getFoz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFoz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FozController {
   static createFoz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

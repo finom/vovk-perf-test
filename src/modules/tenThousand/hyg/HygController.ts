@@ -7,10 +7,8 @@ export default class HygController {
     summary: "Get Hyg",
   })
   @get()
-  static getHyg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHyg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HygController {
   static createHyg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

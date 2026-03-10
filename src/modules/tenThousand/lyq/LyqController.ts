@@ -7,10 +7,8 @@ export default class LyqController {
     summary: "Get Lyq",
   })
   @get()
-  static getLyq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLyq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LyqController {
   static createLyq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

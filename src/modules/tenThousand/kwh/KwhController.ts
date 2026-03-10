@@ -7,10 +7,8 @@ export default class KwhController {
     summary: "Get Kwh",
   })
   @get()
-  static getKwh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKwh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KwhController {
   static createKwh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

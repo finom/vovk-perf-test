@@ -7,10 +7,8 @@ export default class DtuController {
     summary: "Get Dtu",
   })
   @get()
-  static getDtu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDtu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DtuController {
   static createDtu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

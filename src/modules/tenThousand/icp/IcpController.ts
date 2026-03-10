@@ -7,10 +7,8 @@ export default class IcpController {
     summary: "Get Icp",
   })
   @get()
-  static getIcp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIcp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IcpController {
   static createIcp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

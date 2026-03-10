@@ -7,10 +7,8 @@ export default class JfnController {
     summary: "Get Jfn",
   })
   @get()
-  static getJfn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJfn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JfnController {
   static createJfn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

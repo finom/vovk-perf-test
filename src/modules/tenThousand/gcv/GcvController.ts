@@ -7,10 +7,8 @@ export default class GcvController {
     summary: "Get Gcv",
   })
   @get()
-  static getGcv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGcv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GcvController {
   static createGcv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

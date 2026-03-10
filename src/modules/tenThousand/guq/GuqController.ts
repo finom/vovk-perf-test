@@ -7,10 +7,8 @@ export default class GuqController {
     summary: "Get Guq",
   })
   @get()
-  static getGuq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGuq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GuqController {
   static createGuq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

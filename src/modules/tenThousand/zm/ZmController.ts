@@ -7,10 +7,8 @@ export default class ZmController {
     summary: "Get Zm",
   })
   @get()
-  static getZm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getZm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ZmController {
   static createZm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

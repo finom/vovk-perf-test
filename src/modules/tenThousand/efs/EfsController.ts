@@ -7,10 +7,8 @@ export default class EfsController {
     summary: "Get Efs",
   })
   @get()
-  static getEfs = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEfs = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EfsController {
   static createEfs = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

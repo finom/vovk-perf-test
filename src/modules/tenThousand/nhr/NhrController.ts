@@ -7,10 +7,8 @@ export default class NhrController {
     summary: "Get Nhr",
   })
   @get()
-  static getNhr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNhr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NhrController {
   static createNhr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

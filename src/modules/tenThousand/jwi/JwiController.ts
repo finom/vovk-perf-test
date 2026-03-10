@@ -7,10 +7,8 @@ export default class JwiController {
     summary: "Get Jwi",
   })
   @get()
-  static getJwi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJwi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JwiController {
   static createJwi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

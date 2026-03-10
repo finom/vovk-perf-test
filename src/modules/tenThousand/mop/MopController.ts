@@ -7,10 +7,8 @@ export default class MopController {
     summary: "Get Mop",
   })
   @get()
-  static getMop = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMop = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MopController {
   static createMop = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

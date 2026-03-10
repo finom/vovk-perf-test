@@ -7,10 +7,8 @@ export default class AllController {
     summary: "Get All",
   })
   @get()
-  static getAll = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAll = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AllController {
   static createAll = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class JuxController {
     summary: "Get Jux",
   })
   @get()
-  static getJux = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJux = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JuxController {
   static createJux = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

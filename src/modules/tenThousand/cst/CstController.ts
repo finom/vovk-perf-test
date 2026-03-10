@@ -7,10 +7,8 @@ export default class CstController {
     summary: "Get Cst",
   })
   @get()
-  static getCst = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCst = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CstController {
   static createCst = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class DizController {
     summary: "Get Diz",
   })
   @get()
-  static getDiz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDiz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DizController {
   static createDiz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

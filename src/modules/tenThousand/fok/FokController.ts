@@ -7,10 +7,8 @@ export default class FokController {
     summary: "Get Fok",
   })
   @get()
-  static getFok = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFok = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FokController {
   static createFok = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

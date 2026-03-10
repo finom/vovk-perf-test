@@ -7,10 +7,8 @@ export default class XbController {
     summary: "Get Xb",
   })
   @get()
-  static getXb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getXb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class XbController {
   static createXb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class NawController {
     summary: "Get Naw",
   })
   @get()
-  static getNaw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNaw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NawController {
   static createNaw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

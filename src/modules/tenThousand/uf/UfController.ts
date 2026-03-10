@@ -7,10 +7,8 @@ export default class UfController {
     summary: "Get Uf",
   })
   @get()
-  static getUf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getUf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class UfController {
   static createUf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

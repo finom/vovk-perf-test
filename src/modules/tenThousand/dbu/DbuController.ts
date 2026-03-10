@@ -7,10 +7,8 @@ export default class DbuController {
     summary: "Get Dbu",
   })
   @get()
-  static getDbu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDbu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DbuController {
   static createDbu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

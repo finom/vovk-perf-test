@@ -7,10 +7,8 @@ export default class JryController {
     summary: "Get Jry",
   })
   @get()
-  static getJry = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJry = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JryController {
   static createJry = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

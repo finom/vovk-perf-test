@@ -7,10 +7,8 @@ export default class GuiController {
     summary: "Get Gui",
   })
   @get()
-  static getGui = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGui = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GuiController {
   static createGui = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

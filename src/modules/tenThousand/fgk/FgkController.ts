@@ -7,10 +7,8 @@ export default class FgkController {
     summary: "Get Fgk",
   })
   @get()
-  static getFgk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFgk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FgkController {
   static createFgk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

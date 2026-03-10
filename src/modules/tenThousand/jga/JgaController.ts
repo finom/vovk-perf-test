@@ -7,10 +7,8 @@ export default class JgaController {
     summary: "Get Jga",
   })
   @get()
-  static getJga = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJga = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JgaController {
   static createJga = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

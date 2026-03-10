@@ -7,10 +7,8 @@ export default class KuhController {
     summary: "Get Kuh",
   })
   @get()
-  static getKuh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKuh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KuhController {
   static createKuh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

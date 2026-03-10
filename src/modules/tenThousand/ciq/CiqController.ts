@@ -7,10 +7,8 @@ export default class CiqController {
     summary: "Get Ciq",
   })
   @get()
-  static getCiq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCiq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CiqController {
   static createCiq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

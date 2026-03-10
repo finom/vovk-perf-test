@@ -7,10 +7,8 @@ export default class FtdController {
     summary: "Get Ftd",
   })
   @get()
-  static getFtd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFtd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FtdController {
   static createFtd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class CigController {
     summary: "Get Cig",
   })
   @get()
-  static getCig = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCig = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CigController {
   static createCig = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

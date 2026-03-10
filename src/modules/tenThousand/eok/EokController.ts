@@ -7,10 +7,8 @@ export default class EokController {
     summary: "Get Eok",
   })
   @get()
-  static getEok = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEok = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EokController {
   static createEok = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class NmfController {
     summary: "Get Nmf",
   })
   @get()
-  static getNmf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNmf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NmfController {
   static createNmf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

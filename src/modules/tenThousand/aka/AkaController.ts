@@ -7,10 +7,8 @@ export default class AkaController {
     summary: "Get Aka",
   })
   @get()
-  static getAka = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAka = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AkaController {
   static createAka = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

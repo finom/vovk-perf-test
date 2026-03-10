@@ -7,10 +7,8 @@ export default class KozController {
     summary: "Get Koz",
   })
   @get()
-  static getKoz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKoz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KozController {
   static createKoz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

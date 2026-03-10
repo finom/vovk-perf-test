@@ -7,10 +7,8 @@ export default class AvxController {
     summary: "Get Avx",
   })
   @get()
-  static getAvx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAvx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AvxController {
   static createAvx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

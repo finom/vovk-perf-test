@@ -7,10 +7,8 @@ export default class IfController {
     summary: "Get If",
   })
   @get()
-  static getIf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IfController {
   static createIf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class KlaController {
     summary: "Get Kla",
   })
   @get()
-  static getKla = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKla = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KlaController {
   static createKla = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class CswController {
     summary: "Get Csw",
   })
   @get()
-  static getCsw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCsw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CswController {
   static createCsw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class JamController {
     summary: "Get Jam",
   })
   @get()
-  static getJam = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJam = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JamController {
   static createJam = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

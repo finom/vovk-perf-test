@@ -7,10 +7,8 @@ export default class BtqController {
     summary: "Get Btq",
   })
   @get()
-  static getBtq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBtq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BtqController {
   static createBtq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

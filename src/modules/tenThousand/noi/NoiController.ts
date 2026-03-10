@@ -7,10 +7,8 @@ export default class NoiController {
     summary: "Get Noi",
   })
   @get()
-  static getNoi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNoi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NoiController {
   static createNoi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

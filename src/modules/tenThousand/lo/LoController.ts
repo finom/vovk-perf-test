@@ -7,10 +7,8 @@ export default class LoController {
     summary: "Get Lo",
   })
   @get()
-  static getLo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LoController {
   static createLo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

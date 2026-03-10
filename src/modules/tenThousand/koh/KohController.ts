@@ -7,10 +7,8 @@ export default class KohController {
     summary: "Get Koh",
   })
   @get()
-  static getKoh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKoh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KohController {
   static createKoh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class JlaController {
     summary: "Get Jla",
   })
   @get()
-  static getJla = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJla = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JlaController {
   static createJla = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

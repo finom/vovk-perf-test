@@ -7,10 +7,8 @@ export default class TpController {
     summary: "Get Tp",
   })
   @get()
-  static getTp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getTp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class TpController {
   static createTp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

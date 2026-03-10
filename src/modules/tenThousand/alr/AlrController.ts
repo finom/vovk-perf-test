@@ -7,10 +7,8 @@ export default class AlrController {
     summary: "Get Alr",
   })
   @get()
-  static getAlr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAlr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AlrController {
   static createAlr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

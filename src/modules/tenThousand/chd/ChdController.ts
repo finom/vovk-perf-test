@@ -7,10 +7,8 @@ export default class ChdController {
     summary: "Get Chd",
   })
   @get()
-  static getChd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getChd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ChdController {
   static createChd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

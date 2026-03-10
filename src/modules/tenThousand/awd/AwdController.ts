@@ -7,10 +7,8 @@ export default class AwdController {
     summary: "Get Awd",
   })
   @get()
-  static getAwd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAwd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AwdController {
   static createAwd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

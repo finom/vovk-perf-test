@@ -7,10 +7,8 @@ export default class LncController {
     summary: "Get Lnc",
   })
   @get()
-  static getLnc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLnc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LncController {
   static createLnc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

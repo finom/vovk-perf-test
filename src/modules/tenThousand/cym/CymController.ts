@@ -7,10 +7,8 @@ export default class CymController {
     summary: "Get Cym",
   })
   @get()
-  static getCym = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCym = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CymController {
   static createCym = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

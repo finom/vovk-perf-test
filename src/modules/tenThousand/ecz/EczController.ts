@@ -7,10 +7,8 @@ export default class EczController {
     summary: "Get Ecz",
   })
   @get()
-  static getEcz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEcz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EczController {
   static createEcz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

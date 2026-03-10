@@ -7,10 +7,8 @@ export default class MelController {
     summary: "Get Mel",
   })
   @get()
-  static getMel = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMel = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MelController {
   static createMel = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

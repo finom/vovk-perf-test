@@ -7,10 +7,8 @@ export default class CsnController {
     summary: "Get Csn",
   })
   @get()
-  static getCsn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCsn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CsnController {
   static createCsn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

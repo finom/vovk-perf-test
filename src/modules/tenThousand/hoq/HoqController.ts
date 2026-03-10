@@ -7,10 +7,8 @@ export default class HoqController {
     summary: "Get Hoq",
   })
   @get()
-  static getHoq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHoq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HoqController {
   static createHoq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

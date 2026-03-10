@@ -7,10 +7,8 @@ export default class DezController {
     summary: "Get Dez",
   })
   @get()
-  static getDez = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDez = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DezController {
   static createDez = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

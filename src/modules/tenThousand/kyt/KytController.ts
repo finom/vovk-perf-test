@@ -7,10 +7,8 @@ export default class KytController {
     summary: "Get Kyt",
   })
   @get()
-  static getKyt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKyt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KytController {
   static createKyt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class KoyController {
     summary: "Get Koy",
   })
   @get()
-  static getKoy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKoy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KoyController {
   static createKoy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

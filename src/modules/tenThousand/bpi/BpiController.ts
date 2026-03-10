@@ -7,10 +7,8 @@ export default class BpiController {
     summary: "Get Bpi",
   })
   @get()
-  static getBpi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBpi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BpiController {
   static createBpi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

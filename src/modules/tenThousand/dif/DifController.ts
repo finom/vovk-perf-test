@@ -7,10 +7,8 @@ export default class DifController {
     summary: "Get Dif",
   })
   @get()
-  static getDif = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDif = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DifController {
   static createDif = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

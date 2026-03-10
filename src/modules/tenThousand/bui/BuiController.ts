@@ -7,10 +7,8 @@ export default class BuiController {
     summary: "Get Bui",
   })
   @get()
-  static getBui = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBui = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BuiController {
   static createBui = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

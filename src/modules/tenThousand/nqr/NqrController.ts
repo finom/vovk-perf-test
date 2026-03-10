@@ -7,10 +7,8 @@ export default class NqrController {
     summary: "Get Nqr",
   })
   @get()
-  static getNqr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNqr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NqrController {
   static createNqr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

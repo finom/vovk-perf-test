@@ -7,10 +7,8 @@ export default class IevController {
     summary: "Get Iev",
   })
   @get()
-  static getIev = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIev = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IevController {
   static createIev = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class MfgController {
     summary: "Get Mfg",
   })
   @get()
-  static getMfg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMfg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MfgController {
   static createMfg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

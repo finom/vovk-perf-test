@@ -7,10 +7,8 @@ export default class MwrController {
     summary: "Get Mwr",
   })
   @get()
-  static getMwr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMwr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MwrController {
   static createMwr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

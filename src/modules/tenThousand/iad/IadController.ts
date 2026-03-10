@@ -7,10 +7,8 @@ export default class IadController {
     summary: "Get Iad",
   })
   @get()
-  static getIad = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIad = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IadController {
   static createIad = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

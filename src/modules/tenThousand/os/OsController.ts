@@ -7,10 +7,8 @@ export default class OsController {
     summary: "Get Os",
   })
   @get()
-  static getOs = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getOs = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class OsController {
   static createOs = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

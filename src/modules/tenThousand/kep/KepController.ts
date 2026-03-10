@@ -7,10 +7,8 @@ export default class KepController {
     summary: "Get Kep",
   })
   @get()
-  static getKep = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKep = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KepController {
   static createKep = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class FwaController {
     summary: "Get Fwa",
   })
   @get()
-  static getFwa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFwa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FwaController {
   static createFwa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

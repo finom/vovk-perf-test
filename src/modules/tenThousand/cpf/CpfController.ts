@@ -7,10 +7,8 @@ export default class CpfController {
     summary: "Get Cpf",
   })
   @get()
-  static getCpf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCpf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CpfController {
   static createCpf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

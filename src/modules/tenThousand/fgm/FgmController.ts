@@ -7,10 +7,8 @@ export default class FgmController {
     summary: "Get Fgm",
   })
   @get()
-  static getFgm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFgm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FgmController {
   static createFgm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

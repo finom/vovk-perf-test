@@ -7,10 +7,8 @@ export default class EmiController {
     summary: "Get Emi",
   })
   @get()
-  static getEmi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEmi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EmiController {
   static createEmi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class EmaController {
     summary: "Get Ema",
   })
   @get()
-  static getEma = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEma = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EmaController {
   static createEma = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

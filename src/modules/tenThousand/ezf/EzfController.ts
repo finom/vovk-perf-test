@@ -7,10 +7,8 @@ export default class EzfController {
     summary: "Get Ezf",
   })
   @get()
-  static getEzf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEzf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EzfController {
   static createEzf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

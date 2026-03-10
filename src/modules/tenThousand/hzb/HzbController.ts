@@ -7,10 +7,8 @@ export default class HzbController {
     summary: "Get Hzb",
   })
   @get()
-  static getHzb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHzb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HzbController {
   static createHzb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

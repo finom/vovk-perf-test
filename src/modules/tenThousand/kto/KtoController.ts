@@ -7,10 +7,8 @@ export default class KtoController {
     summary: "Get Kto",
   })
   @get()
-  static getKto = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKto = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KtoController {
   static createKto = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

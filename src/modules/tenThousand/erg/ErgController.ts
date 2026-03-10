@@ -7,10 +7,8 @@ export default class ErgController {
     summary: "Get Erg",
   })
   @get()
-  static getErg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getErg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ErgController {
   static createErg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

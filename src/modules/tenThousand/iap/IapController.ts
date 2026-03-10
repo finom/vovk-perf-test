@@ -7,10 +7,8 @@ export default class IapController {
     summary: "Get Iap",
   })
   @get()
-  static getIap = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIap = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IapController {
   static createIap = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

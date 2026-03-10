@@ -7,10 +7,8 @@ export default class MkvController {
     summary: "Get Mkv",
   })
   @get()
-  static getMkv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMkv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MkvController {
   static createMkv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

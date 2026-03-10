@@ -7,10 +7,8 @@ export default class FaController {
     summary: "Get Fa",
   })
   @get()
-  static getFa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FaController {
   static createFa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

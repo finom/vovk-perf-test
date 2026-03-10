@@ -7,10 +7,8 @@ export default class DdbController {
     summary: "Get Ddb",
   })
   @get()
-  static getDdb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDdb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DdbController {
   static createDdb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

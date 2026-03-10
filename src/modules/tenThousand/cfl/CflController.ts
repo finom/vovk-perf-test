@@ -7,10 +7,8 @@ export default class CflController {
     summary: "Get Cfl",
   })
   @get()
-  static getCfl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCfl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CflController {
   static createCfl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

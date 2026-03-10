@@ -7,10 +7,8 @@ export default class KewController {
     summary: "Get Kew",
   })
   @get()
-  static getKew = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKew = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KewController {
   static createKew = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

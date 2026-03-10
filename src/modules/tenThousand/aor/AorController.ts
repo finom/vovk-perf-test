@@ -7,10 +7,8 @@ export default class AorController {
     summary: "Get Aor",
   })
   @get()
-  static getAor = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAor = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AorController {
   static createAor = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

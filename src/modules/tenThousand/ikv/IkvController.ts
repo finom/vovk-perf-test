@@ -7,10 +7,8 @@ export default class IkvController {
     summary: "Get Ikv",
   })
   @get()
-  static getIkv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIkv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IkvController {
   static createIkv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class NeeController {
     summary: "Get Nee",
   })
   @get()
-  static getNee = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNee = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NeeController {
   static createNee = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class AwjController {
     summary: "Get Awj",
   })
   @get()
-  static getAwj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAwj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AwjController {
   static createAwj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

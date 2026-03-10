@@ -7,10 +7,8 @@ export default class AdzController {
     summary: "Get Adz",
   })
   @get()
-  static getAdz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAdz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AdzController {
   static createAdz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

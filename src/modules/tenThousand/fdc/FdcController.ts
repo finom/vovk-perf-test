@@ -7,10 +7,8 @@ export default class FdcController {
     summary: "Get Fdc",
   })
   @get()
-  static getFdc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFdc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FdcController {
   static createFdc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

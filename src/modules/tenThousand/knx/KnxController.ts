@@ -7,10 +7,8 @@ export default class KnxController {
     summary: "Get Knx",
   })
   @get()
-  static getKnx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKnx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KnxController {
   static createKnx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

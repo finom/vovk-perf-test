@@ -7,10 +7,8 @@ export default class NgnController {
     summary: "Get Ngn",
   })
   @get()
-  static getNgn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNgn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NgnController {
   static createNgn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class ExnController {
     summary: "Get Exn",
   })
   @get()
-  static getExn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getExn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ExnController {
   static createExn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

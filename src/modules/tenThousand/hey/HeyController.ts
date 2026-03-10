@@ -7,10 +7,8 @@ export default class HeyController {
     summary: "Get Hey",
   })
   @get()
-  static getHey = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHey = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HeyController {
   static createHey = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

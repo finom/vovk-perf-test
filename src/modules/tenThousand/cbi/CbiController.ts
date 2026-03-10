@@ -7,10 +7,8 @@ export default class CbiController {
     summary: "Get Cbi",
   })
   @get()
-  static getCbi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCbi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CbiController {
   static createCbi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

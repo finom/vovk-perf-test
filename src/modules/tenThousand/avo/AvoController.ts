@@ -7,10 +7,8 @@ export default class AvoController {
     summary: "Get Avo",
   })
   @get()
-  static getAvo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAvo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AvoController {
   static createAvo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class HlmController {
     summary: "Get Hlm",
   })
   @get()
-  static getHlm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHlm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HlmController {
   static createHlm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

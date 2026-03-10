@@ -7,10 +7,8 @@ export default class CfrController {
     summary: "Get Cfr",
   })
   @get()
-  static getCfr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCfr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CfrController {
   static createCfr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

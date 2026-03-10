@@ -7,10 +7,8 @@ export default class GdfController {
     summary: "Get Gdf",
   })
   @get()
-  static getGdf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGdf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GdfController {
   static createGdf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

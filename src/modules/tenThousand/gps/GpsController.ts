@@ -7,10 +7,8 @@ export default class GpsController {
     summary: "Get Gps",
   })
   @get()
-  static getGps = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGps = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GpsController {
   static createGps = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

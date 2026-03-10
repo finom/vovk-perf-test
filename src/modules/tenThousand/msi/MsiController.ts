@@ -7,10 +7,8 @@ export default class MsiController {
     summary: "Get Msi",
   })
   @get()
-  static getMsi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMsi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MsiController {
   static createMsi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

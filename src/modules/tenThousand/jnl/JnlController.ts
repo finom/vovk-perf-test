@@ -7,10 +7,8 @@ export default class JnlController {
     summary: "Get Jnl",
   })
   @get()
-  static getJnl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJnl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JnlController {
   static createJnl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

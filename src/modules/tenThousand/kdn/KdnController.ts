@@ -7,10 +7,8 @@ export default class KdnController {
     summary: "Get Kdn",
   })
   @get()
-  static getKdn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKdn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KdnController {
   static createKdn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

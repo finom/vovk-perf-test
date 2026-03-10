@@ -7,10 +7,8 @@ export default class LkwController {
     summary: "Get Lkw",
   })
   @get()
-  static getLkw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLkw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LkwController {
   static createLkw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

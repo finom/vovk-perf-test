@@ -7,10 +7,8 @@ export default class DmiController {
     summary: "Get Dmi",
   })
   @get()
-  static getDmi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDmi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DmiController {
   static createDmi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

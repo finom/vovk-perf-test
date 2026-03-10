@@ -7,10 +7,8 @@ export default class CmdController {
     summary: "Get Cmd",
   })
   @get()
-  static getCmd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCmd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CmdController {
   static createCmd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class JblController {
     summary: "Get Jbl",
   })
   @get()
-  static getJbl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJbl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JblController {
   static createJbl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

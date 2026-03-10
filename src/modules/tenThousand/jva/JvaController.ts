@@ -7,10 +7,8 @@ export default class JvaController {
     summary: "Get Jva",
   })
   @get()
-  static getJva = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJva = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JvaController {
   static createJva = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

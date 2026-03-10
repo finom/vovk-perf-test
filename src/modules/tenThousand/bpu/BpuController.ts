@@ -7,10 +7,8 @@ export default class BpuController {
     summary: "Get Bpu",
   })
   @get()
-  static getBpu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBpu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BpuController {
   static createBpu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

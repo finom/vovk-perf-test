@@ -7,10 +7,8 @@ export default class NaeController {
     summary: "Get Nae",
   })
   @get()
-  static getNae = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNae = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NaeController {
   static createNae = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

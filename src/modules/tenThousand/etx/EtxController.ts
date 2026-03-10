@@ -7,10 +7,8 @@ export default class EtxController {
     summary: "Get Etx",
   })
   @get()
-  static getEtx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEtx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EtxController {
   static createEtx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

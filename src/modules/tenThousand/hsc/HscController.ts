@@ -7,10 +7,8 @@ export default class HscController {
     summary: "Get Hsc",
   })
   @get()
-  static getHsc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHsc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HscController {
   static createHsc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class CpaController {
     summary: "Get Cpa",
   })
   @get()
-  static getCpa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCpa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CpaController {
   static createCpa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

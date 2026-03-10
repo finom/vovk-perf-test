@@ -7,10 +7,8 @@ export default class CajController {
     summary: "Get Caj",
   })
   @get()
-  static getCaj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCaj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CajController {
   static createCaj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class ImController {
     summary: "Get Im",
   })
   @get()
-  static getIm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ImController {
   static createIm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

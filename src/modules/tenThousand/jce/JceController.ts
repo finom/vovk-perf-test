@@ -7,10 +7,8 @@ export default class JceController {
     summary: "Get Jce",
   })
   @get()
-  static getJce = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJce = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JceController {
   static createJce = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

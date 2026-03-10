@@ -7,10 +7,8 @@ export default class CadController {
     summary: "Get Cad",
   })
   @get()
-  static getCad = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCad = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CadController {
   static createCad = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

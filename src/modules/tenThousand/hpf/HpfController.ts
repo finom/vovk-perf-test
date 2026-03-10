@@ -7,10 +7,8 @@ export default class HpfController {
     summary: "Get Hpf",
   })
   @get()
-  static getHpf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHpf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HpfController {
   static createHpf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

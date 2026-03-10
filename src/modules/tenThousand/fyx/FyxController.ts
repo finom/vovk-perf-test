@@ -7,10 +7,8 @@ export default class FyxController {
     summary: "Get Fyx",
   })
   @get()
-  static getFyx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFyx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FyxController {
   static createFyx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

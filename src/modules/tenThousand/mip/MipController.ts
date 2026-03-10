@@ -7,10 +7,8 @@ export default class MipController {
     summary: "Get Mip",
   })
   @get()
-  static getMip = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMip = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MipController {
   static createMip = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

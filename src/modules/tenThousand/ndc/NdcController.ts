@@ -7,10 +7,8 @@ export default class NdcController {
     summary: "Get Ndc",
   })
   @get()
-  static getNdc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNdc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NdcController {
   static createNdc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

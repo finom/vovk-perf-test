@@ -7,10 +7,8 @@ export default class JrgController {
     summary: "Get Jrg",
   })
   @get()
-  static getJrg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJrg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JrgController {
   static createJrg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

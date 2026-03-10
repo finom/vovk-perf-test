@@ -7,10 +7,8 @@ export default class FtiController {
     summary: "Get Fti",
   })
   @get()
-  static getFti = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFti = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FtiController {
   static createFti = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

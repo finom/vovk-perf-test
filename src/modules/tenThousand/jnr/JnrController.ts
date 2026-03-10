@@ -7,10 +7,8 @@ export default class JnrController {
     summary: "Get Jnr",
   })
   @get()
-  static getJnr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJnr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JnrController {
   static createJnr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

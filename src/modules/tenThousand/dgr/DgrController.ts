@@ -7,10 +7,8 @@ export default class DgrController {
     summary: "Get Dgr",
   })
   @get()
-  static getDgr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDgr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DgrController {
   static createDgr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

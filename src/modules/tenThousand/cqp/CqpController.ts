@@ -7,10 +7,8 @@ export default class CqpController {
     summary: "Get Cqp",
   })
   @get()
-  static getCqp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCqp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CqpController {
   static createCqp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

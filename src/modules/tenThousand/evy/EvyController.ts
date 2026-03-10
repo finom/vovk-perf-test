@@ -7,10 +7,8 @@ export default class EvyController {
     summary: "Get Evy",
   })
   @get()
-  static getEvy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEvy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EvyController {
   static createEvy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

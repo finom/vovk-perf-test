@@ -7,10 +7,8 @@ export default class FksController {
     summary: "Get Fks",
   })
   @get()
-  static getFks = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFks = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FksController {
   static createFks = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class HtbController {
     summary: "Get Htb",
   })
   @get()
-  static getHtb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHtb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HtbController {
   static createHtb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class MlqController {
     summary: "Get Mlq",
   })
   @get()
-  static getMlq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMlq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MlqController {
   static createMlq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

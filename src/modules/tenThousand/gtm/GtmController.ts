@@ -7,10 +7,8 @@ export default class GtmController {
     summary: "Get Gtm",
   })
   @get()
-  static getGtm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGtm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GtmController {
   static createGtm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

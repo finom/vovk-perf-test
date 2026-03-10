@@ -7,10 +7,8 @@ export default class EdlController {
     summary: "Get Edl",
   })
   @get()
-  static getEdl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEdl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EdlController {
   static createEdl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

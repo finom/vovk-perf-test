@@ -7,10 +7,8 @@ export default class DtyController {
     summary: "Get Dty",
   })
   @get()
-  static getDty = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDty = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DtyController {
   static createDty = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

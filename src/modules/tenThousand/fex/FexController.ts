@@ -7,10 +7,8 @@ export default class FexController {
     summary: "Get Fex",
   })
   @get()
-  static getFex = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFex = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FexController {
   static createFex = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

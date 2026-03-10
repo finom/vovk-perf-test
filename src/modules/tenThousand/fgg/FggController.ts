@@ -7,10 +7,8 @@ export default class FggController {
     summary: "Get Fgg",
   })
   @get()
-  static getFgg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFgg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FggController {
   static createFgg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

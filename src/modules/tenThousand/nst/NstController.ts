@@ -7,10 +7,8 @@ export default class NstController {
     summary: "Get Nst",
   })
   @get()
-  static getNst = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNst = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NstController {
   static createNst = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

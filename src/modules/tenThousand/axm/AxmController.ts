@@ -7,10 +7,8 @@ export default class AxmController {
     summary: "Get Axm",
   })
   @get()
-  static getAxm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAxm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AxmController {
   static createAxm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class GojController {
     summary: "Get Goj",
   })
   @get()
-  static getGoj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGoj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GojController {
   static createGoj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

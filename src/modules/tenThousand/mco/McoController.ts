@@ -7,10 +7,8 @@ export default class McoController {
     summary: "Get Mco",
   })
   @get()
-  static getMco = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMco = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class McoController {
   static createMco = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

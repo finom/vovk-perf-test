@@ -7,10 +7,8 @@ export default class IopController {
     summary: "Get Iop",
   })
   @get()
-  static getIop = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIop = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IopController {
   static createIop = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

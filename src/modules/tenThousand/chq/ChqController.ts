@@ -7,10 +7,8 @@ export default class ChqController {
     summary: "Get Chq",
   })
   @get()
-  static getChq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getChq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ChqController {
   static createChq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class DoxController {
     summary: "Get Dox",
   })
   @get()
-  static getDox = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDox = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DoxController {
   static createDox = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

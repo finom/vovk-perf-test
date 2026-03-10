@@ -7,10 +7,8 @@ export default class DvhController {
     summary: "Get Dvh",
   })
   @get()
-  static getDvh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDvh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DvhController {
   static createDvh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class CvkController {
     summary: "Get Cvk",
   })
   @get()
-  static getCvk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCvk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CvkController {
   static createCvk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

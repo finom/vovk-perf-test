@@ -7,10 +7,8 @@ export default class BtlController {
     summary: "Get Btl",
   })
   @get()
-  static getBtl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBtl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BtlController {
   static createBtl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class AcmController {
     summary: "Get Acm",
   })
   @get()
-  static getAcm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAcm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AcmController {
   static createAcm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

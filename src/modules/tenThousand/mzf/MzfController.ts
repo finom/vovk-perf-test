@@ -7,10 +7,8 @@ export default class MzfController {
     summary: "Get Mzf",
   })
   @get()
-  static getMzf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMzf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MzfController {
   static createMzf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

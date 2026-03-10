@@ -7,10 +7,8 @@ export default class GerController {
     summary: "Get Ger",
   })
   @get()
-  static getGer = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGer = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GerController {
   static createGer = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

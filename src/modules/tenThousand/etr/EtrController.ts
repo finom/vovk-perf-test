@@ -7,10 +7,8 @@ export default class EtrController {
     summary: "Get Etr",
   })
   @get()
-  static getEtr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEtr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EtrController {
   static createEtr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class BjiController {
     summary: "Get Bji",
   })
   @get()
-  static getBji = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBji = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BjiController {
   static createBji = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

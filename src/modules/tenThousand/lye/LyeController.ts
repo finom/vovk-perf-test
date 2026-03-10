@@ -7,10 +7,8 @@ export default class LyeController {
     summary: "Get Lye",
   })
   @get()
-  static getLye = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLye = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LyeController {
   static createLye = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

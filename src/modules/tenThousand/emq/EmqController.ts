@@ -7,10 +7,8 @@ export default class EmqController {
     summary: "Get Emq",
   })
   @get()
-  static getEmq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEmq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EmqController {
   static createEmq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

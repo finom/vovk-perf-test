@@ -7,10 +7,8 @@ export default class GeoController {
     summary: "Get Geo",
   })
   @get()
-  static getGeo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGeo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GeoController {
   static createGeo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

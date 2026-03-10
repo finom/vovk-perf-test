@@ -7,10 +7,8 @@ export default class DovController {
     summary: "Get Dov",
   })
   @get()
-  static getDov = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDov = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DovController {
   static createDov = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

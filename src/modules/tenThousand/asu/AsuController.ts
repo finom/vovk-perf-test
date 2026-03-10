@@ -7,10 +7,8 @@ export default class AsuController {
     summary: "Get Asu",
   })
   @get()
-  static getAsu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAsu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AsuController {
   static createAsu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

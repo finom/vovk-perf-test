@@ -7,10 +7,8 @@ export default class MbvController {
     summary: "Get Mbv",
   })
   @get()
-  static getMbv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMbv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MbvController {
   static createMbv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

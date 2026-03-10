@@ -7,10 +7,8 @@ export default class MjfController {
     summary: "Get Mjf",
   })
   @get()
-  static getMjf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMjf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MjfController {
   static createMjf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

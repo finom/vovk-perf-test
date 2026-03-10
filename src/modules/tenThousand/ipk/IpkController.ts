@@ -7,10 +7,8 @@ export default class IpkController {
     summary: "Get Ipk",
   })
   @get()
-  static getIpk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIpk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IpkController {
   static createIpk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

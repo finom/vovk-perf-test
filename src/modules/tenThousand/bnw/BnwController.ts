@@ -7,10 +7,8 @@ export default class BnwController {
     summary: "Get Bnw",
   })
   @get()
-  static getBnw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBnw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BnwController {
   static createBnw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

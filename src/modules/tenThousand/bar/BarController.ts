@@ -7,10 +7,8 @@ export default class BarController {
     summary: "Get Bar",
   })
   @get()
-  static getBar = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBar = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BarController {
   static createBar = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

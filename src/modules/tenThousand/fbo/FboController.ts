@@ -7,10 +7,8 @@ export default class FboController {
     summary: "Get Fbo",
   })
   @get()
-  static getFbo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFbo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FboController {
   static createFbo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

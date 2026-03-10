@@ -7,10 +7,8 @@ export default class CbController {
     summary: "Get Cb",
   })
   @get()
-  static getCb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CbController {
   static createCb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

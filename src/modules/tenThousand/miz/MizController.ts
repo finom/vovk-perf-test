@@ -7,10 +7,8 @@ export default class MizController {
     summary: "Get Miz",
   })
   @get()
-  static getMiz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMiz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MizController {
   static createMiz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class JdqController {
     summary: "Get Jdq",
   })
   @get()
-  static getJdq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJdq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JdqController {
   static createJdq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

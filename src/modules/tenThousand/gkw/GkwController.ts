@@ -7,10 +7,8 @@ export default class GkwController {
     summary: "Get Gkw",
   })
   @get()
-  static getGkw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGkw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GkwController {
   static createGkw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

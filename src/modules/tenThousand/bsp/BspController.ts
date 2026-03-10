@@ -7,10 +7,8 @@ export default class BspController {
     summary: "Get Bsp",
   })
   @get()
-  static getBsp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBsp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BspController {
   static createBsp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

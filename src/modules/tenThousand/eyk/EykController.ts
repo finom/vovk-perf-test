@@ -7,10 +7,8 @@ export default class EykController {
     summary: "Get Eyk",
   })
   @get()
-  static getEyk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEyk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EykController {
   static createEyk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

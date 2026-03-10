@@ -7,10 +7,8 @@ export default class GmiController {
     summary: "Get Gmi",
   })
   @get()
-  static getGmi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGmi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GmiController {
   static createGmi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

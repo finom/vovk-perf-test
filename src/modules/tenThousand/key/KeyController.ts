@@ -7,10 +7,8 @@ export default class KeyController {
     summary: "Get Key",
   })
   @get()
-  static getKey = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKey = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KeyController {
   static createKey = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

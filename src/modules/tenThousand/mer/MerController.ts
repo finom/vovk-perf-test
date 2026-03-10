@@ -7,10 +7,8 @@ export default class MerController {
     summary: "Get Mer",
   })
   @get()
-  static getMer = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMer = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MerController {
   static createMer = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

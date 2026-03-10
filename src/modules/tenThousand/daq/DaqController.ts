@@ -7,10 +7,8 @@ export default class DaqController {
     summary: "Get Daq",
   })
   @get()
-  static getDaq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDaq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DaqController {
   static createDaq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

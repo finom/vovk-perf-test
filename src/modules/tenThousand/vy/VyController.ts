@@ -7,10 +7,8 @@ export default class VyController {
     summary: "Get Vy",
   })
   @get()
-  static getVy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getVy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class VyController {
   static createVy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

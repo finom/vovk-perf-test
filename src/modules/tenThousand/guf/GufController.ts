@@ -7,10 +7,8 @@ export default class GufController {
     summary: "Get Guf",
   })
   @get()
-  static getGuf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGuf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GufController {
   static createGuf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

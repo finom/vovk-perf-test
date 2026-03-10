@@ -7,10 +7,8 @@ export default class FnoController {
     summary: "Get Fno",
   })
   @get()
-  static getFno = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFno = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FnoController {
   static createFno = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

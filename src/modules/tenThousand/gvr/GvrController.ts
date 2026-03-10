@@ -7,10 +7,8 @@ export default class GvrController {
     summary: "Get Gvr",
   })
   @get()
-  static getGvr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGvr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GvrController {
   static createGvr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

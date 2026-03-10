@@ -7,10 +7,8 @@ export default class QeController {
     summary: "Get Qe",
   })
   @get()
-  static getQe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getQe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class QeController {
   static createQe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

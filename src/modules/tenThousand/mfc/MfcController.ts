@@ -7,10 +7,8 @@ export default class MfcController {
     summary: "Get Mfc",
   })
   @get()
-  static getMfc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMfc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MfcController {
   static createMfc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

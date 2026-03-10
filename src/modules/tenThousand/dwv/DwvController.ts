@@ -7,10 +7,8 @@ export default class DwvController {
     summary: "Get Dwv",
   })
   @get()
-  static getDwv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDwv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DwvController {
   static createDwv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

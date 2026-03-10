@@ -7,10 +7,8 @@ export default class FiuController {
     summary: "Get Fiu",
   })
   @get()
-  static getFiu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFiu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FiuController {
   static createFiu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

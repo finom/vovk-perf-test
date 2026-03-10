@@ -7,10 +7,8 @@ export default class GyfController {
     summary: "Get Gyf",
   })
   @get()
-  static getGyf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGyf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GyfController {
   static createGyf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

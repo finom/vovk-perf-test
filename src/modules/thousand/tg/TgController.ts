@@ -7,10 +7,8 @@ export default class TgController {
     summary: "Get Tg",
   })
   @get()
-  static getTg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getTg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class TgController {
   static createTg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

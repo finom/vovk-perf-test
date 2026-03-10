@@ -7,10 +7,8 @@ export default class HcdController {
     summary: "Get Hcd",
   })
   @get()
-  static getHcd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHcd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HcdController {
   static createHcd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

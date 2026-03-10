@@ -7,10 +7,8 @@ export default class AegController {
     summary: "Get Aeg",
   })
   @get()
-  static getAeg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAeg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AegController {
   static createAeg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

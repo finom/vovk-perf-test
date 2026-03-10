@@ -7,10 +7,8 @@ export default class DenController {
     summary: "Get Den",
   })
   @get()
-  static getDen = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDen = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DenController {
   static createDen = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

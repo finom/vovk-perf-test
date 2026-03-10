@@ -7,10 +7,8 @@ export default class FxController {
     summary: "Get Fx",
   })
   @get()
-  static getFx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FxController {
   static createFx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

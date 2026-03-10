@@ -7,10 +7,8 @@ export default class DvnController {
     summary: "Get Dvn",
   })
   @get()
-  static getDvn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDvn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DvnController {
   static createDvn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class VfController {
     summary: "Get Vf",
   })
   @get()
-  static getVf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getVf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class VfController {
   static createVf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

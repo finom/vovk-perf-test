@@ -7,10 +7,8 @@ export default class NssController {
     summary: "Get Nss",
   })
   @get()
-  static getNss = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNss = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NssController {
   static createNss = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

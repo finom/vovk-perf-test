@@ -7,10 +7,8 @@ export default class FsrController {
     summary: "Get Fsr",
   })
   @get()
-  static getFsr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFsr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FsrController {
   static createFsr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

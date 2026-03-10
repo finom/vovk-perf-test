@@ -7,10 +7,8 @@ export default class DdoController {
     summary: "Get Ddo",
   })
   @get()
-  static getDdo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDdo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DdoController {
   static createDdo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class EaxController {
     summary: "Get Eax",
   })
   @get()
-  static getEax = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEax = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EaxController {
   static createEax = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

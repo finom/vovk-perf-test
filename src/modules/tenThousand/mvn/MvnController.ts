@@ -7,10 +7,8 @@ export default class MvnController {
     summary: "Get Mvn",
   })
   @get()
-  static getMvn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMvn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MvnController {
   static createMvn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class FlxController {
     summary: "Get Flx",
   })
   @get()
-  static getFlx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFlx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FlxController {
   static createFlx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

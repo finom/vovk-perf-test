@@ -7,10 +7,8 @@ export default class ExmController {
     summary: "Get Exm",
   })
   @get()
-  static getExm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getExm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ExmController {
   static createExm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

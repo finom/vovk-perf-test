@@ -7,10 +7,8 @@ export default class CjiController {
     summary: "Get Cji",
   })
   @get()
-  static getCji = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCji = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CjiController {
   static createCji = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

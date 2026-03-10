@@ -7,10 +7,8 @@ export default class GruController {
     summary: "Get Gru",
   })
   @get()
-  static getGru = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGru = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GruController {
   static createGru = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

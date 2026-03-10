@@ -7,10 +7,8 @@ export default class CfuController {
     summary: "Get Cfu",
   })
   @get()
-  static getCfu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCfu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CfuController {
   static createCfu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

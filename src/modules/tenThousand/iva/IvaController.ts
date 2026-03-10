@@ -7,10 +7,8 @@ export default class IvaController {
     summary: "Get Iva",
   })
   @get()
-  static getIva = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIva = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IvaController {
   static createIva = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

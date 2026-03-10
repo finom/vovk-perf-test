@@ -7,10 +7,8 @@ export default class BmuController {
     summary: "Get Bmu",
   })
   @get()
-  static getBmu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBmu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BmuController {
   static createBmu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

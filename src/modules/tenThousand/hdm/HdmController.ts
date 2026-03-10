@@ -7,10 +7,8 @@ export default class HdmController {
     summary: "Get Hdm",
   })
   @get()
-  static getHdm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHdm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HdmController {
   static createHdm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

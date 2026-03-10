@@ -7,10 +7,8 @@ export default class IiqController {
     summary: "Get Iiq",
   })
   @get()
-  static getIiq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIiq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IiqController {
   static createIiq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

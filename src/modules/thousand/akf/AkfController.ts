@@ -7,10 +7,8 @@ export default class AkfController {
     summary: "Get Akf",
   })
   @get()
-  static getAkf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAkf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AkfController {
   static createAkf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

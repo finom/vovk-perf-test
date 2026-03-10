@@ -7,10 +7,8 @@ export default class JmcController {
     summary: "Get Jmc",
   })
   @get()
-  static getJmc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJmc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JmcController {
   static createJmc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

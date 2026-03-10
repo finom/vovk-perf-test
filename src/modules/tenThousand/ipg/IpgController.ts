@@ -7,10 +7,8 @@ export default class IpgController {
     summary: "Get Ipg",
   })
   @get()
-  static getIpg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIpg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IpgController {
   static createIpg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

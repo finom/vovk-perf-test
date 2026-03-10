@@ -7,10 +7,8 @@ export default class GxmController {
     summary: "Get Gxm",
   })
   @get()
-  static getGxm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGxm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GxmController {
   static createGxm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

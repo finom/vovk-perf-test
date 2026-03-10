@@ -7,10 +7,8 @@ export default class GqqController {
     summary: "Get Gqq",
   })
   @get()
-  static getGqq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGqq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GqqController {
   static createGqq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

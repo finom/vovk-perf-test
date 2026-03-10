@@ -7,10 +7,8 @@ export default class DinController {
     summary: "Get Din",
   })
   @get()
-  static getDin = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDin = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DinController {
   static createDin = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

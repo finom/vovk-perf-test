@@ -7,10 +7,8 @@ export default class NktController {
     summary: "Get Nkt",
   })
   @get()
-  static getNkt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNkt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NktController {
   static createNkt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class AnjController {
     summary: "Get Anj",
   })
   @get()
-  static getAnj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAnj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AnjController {
   static createAnj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

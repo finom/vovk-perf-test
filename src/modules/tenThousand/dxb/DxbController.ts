@@ -7,10 +7,8 @@ export default class DxbController {
     summary: "Get Dxb",
   })
   @get()
-  static getDxb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDxb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DxbController {
   static createDxb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

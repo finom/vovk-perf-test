@@ -7,10 +7,8 @@ export default class NngController {
     summary: "Get Nng",
   })
   @get()
-  static getNng = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNng = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NngController {
   static createNng = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

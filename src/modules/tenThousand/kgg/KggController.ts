@@ -7,10 +7,8 @@ export default class KggController {
     summary: "Get Kgg",
   })
   @get()
-  static getKgg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKgg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KggController {
   static createKgg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

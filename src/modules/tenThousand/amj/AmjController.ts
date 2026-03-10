@@ -7,10 +7,8 @@ export default class AmjController {
     summary: "Get Amj",
   })
   @get()
-  static getAmj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAmj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AmjController {
   static createAmj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

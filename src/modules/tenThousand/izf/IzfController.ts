@@ -7,10 +7,8 @@ export default class IzfController {
     summary: "Get Izf",
   })
   @get()
-  static getIzf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIzf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IzfController {
   static createIzf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

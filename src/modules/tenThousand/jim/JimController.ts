@@ -7,10 +7,8 @@ export default class JimController {
     summary: "Get Jim",
   })
   @get()
-  static getJim = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJim = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JimController {
   static createJim = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

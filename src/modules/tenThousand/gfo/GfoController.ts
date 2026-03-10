@@ -7,10 +7,8 @@ export default class GfoController {
     summary: "Get Gfo",
   })
   @get()
-  static getGfo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGfo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GfoController {
   static createGfo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

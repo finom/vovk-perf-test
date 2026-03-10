@@ -7,10 +7,8 @@ export default class IltController {
     summary: "Get Ilt",
   })
   @get()
-  static getIlt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIlt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IltController {
   static createIlt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

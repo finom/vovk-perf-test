@@ -7,10 +7,8 @@ export default class CftController {
     summary: "Get Cft",
   })
   @get()
-  static getCft = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCft = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CftController {
   static createCft = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

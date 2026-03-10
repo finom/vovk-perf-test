@@ -7,10 +7,8 @@ export default class LheController {
     summary: "Get Lhe",
   })
   @get()
-  static getLhe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLhe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LheController {
   static createLhe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

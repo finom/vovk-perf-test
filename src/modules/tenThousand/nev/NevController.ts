@@ -7,10 +7,8 @@ export default class NevController {
     summary: "Get Nev",
   })
   @get()
-  static getNev = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNev = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NevController {
   static createNev = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

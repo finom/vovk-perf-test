@@ -7,10 +7,8 @@ export default class BfeController {
     summary: "Get Bfe",
   })
   @get()
-  static getBfe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBfe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BfeController {
   static createBfe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

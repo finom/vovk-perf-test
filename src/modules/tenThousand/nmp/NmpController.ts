@@ -7,10 +7,8 @@ export default class NmpController {
     summary: "Get Nmp",
   })
   @get()
-  static getNmp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNmp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NmpController {
   static createNmp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

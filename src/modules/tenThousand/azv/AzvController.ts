@@ -7,10 +7,8 @@ export default class AzvController {
     summary: "Get Azv",
   })
   @get()
-  static getAzv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAzv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AzvController {
   static createAzv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

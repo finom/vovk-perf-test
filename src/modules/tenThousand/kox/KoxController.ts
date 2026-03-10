@@ -7,10 +7,8 @@ export default class KoxController {
     summary: "Get Kox",
   })
   @get()
-  static getKox = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKox = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KoxController {
   static createKox = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

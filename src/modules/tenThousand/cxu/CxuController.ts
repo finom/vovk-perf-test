@@ -7,10 +7,8 @@ export default class CxuController {
     summary: "Get Cxu",
   })
   @get()
-  static getCxu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCxu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CxuController {
   static createCxu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

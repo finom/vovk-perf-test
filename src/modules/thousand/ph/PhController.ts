@@ -7,10 +7,8 @@ export default class PhController {
     summary: "Get Ph",
   })
   @get()
-  static getPh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getPh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class PhController {
   static createPh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

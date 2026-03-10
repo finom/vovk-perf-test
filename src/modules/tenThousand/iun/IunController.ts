@@ -7,10 +7,8 @@ export default class IunController {
     summary: "Get Iun",
   })
   @get()
-  static getIun = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIun = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IunController {
   static createIun = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

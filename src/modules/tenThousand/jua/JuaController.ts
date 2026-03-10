@@ -7,10 +7,8 @@ export default class JuaController {
     summary: "Get Jua",
   })
   @get()
-  static getJua = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJua = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JuaController {
   static createJua = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

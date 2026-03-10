@@ -7,10 +7,8 @@ export default class NgxController {
     summary: "Get Ngx",
   })
   @get()
-  static getNgx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNgx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NgxController {
   static createNgx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

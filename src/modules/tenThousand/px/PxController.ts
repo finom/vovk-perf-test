@@ -7,10 +7,8 @@ export default class PxController {
     summary: "Get Px",
   })
   @get()
-  static getPx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getPx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class PxController {
   static createPx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

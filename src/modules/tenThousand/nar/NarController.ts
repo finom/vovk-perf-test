@@ -7,10 +7,8 @@ export default class NarController {
     summary: "Get Nar",
   })
   @get()
-  static getNar = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNar = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NarController {
   static createNar = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

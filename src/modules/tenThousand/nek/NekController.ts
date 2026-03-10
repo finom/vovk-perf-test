@@ -7,10 +7,8 @@ export default class NekController {
     summary: "Get Nek",
   })
   @get()
-  static getNek = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNek = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NekController {
   static createNek = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

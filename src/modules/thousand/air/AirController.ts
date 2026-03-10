@@ -7,10 +7,8 @@ export default class AirController {
     summary: "Get Air",
   })
   @get()
-  static getAir = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAir = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AirController {
   static createAir = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

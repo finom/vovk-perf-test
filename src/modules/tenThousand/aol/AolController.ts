@@ -7,10 +7,8 @@ export default class AolController {
     summary: "Get Aol",
   })
   @get()
-  static getAol = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAol = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AolController {
   static createAol = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

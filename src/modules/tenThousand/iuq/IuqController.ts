@@ -7,10 +7,8 @@ export default class IuqController {
     summary: "Get Iuq",
   })
   @get()
-  static getIuq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIuq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IuqController {
   static createIuq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

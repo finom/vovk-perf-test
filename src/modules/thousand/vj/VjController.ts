@@ -7,10 +7,8 @@ export default class VjController {
     summary: "Get Vj",
   })
   @get()
-  static getVj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getVj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class VjController {
   static createVj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

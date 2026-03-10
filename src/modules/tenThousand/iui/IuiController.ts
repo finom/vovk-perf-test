@@ -7,10 +7,8 @@ export default class IuiController {
     summary: "Get Iui",
   })
   @get()
-  static getIui = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIui = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IuiController {
   static createIui = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

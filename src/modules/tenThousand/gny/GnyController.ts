@@ -7,10 +7,8 @@ export default class GnyController {
     summary: "Get Gny",
   })
   @get()
-  static getGny = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGny = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GnyController {
   static createGny = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

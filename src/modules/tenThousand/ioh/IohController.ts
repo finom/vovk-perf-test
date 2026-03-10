@@ -7,10 +7,8 @@ export default class IohController {
     summary: "Get Ioh",
   })
   @get()
-  static getIoh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIoh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IohController {
   static createIoh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class CaxController {
     summary: "Get Cax",
   })
   @get()
-  static getCax = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCax = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CaxController {
   static createCax = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

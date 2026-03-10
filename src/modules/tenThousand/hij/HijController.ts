@@ -7,10 +7,8 @@ export default class HijController {
     summary: "Get Hij",
   })
   @get()
-  static getHij = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHij = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HijController {
   static createHij = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

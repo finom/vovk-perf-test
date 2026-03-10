@@ -7,10 +7,8 @@ export default class PvController {
     summary: "Get Pv",
   })
   @get()
-  static getPv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getPv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class PvController {
   static createPv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

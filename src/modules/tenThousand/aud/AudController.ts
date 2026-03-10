@@ -7,10 +7,8 @@ export default class AudController {
     summary: "Get Aud",
   })
   @get()
-  static getAud = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAud = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AudController {
   static createAud = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

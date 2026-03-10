@@ -7,10 +7,8 @@ export default class BfnController {
     summary: "Get Bfn",
   })
   @get()
-  static getBfn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBfn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BfnController {
   static createBfn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

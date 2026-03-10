@@ -7,10 +7,8 @@ export default class GotController {
     summary: "Get Got",
   })
   @get()
-  static getGot = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGot = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GotController {
   static createGot = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

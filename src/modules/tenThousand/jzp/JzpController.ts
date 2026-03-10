@@ -7,10 +7,8 @@ export default class JzpController {
     summary: "Get Jzp",
   })
   @get()
-  static getJzp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJzp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JzpController {
   static createJzp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

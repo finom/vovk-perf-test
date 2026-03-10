@@ -7,10 +7,8 @@ export default class AyqController {
     summary: "Get Ayq",
   })
   @get()
-  static getAyq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAyq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AyqController {
   static createAyq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

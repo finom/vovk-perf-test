@@ -7,10 +7,8 @@ export default class AlyController {
     summary: "Get Aly",
   })
   @get()
-  static getAly = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAly = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AlyController {
   static createAly = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

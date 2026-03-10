@@ -7,10 +7,8 @@ export default class HraController {
     summary: "Get Hra",
   })
   @get()
-  static getHra = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHra = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HraController {
   static createHra = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

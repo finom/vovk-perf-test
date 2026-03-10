@@ -7,10 +7,8 @@ export default class DqqController {
     summary: "Get Dqq",
   })
   @get()
-  static getDqq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDqq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DqqController {
   static createDqq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

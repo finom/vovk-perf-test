@@ -7,10 +7,8 @@ export default class LewController {
     summary: "Get Lew",
   })
   @get()
-  static getLew = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLew = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LewController {
   static createLew = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

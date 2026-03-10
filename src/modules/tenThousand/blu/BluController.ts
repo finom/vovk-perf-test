@@ -7,10 +7,8 @@ export default class BluController {
     summary: "Get Blu",
   })
   @get()
-  static getBlu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBlu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BluController {
   static createBlu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

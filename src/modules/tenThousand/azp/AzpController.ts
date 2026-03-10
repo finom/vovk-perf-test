@@ -7,10 +7,8 @@ export default class AzpController {
     summary: "Get Azp",
   })
   @get()
-  static getAzp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAzp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AzpController {
   static createAzp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

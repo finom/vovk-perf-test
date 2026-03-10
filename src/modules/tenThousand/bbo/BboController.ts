@@ -7,10 +7,8 @@ export default class BboController {
     summary: "Get Bbo",
   })
   @get()
-  static getBbo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBbo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BboController {
   static createBbo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

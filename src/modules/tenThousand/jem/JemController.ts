@@ -7,10 +7,8 @@ export default class JemController {
     summary: "Get Jem",
   })
   @get()
-  static getJem = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJem = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JemController {
   static createJem = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

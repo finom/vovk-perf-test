@@ -7,10 +7,8 @@ export default class FwkController {
     summary: "Get Fwk",
   })
   @get()
-  static getFwk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFwk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FwkController {
   static createFwk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

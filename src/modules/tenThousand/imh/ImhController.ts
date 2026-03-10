@@ -7,10 +7,8 @@ export default class ImhController {
     summary: "Get Imh",
   })
   @get()
-  static getImh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getImh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ImhController {
   static createImh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

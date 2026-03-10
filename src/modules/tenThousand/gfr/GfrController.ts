@@ -7,10 +7,8 @@ export default class GfrController {
     summary: "Get Gfr",
   })
   @get()
-  static getGfr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGfr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GfrController {
   static createGfr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

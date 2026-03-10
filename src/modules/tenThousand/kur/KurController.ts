@@ -7,10 +7,8 @@ export default class KurController {
     summary: "Get Kur",
   })
   @get()
-  static getKur = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKur = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KurController {
   static createKur = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

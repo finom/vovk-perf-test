@@ -7,10 +7,8 @@ export default class CpmController {
     summary: "Get Cpm",
   })
   @get()
-  static getCpm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCpm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CpmController {
   static createCpm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

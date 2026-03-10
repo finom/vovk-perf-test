@@ -7,10 +7,8 @@ export default class DwjController {
     summary: "Get Dwj",
   })
   @get()
-  static getDwj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDwj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DwjController {
   static createDwj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

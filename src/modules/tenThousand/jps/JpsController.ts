@@ -7,10 +7,8 @@ export default class JpsController {
     summary: "Get Jps",
   })
   @get()
-  static getJps = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJps = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JpsController {
   static createJps = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

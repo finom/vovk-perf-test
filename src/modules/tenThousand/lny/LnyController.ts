@@ -7,10 +7,8 @@ export default class LnyController {
     summary: "Get Lny",
   })
   @get()
-  static getLny = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLny = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LnyController {
   static createLny = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

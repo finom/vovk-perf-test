@@ -7,10 +7,8 @@ export default class CnlController {
     summary: "Get Cnl",
   })
   @get()
-  static getCnl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCnl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CnlController {
   static createCnl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

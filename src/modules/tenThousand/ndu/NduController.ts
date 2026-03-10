@@ -7,10 +7,8 @@ export default class NduController {
     summary: "Get Ndu",
   })
   @get()
-  static getNdu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNdu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NduController {
   static createNdu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

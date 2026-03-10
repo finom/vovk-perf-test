@@ -7,10 +7,8 @@ export default class GwkController {
     summary: "Get Gwk",
   })
   @get()
-  static getGwk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGwk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GwkController {
   static createGwk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

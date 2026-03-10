@@ -7,10 +7,8 @@ export default class KnpController {
     summary: "Get Knp",
   })
   @get()
-  static getKnp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKnp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KnpController {
   static createKnp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

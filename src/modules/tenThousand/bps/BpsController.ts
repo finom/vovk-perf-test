@@ -7,10 +7,8 @@ export default class BpsController {
     summary: "Get Bps",
   })
   @get()
-  static getBps = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBps = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BpsController {
   static createBps = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

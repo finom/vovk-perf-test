@@ -7,10 +7,8 @@ export default class LceController {
     summary: "Get Lce",
   })
   @get()
-  static getLce = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLce = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LceController {
   static createLce = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

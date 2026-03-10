@@ -7,10 +7,8 @@ export default class DotController {
     summary: "Get Dot",
   })
   @get()
-  static getDot = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDot = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DotController {
   static createDot = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

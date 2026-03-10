@@ -7,10 +7,8 @@ export default class EkfController {
     summary: "Get Ekf",
   })
   @get()
-  static getEkf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEkf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EkfController {
   static createEkf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

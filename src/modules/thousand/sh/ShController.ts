@@ -7,10 +7,8 @@ export default class ShController {
     summary: "Get Sh",
   })
   @get()
-  static getSh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getSh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ShController {
   static createSh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

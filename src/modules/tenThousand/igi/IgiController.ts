@@ -7,10 +7,8 @@ export default class IgiController {
     summary: "Get Igi",
   })
   @get()
-  static getIgi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIgi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IgiController {
   static createIgi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

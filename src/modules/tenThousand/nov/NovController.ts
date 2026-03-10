@@ -7,10 +7,8 @@ export default class NovController {
     summary: "Get Nov",
   })
   @get()
-  static getNov = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNov = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NovController {
   static createNov = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

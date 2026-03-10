@@ -7,10 +7,8 @@ export default class DvfController {
     summary: "Get Dvf",
   })
   @get()
-  static getDvf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDvf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DvfController {
   static createDvf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

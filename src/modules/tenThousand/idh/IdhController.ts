@@ -7,10 +7,8 @@ export default class IdhController {
     summary: "Get Idh",
   })
   @get()
-  static getIdh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIdh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IdhController {
   static createIdh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

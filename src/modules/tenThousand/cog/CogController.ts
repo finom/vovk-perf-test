@@ -7,10 +7,8 @@ export default class CogController {
     summary: "Get Cog",
   })
   @get()
-  static getCog = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCog = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CogController {
   static createCog = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

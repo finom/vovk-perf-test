@@ -7,10 +7,8 @@ export default class FpiController {
     summary: "Get Fpi",
   })
   @get()
-  static getFpi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFpi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FpiController {
   static createFpi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class BefController {
     summary: "Get Bef",
   })
   @get()
-  static getBef = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBef = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BefController {
   static createBef = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

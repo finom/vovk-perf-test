@@ -7,10 +7,8 @@ export default class EyuController {
     summary: "Get Eyu",
   })
   @get()
-  static getEyu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEyu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EyuController {
   static createEyu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

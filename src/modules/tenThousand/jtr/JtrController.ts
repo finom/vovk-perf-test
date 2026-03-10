@@ -7,10 +7,8 @@ export default class JtrController {
     summary: "Get Jtr",
   })
   @get()
-  static getJtr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJtr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JtrController {
   static createJtr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

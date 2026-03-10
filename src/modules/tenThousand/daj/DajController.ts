@@ -7,10 +7,8 @@ export default class DajController {
     summary: "Get Daj",
   })
   @get()
-  static getDaj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDaj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DajController {
   static createDaj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

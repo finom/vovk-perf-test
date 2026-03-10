@@ -7,10 +7,8 @@ export default class PkController {
     summary: "Get Pk",
   })
   @get()
-  static getPk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getPk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class PkController {
   static createPk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

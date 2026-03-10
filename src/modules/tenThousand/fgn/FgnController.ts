@@ -7,10 +7,8 @@ export default class FgnController {
     summary: "Get Fgn",
   })
   @get()
-  static getFgn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFgn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FgnController {
   static createFgn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

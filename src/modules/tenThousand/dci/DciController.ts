@@ -7,10 +7,8 @@ export default class DciController {
     summary: "Get Dci",
   })
   @get()
-  static getDci = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDci = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DciController {
   static createDci = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

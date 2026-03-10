@@ -7,10 +7,8 @@ export default class DxyController {
     summary: "Get Dxy",
   })
   @get()
-  static getDxy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDxy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DxyController {
   static createDxy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

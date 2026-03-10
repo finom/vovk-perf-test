@@ -7,10 +7,8 @@ export default class AflController {
     summary: "Get Afl",
   })
   @get()
-  static getAfl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAfl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AflController {
   static createAfl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

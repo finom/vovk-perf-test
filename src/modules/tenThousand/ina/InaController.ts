@@ -7,10 +7,8 @@ export default class InaController {
     summary: "Get Ina",
   })
   @get()
-  static getIna = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIna = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class InaController {
   static createIna = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

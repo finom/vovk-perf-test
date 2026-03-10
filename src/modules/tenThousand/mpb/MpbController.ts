@@ -7,10 +7,8 @@ export default class MpbController {
     summary: "Get Mpb",
   })
   @get()
-  static getMpb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMpb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MpbController {
   static createMpb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

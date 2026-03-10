@@ -7,10 +7,8 @@ export default class AukController {
     summary: "Get Auk",
   })
   @get()
-  static getAuk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAuk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AukController {
   static createAuk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

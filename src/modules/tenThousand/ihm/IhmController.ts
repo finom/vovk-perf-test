@@ -7,10 +7,8 @@ export default class IhmController {
     summary: "Get Ihm",
   })
   @get()
-  static getIhm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIhm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IhmController {
   static createIhm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

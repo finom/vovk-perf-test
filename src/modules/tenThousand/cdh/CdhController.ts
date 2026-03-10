@@ -7,10 +7,8 @@ export default class CdhController {
     summary: "Get Cdh",
   })
   @get()
-  static getCdh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCdh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CdhController {
   static createCdh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

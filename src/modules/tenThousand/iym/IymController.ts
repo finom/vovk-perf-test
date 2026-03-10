@@ -7,10 +7,8 @@ export default class IymController {
     summary: "Get Iym",
   })
   @get()
-  static getIym = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIym = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IymController {
   static createIym = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

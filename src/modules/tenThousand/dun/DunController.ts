@@ -7,10 +7,8 @@ export default class DunController {
     summary: "Get Dun",
   })
   @get()
-  static getDun = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDun = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DunController {
   static createDun = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

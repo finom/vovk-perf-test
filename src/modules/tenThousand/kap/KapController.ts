@@ -7,10 +7,8 @@ export default class KapController {
     summary: "Get Kap",
   })
   @get()
-  static getKap = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKap = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KapController {
   static createKap = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

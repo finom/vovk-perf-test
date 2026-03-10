@@ -7,10 +7,8 @@ export default class CxfController {
     summary: "Get Cxf",
   })
   @get()
-  static getCxf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCxf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CxfController {
   static createCxf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

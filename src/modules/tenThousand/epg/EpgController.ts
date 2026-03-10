@@ -7,10 +7,8 @@ export default class EpgController {
     summary: "Get Epg",
   })
   @get()
-  static getEpg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEpg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EpgController {
   static createEpg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

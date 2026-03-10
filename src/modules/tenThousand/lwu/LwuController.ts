@@ -7,10 +7,8 @@ export default class LwuController {
     summary: "Get Lwu",
   })
   @get()
-  static getLwu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLwu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LwuController {
   static createLwu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class GanController {
     summary: "Get Gan",
   })
   @get()
-  static getGan = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGan = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GanController {
   static createGan = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

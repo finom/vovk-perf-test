@@ -7,10 +7,8 @@ export default class InfController {
     summary: "Get Inf",
   })
   @get()
-  static getInf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getInf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class InfController {
   static createInf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class FtwController {
     summary: "Get Ftw",
   })
   @get()
-  static getFtw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFtw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FtwController {
   static createFtw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

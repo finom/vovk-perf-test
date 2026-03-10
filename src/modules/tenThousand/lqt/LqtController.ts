@@ -7,10 +7,8 @@ export default class LqtController {
     summary: "Get Lqt",
   })
   @get()
-  static getLqt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLqt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LqtController {
   static createLqt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class KtuController {
     summary: "Get Ktu",
   })
   @get()
-  static getKtu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKtu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KtuController {
   static createKtu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

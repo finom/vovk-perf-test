@@ -7,10 +7,8 @@ export default class GrkController {
     summary: "Get Grk",
   })
   @get()
-  static getGrk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGrk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GrkController {
   static createGrk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

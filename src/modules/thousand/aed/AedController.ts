@@ -7,10 +7,8 @@ export default class AedController {
     summary: "Get Aed",
   })
   @get()
-  static getAed = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAed = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AedController {
   static createAed = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

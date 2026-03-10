@@ -7,10 +7,8 @@ export default class LsiController {
     summary: "Get Lsi",
   })
   @get()
-  static getLsi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLsi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LsiController {
   static createLsi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

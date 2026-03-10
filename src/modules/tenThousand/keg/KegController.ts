@@ -7,10 +7,8 @@ export default class KegController {
     summary: "Get Keg",
   })
   @get()
-  static getKeg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKeg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KegController {
   static createKeg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

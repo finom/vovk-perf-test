@@ -7,10 +7,8 @@ export default class MnqController {
     summary: "Get Mnq",
   })
   @get()
-  static getMnq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMnq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MnqController {
   static createMnq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

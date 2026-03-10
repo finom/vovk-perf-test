@@ -7,10 +7,8 @@ export default class CdlController {
     summary: "Get Cdl",
   })
   @get()
-  static getCdl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCdl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CdlController {
   static createCdl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class BpxController {
     summary: "Get Bpx",
   })
   @get()
-  static getBpx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBpx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BpxController {
   static createBpx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

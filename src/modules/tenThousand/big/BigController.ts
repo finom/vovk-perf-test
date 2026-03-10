@@ -7,10 +7,8 @@ export default class BigController {
     summary: "Get Big",
   })
   @get()
-  static getBig = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBig = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BigController {
   static createBig = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

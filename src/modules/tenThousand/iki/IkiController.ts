@@ -7,10 +7,8 @@ export default class IkiController {
     summary: "Get Iki",
   })
   @get()
-  static getIki = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIki = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IkiController {
   static createIki = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

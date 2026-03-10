@@ -7,10 +7,8 @@ export default class IabController {
     summary: "Get Iab",
   })
   @get()
-  static getIab = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIab = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IabController {
   static createIab = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

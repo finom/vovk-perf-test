@@ -7,10 +7,8 @@ export default class AdrController {
     summary: "Get Adr",
   })
   @get()
-  static getAdr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAdr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AdrController {
   static createAdr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

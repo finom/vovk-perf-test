@@ -7,10 +7,8 @@ export default class FieController {
     summary: "Get Fie",
   })
   @get()
-  static getFie = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFie = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FieController {
   static createFie = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

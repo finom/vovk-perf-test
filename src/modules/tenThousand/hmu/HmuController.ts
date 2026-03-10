@@ -7,10 +7,8 @@ export default class HmuController {
     summary: "Get Hmu",
   })
   @get()
-  static getHmu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHmu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HmuController {
   static createHmu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class EulController {
     summary: "Get Eul",
   })
   @get()
-  static getEul = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEul = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EulController {
   static createEul = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

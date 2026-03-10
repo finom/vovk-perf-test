@@ -7,10 +7,8 @@ export default class DemController {
     summary: "Get Dem",
   })
   @get()
-  static getDem = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDem = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DemController {
   static createDem = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

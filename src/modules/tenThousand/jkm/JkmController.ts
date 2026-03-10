@@ -7,10 +7,8 @@ export default class JkmController {
     summary: "Get Jkm",
   })
   @get()
-  static getJkm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJkm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JkmController {
   static createJkm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

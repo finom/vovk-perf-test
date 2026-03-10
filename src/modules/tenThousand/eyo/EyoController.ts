@@ -7,10 +7,8 @@ export default class EyoController {
     summary: "Get Eyo",
   })
   @get()
-  static getEyo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEyo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EyoController {
   static createEyo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

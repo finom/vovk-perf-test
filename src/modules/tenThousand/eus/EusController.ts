@@ -7,10 +7,8 @@ export default class EusController {
     summary: "Get Eus",
   })
   @get()
-  static getEus = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEus = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EusController {
   static createEus = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

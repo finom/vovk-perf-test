@@ -7,10 +7,8 @@ export default class EcyController {
     summary: "Get Ecy",
   })
   @get()
-  static getEcy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEcy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EcyController {
   static createEcy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

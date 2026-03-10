@@ -7,10 +7,8 @@ export default class SlController {
     summary: "Get Sl",
   })
   @get()
-  static getSl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getSl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class SlController {
   static createSl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

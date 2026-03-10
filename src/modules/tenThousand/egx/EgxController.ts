@@ -7,10 +7,8 @@ export default class EgxController {
     summary: "Get Egx",
   })
   @get()
-  static getEgx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEgx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EgxController {
   static createEgx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

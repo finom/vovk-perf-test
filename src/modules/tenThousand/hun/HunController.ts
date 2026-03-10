@@ -7,10 +7,8 @@ export default class HunController {
     summary: "Get Hun",
   })
   @get()
-  static getHun = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHun = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HunController {
   static createHun = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class KmqController {
     summary: "Get Kmq",
   })
   @get()
-  static getKmq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKmq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KmqController {
   static createKmq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

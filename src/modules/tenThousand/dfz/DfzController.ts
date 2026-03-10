@@ -7,10 +7,8 @@ export default class DfzController {
     summary: "Get Dfz",
   })
   @get()
-  static getDfz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDfz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DfzController {
   static createDfz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class MfeController {
     summary: "Get Mfe",
   })
   @get()
-  static getMfe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMfe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MfeController {
   static createMfe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

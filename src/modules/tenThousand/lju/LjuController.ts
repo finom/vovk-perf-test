@@ -7,10 +7,8 @@ export default class LjuController {
     summary: "Get Lju",
   })
   @get()
-  static getLju = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLju = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LjuController {
   static createLju = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

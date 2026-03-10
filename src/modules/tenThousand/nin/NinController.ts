@@ -7,10 +7,8 @@ export default class NinController {
     summary: "Get Nin",
   })
   @get()
-  static getNin = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNin = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NinController {
   static createNin = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

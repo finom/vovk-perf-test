@@ -7,10 +7,8 @@ export default class KarController {
     summary: "Get Kar",
   })
   @get()
-  static getKar = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKar = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KarController {
   static createKar = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class KdvController {
     summary: "Get Kdv",
   })
   @get()
-  static getKdv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKdv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KdvController {
   static createKdv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

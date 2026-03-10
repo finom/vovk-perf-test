@@ -7,10 +7,8 @@ export default class HokController {
     summary: "Get Hok",
   })
   @get()
-  static getHok = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHok = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HokController {
   static createHok = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

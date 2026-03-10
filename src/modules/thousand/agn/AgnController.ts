@@ -7,10 +7,8 @@ export default class AgnController {
     summary: "Get Agn",
   })
   @get()
-  static getAgn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAgn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AgnController {
   static createAgn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class EgyController {
     summary: "Get Egy",
   })
   @get()
-  static getEgy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEgy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EgyController {
   static createEgy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

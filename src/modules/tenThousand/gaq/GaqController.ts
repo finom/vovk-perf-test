@@ -7,10 +7,8 @@ export default class GaqController {
     summary: "Get Gaq",
   })
   @get()
-  static getGaq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGaq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GaqController {
   static createGaq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

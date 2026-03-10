@@ -7,10 +7,8 @@ export default class MafController {
     summary: "Get Maf",
   })
   @get()
-  static getMaf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMaf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MafController {
   static createMaf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

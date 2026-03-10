@@ -7,10 +7,8 @@ export default class EdwController {
     summary: "Get Edw",
   })
   @get()
-  static getEdw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEdw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EdwController {
   static createEdw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

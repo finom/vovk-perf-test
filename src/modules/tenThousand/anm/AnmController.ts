@@ -7,10 +7,8 @@ export default class AnmController {
     summary: "Get Anm",
   })
   @get()
-  static getAnm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAnm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AnmController {
   static createAnm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

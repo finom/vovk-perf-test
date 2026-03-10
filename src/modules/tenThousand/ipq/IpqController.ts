@@ -7,10 +7,8 @@ export default class IpqController {
     summary: "Get Ipq",
   })
   @get()
-  static getIpq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIpq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IpqController {
   static createIpq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

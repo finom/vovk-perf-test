@@ -7,10 +7,8 @@ export default class CpyController {
     summary: "Get Cpy",
   })
   @get()
-  static getCpy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCpy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CpyController {
   static createCpy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

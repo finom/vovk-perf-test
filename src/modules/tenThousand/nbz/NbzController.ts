@@ -7,10 +7,8 @@ export default class NbzController {
     summary: "Get Nbz",
   })
   @get()
-  static getNbz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNbz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NbzController {
   static createNbz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

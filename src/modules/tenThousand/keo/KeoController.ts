@@ -7,10 +7,8 @@ export default class KeoController {
     summary: "Get Keo",
   })
   @get()
-  static getKeo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKeo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KeoController {
   static createKeo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

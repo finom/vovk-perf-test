@@ -7,10 +7,8 @@ export default class DejController {
     summary: "Get Dej",
   })
   @get()
-  static getDej = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDej = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DejController {
   static createDej = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class GvmController {
     summary: "Get Gvm",
   })
   @get()
-  static getGvm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGvm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GvmController {
   static createGvm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

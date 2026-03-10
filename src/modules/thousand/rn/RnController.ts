@@ -7,10 +7,8 @@ export default class RnController {
     summary: "Get Rn",
   })
   @get()
-  static getRn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getRn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class RnController {
   static createRn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

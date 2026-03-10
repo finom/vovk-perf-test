@@ -7,10 +7,8 @@ export default class MozController {
     summary: "Get Moz",
   })
   @get()
-  static getMoz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMoz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MozController {
   static createMoz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class ApeController {
     summary: "Get Ape",
   })
   @get()
-  static getApe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getApe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ApeController {
   static createApe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class BpvController {
     summary: "Get Bpv",
   })
   @get()
-  static getBpv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBpv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BpvController {
   static createBpv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

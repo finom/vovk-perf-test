@@ -7,10 +7,8 @@ export default class CtmController {
     summary: "Get Ctm",
   })
   @get()
-  static getCtm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCtm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CtmController {
   static createCtm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

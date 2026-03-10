@@ -7,10 +7,8 @@ export default class MicController {
     summary: "Get Mic",
   })
   @get()
-  static getMic = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMic = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MicController {
   static createMic = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

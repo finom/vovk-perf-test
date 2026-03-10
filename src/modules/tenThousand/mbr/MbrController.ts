@@ -7,10 +7,8 @@ export default class MbrController {
     summary: "Get Mbr",
   })
   @get()
-  static getMbr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMbr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MbrController {
   static createMbr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

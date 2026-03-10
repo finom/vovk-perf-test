@@ -7,10 +7,8 @@ export default class HznController {
     summary: "Get Hzn",
   })
   @get()
-  static getHzn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHzn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HznController {
   static createHzn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

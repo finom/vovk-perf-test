@@ -7,10 +7,8 @@ export default class GmqController {
     summary: "Get Gmq",
   })
   @get()
-  static getGmq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGmq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GmqController {
   static createGmq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

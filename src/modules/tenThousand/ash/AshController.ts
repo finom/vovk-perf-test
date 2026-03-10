@@ -7,10 +7,8 @@ export default class AshController {
     summary: "Get Ash",
   })
   @get()
-  static getAsh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAsh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AshController {
   static createAsh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

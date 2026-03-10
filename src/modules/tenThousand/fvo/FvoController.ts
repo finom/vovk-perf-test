@@ -7,10 +7,8 @@ export default class FvoController {
     summary: "Get Fvo",
   })
   @get()
-  static getFvo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFvo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FvoController {
   static createFvo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

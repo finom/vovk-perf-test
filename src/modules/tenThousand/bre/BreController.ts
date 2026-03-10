@@ -7,10 +7,8 @@ export default class BreController {
     summary: "Get Bre",
   })
   @get()
-  static getBre = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBre = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BreController {
   static createBre = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

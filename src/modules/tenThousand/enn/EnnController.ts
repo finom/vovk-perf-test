@@ -7,10 +7,8 @@ export default class EnnController {
     summary: "Get Enn",
   })
   @get()
-  static getEnn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEnn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EnnController {
   static createEnn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

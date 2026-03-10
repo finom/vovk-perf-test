@@ -7,10 +7,8 @@ export default class AcpController {
     summary: "Get Acp",
   })
   @get()
-  static getAcp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAcp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AcpController {
   static createAcp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

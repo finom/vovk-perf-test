@@ -7,10 +7,8 @@ export default class LigController {
     summary: "Get Lig",
   })
   @get()
-  static getLig = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLig = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LigController {
   static createLig = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

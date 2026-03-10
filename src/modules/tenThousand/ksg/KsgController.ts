@@ -7,10 +7,8 @@ export default class KsgController {
     summary: "Get Ksg",
   })
   @get()
-  static getKsg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKsg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KsgController {
   static createKsg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

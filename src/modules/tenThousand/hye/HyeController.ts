@@ -7,10 +7,8 @@ export default class HyeController {
     summary: "Get Hye",
   })
   @get()
-  static getHye = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHye = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HyeController {
   static createHye = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

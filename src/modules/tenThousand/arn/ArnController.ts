@@ -7,10 +7,8 @@ export default class ArnController {
     summary: "Get Arn",
   })
   @get()
-  static getArn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getArn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ArnController {
   static createArn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

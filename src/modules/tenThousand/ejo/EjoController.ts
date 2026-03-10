@@ -7,10 +7,8 @@ export default class EjoController {
     summary: "Get Ejo",
   })
   @get()
-  static getEjo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEjo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EjoController {
   static createEjo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

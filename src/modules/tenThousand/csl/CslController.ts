@@ -7,10 +7,8 @@ export default class CslController {
     summary: "Get Csl",
   })
   @get()
-  static getCsl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCsl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CslController {
   static createCsl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

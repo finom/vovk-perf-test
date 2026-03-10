@@ -7,10 +7,8 @@ export default class AstController {
     summary: "Get Ast",
   })
   @get()
-  static getAst = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAst = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AstController {
   static createAst = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

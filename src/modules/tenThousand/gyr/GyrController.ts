@@ -7,10 +7,8 @@ export default class GyrController {
     summary: "Get Gyr",
   })
   @get()
-  static getGyr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGyr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GyrController {
   static createGyr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

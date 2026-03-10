@@ -7,10 +7,8 @@ export default class MaqController {
     summary: "Get Maq",
   })
   @get()
-  static getMaq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMaq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MaqController {
   static createMaq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

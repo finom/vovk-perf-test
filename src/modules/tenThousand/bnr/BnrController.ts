@@ -7,10 +7,8 @@ export default class BnrController {
     summary: "Get Bnr",
   })
   @get()
-  static getBnr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBnr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BnrController {
   static createBnr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class NldController {
     summary: "Get Nld",
   })
   @get()
-  static getNld = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNld = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NldController {
   static createNld = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

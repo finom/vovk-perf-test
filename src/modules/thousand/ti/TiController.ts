@@ -7,10 +7,8 @@ export default class TiController {
     summary: "Get Ti",
   })
   @get()
-  static getTi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getTi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class TiController {
   static createTi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

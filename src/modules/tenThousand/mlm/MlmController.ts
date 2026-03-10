@@ -7,10 +7,8 @@ export default class MlmController {
     summary: "Get Mlm",
   })
   @get()
-  static getMlm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMlm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MlmController {
   static createMlm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

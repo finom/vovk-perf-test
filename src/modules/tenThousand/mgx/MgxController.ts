@@ -7,10 +7,8 @@ export default class MgxController {
     summary: "Get Mgx",
   })
   @get()
-  static getMgx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMgx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MgxController {
   static createMgx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

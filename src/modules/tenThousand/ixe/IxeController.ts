@@ -7,10 +7,8 @@ export default class IxeController {
     summary: "Get Ixe",
   })
   @get()
-  static getIxe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIxe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IxeController {
   static createIxe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

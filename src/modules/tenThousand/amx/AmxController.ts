@@ -7,10 +7,8 @@ export default class AmxController {
     summary: "Get Amx",
   })
   @get()
-  static getAmx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAmx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AmxController {
   static createAmx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

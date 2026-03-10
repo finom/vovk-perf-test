@@ -7,10 +7,8 @@ export default class DksController {
     summary: "Get Dks",
   })
   @get()
-  static getDks = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDks = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DksController {
   static createDks = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

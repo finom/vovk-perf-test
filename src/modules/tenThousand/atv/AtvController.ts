@@ -7,10 +7,8 @@ export default class AtvController {
     summary: "Get Atv",
   })
   @get()
-  static getAtv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAtv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AtvController {
   static createAtv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

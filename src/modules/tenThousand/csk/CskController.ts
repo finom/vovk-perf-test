@@ -7,10 +7,8 @@ export default class CskController {
     summary: "Get Csk",
   })
   @get()
-  static getCsk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCsk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CskController {
   static createCsk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

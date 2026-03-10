@@ -7,10 +7,8 @@ export default class KjoController {
     summary: "Get Kjo",
   })
   @get()
-  static getKjo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKjo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KjoController {
   static createKjo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

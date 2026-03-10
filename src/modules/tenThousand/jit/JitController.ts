@@ -7,10 +7,8 @@ export default class JitController {
     summary: "Get Jit",
   })
   @get()
-  static getJit = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJit = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JitController {
   static createJit = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

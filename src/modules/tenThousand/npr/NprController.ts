@@ -7,10 +7,8 @@ export default class NprController {
     summary: "Get Npr",
   })
   @get()
-  static getNpr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNpr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NprController {
   static createNpr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

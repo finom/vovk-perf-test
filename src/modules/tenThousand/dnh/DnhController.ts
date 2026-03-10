@@ -7,10 +7,8 @@ export default class DnhController {
     summary: "Get Dnh",
   })
   @get()
-  static getDnh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDnh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DnhController {
   static createDnh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

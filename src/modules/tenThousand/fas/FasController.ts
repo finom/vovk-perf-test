@@ -7,10 +7,8 @@ export default class FasController {
     summary: "Get Fas",
   })
   @get()
-  static getFas = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFas = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FasController {
   static createFas = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

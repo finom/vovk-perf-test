@@ -7,10 +7,8 @@ export default class DtqController {
     summary: "Get Dtq",
   })
   @get()
-  static getDtq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDtq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DtqController {
   static createDtq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

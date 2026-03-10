@@ -7,10 +7,8 @@ export default class DeeController {
     summary: "Get Dee",
   })
   @get()
-  static getDee = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDee = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DeeController {
   static createDee = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

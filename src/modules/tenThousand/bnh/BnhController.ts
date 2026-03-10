@@ -7,10 +7,8 @@ export default class BnhController {
     summary: "Get Bnh",
   })
   @get()
-  static getBnh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBnh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BnhController {
   static createBnh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

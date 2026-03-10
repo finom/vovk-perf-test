@@ -7,10 +7,8 @@ export default class AigController {
     summary: "Get Aig",
   })
   @get()
-  static getAig = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAig = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AigController {
   static createAig = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

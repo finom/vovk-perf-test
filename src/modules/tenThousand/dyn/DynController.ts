@@ -7,10 +7,8 @@ export default class DynController {
     summary: "Get Dyn",
   })
   @get()
-  static getDyn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDyn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DynController {
   static createDyn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

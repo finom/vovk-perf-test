@@ -7,10 +7,8 @@ export default class GnuController {
     summary: "Get Gnu",
   })
   @get()
-  static getGnu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGnu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GnuController {
   static createGnu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

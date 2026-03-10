@@ -7,10 +7,8 @@ export default class AxuController {
     summary: "Get Axu",
   })
   @get()
-  static getAxu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAxu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AxuController {
   static createAxu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class KioController {
     summary: "Get Kio",
   })
   @get()
-  static getKio = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKio = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KioController {
   static createKio = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

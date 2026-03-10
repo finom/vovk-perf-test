@@ -7,10 +7,8 @@ export default class BvyController {
     summary: "Get Bvy",
   })
   @get()
-  static getBvy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBvy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BvyController {
   static createBvy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

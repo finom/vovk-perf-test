@@ -7,10 +7,8 @@ export default class IlwController {
     summary: "Get Ilw",
   })
   @get()
-  static getIlw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIlw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IlwController {
   static createIlw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

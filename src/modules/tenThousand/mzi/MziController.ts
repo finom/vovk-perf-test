@@ -7,10 +7,8 @@ export default class MziController {
     summary: "Get Mzi",
   })
   @get()
-  static getMzi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMzi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MziController {
   static createMzi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class HzmController {
     summary: "Get Hzm",
   })
   @get()
-  static getHzm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHzm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HzmController {
   static createHzm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

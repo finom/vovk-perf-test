@@ -7,10 +7,8 @@ export default class NkfController {
     summary: "Get Nkf",
   })
   @get()
-  static getNkf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNkf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NkfController {
   static createNkf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

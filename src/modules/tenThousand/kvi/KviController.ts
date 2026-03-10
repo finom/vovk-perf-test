@@ -7,10 +7,8 @@ export default class KviController {
     summary: "Get Kvi",
   })
   @get()
-  static getKvi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKvi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KviController {
   static createKvi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

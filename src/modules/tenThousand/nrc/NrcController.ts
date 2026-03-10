@@ -7,10 +7,8 @@ export default class NrcController {
     summary: "Get Nrc",
   })
   @get()
-  static getNrc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNrc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NrcController {
   static createNrc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

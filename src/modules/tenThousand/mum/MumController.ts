@@ -7,10 +7,8 @@ export default class MumController {
     summary: "Get Mum",
   })
   @get()
-  static getMum = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMum = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MumController {
   static createMum = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

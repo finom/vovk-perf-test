@@ -7,10 +7,8 @@ export default class DztController {
     summary: "Get Dzt",
   })
   @get()
-  static getDzt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDzt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DztController {
   static createDzt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

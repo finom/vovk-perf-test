@@ -7,10 +7,8 @@ export default class GalController {
     summary: "Get Gal",
   })
   @get()
-  static getGal = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGal = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GalController {
   static createGal = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

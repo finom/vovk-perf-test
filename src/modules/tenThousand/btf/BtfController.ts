@@ -7,10 +7,8 @@ export default class BtfController {
     summary: "Get Btf",
   })
   @get()
-  static getBtf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBtf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BtfController {
   static createBtf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

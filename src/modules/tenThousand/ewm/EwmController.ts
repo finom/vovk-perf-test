@@ -7,10 +7,8 @@ export default class EwmController {
     summary: "Get Ewm",
   })
   @get()
-  static getEwm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEwm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EwmController {
   static createEwm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

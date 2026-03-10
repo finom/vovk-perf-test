@@ -7,10 +7,8 @@ export default class AtfController {
     summary: "Get Atf",
   })
   @get()
-  static getAtf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAtf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AtfController {
   static createAtf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

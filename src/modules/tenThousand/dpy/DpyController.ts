@@ -7,10 +7,8 @@ export default class DpyController {
     summary: "Get Dpy",
   })
   @get()
-  static getDpy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDpy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DpyController {
   static createDpy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

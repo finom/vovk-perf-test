@@ -7,10 +7,8 @@ export default class NkhController {
     summary: "Get Nkh",
   })
   @get()
-  static getNkh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNkh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NkhController {
   static createNkh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

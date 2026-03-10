@@ -7,10 +7,8 @@ export default class EyiController {
     summary: "Get Eyi",
   })
   @get()
-  static getEyi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEyi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EyiController {
   static createEyi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

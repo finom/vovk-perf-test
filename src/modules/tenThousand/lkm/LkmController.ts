@@ -7,10 +7,8 @@ export default class LkmController {
     summary: "Get Lkm",
   })
   @get()
-  static getLkm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLkm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LkmController {
   static createLkm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

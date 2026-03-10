@@ -7,10 +7,8 @@ export default class DcnController {
     summary: "Get Dcn",
   })
   @get()
-  static getDcn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDcn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DcnController {
   static createDcn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

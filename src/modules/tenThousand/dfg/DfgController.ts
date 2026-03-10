@@ -7,10 +7,8 @@ export default class DfgController {
     summary: "Get Dfg",
   })
   @get()
-  static getDfg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDfg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DfgController {
   static createDfg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

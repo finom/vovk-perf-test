@@ -7,10 +7,8 @@ export default class CinController {
     summary: "Get Cin",
   })
   @get()
-  static getCin = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCin = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CinController {
   static createCin = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

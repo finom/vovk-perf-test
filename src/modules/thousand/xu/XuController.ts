@@ -7,10 +7,8 @@ export default class XuController {
     summary: "Get Xu",
   })
   @get()
-  static getXu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getXu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class XuController {
   static createXu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

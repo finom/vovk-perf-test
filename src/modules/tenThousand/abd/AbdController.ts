@@ -7,10 +7,8 @@ export default class AbdController {
     summary: "Get Abd",
   })
   @get()
-  static getAbd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAbd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AbdController {
   static createAbd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

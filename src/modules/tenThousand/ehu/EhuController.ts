@@ -7,10 +7,8 @@ export default class EhuController {
     summary: "Get Ehu",
   })
   @get()
-  static getEhu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEhu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EhuController {
   static createEhu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class NdaController {
     summary: "Get Nda",
   })
   @get()
-  static getNda = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNda = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NdaController {
   static createNda = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

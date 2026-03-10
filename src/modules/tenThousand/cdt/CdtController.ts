@@ -7,10 +7,8 @@ export default class CdtController {
     summary: "Get Cdt",
   })
   @get()
-  static getCdt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCdt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CdtController {
   static createCdt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class FmiController {
     summary: "Get Fmi",
   })
   @get()
-  static getFmi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFmi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FmiController {
   static createFmi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

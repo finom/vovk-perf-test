@@ -7,10 +7,8 @@ export default class LbfController {
     summary: "Get Lbf",
   })
   @get()
-  static getLbf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLbf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LbfController {
   static createLbf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

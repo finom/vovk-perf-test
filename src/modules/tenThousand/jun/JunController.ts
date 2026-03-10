@@ -7,10 +7,8 @@ export default class JunController {
     summary: "Get Jun",
   })
   @get()
-  static getJun = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJun = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JunController {
   static createJun = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

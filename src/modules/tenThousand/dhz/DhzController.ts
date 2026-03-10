@@ -7,10 +7,8 @@ export default class DhzController {
     summary: "Get Dhz",
   })
   @get()
-  static getDhz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDhz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DhzController {
   static createDhz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class KokController {
     summary: "Get Kok",
   })
   @get()
-  static getKok = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKok = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KokController {
   static createKok = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

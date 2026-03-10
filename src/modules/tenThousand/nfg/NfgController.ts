@@ -7,10 +7,8 @@ export default class NfgController {
     summary: "Get Nfg",
   })
   @get()
-  static getNfg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNfg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NfgController {
   static createNfg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

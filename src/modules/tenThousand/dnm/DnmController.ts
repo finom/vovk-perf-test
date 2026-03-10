@@ -7,10 +7,8 @@ export default class DnmController {
     summary: "Get Dnm",
   })
   @get()
-  static getDnm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDnm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DnmController {
   static createDnm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

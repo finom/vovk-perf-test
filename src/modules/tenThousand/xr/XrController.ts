@@ -7,10 +7,8 @@ export default class XrController {
     summary: "Get Xr",
   })
   @get()
-  static getXr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getXr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class XrController {
   static createXr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

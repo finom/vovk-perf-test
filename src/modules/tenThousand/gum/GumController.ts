@@ -7,10 +7,8 @@ export default class GumController {
     summary: "Get Gum",
   })
   @get()
-  static getGum = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGum = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GumController {
   static createGum = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

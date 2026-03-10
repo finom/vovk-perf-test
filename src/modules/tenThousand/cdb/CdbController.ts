@@ -7,10 +7,8 @@ export default class CdbController {
     summary: "Get Cdb",
   })
   @get()
-  static getCdb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCdb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CdbController {
   static createCdb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

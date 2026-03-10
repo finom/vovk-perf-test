@@ -7,10 +7,8 @@ export default class LanController {
     summary: "Get Lan",
   })
   @get()
-  static getLan = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLan = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LanController {
   static createLan = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class EqoController {
     summary: "Get Eqo",
   })
   @get()
-  static getEqo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEqo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EqoController {
   static createEqo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

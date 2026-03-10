@@ -7,10 +7,8 @@ export default class FesController {
     summary: "Get Fes",
   })
   @get()
-  static getFes = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFes = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FesController {
   static createFes = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

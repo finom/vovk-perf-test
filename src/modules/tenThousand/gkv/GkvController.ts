@@ -7,10 +7,8 @@ export default class GkvController {
     summary: "Get Gkv",
   })
   @get()
-  static getGkv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGkv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GkvController {
   static createGkv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

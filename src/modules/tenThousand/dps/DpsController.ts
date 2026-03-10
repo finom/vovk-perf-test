@@ -7,10 +7,8 @@ export default class DpsController {
     summary: "Get Dps",
   })
   @get()
-  static getDps = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDps = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DpsController {
   static createDps = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

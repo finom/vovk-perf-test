@@ -7,10 +7,8 @@ export default class GarController {
     summary: "Get Gar",
   })
   @get()
-  static getGar = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGar = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GarController {
   static createGar = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class TuController {
     summary: "Get Tu",
   })
   @get()
-  static getTu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getTu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class TuController {
   static createTu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

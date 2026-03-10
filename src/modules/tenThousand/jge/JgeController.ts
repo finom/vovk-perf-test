@@ -7,10 +7,8 @@ export default class JgeController {
     summary: "Get Jge",
   })
   @get()
-  static getJge = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJge = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JgeController {
   static createJge = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class EubController {
     summary: "Get Eub",
   })
   @get()
-  static getEub = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEub = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EubController {
   static createEub = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

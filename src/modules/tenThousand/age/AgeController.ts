@@ -7,10 +7,8 @@ export default class AgeController {
     summary: "Get Age",
   })
   @get()
-  static getAge = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAge = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AgeController {
   static createAge = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

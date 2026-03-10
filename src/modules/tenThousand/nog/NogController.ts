@@ -7,10 +7,8 @@ export default class NogController {
     summary: "Get Nog",
   })
   @get()
-  static getNog = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNog = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NogController {
   static createNog = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

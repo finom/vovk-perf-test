@@ -7,10 +7,8 @@ export default class NeuController {
     summary: "Get Neu",
   })
   @get()
-  static getNeu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNeu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NeuController {
   static createNeu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

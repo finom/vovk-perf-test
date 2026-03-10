@@ -7,10 +7,8 @@ export default class MzpController {
     summary: "Get Mzp",
   })
   @get()
-  static getMzp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMzp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MzpController {
   static createMzp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

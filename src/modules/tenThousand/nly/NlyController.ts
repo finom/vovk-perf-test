@@ -7,10 +7,8 @@ export default class NlyController {
     summary: "Get Nly",
   })
   @get()
-  static getNly = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNly = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NlyController {
   static createNly = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

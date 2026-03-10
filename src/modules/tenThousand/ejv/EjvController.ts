@@ -7,10 +7,8 @@ export default class EjvController {
     summary: "Get Ejv",
   })
   @get()
-  static getEjv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEjv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EjvController {
   static createEjv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

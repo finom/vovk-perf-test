@@ -7,10 +7,8 @@ export default class FlvController {
     summary: "Get Flv",
   })
   @get()
-  static getFlv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFlv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FlvController {
   static createFlv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

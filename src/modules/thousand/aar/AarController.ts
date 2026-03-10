@@ -7,10 +7,8 @@ export default class AarController {
     summary: "Get Aar",
   })
   @get()
-  static getAar = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAar = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AarController {
   static createAar = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

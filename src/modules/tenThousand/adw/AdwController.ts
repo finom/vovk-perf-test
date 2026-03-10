@@ -7,10 +7,8 @@ export default class AdwController {
     summary: "Get Adw",
   })
   @get()
-  static getAdw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAdw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AdwController {
   static createAdw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

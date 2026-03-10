@@ -7,10 +7,8 @@ export default class KrtController {
     summary: "Get Krt",
   })
   @get()
-  static getKrt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKrt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KrtController {
   static createKrt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

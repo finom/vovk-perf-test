@@ -7,10 +7,8 @@ export default class LutController {
     summary: "Get Lut",
   })
   @get()
-  static getLut = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLut = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LutController {
   static createLut = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

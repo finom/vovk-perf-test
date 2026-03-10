@@ -7,10 +7,8 @@ export default class IisController {
     summary: "Get Iis",
   })
   @get()
-  static getIis = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIis = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IisController {
   static createIis = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

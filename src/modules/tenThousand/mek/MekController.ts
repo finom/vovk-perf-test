@@ -7,10 +7,8 @@ export default class MekController {
     summary: "Get Mek",
   })
   @get()
-  static getMek = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMek = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MekController {
   static createMek = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

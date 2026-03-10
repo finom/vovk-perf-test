@@ -7,10 +7,8 @@ export default class AwoController {
     summary: "Get Awo",
   })
   @get()
-  static getAwo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAwo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AwoController {
   static createAwo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

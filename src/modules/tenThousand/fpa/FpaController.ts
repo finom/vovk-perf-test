@@ -7,10 +7,8 @@ export default class FpaController {
     summary: "Get Fpa",
   })
   @get()
-  static getFpa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFpa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FpaController {
   static createFpa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

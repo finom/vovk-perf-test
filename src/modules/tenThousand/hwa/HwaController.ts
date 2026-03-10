@@ -7,10 +7,8 @@ export default class HwaController {
     summary: "Get Hwa",
   })
   @get()
-  static getHwa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHwa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HwaController {
   static createHwa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

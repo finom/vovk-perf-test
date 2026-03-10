@@ -7,10 +7,8 @@ export default class FdaController {
     summary: "Get Fda",
   })
   @get()
-  static getFda = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFda = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FdaController {
   static createFda = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

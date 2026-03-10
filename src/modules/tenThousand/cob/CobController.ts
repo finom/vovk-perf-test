@@ -7,10 +7,8 @@ export default class CobController {
     summary: "Get Cob",
   })
   @get()
-  static getCob = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCob = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CobController {
   static createCob = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

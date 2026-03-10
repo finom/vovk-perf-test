@@ -7,10 +7,8 @@ export default class GxpController {
     summary: "Get Gxp",
   })
   @get()
-  static getGxp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGxp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GxpController {
   static createGxp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

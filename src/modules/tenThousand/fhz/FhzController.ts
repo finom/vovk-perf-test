@@ -7,10 +7,8 @@ export default class FhzController {
     summary: "Get Fhz",
   })
   @get()
-  static getFhz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFhz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FhzController {
   static createFhz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

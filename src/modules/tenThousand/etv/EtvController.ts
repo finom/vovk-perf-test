@@ -7,10 +7,8 @@ export default class EtvController {
     summary: "Get Etv",
   })
   @get()
-  static getEtv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEtv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EtvController {
   static createEtv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

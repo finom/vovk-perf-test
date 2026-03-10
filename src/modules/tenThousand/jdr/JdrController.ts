@@ -7,10 +7,8 @@ export default class JdrController {
     summary: "Get Jdr",
   })
   @get()
-  static getJdr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJdr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JdrController {
   static createJdr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

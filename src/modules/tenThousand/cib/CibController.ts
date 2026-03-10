@@ -7,10 +7,8 @@ export default class CibController {
     summary: "Get Cib",
   })
   @get()
-  static getCib = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCib = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CibController {
   static createCib = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class EbyController {
     summary: "Get Eby",
   })
   @get()
-  static getEby = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEby = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EbyController {
   static createEby = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

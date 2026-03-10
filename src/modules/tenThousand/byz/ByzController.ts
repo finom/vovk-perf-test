@@ -7,10 +7,8 @@ export default class ByzController {
     summary: "Get Byz",
   })
   @get()
-  static getByz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getByz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ByzController {
   static createByz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

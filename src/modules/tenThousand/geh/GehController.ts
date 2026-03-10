@@ -7,10 +7,8 @@ export default class GehController {
     summary: "Get Geh",
   })
   @get()
-  static getGeh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGeh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GehController {
   static createGeh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

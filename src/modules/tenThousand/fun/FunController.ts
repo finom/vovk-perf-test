@@ -7,10 +7,8 @@ export default class FunController {
     summary: "Get Fun",
   })
   @get()
-  static getFun = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFun = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FunController {
   static createFun = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

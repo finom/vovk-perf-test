@@ -7,10 +7,8 @@ export default class EtqController {
     summary: "Get Etq",
   })
   @get()
-  static getEtq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEtq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EtqController {
   static createEtq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

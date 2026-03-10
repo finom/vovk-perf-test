@@ -7,10 +7,8 @@ export default class FtzController {
     summary: "Get Ftz",
   })
   @get()
-  static getFtz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFtz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FtzController {
   static createFtz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

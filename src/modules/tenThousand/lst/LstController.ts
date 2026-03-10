@@ -7,10 +7,8 @@ export default class LstController {
     summary: "Get Lst",
   })
   @get()
-  static getLst = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLst = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LstController {
   static createLst = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

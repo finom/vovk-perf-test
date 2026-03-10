@@ -7,10 +7,8 @@ export default class GamController {
     summary: "Get Gam",
   })
   @get()
-  static getGam = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGam = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GamController {
   static createGam = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

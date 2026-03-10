@@ -7,10 +7,8 @@ export default class MdaController {
     summary: "Get Mda",
   })
   @get()
-  static getMda = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMda = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MdaController {
   static createMda = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

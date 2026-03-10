@@ -7,10 +7,8 @@ export default class MakController {
     summary: "Get Mak",
   })
   @get()
-  static getMak = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMak = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MakController {
   static createMak = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class GnfController {
     summary: "Get Gnf",
   })
   @get()
-  static getGnf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGnf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GnfController {
   static createGnf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

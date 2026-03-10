@@ -7,10 +7,8 @@ export default class NetController {
     summary: "Get Net",
   })
   @get()
-  static getNet = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNet = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NetController {
   static createNet = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

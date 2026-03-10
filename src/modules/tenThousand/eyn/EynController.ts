@@ -7,10 +7,8 @@ export default class EynController {
     summary: "Get Eyn",
   })
   @get()
-  static getEyn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEyn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EynController {
   static createEyn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

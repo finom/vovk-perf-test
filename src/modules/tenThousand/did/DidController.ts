@@ -7,10 +7,8 @@ export default class DidController {
     summary: "Get Did",
   })
   @get()
-  static getDid = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDid = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DidController {
   static createDid = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

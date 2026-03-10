@@ -7,10 +7,8 @@ export default class LmhController {
     summary: "Get Lmh",
   })
   @get()
-  static getLmh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLmh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LmhController {
   static createLmh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

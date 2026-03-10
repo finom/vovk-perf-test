@@ -7,10 +7,8 @@ export default class IbfController {
     summary: "Get Ibf",
   })
   @get()
-  static getIbf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIbf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IbfController {
   static createIbf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

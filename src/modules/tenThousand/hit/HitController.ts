@@ -7,10 +7,8 @@ export default class HitController {
     summary: "Get Hit",
   })
   @get()
-  static getHit = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHit = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HitController {
   static createHit = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

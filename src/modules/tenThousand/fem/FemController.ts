@@ -7,10 +7,8 @@ export default class FemController {
     summary: "Get Fem",
   })
   @get()
-  static getFem = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFem = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FemController {
   static createFem = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

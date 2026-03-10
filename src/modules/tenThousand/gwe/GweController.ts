@@ -7,10 +7,8 @@ export default class GweController {
     summary: "Get Gwe",
   })
   @get()
-  static getGwe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGwe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GweController {
   static createGwe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

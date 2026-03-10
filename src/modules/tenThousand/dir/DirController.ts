@@ -7,10 +7,8 @@ export default class DirController {
     summary: "Get Dir",
   })
   @get()
-  static getDir = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDir = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DirController {
   static createDir = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

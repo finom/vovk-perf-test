@@ -7,10 +7,8 @@ export default class KhuController {
     summary: "Get Khu",
   })
   @get()
-  static getKhu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKhu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KhuController {
   static createKhu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

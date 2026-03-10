@@ -7,10 +7,8 @@ export default class FenController {
     summary: "Get Fen",
   })
   @get()
-  static getFen = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFen = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FenController {
   static createFen = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

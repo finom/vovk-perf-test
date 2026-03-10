@@ -7,10 +7,8 @@ export default class IfaController {
     summary: "Get Ifa",
   })
   @get()
-  static getIfa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIfa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IfaController {
   static createIfa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

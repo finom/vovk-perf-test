@@ -7,10 +7,8 @@ export default class FriController {
     summary: "Get Fri",
   })
   @get()
-  static getFri = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFri = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FriController {
   static createFri = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

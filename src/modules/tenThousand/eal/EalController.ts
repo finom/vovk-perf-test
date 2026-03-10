@@ -7,10 +7,8 @@ export default class EalController {
     summary: "Get Eal",
   })
   @get()
-  static getEal = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEal = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EalController {
   static createEal = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class BhxController {
     summary: "Get Bhx",
   })
   @get()
-  static getBhx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBhx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BhxController {
   static createBhx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class KvgController {
     summary: "Get Kvg",
   })
   @get()
-  static getKvg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKvg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KvgController {
   static createKvg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

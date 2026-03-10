@@ -7,10 +7,8 @@ export default class DacController {
     summary: "Get Dac",
   })
   @get()
-  static getDac = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDac = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DacController {
   static createDac = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

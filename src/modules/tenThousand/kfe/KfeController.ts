@@ -7,10 +7,8 @@ export default class KfeController {
     summary: "Get Kfe",
   })
   @get()
-  static getKfe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKfe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KfeController {
   static createKfe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

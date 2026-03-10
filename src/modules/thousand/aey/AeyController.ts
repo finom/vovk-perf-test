@@ -7,10 +7,8 @@ export default class AeyController {
     summary: "Get Aey",
   })
   @get()
-  static getAey = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAey = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AeyController {
   static createAey = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class LegController {
     summary: "Get Leg",
   })
   @get()
-  static getLeg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLeg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LegController {
   static createLeg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

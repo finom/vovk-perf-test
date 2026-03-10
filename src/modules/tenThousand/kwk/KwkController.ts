@@ -7,10 +7,8 @@ export default class KwkController {
     summary: "Get Kwk",
   })
   @get()
-  static getKwk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKwk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KwkController {
   static createKwk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

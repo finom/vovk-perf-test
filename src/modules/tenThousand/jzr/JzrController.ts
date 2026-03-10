@@ -7,10 +7,8 @@ export default class JzrController {
     summary: "Get Jzr",
   })
   @get()
-  static getJzr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJzr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JzrController {
   static createJzr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

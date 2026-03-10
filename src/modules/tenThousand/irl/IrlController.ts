@@ -7,10 +7,8 @@ export default class IrlController {
     summary: "Get Irl",
   })
   @get()
-  static getIrl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIrl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IrlController {
   static createIrl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

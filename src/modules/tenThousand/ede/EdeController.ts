@@ -7,10 +7,8 @@ export default class EdeController {
     summary: "Get Ede",
   })
   @get()
-  static getEde = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEde = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EdeController {
   static createEde = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

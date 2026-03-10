@@ -7,10 +7,8 @@ export default class NnController {
     summary: "Get Nn",
   })
   @get()
-  static getNn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NnController {
   static createNn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

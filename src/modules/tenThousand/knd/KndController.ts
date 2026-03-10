@@ -7,10 +7,8 @@ export default class KndController {
     summary: "Get Knd",
   })
   @get()
-  static getKnd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKnd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KndController {
   static createKnd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

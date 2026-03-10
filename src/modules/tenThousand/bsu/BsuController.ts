@@ -7,10 +7,8 @@ export default class BsuController {
     summary: "Get Bsu",
   })
   @get()
-  static getBsu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBsu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BsuController {
   static createBsu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

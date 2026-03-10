@@ -7,10 +7,8 @@ export default class DumController {
     summary: "Get Dum",
   })
   @get()
-  static getDum = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDum = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DumController {
   static createDum = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

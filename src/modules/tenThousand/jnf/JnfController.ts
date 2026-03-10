@@ -7,10 +7,8 @@ export default class JnfController {
     summary: "Get Jnf",
   })
   @get()
-  static getJnf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJnf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JnfController {
   static createJnf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

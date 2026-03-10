@@ -7,10 +7,8 @@ export default class ByvController {
     summary: "Get Byv",
   })
   @get()
-  static getByv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getByv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ByvController {
   static createByv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

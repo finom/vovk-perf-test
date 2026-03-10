@@ -7,10 +7,8 @@ export default class SxController {
     summary: "Get Sx",
   })
   @get()
-  static getSx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getSx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class SxController {
   static createSx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class CulController {
     summary: "Get Cul",
   })
   @get()
-  static getCul = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCul = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CulController {
   static createCul = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

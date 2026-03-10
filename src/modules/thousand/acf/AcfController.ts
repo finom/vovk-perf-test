@@ -7,10 +7,8 @@ export default class AcfController {
     summary: "Get Acf",
   })
   @get()
-  static getAcf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAcf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AcfController {
   static createAcf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

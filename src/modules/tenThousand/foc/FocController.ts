@@ -7,10 +7,8 @@ export default class FocController {
     summary: "Get Foc",
   })
   @get()
-  static getFoc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFoc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FocController {
   static createFoc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

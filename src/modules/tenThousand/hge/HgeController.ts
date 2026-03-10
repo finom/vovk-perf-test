@@ -7,10 +7,8 @@ export default class HgeController {
     summary: "Get Hge",
   })
   @get()
-  static getHge = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHge = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HgeController {
   static createHge = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

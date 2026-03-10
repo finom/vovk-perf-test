@@ -7,10 +7,8 @@ export default class HviController {
     summary: "Get Hvi",
   })
   @get()
-  static getHvi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHvi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HviController {
   static createHvi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

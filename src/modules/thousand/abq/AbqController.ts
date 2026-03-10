@@ -7,10 +7,8 @@ export default class AbqController {
     summary: "Get Abq",
   })
   @get()
-  static getAbq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAbq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AbqController {
   static createAbq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

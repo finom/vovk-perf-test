@@ -7,10 +7,8 @@ export default class NvController {
     summary: "Get Nv",
   })
   @get()
-  static getNv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NvController {
   static createNv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

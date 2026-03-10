@@ -7,10 +7,8 @@ export default class GtyController {
     summary: "Get Gty",
   })
   @get()
-  static getGty = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGty = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GtyController {
   static createGty = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

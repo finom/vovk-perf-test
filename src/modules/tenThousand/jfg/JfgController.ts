@@ -7,10 +7,8 @@ export default class JfgController {
     summary: "Get Jfg",
   })
   @get()
-  static getJfg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJfg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JfgController {
   static createJfg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

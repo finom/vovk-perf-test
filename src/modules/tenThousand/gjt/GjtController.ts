@@ -7,10 +7,8 @@ export default class GjtController {
     summary: "Get Gjt",
   })
   @get()
-  static getGjt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGjt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GjtController {
   static createGjt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

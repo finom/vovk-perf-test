@@ -7,10 +7,8 @@ export default class ImbController {
     summary: "Get Imb",
   })
   @get()
-  static getImb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getImb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ImbController {
   static createImb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

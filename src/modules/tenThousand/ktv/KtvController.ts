@@ -7,10 +7,8 @@ export default class KtvController {
     summary: "Get Ktv",
   })
   @get()
-  static getKtv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKtv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KtvController {
   static createKtv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

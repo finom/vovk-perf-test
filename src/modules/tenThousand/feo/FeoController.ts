@@ -7,10 +7,8 @@ export default class FeoController {
     summary: "Get Feo",
   })
   @get()
-  static getFeo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFeo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FeoController {
   static createFeo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

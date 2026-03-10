@@ -7,10 +7,8 @@ export default class MkzController {
     summary: "Get Mkz",
   })
   @get()
-  static getMkz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMkz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MkzController {
   static createMkz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class AruController {
     summary: "Get Aru",
   })
   @get()
-  static getAru = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAru = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AruController {
   static createAru = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

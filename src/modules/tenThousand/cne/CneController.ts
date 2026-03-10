@@ -7,10 +7,8 @@ export default class CneController {
     summary: "Get Cne",
   })
   @get()
-  static getCne = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCne = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CneController {
   static createCne = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

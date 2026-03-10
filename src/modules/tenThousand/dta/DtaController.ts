@@ -7,10 +7,8 @@ export default class DtaController {
     summary: "Get Dta",
   })
   @get()
-  static getDta = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDta = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DtaController {
   static createDta = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

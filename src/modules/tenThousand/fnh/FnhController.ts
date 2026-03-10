@@ -7,10 +7,8 @@ export default class FnhController {
     summary: "Get Fnh",
   })
   @get()
-  static getFnh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFnh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FnhController {
   static createFnh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

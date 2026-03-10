@@ -7,10 +7,8 @@ export default class NivController {
     summary: "Get Niv",
   })
   @get()
-  static getNiv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNiv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NivController {
   static createNiv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

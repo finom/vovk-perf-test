@@ -7,10 +7,8 @@ export default class BbyController {
     summary: "Get Bby",
   })
   @get()
-  static getBby = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBby = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BbyController {
   static createBby = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

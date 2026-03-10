@@ -7,10 +7,8 @@ export default class NcpController {
     summary: "Get Ncp",
   })
   @get()
-  static getNcp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNcp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NcpController {
   static createNcp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

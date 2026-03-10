@@ -7,10 +7,8 @@ export default class LggController {
     summary: "Get Lgg",
   })
   @get()
-  static getLgg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLgg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LggController {
   static createLgg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

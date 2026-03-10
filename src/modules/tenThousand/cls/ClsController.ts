@@ -7,10 +7,8 @@ export default class ClsController {
     summary: "Get Cls",
   })
   @get()
-  static getCls = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCls = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ClsController {
   static createCls = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

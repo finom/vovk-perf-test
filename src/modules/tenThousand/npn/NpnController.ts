@@ -7,10 +7,8 @@ export default class NpnController {
     summary: "Get Npn",
   })
   @get()
-  static getNpn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNpn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NpnController {
   static createNpn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

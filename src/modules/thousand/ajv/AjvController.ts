@@ -7,10 +7,8 @@ export default class AjvController {
     summary: "Get Ajv",
   })
   @get()
-  static getAjv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAjv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AjvController {
   static createAjv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

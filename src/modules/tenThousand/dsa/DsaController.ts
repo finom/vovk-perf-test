@@ -7,10 +7,8 @@ export default class DsaController {
     summary: "Get Dsa",
   })
   @get()
-  static getDsa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDsa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DsaController {
   static createDsa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

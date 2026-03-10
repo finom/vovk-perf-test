@@ -7,10 +7,8 @@ export default class CtkController {
     summary: "Get Ctk",
   })
   @get()
-  static getCtk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCtk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CtkController {
   static createCtk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

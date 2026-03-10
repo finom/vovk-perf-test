@@ -7,10 +7,8 @@ export default class EahController {
     summary: "Get Eah",
   })
   @get()
-  static getEah = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEah = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EahController {
   static createEah = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

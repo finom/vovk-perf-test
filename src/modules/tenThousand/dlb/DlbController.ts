@@ -7,10 +7,8 @@ export default class DlbController {
     summary: "Get Dlb",
   })
   @get()
-  static getDlb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDlb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DlbController {
   static createDlb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

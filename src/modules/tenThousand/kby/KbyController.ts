@@ -7,10 +7,8 @@ export default class KbyController {
     summary: "Get Kby",
   })
   @get()
-  static getKby = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKby = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KbyController {
   static createKby = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

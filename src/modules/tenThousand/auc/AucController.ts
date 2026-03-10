@@ -7,10 +7,8 @@ export default class AucController {
     summary: "Get Auc",
   })
   @get()
-  static getAuc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAuc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AucController {
   static createAuc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

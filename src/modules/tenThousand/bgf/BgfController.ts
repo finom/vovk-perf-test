@@ -7,10 +7,8 @@ export default class BgfController {
     summary: "Get Bgf",
   })
   @get()
-  static getBgf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBgf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BgfController {
   static createBgf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

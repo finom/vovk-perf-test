@@ -7,10 +7,8 @@ export default class AsbController {
     summary: "Get Asb",
   })
   @get()
-  static getAsb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAsb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AsbController {
   static createAsb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

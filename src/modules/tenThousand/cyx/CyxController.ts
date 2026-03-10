@@ -7,10 +7,8 @@ export default class CyxController {
     summary: "Get Cyx",
   })
   @get()
-  static getCyx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCyx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CyxController {
   static createCyx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

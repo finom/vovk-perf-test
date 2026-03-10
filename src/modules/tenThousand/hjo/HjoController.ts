@@ -7,10 +7,8 @@ export default class HjoController {
     summary: "Get Hjo",
   })
   @get()
-  static getHjo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHjo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HjoController {
   static createHjo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

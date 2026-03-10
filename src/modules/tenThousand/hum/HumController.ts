@@ -7,10 +7,8 @@ export default class HumController {
     summary: "Get Hum",
   })
   @get()
-  static getHum = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHum = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HumController {
   static createHum = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

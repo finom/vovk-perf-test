@@ -7,10 +7,8 @@ export default class DguController {
     summary: "Get Dgu",
   })
   @get()
-  static getDgu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDgu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DguController {
   static createDgu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

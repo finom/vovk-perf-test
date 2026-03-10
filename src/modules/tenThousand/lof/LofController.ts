@@ -7,10 +7,8 @@ export default class LofController {
     summary: "Get Lof",
   })
   @get()
-  static getLof = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLof = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LofController {
   static createLof = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

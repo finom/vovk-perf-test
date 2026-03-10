@@ -7,10 +7,8 @@ export default class HwyController {
     summary: "Get Hwy",
   })
   @get()
-  static getHwy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHwy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HwyController {
   static createHwy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

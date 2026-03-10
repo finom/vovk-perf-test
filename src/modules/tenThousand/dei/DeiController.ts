@@ -7,10 +7,8 @@ export default class DeiController {
     summary: "Get Dei",
   })
   @get()
-  static getDei = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDei = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DeiController {
   static createDei = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

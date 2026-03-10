@@ -7,10 +7,8 @@ export default class FijController {
     summary: "Get Fij",
   })
   @get()
-  static getFij = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFij = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FijController {
   static createFij = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

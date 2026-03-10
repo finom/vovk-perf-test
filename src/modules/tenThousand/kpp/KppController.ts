@@ -7,10 +7,8 @@ export default class KppController {
     summary: "Get Kpp",
   })
   @get()
-  static getKpp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKpp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KppController {
   static createKpp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

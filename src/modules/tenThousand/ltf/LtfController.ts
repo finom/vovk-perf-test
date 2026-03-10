@@ -7,10 +7,8 @@ export default class LtfController {
     summary: "Get Ltf",
   })
   @get()
-  static getLtf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLtf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LtfController {
   static createLtf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

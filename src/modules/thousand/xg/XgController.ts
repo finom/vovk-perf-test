@@ -7,10 +7,8 @@ export default class XgController {
     summary: "Get Xg",
   })
   @get()
-  static getXg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getXg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class XgController {
   static createXg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

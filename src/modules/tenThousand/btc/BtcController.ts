@@ -7,10 +7,8 @@ export default class BtcController {
     summary: "Get Btc",
   })
   @get()
-  static getBtc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBtc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BtcController {
   static createBtc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

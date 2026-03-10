@@ -7,10 +7,8 @@ export default class NftController {
     summary: "Get Nft",
   })
   @get()
-  static getNft = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNft = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NftController {
   static createNft = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class EqmController {
     summary: "Get Eqm",
   })
   @get()
-  static getEqm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEqm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EqmController {
   static createEqm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

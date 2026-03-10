@@ -7,10 +7,8 @@ export default class QbController {
     summary: "Get Qb",
   })
   @get()
-  static getQb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getQb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class QbController {
   static createQb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

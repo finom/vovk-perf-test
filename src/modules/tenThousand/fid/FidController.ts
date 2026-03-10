@@ -7,10 +7,8 @@ export default class FidController {
     summary: "Get Fid",
   })
   @get()
-  static getFid = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFid = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FidController {
   static createFid = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

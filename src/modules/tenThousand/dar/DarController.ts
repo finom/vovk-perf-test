@@ -7,10 +7,8 @@ export default class DarController {
     summary: "Get Dar",
   })
   @get()
-  static getDar = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDar = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DarController {
   static createDar = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

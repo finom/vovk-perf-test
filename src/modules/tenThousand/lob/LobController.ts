@@ -7,10 +7,8 @@ export default class LobController {
     summary: "Get Lob",
   })
   @get()
-  static getLob = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLob = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LobController {
   static createLob = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

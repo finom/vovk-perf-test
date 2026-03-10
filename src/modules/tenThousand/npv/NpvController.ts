@@ -7,10 +7,8 @@ export default class NpvController {
     summary: "Get Npv",
   })
   @get()
-  static getNpv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNpv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NpvController {
   static createNpv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

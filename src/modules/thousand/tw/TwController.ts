@@ -7,10 +7,8 @@ export default class TwController {
     summary: "Get Tw",
   })
   @get()
-  static getTw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getTw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class TwController {
   static createTw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

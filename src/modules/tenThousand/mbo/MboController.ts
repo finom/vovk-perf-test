@@ -7,10 +7,8 @@ export default class MboController {
     summary: "Get Mbo",
   })
   @get()
-  static getMbo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMbo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MboController {
   static createMbo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

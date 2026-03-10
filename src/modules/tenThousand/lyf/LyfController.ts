@@ -7,10 +7,8 @@ export default class LyfController {
     summary: "Get Lyf",
   })
   @get()
-  static getLyf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLyf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LyfController {
   static createLyf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

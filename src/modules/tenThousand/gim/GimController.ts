@@ -7,10 +7,8 @@ export default class GimController {
     summary: "Get Gim",
   })
   @get()
-  static getGim = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGim = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GimController {
   static createGim = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

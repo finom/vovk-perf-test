@@ -7,10 +7,8 @@ export default class CfhController {
     summary: "Get Cfh",
   })
   @get()
-  static getCfh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCfh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CfhController {
   static createCfh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

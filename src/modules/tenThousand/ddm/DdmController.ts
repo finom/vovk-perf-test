@@ -7,10 +7,8 @@ export default class DdmController {
     summary: "Get Ddm",
   })
   @get()
-  static getDdm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDdm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DdmController {
   static createDdm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

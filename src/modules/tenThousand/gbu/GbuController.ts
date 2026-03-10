@@ -7,10 +7,8 @@ export default class GbuController {
     summary: "Get Gbu",
   })
   @get()
-  static getGbu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGbu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GbuController {
   static createGbu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

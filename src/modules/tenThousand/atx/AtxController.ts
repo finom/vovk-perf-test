@@ -7,10 +7,8 @@ export default class AtxController {
     summary: "Get Atx",
   })
   @get()
-  static getAtx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAtx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AtxController {
   static createAtx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

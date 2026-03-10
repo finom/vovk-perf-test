@@ -7,10 +7,8 @@ export default class LacController {
     summary: "Get Lac",
   })
   @get()
-  static getLac = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLac = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LacController {
   static createLac = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

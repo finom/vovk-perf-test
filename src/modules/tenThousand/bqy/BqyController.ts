@@ -7,10 +7,8 @@ export default class BqyController {
     summary: "Get Bqy",
   })
   @get()
-  static getBqy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBqy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BqyController {
   static createBqy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

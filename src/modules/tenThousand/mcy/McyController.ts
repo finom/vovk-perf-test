@@ -7,10 +7,8 @@ export default class McyController {
     summary: "Get Mcy",
   })
   @get()
-  static getMcy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMcy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class McyController {
   static createMcy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

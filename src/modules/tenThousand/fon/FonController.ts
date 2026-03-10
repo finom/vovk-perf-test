@@ -7,10 +7,8 @@ export default class FonController {
     summary: "Get Fon",
   })
   @get()
-  static getFon = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFon = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FonController {
   static createFon = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class HfeController {
     summary: "Get Hfe",
   })
   @get()
-  static getHfe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHfe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HfeController {
   static createHfe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

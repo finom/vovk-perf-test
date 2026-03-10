@@ -7,10 +7,8 @@ export default class KkbController {
     summary: "Get Kkb",
   })
   @get()
-  static getKkb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKkb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KkbController {
   static createKkb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class KrpController {
     summary: "Get Krp",
   })
   @get()
-  static getKrp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKrp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KrpController {
   static createKrp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

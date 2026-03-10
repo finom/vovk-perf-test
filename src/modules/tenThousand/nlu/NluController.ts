@@ -7,10 +7,8 @@ export default class NluController {
     summary: "Get Nlu",
   })
   @get()
-  static getNlu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNlu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NluController {
   static createNlu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

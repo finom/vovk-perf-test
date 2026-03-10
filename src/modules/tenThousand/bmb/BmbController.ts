@@ -7,10 +7,8 @@ export default class BmbController {
     summary: "Get Bmb",
   })
   @get()
-  static getBmb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBmb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BmbController {
   static createBmb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class CjlController {
     summary: "Get Cjl",
   })
   @get()
-  static getCjl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCjl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CjlController {
   static createCjl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

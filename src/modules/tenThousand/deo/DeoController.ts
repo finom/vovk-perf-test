@@ -7,10 +7,8 @@ export default class DeoController {
     summary: "Get Deo",
   })
   @get()
-  static getDeo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDeo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DeoController {
   static createDeo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

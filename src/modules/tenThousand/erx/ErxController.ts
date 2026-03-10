@@ -7,10 +7,8 @@ export default class ErxController {
     summary: "Get Erx",
   })
   @get()
-  static getErx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getErx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ErxController {
   static createErx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

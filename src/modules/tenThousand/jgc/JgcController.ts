@@ -7,10 +7,8 @@ export default class JgcController {
     summary: "Get Jgc",
   })
   @get()
-  static getJgc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJgc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JgcController {
   static createJgc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

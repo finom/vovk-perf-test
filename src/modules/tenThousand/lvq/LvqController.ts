@@ -7,10 +7,8 @@ export default class LvqController {
     summary: "Get Lvq",
   })
   @get()
-  static getLvq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLvq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LvqController {
   static createLvq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

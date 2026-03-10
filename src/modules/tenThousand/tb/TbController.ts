@@ -7,10 +7,8 @@ export default class TbController {
     summary: "Get Tb",
   })
   @get()
-  static getTb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getTb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class TbController {
   static createTb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

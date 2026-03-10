@@ -7,10 +7,8 @@ export default class HlaController {
     summary: "Get Hla",
   })
   @get()
-  static getHla = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHla = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HlaController {
   static createHla = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

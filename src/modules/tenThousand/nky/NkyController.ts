@@ -7,10 +7,8 @@ export default class NkyController {
     summary: "Get Nky",
   })
   @get()
-  static getNky = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNky = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NkyController {
   static createNky = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

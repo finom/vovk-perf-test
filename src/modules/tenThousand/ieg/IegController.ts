@@ -7,10 +7,8 @@ export default class IegController {
     summary: "Get Ieg",
   })
   @get()
-  static getIeg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIeg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IegController {
   static createIeg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

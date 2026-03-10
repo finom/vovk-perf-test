@@ -7,10 +7,8 @@ export default class XwController {
     summary: "Get Xw",
   })
   @get()
-  static getXw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getXw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class XwController {
   static createXw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

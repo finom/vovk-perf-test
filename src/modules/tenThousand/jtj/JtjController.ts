@@ -7,10 +7,8 @@ export default class JtjController {
     summary: "Get Jtj",
   })
   @get()
-  static getJtj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJtj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JtjController {
   static createJtj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

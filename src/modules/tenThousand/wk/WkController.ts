@@ -7,10 +7,8 @@ export default class WkController {
     summary: "Get Wk",
   })
   @get()
-  static getWk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getWk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class WkController {
   static createWk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

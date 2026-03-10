@@ -7,10 +7,8 @@ export default class BxhController {
     summary: "Get Bxh",
   })
   @get()
-  static getBxh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBxh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BxhController {
   static createBxh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class AlnController {
     summary: "Get Aln",
   })
   @get()
-  static getAln = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAln = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AlnController {
   static createAln = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

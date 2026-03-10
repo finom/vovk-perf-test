@@ -7,10 +7,8 @@ export default class DivController {
     summary: "Get Div",
   })
   @get()
-  static getDiv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDiv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DivController {
   static createDiv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

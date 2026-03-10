@@ -7,10 +7,8 @@ export default class AuwController {
     summary: "Get Auw",
   })
   @get()
-  static getAuw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAuw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AuwController {
   static createAuw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

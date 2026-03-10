@@ -7,10 +7,8 @@ export default class MgoController {
     summary: "Get Mgo",
   })
   @get()
-  static getMgo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMgo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MgoController {
   static createMgo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

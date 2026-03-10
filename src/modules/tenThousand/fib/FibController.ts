@@ -7,10 +7,8 @@ export default class FibController {
     summary: "Get Fib",
   })
   @get()
-  static getFib = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFib = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FibController {
   static createFib = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

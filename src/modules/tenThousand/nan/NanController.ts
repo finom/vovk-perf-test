@@ -7,10 +7,8 @@ export default class NanController {
     summary: "Get Nan",
   })
   @get()
-  static getNan = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNan = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NanController {
   static createNan = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

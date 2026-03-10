@@ -7,10 +7,8 @@ export default class CmeController {
     summary: "Get Cme",
   })
   @get()
-  static getCme = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCme = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CmeController {
   static createCme = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

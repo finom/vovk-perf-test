@@ -7,10 +7,8 @@ export default class EpkController {
     summary: "Get Epk",
   })
   @get()
-  static getEpk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEpk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EpkController {
   static createEpk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

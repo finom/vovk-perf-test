@@ -7,10 +7,8 @@ export default class EcmController {
     summary: "Get Ecm",
   })
   @get()
-  static getEcm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEcm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EcmController {
   static createEcm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

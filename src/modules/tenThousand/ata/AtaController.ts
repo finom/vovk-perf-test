@@ -7,10 +7,8 @@ export default class AtaController {
     summary: "Get Ata",
   })
   @get()
-  static getAta = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAta = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AtaController {
   static createAta = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

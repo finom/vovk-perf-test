@@ -7,10 +7,8 @@ export default class NpxController {
     summary: "Get Npx",
   })
   @get()
-  static getNpx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNpx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NpxController {
   static createNpx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

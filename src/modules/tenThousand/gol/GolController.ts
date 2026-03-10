@@ -7,10 +7,8 @@ export default class GolController {
     summary: "Get Gol",
   })
   @get()
-  static getGol = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGol = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GolController {
   static createGol = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

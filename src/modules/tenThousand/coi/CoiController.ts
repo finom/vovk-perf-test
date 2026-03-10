@@ -7,10 +7,8 @@ export default class CoiController {
     summary: "Get Coi",
   })
   @get()
-  static getCoi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCoi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CoiController {
   static createCoi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

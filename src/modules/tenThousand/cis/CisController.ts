@@ -7,10 +7,8 @@ export default class CisController {
     summary: "Get Cis",
   })
   @get()
-  static getCis = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCis = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CisController {
   static createCis = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

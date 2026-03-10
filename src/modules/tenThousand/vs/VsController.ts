@@ -7,10 +7,8 @@ export default class VsController {
     summary: "Get Vs",
   })
   @get()
-  static getVs = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getVs = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class VsController {
   static createVs = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

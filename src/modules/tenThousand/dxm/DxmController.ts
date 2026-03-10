@@ -7,10 +7,8 @@ export default class DxmController {
     summary: "Get Dxm",
   })
   @get()
-  static getDxm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDxm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DxmController {
   static createDxm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IppController {
     summary: "Get Ipp",
   })
   @get()
-  static getIpp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIpp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IppController {
   static createIpp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

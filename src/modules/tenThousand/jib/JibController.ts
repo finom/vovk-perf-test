@@ -7,10 +7,8 @@ export default class JibController {
     summary: "Get Jib",
   })
   @get()
-  static getJib = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJib = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JibController {
   static createJib = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

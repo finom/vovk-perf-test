@@ -7,10 +7,8 @@ export default class GazController {
     summary: "Get Gaz",
   })
   @get()
-  static getGaz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGaz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GazController {
   static createGaz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

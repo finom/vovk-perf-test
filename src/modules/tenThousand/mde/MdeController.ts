@@ -7,10 +7,8 @@ export default class MdeController {
     summary: "Get Mde",
   })
   @get()
-  static getMde = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMde = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MdeController {
   static createMde = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

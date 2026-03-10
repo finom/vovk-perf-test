@@ -7,10 +7,8 @@ export default class GsaController {
     summary: "Get Gsa",
   })
   @get()
-  static getGsa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGsa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GsaController {
   static createGsa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

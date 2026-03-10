@@ -7,10 +7,8 @@ export default class JtxController {
     summary: "Get Jtx",
   })
   @get()
-  static getJtx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJtx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JtxController {
   static createJtx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

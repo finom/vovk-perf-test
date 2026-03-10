@@ -7,10 +7,8 @@ export default class IaaController {
     summary: "Get Iaa",
   })
   @get()
-  static getIaa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIaa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IaaController {
   static createIaa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

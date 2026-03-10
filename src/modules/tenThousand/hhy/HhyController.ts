@@ -7,10 +7,8 @@ export default class HhyController {
     summary: "Get Hhy",
   })
   @get()
-  static getHhy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHhy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HhyController {
   static createHhy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

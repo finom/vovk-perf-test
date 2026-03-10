@@ -7,10 +7,8 @@ export default class HieController {
     summary: "Get Hie",
   })
   @get()
-  static getHie = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHie = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HieController {
   static createHie = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

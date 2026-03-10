@@ -7,10 +7,8 @@ export default class JwgController {
     summary: "Get Jwg",
   })
   @get()
-  static getJwg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJwg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JwgController {
   static createJwg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

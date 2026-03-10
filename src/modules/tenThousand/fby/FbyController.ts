@@ -7,10 +7,8 @@ export default class FbyController {
     summary: "Get Fby",
   })
   @get()
-  static getFby = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFby = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FbyController {
   static createFby = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

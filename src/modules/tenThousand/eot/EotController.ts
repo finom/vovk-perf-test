@@ -7,10 +7,8 @@ export default class EotController {
     summary: "Get Eot",
   })
   @get()
-  static getEot = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEot = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EotController {
   static createEot = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

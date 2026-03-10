@@ -7,10 +7,8 @@ export default class NmuController {
     summary: "Get Nmu",
   })
   @get()
-  static getNmu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNmu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NmuController {
   static createNmu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

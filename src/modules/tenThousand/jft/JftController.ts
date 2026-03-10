@@ -7,10 +7,8 @@ export default class JftController {
     summary: "Get Jft",
   })
   @get()
-  static getJft = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJft = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JftController {
   static createJft = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class MydController {
     summary: "Get Myd",
   })
   @get()
-  static getMyd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMyd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MydController {
   static createMyd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

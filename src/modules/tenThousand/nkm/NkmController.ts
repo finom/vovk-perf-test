@@ -7,10 +7,8 @@ export default class NkmController {
     summary: "Get Nkm",
   })
   @get()
-  static getNkm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNkm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NkmController {
   static createNkm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

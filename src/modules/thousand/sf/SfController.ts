@@ -7,10 +7,8 @@ export default class SfController {
     summary: "Get Sf",
   })
   @get()
-  static getSf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getSf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class SfController {
   static createSf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

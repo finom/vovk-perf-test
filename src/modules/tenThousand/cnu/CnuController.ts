@@ -7,10 +7,8 @@ export default class CnuController {
     summary: "Get Cnu",
   })
   @get()
-  static getCnu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCnu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CnuController {
   static createCnu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

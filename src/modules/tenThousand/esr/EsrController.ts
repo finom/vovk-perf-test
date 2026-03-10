@@ -7,10 +7,8 @@ export default class EsrController {
     summary: "Get Esr",
   })
   @get()
-  static getEsr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEsr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EsrController {
   static createEsr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class HamController {
     summary: "Get Ham",
   })
   @get()
-  static getHam = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHam = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HamController {
   static createHam = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

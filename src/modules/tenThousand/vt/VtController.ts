@@ -7,10 +7,8 @@ export default class VtController {
     summary: "Get Vt",
   })
   @get()
-  static getVt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getVt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class VtController {
   static createVt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class DaoController {
     summary: "Get Dao",
   })
   @get()
-  static getDao = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDao = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DaoController {
   static createDao = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class MzbController {
     summary: "Get Mzb",
   })
   @get()
-  static getMzb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMzb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MzbController {
   static createMzb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

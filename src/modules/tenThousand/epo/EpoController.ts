@@ -7,10 +7,8 @@ export default class EpoController {
     summary: "Get Epo",
   })
   @get()
-  static getEpo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEpo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EpoController {
   static createEpo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

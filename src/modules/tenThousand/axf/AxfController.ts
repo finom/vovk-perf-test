@@ -7,10 +7,8 @@ export default class AxfController {
     summary: "Get Axf",
   })
   @get()
-  static getAxf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAxf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AxfController {
   static createAxf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

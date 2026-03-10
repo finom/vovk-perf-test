@@ -7,10 +7,8 @@ export default class LiaController {
     summary: "Get Lia",
   })
   @get()
-  static getLia = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLia = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LiaController {
   static createLia = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

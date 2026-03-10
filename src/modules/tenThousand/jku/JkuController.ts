@@ -7,10 +7,8 @@ export default class JkuController {
     summary: "Get Jku",
   })
   @get()
-  static getJku = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJku = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JkuController {
   static createJku = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

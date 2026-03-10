@@ -7,10 +7,8 @@ export default class CspController {
     summary: "Get Csp",
   })
   @get()
-  static getCsp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCsp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CspController {
   static createCsp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

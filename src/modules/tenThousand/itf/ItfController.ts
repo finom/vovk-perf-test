@@ -7,10 +7,8 @@ export default class ItfController {
     summary: "Get Itf",
   })
   @get()
-  static getItf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getItf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ItfController {
   static createItf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

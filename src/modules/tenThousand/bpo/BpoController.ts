@@ -7,10 +7,8 @@ export default class BpoController {
     summary: "Get Bpo",
   })
   @get()
-  static getBpo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBpo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BpoController {
   static createBpo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

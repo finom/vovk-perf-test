@@ -7,10 +7,8 @@ export default class JnaController {
     summary: "Get Jna",
   })
   @get()
-  static getJna = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJna = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JnaController {
   static createJna = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

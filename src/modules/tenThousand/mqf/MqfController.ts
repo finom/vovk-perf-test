@@ -7,10 +7,8 @@ export default class MqfController {
     summary: "Get Mqf",
   })
   @get()
-  static getMqf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMqf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MqfController {
   static createMqf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

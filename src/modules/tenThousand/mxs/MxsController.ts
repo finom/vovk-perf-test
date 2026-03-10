@@ -7,10 +7,8 @@ export default class MxsController {
     summary: "Get Mxs",
   })
   @get()
-  static getMxs = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMxs = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MxsController {
   static createMxs = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

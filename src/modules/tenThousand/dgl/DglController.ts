@@ -7,10 +7,8 @@ export default class DglController {
     summary: "Get Dgl",
   })
   @get()
-  static getDgl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDgl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DglController {
   static createDgl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

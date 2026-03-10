@@ -7,10 +7,8 @@ export default class HkeController {
     summary: "Get Hke",
   })
   @get()
-  static getHke = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHke = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HkeController {
   static createHke = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IasController {
     summary: "Get Ias",
   })
   @get()
-  static getIas = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIas = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IasController {
   static createIas = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

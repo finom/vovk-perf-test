@@ -7,10 +7,8 @@ export default class KxmController {
     summary: "Get Kxm",
   })
   @get()
-  static getKxm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKxm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KxmController {
   static createKxm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

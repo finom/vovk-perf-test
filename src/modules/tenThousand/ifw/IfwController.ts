@@ -7,10 +7,8 @@ export default class IfwController {
     summary: "Get Ifw",
   })
   @get()
-  static getIfw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIfw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IfwController {
   static createIfw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

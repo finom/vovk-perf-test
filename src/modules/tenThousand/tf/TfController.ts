@@ -7,10 +7,8 @@ export default class TfController {
     summary: "Get Tf",
   })
   @get()
-  static getTf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getTf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class TfController {
   static createTf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class AjdController {
     summary: "Get Ajd",
   })
   @get()
-  static getAjd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAjd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AjdController {
   static createAjd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

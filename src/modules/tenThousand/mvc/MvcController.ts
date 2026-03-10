@@ -7,10 +7,8 @@ export default class MvcController {
     summary: "Get Mvc",
   })
   @get()
-  static getMvc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMvc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MvcController {
   static createMvc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

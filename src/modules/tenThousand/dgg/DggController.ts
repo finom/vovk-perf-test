@@ -7,10 +7,8 @@ export default class DggController {
     summary: "Get Dgg",
   })
   @get()
-  static getDgg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDgg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DggController {
   static createDgg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

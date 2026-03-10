@@ -7,10 +7,8 @@ export default class FubController {
     summary: "Get Fub",
   })
   @get()
-  static getFub = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFub = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FubController {
   static createFub = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

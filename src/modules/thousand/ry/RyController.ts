@@ -7,10 +7,8 @@ export default class RyController {
     summary: "Get Ry",
   })
   @get()
-  static getRy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getRy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class RyController {
   static createRy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

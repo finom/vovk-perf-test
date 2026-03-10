@@ -7,10 +7,8 @@ export default class IrfController {
     summary: "Get Irf",
   })
   @get()
-  static getIrf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIrf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IrfController {
   static createIrf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

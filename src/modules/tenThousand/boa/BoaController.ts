@@ -7,10 +7,8 @@ export default class BoaController {
     summary: "Get Boa",
   })
   @get()
-  static getBoa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBoa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BoaController {
   static createBoa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

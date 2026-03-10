@@ -7,10 +7,8 @@ export default class VeController {
     summary: "Get Ve",
   })
   @get()
-  static getVe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getVe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class VeController {
   static createVe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class GpjController {
     summary: "Get Gpj",
   })
   @get()
-  static getGpj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGpj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GpjController {
   static createGpj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class MraController {
     summary: "Get Mra",
   })
   @get()
-  static getMra = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMra = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MraController {
   static createMra = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

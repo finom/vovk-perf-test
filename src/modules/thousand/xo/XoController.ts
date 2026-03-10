@@ -7,10 +7,8 @@ export default class XoController {
     summary: "Get Xo",
   })
   @get()
-  static getXo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getXo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class XoController {
   static createXo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class BanController {
     summary: "Get Ban",
   })
   @get()
-  static getBan = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBan = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BanController {
   static createBan = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

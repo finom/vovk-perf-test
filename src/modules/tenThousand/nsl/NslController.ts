@@ -7,10 +7,8 @@ export default class NslController {
     summary: "Get Nsl",
   })
   @get()
-  static getNsl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNsl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NslController {
   static createNsl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

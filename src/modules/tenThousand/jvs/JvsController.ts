@@ -7,10 +7,8 @@ export default class JvsController {
     summary: "Get Jvs",
   })
   @get()
-  static getJvs = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJvs = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JvsController {
   static createJvs = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

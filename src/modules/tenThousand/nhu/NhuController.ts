@@ -7,10 +7,8 @@ export default class NhuController {
     summary: "Get Nhu",
   })
   @get()
-  static getNhu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNhu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NhuController {
   static createNhu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

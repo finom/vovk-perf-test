@@ -7,10 +7,8 @@ export default class HceController {
     summary: "Get Hce",
   })
   @get()
-  static getHce = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHce = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HceController {
   static createHce = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

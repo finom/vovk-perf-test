@@ -7,10 +7,8 @@ export default class JojController {
     summary: "Get Joj",
   })
   @get()
-  static getJoj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJoj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JojController {
   static createJoj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

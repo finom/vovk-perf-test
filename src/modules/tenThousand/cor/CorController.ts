@@ -7,10 +7,8 @@ export default class CorController {
     summary: "Get Cor",
   })
   @get()
-  static getCor = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCor = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CorController {
   static createCor = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class VnController {
     summary: "Get Vn",
   })
   @get()
-  static getVn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getVn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class VnController {
   static createVn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class NlmController {
     summary: "Get Nlm",
   })
   @get()
-  static getNlm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNlm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NlmController {
   static createNlm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

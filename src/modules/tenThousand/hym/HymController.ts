@@ -7,10 +7,8 @@ export default class HymController {
     summary: "Get Hym",
   })
   @get()
-  static getHym = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHym = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HymController {
   static createHym = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

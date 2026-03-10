@@ -7,10 +7,8 @@ export default class CywController {
     summary: "Get Cyw",
   })
   @get()
-  static getCyw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCyw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CywController {
   static createCyw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

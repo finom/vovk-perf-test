@@ -7,10 +7,8 @@ export default class LvmController {
     summary: "Get Lvm",
   })
   @get()
-  static getLvm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLvm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LvmController {
   static createLvm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

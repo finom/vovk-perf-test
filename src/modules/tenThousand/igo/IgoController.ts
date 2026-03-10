@@ -7,10 +7,8 @@ export default class IgoController {
     summary: "Get Igo",
   })
   @get()
-  static getIgo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIgo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IgoController {
   static createIgo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

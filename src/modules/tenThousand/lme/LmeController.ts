@@ -7,10 +7,8 @@ export default class LmeController {
     summary: "Get Lme",
   })
   @get()
-  static getLme = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLme = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LmeController {
   static createLme = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

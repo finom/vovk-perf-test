@@ -7,10 +7,8 @@ export default class HipController {
     summary: "Get Hip",
   })
   @get()
-  static getHip = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHip = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HipController {
   static createHip = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class FusController {
     summary: "Get Fus",
   })
   @get()
-  static getFus = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFus = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FusController {
   static createFus = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

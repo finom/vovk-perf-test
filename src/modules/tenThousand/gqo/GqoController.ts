@@ -7,10 +7,8 @@ export default class GqoController {
     summary: "Get Gqo",
   })
   @get()
-  static getGqo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGqo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GqoController {
   static createGqo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

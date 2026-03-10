@@ -7,10 +7,8 @@ export default class EfnController {
     summary: "Get Efn",
   })
   @get()
-  static getEfn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEfn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EfnController {
   static createEfn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

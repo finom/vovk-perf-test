@@ -7,10 +7,8 @@ export default class EpiController {
     summary: "Get Epi",
   })
   @get()
-  static getEpi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEpi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EpiController {
   static createEpi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

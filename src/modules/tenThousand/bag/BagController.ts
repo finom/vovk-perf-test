@@ -7,10 +7,8 @@ export default class BagController {
     summary: "Get Bag",
   })
   @get()
-  static getBag = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBag = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BagController {
   static createBag = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

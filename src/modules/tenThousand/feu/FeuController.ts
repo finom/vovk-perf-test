@@ -7,10 +7,8 @@ export default class FeuController {
     summary: "Get Feu",
   })
   @get()
-  static getFeu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFeu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FeuController {
   static createFeu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

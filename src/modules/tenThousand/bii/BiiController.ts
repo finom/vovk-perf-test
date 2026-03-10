@@ -7,10 +7,8 @@ export default class BiiController {
     summary: "Get Bii",
   })
   @get()
-  static getBii = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBii = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BiiController {
   static createBii = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

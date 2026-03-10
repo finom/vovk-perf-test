@@ -7,10 +7,8 @@ export default class JmlController {
     summary: "Get Jml",
   })
   @get()
-  static getJml = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJml = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JmlController {
   static createJml = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

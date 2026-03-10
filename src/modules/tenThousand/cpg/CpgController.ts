@@ -7,10 +7,8 @@ export default class CpgController {
     summary: "Get Cpg",
   })
   @get()
-  static getCpg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCpg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CpgController {
   static createCpg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

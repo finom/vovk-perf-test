@@ -7,10 +7,8 @@ export default class CotController {
     summary: "Get Cot",
   })
   @get()
-  static getCot = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCot = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CotController {
   static createCot = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

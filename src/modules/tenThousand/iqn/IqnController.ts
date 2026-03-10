@@ -7,10 +7,8 @@ export default class IqnController {
     summary: "Get Iqn",
   })
   @get()
-  static getIqn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIqn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IqnController {
   static createIqn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

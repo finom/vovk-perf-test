@@ -7,10 +7,8 @@ export default class QlController {
     summary: "Get Ql",
   })
   @get()
-  static getQl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getQl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class QlController {
   static createQl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

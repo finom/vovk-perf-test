@@ -7,10 +7,8 @@ export default class FlfController {
     summary: "Get Flf",
   })
   @get()
-  static getFlf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFlf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FlfController {
   static createFlf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class DicController {
     summary: "Get Dic",
   })
   @get()
-  static getDic = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDic = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DicController {
   static createDic = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

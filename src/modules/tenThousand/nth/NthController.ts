@@ -7,10 +7,8 @@ export default class NthController {
     summary: "Get Nth",
   })
   @get()
-  static getNth = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNth = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NthController {
   static createNth = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

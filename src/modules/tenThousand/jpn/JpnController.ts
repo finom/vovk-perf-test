@@ -7,10 +7,8 @@ export default class JpnController {
     summary: "Get Jpn",
   })
   @get()
-  static getJpn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJpn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JpnController {
   static createJpn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class HaqController {
     summary: "Get Haq",
   })
   @get()
-  static getHaq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHaq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HaqController {
   static createHaq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

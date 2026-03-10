@@ -7,10 +7,8 @@ export default class ImvController {
     summary: "Get Imv",
   })
   @get()
-  static getImv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getImv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ImvController {
   static createImv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

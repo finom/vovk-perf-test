@@ -7,10 +7,8 @@ export default class RaController {
     summary: "Get Ra",
   })
   @get()
-  static getRa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getRa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class RaController {
   static createRa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

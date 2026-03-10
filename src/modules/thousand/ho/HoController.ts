@@ -7,10 +7,8 @@ export default class HoController {
     summary: "Get Ho",
   })
   @get()
-  static getHo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HoController {
   static createHo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

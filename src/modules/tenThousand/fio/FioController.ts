@@ -7,10 +7,8 @@ export default class FioController {
     summary: "Get Fio",
   })
   @get()
-  static getFio = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFio = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FioController {
   static createFio = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class NccController {
     summary: "Get Ncc",
   })
   @get()
-  static getNcc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNcc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NccController {
   static createNcc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

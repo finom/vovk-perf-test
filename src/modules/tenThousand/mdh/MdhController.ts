@@ -7,10 +7,8 @@ export default class MdhController {
     summary: "Get Mdh",
   })
   @get()
-  static getMdh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMdh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MdhController {
   static createMdh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

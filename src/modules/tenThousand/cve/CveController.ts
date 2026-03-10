@@ -7,10 +7,8 @@ export default class CveController {
     summary: "Get Cve",
   })
   @get()
-  static getCve = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCve = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CveController {
   static createCve = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

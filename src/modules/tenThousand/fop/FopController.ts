@@ -7,10 +7,8 @@ export default class FopController {
     summary: "Get Fop",
   })
   @get()
-  static getFop = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFop = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FopController {
   static createFop = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

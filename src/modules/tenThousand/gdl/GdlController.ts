@@ -7,10 +7,8 @@ export default class GdlController {
     summary: "Get Gdl",
   })
   @get()
-  static getGdl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGdl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GdlController {
   static createGdl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

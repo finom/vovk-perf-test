@@ -7,10 +7,8 @@ export default class KdtController {
     summary: "Get Kdt",
   })
   @get()
-  static getKdt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKdt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KdtController {
   static createKdt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

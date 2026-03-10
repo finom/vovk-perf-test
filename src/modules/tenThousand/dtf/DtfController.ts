@@ -7,10 +7,8 @@ export default class DtfController {
     summary: "Get Dtf",
   })
   @get()
-  static getDtf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDtf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DtfController {
   static createDtf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

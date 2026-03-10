@@ -7,10 +7,8 @@ export default class DorController {
     summary: "Get Dor",
   })
   @get()
-  static getDor = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDor = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DorController {
   static createDor = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

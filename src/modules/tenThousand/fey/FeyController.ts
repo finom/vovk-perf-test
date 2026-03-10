@@ -7,10 +7,8 @@ export default class FeyController {
     summary: "Get Fey",
   })
   @get()
-  static getFey = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFey = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FeyController {
   static createFey = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

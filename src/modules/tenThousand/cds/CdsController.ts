@@ -7,10 +7,8 @@ export default class CdsController {
     summary: "Get Cds",
   })
   @get()
-  static getCds = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCds = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CdsController {
   static createCds = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

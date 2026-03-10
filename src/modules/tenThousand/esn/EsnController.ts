@@ -7,10 +7,8 @@ export default class EsnController {
     summary: "Get Esn",
   })
   @get()
-  static getEsn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEsn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EsnController {
   static createEsn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

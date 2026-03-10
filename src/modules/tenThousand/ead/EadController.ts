@@ -7,10 +7,8 @@ export default class EadController {
     summary: "Get Ead",
   })
   @get()
-  static getEad = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEad = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EadController {
   static createEad = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

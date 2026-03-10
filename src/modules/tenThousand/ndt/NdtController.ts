@@ -7,10 +7,8 @@ export default class NdtController {
     summary: "Get Ndt",
   })
   @get()
-  static getNdt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNdt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NdtController {
   static createNdt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

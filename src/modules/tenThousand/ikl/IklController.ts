@@ -7,10 +7,8 @@ export default class IklController {
     summary: "Get Ikl",
   })
   @get()
-  static getIkl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIkl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IklController {
   static createIkl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

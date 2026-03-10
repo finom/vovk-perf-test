@@ -7,10 +7,8 @@ export default class EnmController {
     summary: "Get Enm",
   })
   @get()
-  static getEnm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEnm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EnmController {
   static createEnm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class JefController {
     summary: "Get Jef",
   })
   @get()
-  static getJef = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJef = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JefController {
   static createJef = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

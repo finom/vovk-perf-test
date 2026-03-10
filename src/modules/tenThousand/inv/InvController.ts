@@ -7,10 +7,8 @@ export default class InvController {
     summary: "Get Inv",
   })
   @get()
-  static getInv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getInv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class InvController {
   static createInv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

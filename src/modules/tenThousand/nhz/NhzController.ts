@@ -7,10 +7,8 @@ export default class NhzController {
     summary: "Get Nhz",
   })
   @get()
-  static getNhz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNhz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NhzController {
   static createNhz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class EblController {
     summary: "Get Ebl",
   })
   @get()
-  static getEbl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEbl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EblController {
   static createEbl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

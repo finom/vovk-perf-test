@@ -7,10 +7,8 @@ export default class JomController {
     summary: "Get Jom",
   })
   @get()
-  static getJom = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJom = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JomController {
   static createJom = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

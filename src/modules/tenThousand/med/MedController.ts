@@ -7,10 +7,8 @@ export default class MedController {
     summary: "Get Med",
   })
   @get()
-  static getMed = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMed = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MedController {
   static createMed = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class KneController {
     summary: "Get Kne",
   })
   @get()
-  static getKne = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKne = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KneController {
   static createKne = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

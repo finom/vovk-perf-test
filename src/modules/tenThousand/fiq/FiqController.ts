@@ -7,10 +7,8 @@ export default class FiqController {
     summary: "Get Fiq",
   })
   @get()
-  static getFiq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFiq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FiqController {
   static createFiq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IiuController {
     summary: "Get Iiu",
   })
   @get()
-  static getIiu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIiu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IiuController {
   static createIiu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IpdController {
     summary: "Get Ipd",
   })
   @get()
-  static getIpd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIpd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IpdController {
   static createIpd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

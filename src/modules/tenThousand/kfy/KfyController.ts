@@ -7,10 +7,8 @@ export default class KfyController {
     summary: "Get Kfy",
   })
   @get()
-  static getKfy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKfy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KfyController {
   static createKfy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

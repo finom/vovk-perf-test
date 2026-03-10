@@ -7,10 +7,8 @@ export default class KphController {
     summary: "Get Kph",
   })
   @get()
-  static getKph = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKph = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KphController {
   static createKph = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

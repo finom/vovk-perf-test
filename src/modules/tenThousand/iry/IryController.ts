@@ -7,10 +7,8 @@ export default class IryController {
     summary: "Get Iry",
   })
   @get()
-  static getIry = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIry = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IryController {
   static createIry = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

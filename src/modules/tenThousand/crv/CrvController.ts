@@ -7,10 +7,8 @@ export default class CrvController {
     summary: "Get Crv",
   })
   @get()
-  static getCrv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCrv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CrvController {
   static createCrv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

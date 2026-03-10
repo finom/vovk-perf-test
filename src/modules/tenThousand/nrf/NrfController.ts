@@ -7,10 +7,8 @@ export default class NrfController {
     summary: "Get Nrf",
   })
   @get()
-  static getNrf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNrf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NrfController {
   static createNrf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

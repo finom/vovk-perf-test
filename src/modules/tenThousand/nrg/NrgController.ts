@@ -7,10 +7,8 @@ export default class NrgController {
     summary: "Get Nrg",
   })
   @get()
-  static getNrg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNrg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NrgController {
   static createNrg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

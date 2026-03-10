@@ -7,10 +7,8 @@ export default class FnuController {
     summary: "Get Fnu",
   })
   @get()
-  static getFnu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFnu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FnuController {
   static createFnu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

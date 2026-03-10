@@ -7,10 +7,8 @@ export default class EamController {
     summary: "Get Eam",
   })
   @get()
-  static getEam = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEam = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EamController {
   static createEam = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

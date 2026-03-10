@@ -7,10 +7,8 @@ export default class BydController {
     summary: "Get Byd",
   })
   @get()
-  static getByd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getByd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BydController {
   static createByd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

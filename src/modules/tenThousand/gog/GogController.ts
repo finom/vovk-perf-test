@@ -7,10 +7,8 @@ export default class GogController {
     summary: "Get Gog",
   })
   @get()
-  static getGog = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGog = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GogController {
   static createGog = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class KhaController {
     summary: "Get Kha",
   })
   @get()
-  static getKha = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKha = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KhaController {
   static createKha = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

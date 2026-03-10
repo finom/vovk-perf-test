@@ -7,10 +7,8 @@ export default class IkuController {
     summary: "Get Iku",
   })
   @get()
-  static getIku = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIku = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IkuController {
   static createIku = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

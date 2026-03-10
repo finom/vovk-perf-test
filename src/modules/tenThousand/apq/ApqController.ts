@@ -7,10 +7,8 @@ export default class ApqController {
     summary: "Get Apq",
   })
   @get()
-  static getApq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getApq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ApqController {
   static createApq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

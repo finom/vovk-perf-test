@@ -7,10 +7,8 @@ export default class GwiController {
     summary: "Get Gwi",
   })
   @get()
-  static getGwi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGwi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GwiController {
   static createGwi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

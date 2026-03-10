@@ -7,10 +7,8 @@ export default class FguController {
     summary: "Get Fgu",
   })
   @get()
-  static getFgu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFgu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FguController {
   static createFgu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

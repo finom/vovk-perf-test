@@ -7,10 +7,8 @@ export default class GdeController {
     summary: "Get Gde",
   })
   @get()
-  static getGde = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGde = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GdeController {
   static createGde = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

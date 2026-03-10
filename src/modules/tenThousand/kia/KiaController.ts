@@ -7,10 +7,8 @@ export default class KiaController {
     summary: "Get Kia",
   })
   @get()
-  static getKia = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKia = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KiaController {
   static createKia = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

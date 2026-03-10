@@ -7,10 +7,8 @@ export default class EdhController {
     summary: "Get Edh",
   })
   @get()
-  static getEdh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEdh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EdhController {
   static createEdh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

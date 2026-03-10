@@ -7,10 +7,8 @@ export default class ConController {
     summary: "Get Con",
   })
   @get()
-  static getCon = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCon = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ConController {
   static createCon = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

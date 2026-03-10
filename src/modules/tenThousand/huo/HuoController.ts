@@ -7,10 +7,8 @@ export default class HuoController {
     summary: "Get Huo",
   })
   @get()
-  static getHuo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHuo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HuoController {
   static createHuo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

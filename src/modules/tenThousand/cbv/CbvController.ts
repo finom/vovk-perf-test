@@ -7,10 +7,8 @@ export default class CbvController {
     summary: "Get Cbv",
   })
   @get()
-  static getCbv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCbv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CbvController {
   static createCbv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

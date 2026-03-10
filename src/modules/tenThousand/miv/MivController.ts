@@ -7,10 +7,8 @@ export default class MivController {
     summary: "Get Miv",
   })
   @get()
-  static getMiv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMiv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MivController {
   static createMiv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

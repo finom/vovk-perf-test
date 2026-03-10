@@ -7,10 +7,8 @@ export default class MiuController {
     summary: "Get Miu",
   })
   @get()
-  static getMiu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMiu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MiuController {
   static createMiu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class AilController {
     summary: "Get Ail",
   })
   @get()
-  static getAil = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAil = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AilController {
   static createAil = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class AglController {
     summary: "Get Agl",
   })
   @get()
-  static getAgl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAgl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AglController {
   static createAgl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

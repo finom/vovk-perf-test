@@ -7,10 +7,8 @@ export default class GtuController {
     summary: "Get Gtu",
   })
   @get()
-  static getGtu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGtu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GtuController {
   static createGtu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

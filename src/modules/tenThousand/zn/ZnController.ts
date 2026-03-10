@@ -7,10 +7,8 @@ export default class ZnController {
     summary: "Get Zn",
   })
   @get()
-  static getZn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getZn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ZnController {
   static createZn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

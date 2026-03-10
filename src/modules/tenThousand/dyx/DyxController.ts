@@ -7,10 +7,8 @@ export default class DyxController {
     summary: "Get Dyx",
   })
   @get()
-  static getDyx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDyx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DyxController {
   static createDyx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

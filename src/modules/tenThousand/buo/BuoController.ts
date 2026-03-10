@@ -7,10 +7,8 @@ export default class BuoController {
     summary: "Get Buo",
   })
   @get()
-  static getBuo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBuo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BuoController {
   static createBuo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

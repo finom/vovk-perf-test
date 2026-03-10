@@ -7,10 +7,8 @@ export default class NcyController {
     summary: "Get Ncy",
   })
   @get()
-  static getNcy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNcy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NcyController {
   static createNcy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

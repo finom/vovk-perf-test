@@ -7,10 +7,8 @@ export default class KnaController {
     summary: "Get Kna",
   })
   @get()
-  static getKna = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKna = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KnaController {
   static createKna = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class NiaController {
     summary: "Get Nia",
   })
   @get()
-  static getNia = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNia = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NiaController {
   static createNia = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

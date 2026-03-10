@@ -7,10 +7,8 @@ export default class KdaController {
     summary: "Get Kda",
   })
   @get()
-  static getKda = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKda = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KdaController {
   static createKda = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

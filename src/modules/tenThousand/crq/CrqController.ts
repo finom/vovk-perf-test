@@ -7,10 +7,8 @@ export default class CrqController {
     summary: "Get Crq",
   })
   @get()
-  static getCrq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCrq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CrqController {
   static createCrq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

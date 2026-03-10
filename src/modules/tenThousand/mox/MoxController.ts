@@ -7,10 +7,8 @@ export default class MoxController {
     summary: "Get Mox",
   })
   @get()
-  static getMox = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMox = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MoxController {
   static createMox = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

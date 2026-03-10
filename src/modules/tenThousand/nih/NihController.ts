@@ -7,10 +7,8 @@ export default class NihController {
     summary: "Get Nih",
   })
   @get()
-  static getNih = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNih = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NihController {
   static createNih = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

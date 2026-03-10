@@ -7,10 +7,8 @@ export default class BmtController {
     summary: "Get Bmt",
   })
   @get()
-  static getBmt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBmt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BmtController {
   static createBmt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

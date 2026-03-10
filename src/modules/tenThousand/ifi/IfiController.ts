@@ -7,10 +7,8 @@ export default class IfiController {
     summary: "Get Ifi",
   })
   @get()
-  static getIfi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIfi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IfiController {
   static createIfi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

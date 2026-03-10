@@ -7,10 +7,8 @@ export default class CgfController {
     summary: "Get Cgf",
   })
   @get()
-  static getCgf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCgf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CgfController {
   static createCgf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

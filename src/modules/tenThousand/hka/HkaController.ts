@@ -7,10 +7,8 @@ export default class HkaController {
     summary: "Get Hka",
   })
   @get()
-  static getHka = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHka = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HkaController {
   static createHka = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

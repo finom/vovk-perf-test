@@ -7,10 +7,8 @@ export default class GkgController {
     summary: "Get Gkg",
   })
   @get()
-  static getGkg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGkg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GkgController {
   static createGkg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IylController {
     summary: "Get Iyl",
   })
   @get()
-  static getIyl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIyl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IylController {
   static createIyl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

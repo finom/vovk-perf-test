@@ -7,10 +7,8 @@ export default class GlvController {
     summary: "Get Glv",
   })
   @get()
-  static getGlv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGlv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GlvController {
   static createGlv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

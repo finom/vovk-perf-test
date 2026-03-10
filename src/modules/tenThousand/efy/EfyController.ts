@@ -7,10 +7,8 @@ export default class EfyController {
     summary: "Get Efy",
   })
   @get()
-  static getEfy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEfy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EfyController {
   static createEfy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

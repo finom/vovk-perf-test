@@ -7,10 +7,8 @@ export default class IqiController {
     summary: "Get Iqi",
   })
   @get()
-  static getIqi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIqi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IqiController {
   static createIqi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

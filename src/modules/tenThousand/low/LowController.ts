@@ -7,10 +7,8 @@ export default class LowController {
     summary: "Get Low",
   })
   @get()
-  static getLow = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLow = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LowController {
   static createLow = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

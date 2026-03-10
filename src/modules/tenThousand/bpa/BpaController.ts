@@ -7,10 +7,8 @@ export default class BpaController {
     summary: "Get Bpa",
   })
   @get()
-  static getBpa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBpa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BpaController {
   static createBpa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

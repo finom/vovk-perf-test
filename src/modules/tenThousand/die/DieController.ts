@@ -7,10 +7,8 @@ export default class DieController {
     summary: "Get Die",
   })
   @get()
-  static getDie = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDie = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DieController {
   static createDie = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

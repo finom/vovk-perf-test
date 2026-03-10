@@ -7,10 +7,8 @@ export default class AtkController {
     summary: "Get Atk",
   })
   @get()
-  static getAtk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAtk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AtkController {
   static createAtk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

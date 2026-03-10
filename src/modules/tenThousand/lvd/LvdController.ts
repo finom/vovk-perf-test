@@ -7,10 +7,8 @@ export default class LvdController {
     summary: "Get Lvd",
   })
   @get()
-  static getLvd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLvd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LvdController {
   static createLvd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

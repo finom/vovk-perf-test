@@ -7,10 +7,8 @@ export default class KuvController {
     summary: "Get Kuv",
   })
   @get()
-  static getKuv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKuv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KuvController {
   static createKuv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

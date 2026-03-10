@@ -7,10 +7,8 @@ export default class CcController {
     summary: "Get Cc",
   })
   @get()
-  static getCc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CcController {
   static createCc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

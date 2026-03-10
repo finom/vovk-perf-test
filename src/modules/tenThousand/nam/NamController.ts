@@ -7,10 +7,8 @@ export default class NamController {
     summary: "Get Nam",
   })
   @get()
-  static getNam = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNam = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NamController {
   static createNam = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

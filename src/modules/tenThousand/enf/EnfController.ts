@@ -7,10 +7,8 @@ export default class EnfController {
     summary: "Get Enf",
   })
   @get()
-  static getEnf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEnf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EnfController {
   static createEnf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

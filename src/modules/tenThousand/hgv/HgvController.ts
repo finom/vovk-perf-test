@@ -7,10 +7,8 @@ export default class HgvController {
     summary: "Get Hgv",
   })
   @get()
-  static getHgv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHgv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HgvController {
   static createHgv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

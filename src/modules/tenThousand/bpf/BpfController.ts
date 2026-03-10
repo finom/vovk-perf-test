@@ -7,10 +7,8 @@ export default class BpfController {
     summary: "Get Bpf",
   })
   @get()
-  static getBpf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBpf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BpfController {
   static createBpf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

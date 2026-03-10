@@ -7,10 +7,8 @@ export default class NkxController {
     summary: "Get Nkx",
   })
   @get()
-  static getNkx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNkx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NkxController {
   static createNkx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

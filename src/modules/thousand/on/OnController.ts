@@ -7,10 +7,8 @@ export default class OnController {
     summary: "Get On",
   })
   @get()
-  static getOn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getOn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class OnController {
   static createOn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class EmkController {
     summary: "Get Emk",
   })
   @get()
-  static getEmk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEmk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EmkController {
   static createEmk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

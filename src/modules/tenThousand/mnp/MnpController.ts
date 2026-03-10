@@ -7,10 +7,8 @@ export default class MnpController {
     summary: "Get Mnp",
   })
   @get()
-  static getMnp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMnp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MnpController {
   static createMnp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

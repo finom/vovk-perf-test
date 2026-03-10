@@ -7,10 +7,8 @@ export default class MidController {
     summary: "Get Mid",
   })
   @get()
-  static getMid = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMid = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MidController {
   static createMid = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

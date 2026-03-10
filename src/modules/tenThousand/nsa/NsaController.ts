@@ -7,10 +7,8 @@ export default class NsaController {
     summary: "Get Nsa",
   })
   @get()
-  static getNsa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNsa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NsaController {
   static createNsa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

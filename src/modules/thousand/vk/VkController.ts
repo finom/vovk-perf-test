@@ -7,10 +7,8 @@ export default class VkController {
     summary: "Get Vk",
   })
   @get()
-  static getVk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getVk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class VkController {
   static createVk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

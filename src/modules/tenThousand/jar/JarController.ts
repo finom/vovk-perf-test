@@ -7,10 +7,8 @@ export default class JarController {
     summary: "Get Jar",
   })
   @get()
-  static getJar = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJar = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JarController {
   static createJar = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

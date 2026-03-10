@@ -7,10 +7,8 @@ export default class EvuController {
     summary: "Get Evu",
   })
   @get()
-  static getEvu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEvu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EvuController {
   static createEvu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

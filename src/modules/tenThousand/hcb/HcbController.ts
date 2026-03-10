@@ -7,10 +7,8 @@ export default class HcbController {
     summary: "Get Hcb",
   })
   @get()
-  static getHcb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHcb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HcbController {
   static createHcb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

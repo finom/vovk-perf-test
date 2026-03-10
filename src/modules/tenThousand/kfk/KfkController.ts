@@ -7,10 +7,8 @@ export default class KfkController {
     summary: "Get Kfk",
   })
   @get()
-  static getKfk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKfk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KfkController {
   static createKfk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

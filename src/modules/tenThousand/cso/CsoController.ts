@@ -7,10 +7,8 @@ export default class CsoController {
     summary: "Get Cso",
   })
   @get()
-  static getCso = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCso = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CsoController {
   static createCso = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

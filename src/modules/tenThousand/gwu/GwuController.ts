@@ -7,10 +7,8 @@ export default class GwuController {
     summary: "Get Gwu",
   })
   @get()
-  static getGwu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGwu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GwuController {
   static createGwu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

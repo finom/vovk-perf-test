@@ -7,10 +7,8 @@ export default class KaiController {
     summary: "Get Kai",
   })
   @get()
-  static getKai = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKai = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KaiController {
   static createKai = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

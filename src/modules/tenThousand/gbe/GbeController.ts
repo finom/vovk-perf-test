@@ -7,10 +7,8 @@ export default class GbeController {
     summary: "Get Gbe",
   })
   @get()
-  static getGbe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGbe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GbeController {
   static createGbe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

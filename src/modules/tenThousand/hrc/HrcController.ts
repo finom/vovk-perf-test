@@ -7,10 +7,8 @@ export default class HrcController {
     summary: "Get Hrc",
   })
   @get()
-  static getHrc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHrc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HrcController {
   static createHrc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

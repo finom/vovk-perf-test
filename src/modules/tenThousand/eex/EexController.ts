@@ -7,10 +7,8 @@ export default class EexController {
     summary: "Get Eex",
   })
   @get()
-  static getEex = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEex = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EexController {
   static createEex = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class ObController {
     summary: "Get Ob",
   })
   @get()
-  static getOb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getOb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ObController {
   static createOb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

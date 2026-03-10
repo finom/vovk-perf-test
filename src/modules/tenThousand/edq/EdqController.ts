@@ -7,10 +7,8 @@ export default class EdqController {
     summary: "Get Edq",
   })
   @get()
-  static getEdq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEdq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EdqController {
   static createEdq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

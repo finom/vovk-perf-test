@@ -7,10 +7,8 @@ export default class HanController {
     summary: "Get Han",
   })
   @get()
-  static getHan = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHan = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HanController {
   static createHan = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

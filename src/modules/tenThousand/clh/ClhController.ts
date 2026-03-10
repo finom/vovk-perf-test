@@ -7,10 +7,8 @@ export default class ClhController {
     summary: "Get Clh",
   })
   @get()
-  static getClh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getClh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ClhController {
   static createClh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

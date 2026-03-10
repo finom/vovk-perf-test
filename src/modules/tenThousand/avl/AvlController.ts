@@ -7,10 +7,8 @@ export default class AvlController {
     summary: "Get Avl",
   })
   @get()
-  static getAvl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAvl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AvlController {
   static createAvl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

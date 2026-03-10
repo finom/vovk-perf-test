@@ -7,10 +7,8 @@ export default class NasController {
     summary: "Get Nas",
   })
   @get()
-  static getNas = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNas = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NasController {
   static createNas = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

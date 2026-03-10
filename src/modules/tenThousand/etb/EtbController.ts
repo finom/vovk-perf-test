@@ -7,10 +7,8 @@ export default class EtbController {
     summary: "Get Etb",
   })
   @get()
-  static getEtb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEtb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EtbController {
   static createEtb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

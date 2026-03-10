@@ -7,10 +7,8 @@ export default class CvjController {
     summary: "Get Cvj",
   })
   @get()
-  static getCvj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCvj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CvjController {
   static createCvj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

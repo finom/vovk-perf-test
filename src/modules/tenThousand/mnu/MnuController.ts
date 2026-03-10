@@ -7,10 +7,8 @@ export default class MnuController {
     summary: "Get Mnu",
   })
   @get()
-  static getMnu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMnu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MnuController {
   static createMnu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

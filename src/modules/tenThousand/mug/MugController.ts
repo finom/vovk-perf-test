@@ -7,10 +7,8 @@ export default class MugController {
     summary: "Get Mug",
   })
   @get()
-  static getMug = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMug = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MugController {
   static createMug = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

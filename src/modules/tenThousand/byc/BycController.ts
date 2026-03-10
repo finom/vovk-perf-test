@@ -7,10 +7,8 @@ export default class BycController {
     summary: "Get Byc",
   })
   @get()
-  static getByc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getByc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BycController {
   static createByc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

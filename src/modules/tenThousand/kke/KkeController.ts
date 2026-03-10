@@ -7,10 +7,8 @@ export default class KkeController {
     summary: "Get Kke",
   })
   @get()
-  static getKke = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKke = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KkeController {
   static createKke = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

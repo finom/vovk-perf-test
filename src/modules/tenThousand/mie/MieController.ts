@@ -7,10 +7,8 @@ export default class MieController {
     summary: "Get Mie",
   })
   @get()
-  static getMie = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMie = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MieController {
   static createMie = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

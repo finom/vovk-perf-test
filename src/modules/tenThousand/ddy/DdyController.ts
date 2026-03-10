@@ -7,10 +7,8 @@ export default class DdyController {
     summary: "Get Ddy",
   })
   @get()
-  static getDdy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDdy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DdyController {
   static createDdy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

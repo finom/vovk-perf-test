@@ -7,10 +7,8 @@ export default class MpmController {
     summary: "Get Mpm",
   })
   @get()
-  static getMpm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMpm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MpmController {
   static createMpm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

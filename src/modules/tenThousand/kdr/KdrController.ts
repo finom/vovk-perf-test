@@ -7,10 +7,8 @@ export default class KdrController {
     summary: "Get Kdr",
   })
   @get()
-  static getKdr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKdr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KdrController {
   static createKdr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

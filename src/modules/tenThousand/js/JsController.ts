@@ -7,10 +7,8 @@ export default class JsController {
     summary: "Get Js",
   })
   @get()
-  static getJs = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJs = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JsController {
   static createJs = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

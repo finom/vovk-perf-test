@@ -7,10 +7,8 @@ export default class NtiController {
     summary: "Get Nti",
   })
   @get()
-  static getNti = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNti = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NtiController {
   static createNti = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

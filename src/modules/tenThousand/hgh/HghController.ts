@@ -7,10 +7,8 @@ export default class HghController {
     summary: "Get Hgh",
   })
   @get()
-  static getHgh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHgh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HghController {
   static createHgh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

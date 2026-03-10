@@ -7,10 +7,8 @@ export default class HbyController {
     summary: "Get Hby",
   })
   @get()
-  static getHby = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHby = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HbyController {
   static createHby = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

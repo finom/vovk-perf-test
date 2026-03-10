@@ -7,10 +7,8 @@ export default class DodController {
     summary: "Get Dod",
   })
   @get()
-  static getDod = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDod = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DodController {
   static createDod = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

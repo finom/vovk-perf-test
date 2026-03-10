@@ -7,10 +7,8 @@ export default class CgaController {
     summary: "Get Cga",
   })
   @get()
-  static getCga = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCga = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CgaController {
   static createCga = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class VgController {
     summary: "Get Vg",
   })
   @get()
-  static getVg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getVg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class VgController {
   static createVg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

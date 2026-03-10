@@ -7,10 +7,8 @@ export default class CxpController {
     summary: "Get Cxp",
   })
   @get()
-  static getCxp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCxp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CxpController {
   static createCxp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

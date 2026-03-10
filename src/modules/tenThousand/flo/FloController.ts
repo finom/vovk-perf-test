@@ -7,10 +7,8 @@ export default class FloController {
     summary: "Get Flo",
   })
   @get()
-  static getFlo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFlo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FloController {
   static createFlo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

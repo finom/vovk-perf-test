@@ -7,10 +7,8 @@ export default class CleController {
     summary: "Get Cle",
   })
   @get()
-  static getCle = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCle = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CleController {
   static createCle = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

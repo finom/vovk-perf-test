@@ -7,10 +7,8 @@ export default class AhiController {
     summary: "Get Ahi",
   })
   @get()
-  static getAhi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAhi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AhiController {
   static createAhi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class DtnController {
     summary: "Get Dtn",
   })
   @get()
-  static getDtn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDtn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DtnController {
   static createDtn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

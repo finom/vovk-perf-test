@@ -7,10 +7,8 @@ export default class NtbController {
     summary: "Get Ntb",
   })
   @get()
-  static getNtb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNtb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NtbController {
   static createNtb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

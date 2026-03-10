@@ -7,10 +7,8 @@ export default class DrvController {
     summary: "Get Drv",
   })
   @get()
-  static getDrv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDrv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DrvController {
   static createDrv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

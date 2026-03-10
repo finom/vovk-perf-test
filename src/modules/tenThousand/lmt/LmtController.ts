@@ -7,10 +7,8 @@ export default class LmtController {
     summary: "Get Lmt",
   })
   @get()
-  static getLmt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLmt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LmtController {
   static createLmt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

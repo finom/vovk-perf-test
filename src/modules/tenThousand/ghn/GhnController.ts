@@ -7,10 +7,8 @@ export default class GhnController {
     summary: "Get Ghn",
   })
   @get()
-  static getGhn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGhn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GhnController {
   static createGhn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

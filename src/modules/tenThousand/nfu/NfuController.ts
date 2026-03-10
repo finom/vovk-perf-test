@@ -7,10 +7,8 @@ export default class NfuController {
     summary: "Get Nfu",
   })
   @get()
-  static getNfu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNfu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NfuController {
   static createNfu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class CsaController {
     summary: "Get Csa",
   })
   @get()
-  static getCsa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCsa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CsaController {
   static createCsa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

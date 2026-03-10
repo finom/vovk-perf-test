@@ -7,10 +7,8 @@ export default class EdxController {
     summary: "Get Edx",
   })
   @get()
-  static getEdx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEdx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EdxController {
   static createEdx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

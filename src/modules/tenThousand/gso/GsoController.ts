@@ -7,10 +7,8 @@ export default class GsoController {
     summary: "Get Gso",
   })
   @get()
-  static getGso = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGso = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GsoController {
   static createGso = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

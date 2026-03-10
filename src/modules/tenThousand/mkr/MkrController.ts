@@ -7,10 +7,8 @@ export default class MkrController {
     summary: "Get Mkr",
   })
   @get()
-  static getMkr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMkr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MkrController {
   static createMkr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class EdgController {
     summary: "Get Edg",
   })
   @get()
-  static getEdg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEdg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EdgController {
   static createEdg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

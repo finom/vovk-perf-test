@@ -7,10 +7,8 @@ export default class IsgController {
     summary: "Get Isg",
   })
   @get()
-  static getIsg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIsg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IsgController {
   static createIsg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

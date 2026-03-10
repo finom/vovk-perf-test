@@ -7,10 +7,8 @@ export default class GtgController {
     summary: "Get Gtg",
   })
   @get()
-  static getGtg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGtg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GtgController {
   static createGtg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

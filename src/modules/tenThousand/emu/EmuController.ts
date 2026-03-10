@@ -7,10 +7,8 @@ export default class EmuController {
     summary: "Get Emu",
   })
   @get()
-  static getEmu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEmu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EmuController {
   static createEmu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

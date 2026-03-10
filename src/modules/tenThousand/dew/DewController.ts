@@ -7,10 +7,8 @@ export default class DewController {
     summary: "Get Dew",
   })
   @get()
-  static getDew = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDew = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DewController {
   static createDew = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

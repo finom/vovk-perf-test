@@ -7,10 +7,8 @@ export default class PiController {
     summary: "Get Pi",
   })
   @get()
-  static getPi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getPi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class PiController {
   static createPi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

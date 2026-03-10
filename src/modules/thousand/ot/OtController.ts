@@ -7,10 +7,8 @@ export default class OtController {
     summary: "Get Ot",
   })
   @get()
-  static getOt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getOt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class OtController {
   static createOt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

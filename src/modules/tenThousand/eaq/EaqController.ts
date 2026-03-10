@@ -7,10 +7,8 @@ export default class EaqController {
     summary: "Get Eaq",
   })
   @get()
-  static getEaq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEaq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EaqController {
   static createEaq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

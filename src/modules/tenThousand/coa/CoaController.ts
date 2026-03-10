@@ -7,10 +7,8 @@ export default class CoaController {
     summary: "Get Coa",
   })
   @get()
-  static getCoa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCoa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CoaController {
   static createCoa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

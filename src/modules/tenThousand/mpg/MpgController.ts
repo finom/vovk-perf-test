@@ -7,10 +7,8 @@ export default class MpgController {
     summary: "Get Mpg",
   })
   @get()
-  static getMpg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMpg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MpgController {
   static createMpg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

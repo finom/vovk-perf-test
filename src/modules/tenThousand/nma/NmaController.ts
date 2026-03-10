@@ -7,10 +7,8 @@ export default class NmaController {
     summary: "Get Nma",
   })
   @get()
-  static getNma = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNma = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NmaController {
   static createNma = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

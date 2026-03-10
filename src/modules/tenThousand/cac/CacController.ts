@@ -7,10 +7,8 @@ export default class CacController {
     summary: "Get Cac",
   })
   @get()
-  static getCac = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCac = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CacController {
   static createCac = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

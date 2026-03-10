@@ -7,10 +7,8 @@ export default class KpwController {
     summary: "Get Kpw",
   })
   @get()
-  static getKpw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKpw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KpwController {
   static createKpw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

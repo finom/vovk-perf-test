@@ -7,10 +7,8 @@ export default class AafController {
     summary: "Get Aaf",
   })
   @get()
-  static getAaf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAaf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AafController {
   static createAaf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

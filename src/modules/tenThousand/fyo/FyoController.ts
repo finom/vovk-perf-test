@@ -7,10 +7,8 @@ export default class FyoController {
     summary: "Get Fyo",
   })
   @get()
-  static getFyo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFyo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FyoController {
   static createFyo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

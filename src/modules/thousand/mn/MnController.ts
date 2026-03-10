@@ -7,10 +7,8 @@ export default class MnController {
     summary: "Get Mn",
   })
   @get()
-  static getMn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MnController {
   static createMn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

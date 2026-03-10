@@ -7,10 +7,8 @@ export default class McpController {
     summary: "Get Mcp",
   })
   @get()
-  static getMcp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMcp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class McpController {
   static createMcp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

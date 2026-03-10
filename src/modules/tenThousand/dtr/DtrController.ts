@@ -7,10 +7,8 @@ export default class DtrController {
     summary: "Get Dtr",
   })
   @get()
-  static getDtr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDtr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DtrController {
   static createDtr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class KoiController {
     summary: "Get Koi",
   })
   @get()
-  static getKoi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKoi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KoiController {
   static createKoi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

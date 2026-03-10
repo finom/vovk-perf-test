@@ -7,10 +7,8 @@ export default class NjzController {
     summary: "Get Njz",
   })
   @get()
-  static getNjz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNjz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NjzController {
   static createNjz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

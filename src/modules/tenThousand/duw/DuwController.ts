@@ -7,10 +7,8 @@ export default class DuwController {
     summary: "Get Duw",
   })
   @get()
-  static getDuw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDuw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DuwController {
   static createDuw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class MhqController {
     summary: "Get Mhq",
   })
   @get()
-  static getMhq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMhq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MhqController {
   static createMhq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class NdoController {
     summary: "Get Ndo",
   })
   @get()
-  static getNdo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNdo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NdoController {
   static createNdo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

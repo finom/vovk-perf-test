@@ -7,10 +7,8 @@ export default class FyeController {
     summary: "Get Fye",
   })
   @get()
-  static getFye = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFye = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FyeController {
   static createFye = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

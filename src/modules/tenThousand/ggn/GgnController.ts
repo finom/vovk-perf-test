@@ -7,10 +7,8 @@ export default class GgnController {
     summary: "Get Ggn",
   })
   @get()
-  static getGgn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGgn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GgnController {
   static createGgn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

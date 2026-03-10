@@ -7,10 +7,8 @@ export default class LswController {
     summary: "Get Lsw",
   })
   @get()
-  static getLsw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLsw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LswController {
   static createLsw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

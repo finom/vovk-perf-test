@@ -7,10 +7,8 @@ export default class DyqController {
     summary: "Get Dyq",
   })
   @get()
-  static getDyq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDyq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DyqController {
   static createDyq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

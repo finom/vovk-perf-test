@@ -7,10 +7,8 @@ export default class CnvController {
     summary: "Get Cnv",
   })
   @get()
-  static getCnv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCnv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CnvController {
   static createCnv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

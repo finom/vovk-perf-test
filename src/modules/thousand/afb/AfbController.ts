@@ -7,10 +7,8 @@ export default class AfbController {
     summary: "Get Afb",
   })
   @get()
-  static getAfb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAfb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AfbController {
   static createAfb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

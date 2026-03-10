@@ -7,10 +7,8 @@ export default class DigController {
     summary: "Get Dig",
   })
   @get()
-  static getDig = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDig = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DigController {
   static createDig = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

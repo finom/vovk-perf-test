@@ -7,10 +7,8 @@ export default class IdcController {
     summary: "Get Idc",
   })
   @get()
-  static getIdc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIdc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IdcController {
   static createIdc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

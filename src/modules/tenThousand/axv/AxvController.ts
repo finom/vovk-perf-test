@@ -7,10 +7,8 @@ export default class AxvController {
     summary: "Get Axv",
   })
   @get()
-  static getAxv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAxv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AxvController {
   static createAxv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

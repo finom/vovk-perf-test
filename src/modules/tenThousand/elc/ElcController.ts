@@ -7,10 +7,8 @@ export default class ElcController {
     summary: "Get Elc",
   })
   @get()
-  static getElc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getElc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ElcController {
   static createElc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

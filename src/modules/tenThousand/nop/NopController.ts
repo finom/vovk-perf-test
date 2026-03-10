@@ -7,10 +7,8 @@ export default class NopController {
     summary: "Get Nop",
   })
   @get()
-  static getNop = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNop = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NopController {
   static createNop = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

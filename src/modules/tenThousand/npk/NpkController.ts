@@ -7,10 +7,8 @@ export default class NpkController {
     summary: "Get Npk",
   })
   @get()
-  static getNpk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNpk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NpkController {
   static createNpk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

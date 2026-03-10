@@ -7,10 +7,8 @@ export default class InrController {
     summary: "Get Inr",
   })
   @get()
-  static getInr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getInr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class InrController {
   static createInr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

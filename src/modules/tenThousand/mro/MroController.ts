@@ -7,10 +7,8 @@ export default class MroController {
     summary: "Get Mro",
   })
   @get()
-  static getMro = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMro = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MroController {
   static createMro = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

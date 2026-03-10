@@ -7,10 +7,8 @@ export default class BukController {
     summary: "Get Buk",
   })
   @get()
-  static getBuk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBuk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BukController {
   static createBuk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

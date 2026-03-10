@@ -7,10 +7,8 @@ export default class CumController {
     summary: "Get Cum",
   })
   @get()
-  static getCum = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCum = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CumController {
   static createCum = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

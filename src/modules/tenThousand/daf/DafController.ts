@@ -7,10 +7,8 @@ export default class DafController {
     summary: "Get Daf",
   })
   @get()
-  static getDaf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDaf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DafController {
   static createDaf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

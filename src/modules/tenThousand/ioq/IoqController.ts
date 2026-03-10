@@ -7,10 +7,8 @@ export default class IoqController {
     summary: "Get Ioq",
   })
   @get()
-  static getIoq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIoq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IoqController {
   static createIoq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

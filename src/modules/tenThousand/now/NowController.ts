@@ -7,10 +7,8 @@ export default class NowController {
     summary: "Get Now",
   })
   @get()
-  static getNow = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNow = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NowController {
   static createNow = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

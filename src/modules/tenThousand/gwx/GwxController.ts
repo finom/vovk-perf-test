@@ -7,10 +7,8 @@ export default class GwxController {
     summary: "Get Gwx",
   })
   @get()
-  static getGwx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGwx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GwxController {
   static createGwx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

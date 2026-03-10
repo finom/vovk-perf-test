@@ -7,10 +7,8 @@ export default class KcnController {
     summary: "Get Kcn",
   })
   @get()
-  static getKcn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKcn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KcnController {
   static createKcn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

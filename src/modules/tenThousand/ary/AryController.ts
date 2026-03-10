@@ -7,10 +7,8 @@ export default class AryController {
     summary: "Get Ary",
   })
   @get()
-  static getAry = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAry = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AryController {
   static createAry = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

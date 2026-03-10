@@ -7,10 +7,8 @@ export default class MayController {
     summary: "Get May",
   })
   @get()
-  static getMay = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMay = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MayController {
   static createMay = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

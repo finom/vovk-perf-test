@@ -7,10 +7,8 @@ export default class CyuController {
     summary: "Get Cyu",
   })
   @get()
-  static getCyu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCyu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CyuController {
   static createCyu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

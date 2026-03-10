@@ -7,10 +7,8 @@ export default class AktController {
     summary: "Get Akt",
   })
   @get()
-  static getAkt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAkt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AktController {
   static createAkt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

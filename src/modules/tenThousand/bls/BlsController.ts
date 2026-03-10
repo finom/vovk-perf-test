@@ -7,10 +7,8 @@ export default class BlsController {
     summary: "Get Bls",
   })
   @get()
-  static getBls = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBls = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BlsController {
   static createBls = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

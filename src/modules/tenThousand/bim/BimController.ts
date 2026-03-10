@@ -7,10 +7,8 @@ export default class BimController {
     summary: "Get Bim",
   })
   @get()
-  static getBim = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBim = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BimController {
   static createBim = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IxyController {
     summary: "Get Ixy",
   })
   @get()
-  static getIxy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIxy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IxyController {
   static createIxy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

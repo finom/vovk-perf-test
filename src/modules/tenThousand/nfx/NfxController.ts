@@ -7,10 +7,8 @@ export default class NfxController {
     summary: "Get Nfx",
   })
   @get()
-  static getNfx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNfx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NfxController {
   static createNfx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

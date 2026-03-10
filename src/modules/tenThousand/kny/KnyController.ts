@@ -7,10 +7,8 @@ export default class KnyController {
     summary: "Get Kny",
   })
   @get()
-  static getKny = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKny = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KnyController {
   static createKny = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

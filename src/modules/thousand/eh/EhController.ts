@@ -7,10 +7,8 @@ export default class EhController {
     summary: "Get Eh",
   })
   @get()
-  static getEh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EhController {
   static createEh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class MmoController {
     summary: "Get Mmo",
   })
   @get()
-  static getMmo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMmo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MmoController {
   static createMmo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

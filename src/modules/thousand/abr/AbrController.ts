@@ -7,10 +7,8 @@ export default class AbrController {
     summary: "Get Abr",
   })
   @get()
-  static getAbr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAbr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AbrController {
   static createAbr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

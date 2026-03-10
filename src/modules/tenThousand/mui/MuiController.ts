@@ -7,10 +7,8 @@ export default class MuiController {
     summary: "Get Mui",
   })
   @get()
-  static getMui = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMui = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MuiController {
   static createMui = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

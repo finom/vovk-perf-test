@@ -7,10 +7,8 @@ export default class IamController {
     summary: "Get Iam",
   })
   @get()
-  static getIam = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIam = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IamController {
   static createIam = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

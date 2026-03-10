@@ -7,10 +7,8 @@ export default class DprController {
     summary: "Get Dpr",
   })
   @get()
-  static getDpr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDpr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DprController {
   static createDpr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

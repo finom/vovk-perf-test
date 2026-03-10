@@ -7,10 +7,8 @@ export default class EomController {
     summary: "Get Eom",
   })
   @get()
-  static getEom = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEom = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EomController {
   static createEom = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class EshController {
     summary: "Get Esh",
   })
   @get()
-  static getEsh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEsh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EshController {
   static createEsh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

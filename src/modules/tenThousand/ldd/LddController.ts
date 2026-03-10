@@ -7,10 +7,8 @@ export default class LddController {
     summary: "Get Ldd",
   })
   @get()
-  static getLdd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLdd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LddController {
   static createLdd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

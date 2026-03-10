@@ -7,10 +7,8 @@ export default class FrController {
     summary: "Get Fr",
   })
   @get()
-  static getFr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FrController {
   static createFr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

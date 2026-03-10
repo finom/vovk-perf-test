@@ -7,10 +7,8 @@ export default class KecController {
     summary: "Get Kec",
   })
   @get()
-  static getKec = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKec = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KecController {
   static createKec = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

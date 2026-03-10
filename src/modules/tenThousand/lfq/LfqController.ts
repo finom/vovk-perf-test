@@ -7,10 +7,8 @@ export default class LfqController {
     summary: "Get Lfq",
   })
   @get()
-  static getLfq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLfq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LfqController {
   static createLfq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

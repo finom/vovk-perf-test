@@ -7,10 +7,8 @@ export default class AluController {
     summary: "Get Alu",
   })
   @get()
-  static getAlu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAlu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AluController {
   static createAlu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

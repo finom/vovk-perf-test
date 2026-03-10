@@ -7,10 +7,8 @@ export default class LquController {
     summary: "Get Lqu",
   })
   @get()
-  static getLqu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLqu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LquController {
   static createLqu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

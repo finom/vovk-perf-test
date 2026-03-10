@@ -7,10 +7,8 @@ export default class EstController {
     summary: "Get Est",
   })
   @get()
-  static getEst = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEst = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EstController {
   static createEst = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

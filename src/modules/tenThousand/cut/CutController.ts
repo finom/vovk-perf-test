@@ -7,10 +7,8 @@ export default class CutController {
     summary: "Get Cut",
   })
   @get()
-  static getCut = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCut = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CutController {
   static createCut = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

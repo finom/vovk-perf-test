@@ -7,10 +7,8 @@ export default class FetController {
     summary: "Get Fet",
   })
   @get()
-  static getFet = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFet = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FetController {
   static createFet = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

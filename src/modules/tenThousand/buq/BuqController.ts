@@ -7,10 +7,8 @@ export default class BuqController {
     summary: "Get Buq",
   })
   @get()
-  static getBuq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBuq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BuqController {
   static createBuq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

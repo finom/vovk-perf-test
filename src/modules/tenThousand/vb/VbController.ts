@@ -7,10 +7,8 @@ export default class VbController {
     summary: "Get Vb",
   })
   @get()
-  static getVb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getVb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class VbController {
   static createVb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

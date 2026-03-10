@@ -7,10 +7,8 @@ export default class GgwController {
     summary: "Get Ggw",
   })
   @get()
-  static getGgw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGgw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GgwController {
   static createGgw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

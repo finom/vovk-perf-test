@@ -7,10 +7,8 @@ export default class JrhController {
     summary: "Get Jrh",
   })
   @get()
-  static getJrh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJrh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JrhController {
   static createJrh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class MwdController {
     summary: "Get Mwd",
   })
   @get()
-  static getMwd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMwd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MwdController {
   static createMwd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

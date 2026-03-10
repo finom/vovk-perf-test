@@ -7,10 +7,8 @@ export default class AwyController {
     summary: "Get Awy",
   })
   @get()
-  static getAwy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAwy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AwyController {
   static createAwy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

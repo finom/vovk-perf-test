@@ -7,10 +7,8 @@ export default class DvaController {
     summary: "Get Dva",
   })
   @get()
-  static getDva = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDva = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DvaController {
   static createDva = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

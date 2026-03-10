@@ -7,10 +7,8 @@ export default class KfmController {
     summary: "Get Kfm",
   })
   @get()
-  static getKfm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKfm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KfmController {
   static createKfm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

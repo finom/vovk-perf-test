@@ -7,10 +7,8 @@ export default class AsfController {
     summary: "Get Asf",
   })
   @get()
-  static getAsf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAsf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AsfController {
   static createAsf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

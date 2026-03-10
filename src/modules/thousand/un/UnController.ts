@@ -7,10 +7,8 @@ export default class UnController {
     summary: "Get Un",
   })
   @get()
-  static getUn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getUn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class UnController {
   static createUn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

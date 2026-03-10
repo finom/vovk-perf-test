@@ -7,10 +7,8 @@ export default class BskController {
     summary: "Get Bsk",
   })
   @get()
-  static getBsk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBsk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BskController {
   static createBsk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

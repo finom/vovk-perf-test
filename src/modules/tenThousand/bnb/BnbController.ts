@@ -7,10 +7,8 @@ export default class BnbController {
     summary: "Get Bnb",
   })
   @get()
-  static getBnb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBnb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BnbController {
   static createBnb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

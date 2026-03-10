@@ -7,10 +7,8 @@ export default class GnjController {
     summary: "Get Gnj",
   })
   @get()
-  static getGnj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGnj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GnjController {
   static createGnj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

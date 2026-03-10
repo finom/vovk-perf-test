@@ -7,10 +7,8 @@ export default class LnfController {
     summary: "Get Lnf",
   })
   @get()
-  static getLnf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLnf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LnfController {
   static createLnf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

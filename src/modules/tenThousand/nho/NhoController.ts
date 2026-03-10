@@ -7,10 +7,8 @@ export default class NhoController {
     summary: "Get Nho",
   })
   @get()
-  static getNho = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNho = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NhoController {
   static createNho = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

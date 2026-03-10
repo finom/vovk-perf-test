@@ -7,10 +7,8 @@ export default class NokController {
     summary: "Get Nok",
   })
   @get()
-  static getNok = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNok = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NokController {
   static createNok = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

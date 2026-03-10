@@ -7,10 +7,8 @@ export default class BruController {
     summary: "Get Bru",
   })
   @get()
-  static getBru = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBru = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BruController {
   static createBru = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

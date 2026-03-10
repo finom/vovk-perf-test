@@ -7,10 +7,8 @@ export default class HmoController {
     summary: "Get Hmo",
   })
   @get()
-  static getHmo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHmo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HmoController {
   static createHmo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

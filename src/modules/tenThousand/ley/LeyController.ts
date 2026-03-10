@@ -7,10 +7,8 @@ export default class LeyController {
     summary: "Get Ley",
   })
   @get()
-  static getLey = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLey = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LeyController {
   static createLey = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class DanController {
     summary: "Get Dan",
   })
   @get()
-  static getDan = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDan = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DanController {
   static createDan = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

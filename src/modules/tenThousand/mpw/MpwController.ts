@@ -7,10 +7,8 @@ export default class MpwController {
     summary: "Get Mpw",
   })
   @get()
-  static getMpw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMpw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MpwController {
   static createMpw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

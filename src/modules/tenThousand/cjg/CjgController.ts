@@ -7,10 +7,8 @@ export default class CjgController {
     summary: "Get Cjg",
   })
   @get()
-  static getCjg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCjg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CjgController {
   static createCjg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

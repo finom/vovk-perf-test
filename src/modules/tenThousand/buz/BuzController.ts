@@ -7,10 +7,8 @@ export default class BuzController {
     summary: "Get Buz",
   })
   @get()
-  static getBuz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBuz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BuzController {
   static createBuz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IxbController {
     summary: "Get Ixb",
   })
   @get()
-  static getIxb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIxb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IxbController {
   static createIxb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

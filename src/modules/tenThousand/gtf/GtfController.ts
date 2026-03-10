@@ -7,10 +7,8 @@ export default class GtfController {
     summary: "Get Gtf",
   })
   @get()
-  static getGtf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGtf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GtfController {
   static createGtf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class FcuController {
     summary: "Get Fcu",
   })
   @get()
-  static getFcu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFcu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FcuController {
   static createFcu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

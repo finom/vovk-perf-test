@@ -7,10 +7,8 @@ export default class LmiController {
     summary: "Get Lmi",
   })
   @get()
-  static getLmi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLmi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LmiController {
   static createLmi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

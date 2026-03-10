@@ -7,10 +7,8 @@ export default class EerController {
     summary: "Get Eer",
   })
   @get()
-  static getEer = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEer = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EerController {
   static createEer = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

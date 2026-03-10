@@ -7,10 +7,8 @@ export default class ArzController {
     summary: "Get Arz",
   })
   @get()
-  static getArz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getArz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ArzController {
   static createArz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IacController {
     summary: "Get Iac",
   })
   @get()
-  static getIac = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIac = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IacController {
   static createIac = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

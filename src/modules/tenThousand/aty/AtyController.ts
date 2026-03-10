@@ -7,10 +7,8 @@ export default class AtyController {
     summary: "Get Aty",
   })
   @get()
-  static getAty = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAty = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AtyController {
   static createAty = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

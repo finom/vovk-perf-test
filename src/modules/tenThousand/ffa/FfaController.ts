@@ -7,10 +7,8 @@ export default class FfaController {
     summary: "Get Ffa",
   })
   @get()
-  static getFfa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFfa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FfaController {
   static createFfa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

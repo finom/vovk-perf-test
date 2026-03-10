@@ -7,10 +7,8 @@ export default class GucController {
     summary: "Get Guc",
   })
   @get()
-  static getGuc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGuc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GucController {
   static createGuc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

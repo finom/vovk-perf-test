@@ -7,10 +7,8 @@ export default class LipController {
     summary: "Get Lip",
   })
   @get()
-  static getLip = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLip = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LipController {
   static createLip = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

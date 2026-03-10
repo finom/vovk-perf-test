@@ -7,10 +7,8 @@ export default class MywController {
     summary: "Get Myw",
   })
   @get()
-  static getMyw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMyw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MywController {
   static createMyw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

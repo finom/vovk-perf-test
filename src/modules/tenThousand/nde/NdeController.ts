@@ -7,10 +7,8 @@ export default class NdeController {
     summary: "Get Nde",
   })
   @get()
-  static getNde = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNde = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NdeController {
   static createNde = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

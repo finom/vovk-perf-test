@@ -7,10 +7,8 @@ export default class BnlController {
     summary: "Get Bnl",
   })
   @get()
-  static getBnl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBnl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BnlController {
   static createBnl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

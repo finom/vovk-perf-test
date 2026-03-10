@@ -7,10 +7,8 @@ export default class LirController {
     summary: "Get Lir",
   })
   @get()
-  static getLir = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLir = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LirController {
   static createLir = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

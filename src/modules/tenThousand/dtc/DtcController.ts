@@ -7,10 +7,8 @@ export default class DtcController {
     summary: "Get Dtc",
   })
   @get()
-  static getDtc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDtc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DtcController {
   static createDtc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

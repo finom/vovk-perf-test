@@ -7,10 +7,8 @@ export default class BokController {
     summary: "Get Bok",
   })
   @get()
-  static getBok = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBok = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BokController {
   static createBok = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

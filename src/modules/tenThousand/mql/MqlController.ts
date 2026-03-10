@@ -7,10 +7,8 @@ export default class MqlController {
     summary: "Get Mql",
   })
   @get()
-  static getMql = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMql = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MqlController {
   static createMql = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

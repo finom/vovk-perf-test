@@ -7,10 +7,8 @@ export default class CndController {
     summary: "Get Cnd",
   })
   @get()
-  static getCnd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCnd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CndController {
   static createCnd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

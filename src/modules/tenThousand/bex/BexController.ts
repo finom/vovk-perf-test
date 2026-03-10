@@ -7,10 +7,8 @@ export default class BexController {
     summary: "Get Bex",
   })
   @get()
-  static getBex = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBex = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BexController {
   static createBex = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

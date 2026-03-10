@@ -7,10 +7,8 @@ export default class BtaController {
     summary: "Get Bta",
   })
   @get()
-  static getBta = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBta = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BtaController {
   static createBta = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

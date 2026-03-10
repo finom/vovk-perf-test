@@ -7,10 +7,8 @@ export default class MlnController {
     summary: "Get Mln",
   })
   @get()
-  static getMln = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMln = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MlnController {
   static createMln = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

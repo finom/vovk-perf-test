@@ -7,10 +7,8 @@ export default class LdfController {
     summary: "Get Ldf",
   })
   @get()
-  static getLdf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLdf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LdfController {
   static createLdf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

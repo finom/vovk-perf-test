@@ -7,10 +7,8 @@ export default class EarController {
     summary: "Get Ear",
   })
   @get()
-  static getEar = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEar = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EarController {
   static createEar = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

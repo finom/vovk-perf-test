@@ -7,10 +7,8 @@ export default class KxoController {
     summary: "Get Kxo",
   })
   @get()
-  static getKxo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKxo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KxoController {
   static createKxo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

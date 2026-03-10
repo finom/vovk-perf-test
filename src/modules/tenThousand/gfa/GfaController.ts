@@ -7,10 +7,8 @@ export default class GfaController {
     summary: "Get Gfa",
   })
   @get()
-  static getGfa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGfa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GfaController {
   static createGfa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

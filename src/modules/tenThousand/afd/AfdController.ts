@@ -7,10 +7,8 @@ export default class AfdController {
     summary: "Get Afd",
   })
   @get()
-  static getAfd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAfd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AfdController {
   static createAfd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

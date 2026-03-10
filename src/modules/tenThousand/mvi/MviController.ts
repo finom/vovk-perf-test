@@ -7,10 +7,8 @@ export default class MviController {
     summary: "Get Mvi",
   })
   @get()
-  static getMvi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMvi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MviController {
   static createMvi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

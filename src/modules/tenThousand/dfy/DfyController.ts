@@ -7,10 +7,8 @@ export default class DfyController {
     summary: "Get Dfy",
   })
   @get()
-  static getDfy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDfy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DfyController {
   static createDfy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

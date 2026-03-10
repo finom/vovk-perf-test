@@ -7,10 +7,8 @@ export default class DnxController {
     summary: "Get Dnx",
   })
   @get()
-  static getDnx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDnx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DnxController {
   static createDnx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

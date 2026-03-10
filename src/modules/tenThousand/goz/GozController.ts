@@ -7,10 +7,8 @@ export default class GozController {
     summary: "Get Goz",
   })
   @get()
-  static getGoz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGoz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GozController {
   static createGoz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

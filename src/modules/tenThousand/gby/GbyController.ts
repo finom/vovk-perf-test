@@ -7,10 +7,8 @@ export default class GbyController {
     summary: "Get Gby",
   })
   @get()
-  static getGby = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGby = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GbyController {
   static createGby = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

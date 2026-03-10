@@ -7,10 +7,8 @@ export default class FjdController {
     summary: "Get Fjd",
   })
   @get()
-  static getFjd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFjd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FjdController {
   static createFjd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

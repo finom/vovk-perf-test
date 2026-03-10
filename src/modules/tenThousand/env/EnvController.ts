@@ -7,10 +7,8 @@ export default class EnvController {
     summary: "Get Env",
   })
   @get()
-  static getEnv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEnv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EnvController {
   static createEnv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

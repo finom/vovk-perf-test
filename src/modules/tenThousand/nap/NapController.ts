@@ -7,10 +7,8 @@ export default class NapController {
     summary: "Get Nap",
   })
   @get()
-  static getNap = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNap = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NapController {
   static createNap = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

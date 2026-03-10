@@ -7,10 +7,8 @@ export default class KmlController {
     summary: "Get Kml",
   })
   @get()
-  static getKml = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKml = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KmlController {
   static createKml = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class NmtController {
     summary: "Get Nmt",
   })
   @get()
-  static getNmt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNmt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NmtController {
   static createNmt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

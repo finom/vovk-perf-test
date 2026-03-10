@@ -7,10 +7,8 @@ export default class EujController {
     summary: "Get Euj",
   })
   @get()
-  static getEuj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEuj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EujController {
   static createEuj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

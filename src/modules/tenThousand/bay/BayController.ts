@@ -7,10 +7,8 @@ export default class BayController {
     summary: "Get Bay",
   })
   @get()
-  static getBay = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBay = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BayController {
   static createBay = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class NrwController {
     summary: "Get Nrw",
   })
   @get()
-  static getNrw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNrw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NrwController {
   static createNrw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

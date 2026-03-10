@@ -7,10 +7,8 @@ export default class DcsController {
     summary: "Get Dcs",
   })
   @get()
-  static getDcs = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDcs = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DcsController {
   static createDcs = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class LfkController {
     summary: "Get Lfk",
   })
   @get()
-  static getLfk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLfk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LfkController {
   static createLfk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

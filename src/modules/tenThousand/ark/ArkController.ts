@@ -7,10 +7,8 @@ export default class ArkController {
     summary: "Get Ark",
   })
   @get()
-  static getArk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getArk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ArkController {
   static createArk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class EnwController {
     summary: "Get Enw",
   })
   @get()
-  static getEnw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEnw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EnwController {
   static createEnw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

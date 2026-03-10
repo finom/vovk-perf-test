@@ -7,10 +7,8 @@ export default class BntController {
     summary: "Get Bnt",
   })
   @get()
-  static getBnt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBnt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BntController {
   static createBnt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

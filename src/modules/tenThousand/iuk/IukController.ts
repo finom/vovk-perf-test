@@ -7,10 +7,8 @@ export default class IukController {
     summary: "Get Iuk",
   })
   @get()
-  static getIuk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIuk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IukController {
   static createIuk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

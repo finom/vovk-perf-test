@@ -7,10 +7,8 @@ export default class AcsController {
     summary: "Get Acs",
   })
   @get()
-  static getAcs = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAcs = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AcsController {
   static createAcs = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

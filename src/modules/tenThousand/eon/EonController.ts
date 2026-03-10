@@ -7,10 +7,8 @@ export default class EonController {
     summary: "Get Eon",
   })
   @get()
-  static getEon = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEon = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EonController {
   static createEon = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

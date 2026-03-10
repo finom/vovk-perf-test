@@ -7,10 +7,8 @@ export default class GulController {
     summary: "Get Gul",
   })
   @get()
-  static getGul = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGul = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GulController {
   static createGul = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

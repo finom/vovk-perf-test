@@ -7,10 +7,8 @@ export default class CxeController {
     summary: "Get Cxe",
   })
   @get()
-  static getCxe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCxe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CxeController {
   static createCxe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class BupController {
     summary: "Get Bup",
   })
   @get()
-  static getBup = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBup = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BupController {
   static createBup = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

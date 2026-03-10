@@ -7,10 +7,8 @@ export default class IsnController {
     summary: "Get Isn",
   })
   @get()
-  static getIsn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIsn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IsnController {
   static createIsn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

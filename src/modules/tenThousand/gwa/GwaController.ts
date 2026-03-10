@@ -7,10 +7,8 @@ export default class GwaController {
     summary: "Get Gwa",
   })
   @get()
-  static getGwa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGwa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GwaController {
   static createGwa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

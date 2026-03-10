@@ -7,10 +7,8 @@ export default class EbqController {
     summary: "Get Ebq",
   })
   @get()
-  static getEbq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEbq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EbqController {
   static createEbq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class BtnController {
     summary: "Get Btn",
   })
   @get()
-  static getBtn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBtn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BtnController {
   static createBtn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

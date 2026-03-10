@@ -7,10 +7,8 @@ export default class LurController {
     summary: "Get Lur",
   })
   @get()
-  static getLur = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLur = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LurController {
   static createLur = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

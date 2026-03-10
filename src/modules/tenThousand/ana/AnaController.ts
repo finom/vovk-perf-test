@@ -7,10 +7,8 @@ export default class AnaController {
     summary: "Get Ana",
   })
   @get()
-  static getAna = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAna = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AnaController {
   static createAna = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

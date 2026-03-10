@@ -7,10 +7,8 @@ export default class EggController {
     summary: "Get Egg",
   })
   @get()
-  static getEgg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEgg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EggController {
   static createEgg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

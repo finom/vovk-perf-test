@@ -7,10 +7,8 @@ export default class LiController {
     summary: "Get Li",
   })
   @get()
-  static getLi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LiController {
   static createLi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

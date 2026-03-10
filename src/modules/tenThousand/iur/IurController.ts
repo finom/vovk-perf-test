@@ -7,10 +7,8 @@ export default class IurController {
     summary: "Get Iur",
   })
   @get()
-  static getIur = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIur = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IurController {
   static createIur = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

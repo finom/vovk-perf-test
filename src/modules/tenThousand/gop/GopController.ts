@@ -7,10 +7,8 @@ export default class GopController {
     summary: "Get Gop",
   })
   @get()
-  static getGop = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGop = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GopController {
   static createGop = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

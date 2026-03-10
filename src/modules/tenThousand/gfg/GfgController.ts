@@ -7,10 +7,8 @@ export default class GfgController {
     summary: "Get Gfg",
   })
   @get()
-  static getGfg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGfg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GfgController {
   static createGfg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

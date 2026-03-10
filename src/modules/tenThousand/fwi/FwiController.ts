@@ -7,10 +7,8 @@ export default class FwiController {
     summary: "Get Fwi",
   })
   @get()
-  static getFwi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFwi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FwiController {
   static createFwi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

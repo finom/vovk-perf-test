@@ -7,10 +7,8 @@ export default class HeqController {
     summary: "Get Heq",
   })
   @get()
-  static getHeq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHeq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HeqController {
   static createHeq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

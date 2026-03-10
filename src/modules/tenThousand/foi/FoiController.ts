@@ -7,10 +7,8 @@ export default class FoiController {
     summary: "Get Foi",
   })
   @get()
-  static getFoi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFoi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FoiController {
   static createFoi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

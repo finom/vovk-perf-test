@@ -7,10 +7,8 @@ export default class AhoController {
     summary: "Get Aho",
   })
   @get()
-  static getAho = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAho = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AhoController {
   static createAho = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

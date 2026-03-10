@@ -7,10 +7,8 @@ export default class AemController {
     summary: "Get Aem",
   })
   @get()
-  static getAem = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAem = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AemController {
   static createAem = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IgxController {
     summary: "Get Igx",
   })
   @get()
-  static getIgx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIgx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IgxController {
   static createIgx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

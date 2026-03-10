@@ -7,10 +7,8 @@ export default class ApiController {
     summary: "Get Api",
   })
   @get()
-  static getApi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getApi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ApiController {
   static createApi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

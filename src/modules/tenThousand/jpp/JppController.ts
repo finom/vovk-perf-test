@@ -7,10 +7,8 @@ export default class JppController {
     summary: "Get Jpp",
   })
   @get()
-  static getJpp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJpp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JppController {
   static createJpp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

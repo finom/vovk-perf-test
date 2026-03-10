@@ -7,10 +7,8 @@ export default class JxcController {
     summary: "Get Jxc",
   })
   @get()
-  static getJxc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJxc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JxcController {
   static createJxc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

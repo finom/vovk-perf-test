@@ -7,10 +7,8 @@ export default class JqlController {
     summary: "Get Jql",
   })
   @get()
-  static getJql = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJql = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JqlController {
   static createJql = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

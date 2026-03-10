@@ -7,10 +7,8 @@ export default class KwjController {
     summary: "Get Kwj",
   })
   @get()
-  static getKwj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKwj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KwjController {
   static createKwj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

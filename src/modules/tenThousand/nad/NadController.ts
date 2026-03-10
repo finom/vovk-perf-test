@@ -7,10 +7,8 @@ export default class NadController {
     summary: "Get Nad",
   })
   @get()
-  static getNad = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNad = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NadController {
   static createNad = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

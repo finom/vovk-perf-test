@@ -7,10 +7,8 @@ export default class FzoController {
     summary: "Get Fzo",
   })
   @get()
-  static getFzo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFzo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FzoController {
   static createFzo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

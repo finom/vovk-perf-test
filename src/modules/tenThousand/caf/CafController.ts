@@ -7,10 +7,8 @@ export default class CafController {
     summary: "Get Caf",
   })
   @get()
-  static getCaf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCaf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CafController {
   static createCaf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

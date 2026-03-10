@@ -7,10 +7,8 @@ export default class NczController {
     summary: "Get Ncz",
   })
   @get()
-  static getNcz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNcz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NczController {
   static createNcz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

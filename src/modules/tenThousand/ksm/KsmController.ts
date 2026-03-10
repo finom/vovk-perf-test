@@ -7,10 +7,8 @@ export default class KsmController {
     summary: "Get Ksm",
   })
   @get()
-  static getKsm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKsm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KsmController {
   static createKsm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class DyuController {
     summary: "Get Dyu",
   })
   @get()
-  static getDyu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDyu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DyuController {
   static createDyu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

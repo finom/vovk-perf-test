@@ -7,10 +7,8 @@ export default class CfkController {
     summary: "Get Cfk",
   })
   @get()
-  static getCfk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCfk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CfkController {
   static createCfk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

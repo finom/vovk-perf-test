@@ -7,10 +7,8 @@ export default class BesController {
     summary: "Get Bes",
   })
   @get()
-  static getBes = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBes = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BesController {
   static createBes = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

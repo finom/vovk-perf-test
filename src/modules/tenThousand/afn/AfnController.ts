@@ -7,10 +7,8 @@ export default class AfnController {
     summary: "Get Afn",
   })
   @get()
-  static getAfn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAfn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AfnController {
   static createAfn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

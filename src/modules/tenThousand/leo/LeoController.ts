@@ -7,10 +7,8 @@ export default class LeoController {
     summary: "Get Leo",
   })
   @get()
-  static getLeo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLeo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LeoController {
   static createLeo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

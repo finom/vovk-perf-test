@@ -7,10 +7,8 @@ export default class NfeController {
     summary: "Get Nfe",
   })
   @get()
-  static getNfe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNfe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NfeController {
   static createNfe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

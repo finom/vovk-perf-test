@@ -7,10 +7,8 @@ export default class MarController {
     summary: "Get Mar",
   })
   @get()
-  static getMar = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMar = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MarController {
   static createMar = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

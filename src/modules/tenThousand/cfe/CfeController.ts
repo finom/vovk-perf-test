@@ -7,10 +7,8 @@ export default class CfeController {
     summary: "Get Cfe",
   })
   @get()
-  static getCfe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCfe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CfeController {
   static createCfe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class YwController {
     summary: "Get Yw",
   })
   @get()
-  static getYw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getYw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class YwController {
   static createYw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class HigController {
     summary: "Get Hig",
   })
   @get()
-  static getHig = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHig = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HigController {
   static createHig = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

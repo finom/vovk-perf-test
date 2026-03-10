@@ -7,10 +7,8 @@ export default class EdpController {
     summary: "Get Edp",
   })
   @get()
-  static getEdp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEdp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EdpController {
   static createEdp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class MgaController {
     summary: "Get Mga",
   })
   @get()
-  static getMga = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMga = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MgaController {
   static createMga = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class MbuController {
     summary: "Get Mbu",
   })
   @get()
-  static getMbu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMbu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MbuController {
   static createMbu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

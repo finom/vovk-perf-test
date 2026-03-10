@@ -7,10 +7,8 @@ export default class EmzController {
     summary: "Get Emz",
   })
   @get()
-  static getEmz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEmz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EmzController {
   static createEmz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

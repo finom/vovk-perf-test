@@ -7,10 +7,8 @@ export default class KajController {
     summary: "Get Kaj",
   })
   @get()
-  static getKaj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKaj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KajController {
   static createKaj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IqpController {
     summary: "Get Iqp",
   })
   @get()
-  static getIqp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIqp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IqpController {
   static createIqp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

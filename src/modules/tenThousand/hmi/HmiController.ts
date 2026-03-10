@@ -7,10 +7,8 @@ export default class HmiController {
     summary: "Get Hmi",
   })
   @get()
-  static getHmi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHmi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HmiController {
   static createHmi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

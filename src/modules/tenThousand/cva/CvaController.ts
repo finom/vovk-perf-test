@@ -7,10 +7,8 @@ export default class CvaController {
     summary: "Get Cva",
   })
   @get()
-  static getCva = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCva = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CvaController {
   static createCva = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

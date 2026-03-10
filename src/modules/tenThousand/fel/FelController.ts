@@ -7,10 +7,8 @@ export default class FelController {
     summary: "Get Fel",
   })
   @get()
-  static getFel = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFel = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FelController {
   static createFel = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

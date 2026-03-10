@@ -7,10 +7,8 @@ export default class MbkController {
     summary: "Get Mbk",
   })
   @get()
-  static getMbk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMbk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MbkController {
   static createMbk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

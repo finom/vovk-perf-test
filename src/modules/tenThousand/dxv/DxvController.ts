@@ -7,10 +7,8 @@ export default class DxvController {
     summary: "Get Dxv",
   })
   @get()
-  static getDxv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDxv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DxvController {
   static createDxv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

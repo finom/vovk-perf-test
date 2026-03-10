@@ -7,10 +7,8 @@ export default class BybController {
     summary: "Get Byb",
   })
   @get()
-  static getByb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getByb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BybController {
   static createByb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

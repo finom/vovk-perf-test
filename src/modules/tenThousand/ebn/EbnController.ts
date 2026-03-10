@@ -7,10 +7,8 @@ export default class EbnController {
     summary: "Get Ebn",
   })
   @get()
-  static getEbn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEbn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EbnController {
   static createEbn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

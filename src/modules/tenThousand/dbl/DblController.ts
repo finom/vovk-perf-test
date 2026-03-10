@@ -7,10 +7,8 @@ export default class DblController {
     summary: "Get Dbl",
   })
   @get()
-  static getDbl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDbl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DblController {
   static createDbl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class JmzController {
     summary: "Get Jmz",
   })
   @get()
-  static getJmz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJmz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JmzController {
   static createJmz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class HwzController {
     summary: "Get Hwz",
   })
   @get()
-  static getHwz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHwz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HwzController {
   static createHwz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

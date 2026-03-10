@@ -7,10 +7,8 @@ export default class EqaController {
     summary: "Get Eqa",
   })
   @get()
-  static getEqa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEqa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EqaController {
   static createEqa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

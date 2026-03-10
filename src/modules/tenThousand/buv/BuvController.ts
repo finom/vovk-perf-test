@@ -7,10 +7,8 @@ export default class BuvController {
     summary: "Get Buv",
   })
   @get()
-  static getBuv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBuv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BuvController {
   static createBuv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

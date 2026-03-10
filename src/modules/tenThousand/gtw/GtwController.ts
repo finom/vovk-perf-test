@@ -7,10 +7,8 @@ export default class GtwController {
     summary: "Get Gtw",
   })
   @get()
-  static getGtw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGtw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GtwController {
   static createGtw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

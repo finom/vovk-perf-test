@@ -7,10 +7,8 @@ export default class CagController {
     summary: "Get Cag",
   })
   @get()
-  static getCag = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCag = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CagController {
   static createCag = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

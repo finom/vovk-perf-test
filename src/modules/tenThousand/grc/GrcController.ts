@@ -7,10 +7,8 @@ export default class GrcController {
     summary: "Get Grc",
   })
   @get()
-  static getGrc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGrc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GrcController {
   static createGrc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

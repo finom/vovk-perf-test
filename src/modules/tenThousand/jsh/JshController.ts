@@ -7,10 +7,8 @@ export default class JshController {
     summary: "Get Jsh",
   })
   @get()
-  static getJsh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJsh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JshController {
   static createJsh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class DayController {
     summary: "Get Day",
   })
   @get()
-  static getDay = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDay = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DayController {
   static createDay = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

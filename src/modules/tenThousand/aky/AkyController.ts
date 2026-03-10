@@ -7,10 +7,8 @@ export default class AkyController {
     summary: "Get Aky",
   })
   @get()
-  static getAky = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAky = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AkyController {
   static createAky = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class EolController {
     summary: "Get Eol",
   })
   @get()
-  static getEol = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEol = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EolController {
   static createEol = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

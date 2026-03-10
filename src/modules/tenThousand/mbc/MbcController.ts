@@ -7,10 +7,8 @@ export default class MbcController {
     summary: "Get Mbc",
   })
   @get()
-  static getMbc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMbc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MbcController {
   static createMbc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

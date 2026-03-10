@@ -7,10 +7,8 @@ export default class NdxController {
     summary: "Get Ndx",
   })
   @get()
-  static getNdx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNdx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NdxController {
   static createNdx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

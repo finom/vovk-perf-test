@@ -7,10 +7,8 @@ export default class IimController {
     summary: "Get Iim",
   })
   @get()
-  static getIim = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIim = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IimController {
   static createIim = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

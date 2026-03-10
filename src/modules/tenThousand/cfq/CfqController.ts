@@ -7,10 +7,8 @@ export default class CfqController {
     summary: "Get Cfq",
   })
   @get()
-  static getCfq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCfq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CfqController {
   static createCfq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

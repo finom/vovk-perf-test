@@ -7,10 +7,8 @@ export default class JlxController {
     summary: "Get Jlx",
   })
   @get()
-  static getJlx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJlx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JlxController {
   static createJlx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

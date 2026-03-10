@@ -7,10 +7,8 @@ export default class MyvController {
     summary: "Get Myv",
   })
   @get()
-  static getMyv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMyv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MyvController {
   static createMyv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

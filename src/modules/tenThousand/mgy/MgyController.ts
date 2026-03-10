@@ -7,10 +7,8 @@ export default class MgyController {
     summary: "Get Mgy",
   })
   @get()
-  static getMgy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMgy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MgyController {
   static createMgy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class LxcController {
     summary: "Get Lxc",
   })
   @get()
-  static getLxc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLxc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LxcController {
   static createLxc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

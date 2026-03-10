@@ -7,10 +7,8 @@ export default class DmoController {
     summary: "Get Dmo",
   })
   @get()
-  static getDmo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDmo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DmoController {
   static createDmo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

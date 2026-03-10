@@ -7,10 +7,8 @@ export default class GmaController {
     summary: "Get Gma",
   })
   @get()
-  static getGma = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGma = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GmaController {
   static createGma = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

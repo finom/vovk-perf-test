@@ -7,10 +7,8 @@ export default class MbjController {
     summary: "Get Mbj",
   })
   @get()
-  static getMbj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMbj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MbjController {
   static createMbj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class FabController {
     summary: "Get Fab",
   })
   @get()
-  static getFab = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFab = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FabController {
   static createFab = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

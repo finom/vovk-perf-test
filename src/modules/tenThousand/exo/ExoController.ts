@@ -7,10 +7,8 @@ export default class ExoController {
     summary: "Get Exo",
   })
   @get()
-  static getExo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getExo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ExoController {
   static createExo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class SyController {
     summary: "Get Sy",
   })
   @get()
-  static getSy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getSy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class SyController {
   static createSy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

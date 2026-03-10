@@ -7,10 +7,8 @@ export default class BvuController {
     summary: "Get Bvu",
   })
   @get()
-  static getBvu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBvu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BvuController {
   static createBvu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class NakController {
     summary: "Get Nak",
   })
   @get()
-  static getNak = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNak = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NakController {
   static createNak = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

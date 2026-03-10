@@ -7,10 +7,8 @@ export default class TyController {
     summary: "Get Ty",
   })
   @get()
-  static getTy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getTy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class TyController {
   static createTy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

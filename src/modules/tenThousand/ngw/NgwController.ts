@@ -7,10 +7,8 @@ export default class NgwController {
     summary: "Get Ngw",
   })
   @get()
-  static getNgw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNgw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NgwController {
   static createNgw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

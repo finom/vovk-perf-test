@@ -7,10 +7,8 @@ export default class DryController {
     summary: "Get Dry",
   })
   @get()
-  static getDry = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDry = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DryController {
   static createDry = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

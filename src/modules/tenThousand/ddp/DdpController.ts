@@ -7,10 +7,8 @@ export default class DdpController {
     summary: "Get Ddp",
   })
   @get()
-  static getDdp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDdp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DdpController {
   static createDdp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class ButController {
     summary: "Get But",
   })
   @get()
-  static getBut = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBut = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ButController {
   static createBut = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

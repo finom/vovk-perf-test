@@ -7,10 +7,8 @@ export default class DliController {
     summary: "Get Dli",
   })
   @get()
-  static getDli = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDli = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DliController {
   static createDli = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

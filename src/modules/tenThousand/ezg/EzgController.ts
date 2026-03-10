@@ -7,10 +7,8 @@ export default class EzgController {
     summary: "Get Ezg",
   })
   @get()
-  static getEzg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEzg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EzgController {
   static createEzg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

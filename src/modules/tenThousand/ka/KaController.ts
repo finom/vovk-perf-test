@@ -7,10 +7,8 @@ export default class KaController {
     summary: "Get Ka",
   })
   @get()
-  static getKa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KaController {
   static createKa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

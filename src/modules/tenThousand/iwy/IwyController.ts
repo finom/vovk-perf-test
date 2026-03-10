@@ -7,10 +7,8 @@ export default class IwyController {
     summary: "Get Iwy",
   })
   @get()
-  static getIwy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIwy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IwyController {
   static createIwy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class CikController {
     summary: "Get Cik",
   })
   @get()
-  static getCik = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCik = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CikController {
   static createCik = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

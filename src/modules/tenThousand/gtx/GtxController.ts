@@ -7,10 +7,8 @@ export default class GtxController {
     summary: "Get Gtx",
   })
   @get()
-  static getGtx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGtx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GtxController {
   static createGtx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IxrController {
     summary: "Get Ixr",
   })
   @get()
-  static getIxr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIxr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IxrController {
   static createIxr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class FbsController {
     summary: "Get Fbs",
   })
   @get()
-  static getFbs = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFbs = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FbsController {
   static createFbs = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

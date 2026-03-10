@@ -7,10 +7,8 @@ export default class FcnController {
     summary: "Get Fcn",
   })
   @get()
-  static getFcn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFcn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FcnController {
   static createFcn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

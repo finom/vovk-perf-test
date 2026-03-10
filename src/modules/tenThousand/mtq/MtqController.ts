@@ -7,10 +7,8 @@ export default class MtqController {
     summary: "Get Mtq",
   })
   @get()
-  static getMtq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMtq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MtqController {
   static createMtq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

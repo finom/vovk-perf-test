@@ -7,10 +7,8 @@ export default class NbeController {
     summary: "Get Nbe",
   })
   @get()
-  static getNbe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNbe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NbeController {
   static createNbe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class QhController {
     summary: "Get Qh",
   })
   @get()
-  static getQh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getQh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class QhController {
   static createQh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

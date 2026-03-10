@@ -7,10 +7,8 @@ export default class EumController {
     summary: "Get Eum",
   })
   @get()
-  static getEum = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEum = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EumController {
   static createEum = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

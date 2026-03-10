@@ -7,10 +7,8 @@ export default class FajController {
     summary: "Get Faj",
   })
   @get()
-  static getFaj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFaj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FajController {
   static createFaj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class HboController {
     summary: "Get Hbo",
   })
   @get()
-  static getHbo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHbo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HboController {
   static createHbo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

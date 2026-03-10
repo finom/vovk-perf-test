@@ -7,10 +7,8 @@ export default class EmoController {
     summary: "Get Emo",
   })
   @get()
-  static getEmo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEmo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EmoController {
   static createEmo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

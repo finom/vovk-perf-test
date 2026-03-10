@@ -7,10 +7,8 @@ export default class NibController {
     summary: "Get Nib",
   })
   @get()
-  static getNib = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNib = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NibController {
   static createNib = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class BidController {
     summary: "Get Bid",
   })
   @get()
-  static getBid = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBid = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BidController {
   static createBid = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

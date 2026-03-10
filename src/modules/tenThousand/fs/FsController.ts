@@ -7,10 +7,8 @@ export default class FsController {
     summary: "Get Fs",
   })
   @get()
-  static getFs = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFs = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FsController {
   static createFs = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

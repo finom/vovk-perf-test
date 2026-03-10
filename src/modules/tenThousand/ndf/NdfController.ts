@@ -7,10 +7,8 @@ export default class NdfController {
     summary: "Get Ndf",
   })
   @get()
-  static getNdf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNdf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NdfController {
   static createNdf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class EobController {
     summary: "Get Eob",
   })
   @get()
-  static getEob = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEob = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EobController {
   static createEob = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class LbcController {
     summary: "Get Lbc",
   })
   @get()
-  static getLbc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLbc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LbcController {
   static createLbc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

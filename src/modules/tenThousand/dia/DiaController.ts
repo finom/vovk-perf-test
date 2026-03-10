@@ -7,10 +7,8 @@ export default class DiaController {
     summary: "Get Dia",
   })
   @get()
-  static getDia = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDia = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DiaController {
   static createDia = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

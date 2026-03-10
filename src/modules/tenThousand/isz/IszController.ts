@@ -7,10 +7,8 @@ export default class IszController {
     summary: "Get Isz",
   })
   @get()
-  static getIsz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIsz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IszController {
   static createIsz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class DoController {
     summary: "Get Do",
   })
   @get()
-  static getDo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DoController {
   static createDo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

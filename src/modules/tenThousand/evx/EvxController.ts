@@ -7,10 +7,8 @@ export default class EvxController {
     summary: "Get Evx",
   })
   @get()
-  static getEvx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEvx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EvxController {
   static createEvx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

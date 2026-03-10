@@ -7,10 +7,8 @@ export default class FedController {
     summary: "Get Fed",
   })
   @get()
-  static getFed = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFed = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FedController {
   static createFed = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class ApwController {
     summary: "Get Apw",
   })
   @get()
-  static getApw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getApw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ApwController {
   static createApw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

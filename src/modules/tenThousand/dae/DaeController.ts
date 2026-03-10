@@ -7,10 +7,8 @@ export default class DaeController {
     summary: "Get Dae",
   })
   @get()
-  static getDae = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDae = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DaeController {
   static createDae = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

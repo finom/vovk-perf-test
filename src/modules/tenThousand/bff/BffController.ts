@@ -7,10 +7,8 @@ export default class BffController {
     summary: "Get Bff",
   })
   @get()
-  static getBff = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBff = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BffController {
   static createBff = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

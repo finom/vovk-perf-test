@@ -7,10 +7,8 @@ export default class DkmController {
     summary: "Get Dkm",
   })
   @get()
-  static getDkm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDkm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DkmController {
   static createDkm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

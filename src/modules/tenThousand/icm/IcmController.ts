@@ -7,10 +7,8 @@ export default class IcmController {
     summary: "Get Icm",
   })
   @get()
-  static getIcm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIcm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IcmController {
   static createIcm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

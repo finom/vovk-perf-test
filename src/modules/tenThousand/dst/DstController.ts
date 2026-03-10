@@ -7,10 +7,8 @@ export default class DstController {
     summary: "Get Dst",
   })
   @get()
-  static getDst = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDst = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DstController {
   static createDst = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class MyfController {
     summary: "Get Myf",
   })
   @get()
-  static getMyf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMyf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MyfController {
   static createMyf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

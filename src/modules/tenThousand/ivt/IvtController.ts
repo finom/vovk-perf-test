@@ -7,10 +7,8 @@ export default class IvtController {
     summary: "Get Ivt",
   })
   @get()
-  static getIvt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIvt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IvtController {
   static createIvt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

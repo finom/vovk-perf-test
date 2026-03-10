@@ -7,10 +7,8 @@ export default class CfgController {
     summary: "Get Cfg",
   })
   @get()
-  static getCfg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCfg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CfgController {
   static createCfg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

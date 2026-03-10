@@ -7,10 +7,8 @@ export default class MbbController {
     summary: "Get Mbb",
   })
   @get()
-  static getMbb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMbb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MbbController {
   static createMbb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

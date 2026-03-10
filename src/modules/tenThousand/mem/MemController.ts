@@ -7,10 +7,8 @@ export default class MemController {
     summary: "Get Mem",
   })
   @get()
-  static getMem = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMem = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MemController {
   static createMem = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

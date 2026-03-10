@@ -7,10 +7,8 @@ export default class EnjController {
     summary: "Get Enj",
   })
   @get()
-  static getEnj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEnj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EnjController {
   static createEnj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

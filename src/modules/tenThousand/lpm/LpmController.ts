@@ -7,10 +7,8 @@ export default class LpmController {
     summary: "Get Lpm",
   })
   @get()
-  static getLpm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLpm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LpmController {
   static createLpm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

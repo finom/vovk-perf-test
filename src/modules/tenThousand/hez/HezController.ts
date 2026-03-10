@@ -7,10 +7,8 @@ export default class HezController {
     summary: "Get Hez",
   })
   @get()
-  static getHez = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHez = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HezController {
   static createHez = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

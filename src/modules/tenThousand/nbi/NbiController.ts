@@ -7,10 +7,8 @@ export default class NbiController {
     summary: "Get Nbi",
   })
   @get()
-  static getNbi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNbi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NbiController {
   static createNbi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

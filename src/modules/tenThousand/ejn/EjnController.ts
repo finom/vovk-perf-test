@@ -7,10 +7,8 @@ export default class EjnController {
     summary: "Get Ejn",
   })
   @get()
-  static getEjn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEjn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EjnController {
   static createEjn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

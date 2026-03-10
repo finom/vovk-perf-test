@@ -7,10 +7,8 @@ export default class EcaController {
     summary: "Get Eca",
   })
   @get()
-  static getEca = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEca = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EcaController {
   static createEca = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

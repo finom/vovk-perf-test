@@ -7,10 +7,8 @@ export default class FekController {
     summary: "Get Fek",
   })
   @get()
-  static getFek = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFek = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FekController {
   static createFek = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

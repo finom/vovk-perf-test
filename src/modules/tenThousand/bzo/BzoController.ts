@@ -7,10 +7,8 @@ export default class BzoController {
     summary: "Get Bzo",
   })
   @get()
-  static getBzo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBzo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BzoController {
   static createBzo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

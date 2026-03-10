@@ -7,10 +7,8 @@ export default class MonController {
     summary: "Get Mon",
   })
   @get()
-  static getMon = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMon = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MonController {
   static createMon = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

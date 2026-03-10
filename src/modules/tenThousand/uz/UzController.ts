@@ -7,10 +7,8 @@ export default class UzController {
     summary: "Get Uz",
   })
   @get()
-  static getUz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getUz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class UzController {
   static createUz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

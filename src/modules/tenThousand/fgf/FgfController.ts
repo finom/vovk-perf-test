@@ -7,10 +7,8 @@ export default class FgfController {
     summary: "Get Fgf",
   })
   @get()
-  static getFgf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFgf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FgfController {
   static createFgf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

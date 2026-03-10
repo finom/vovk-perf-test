@@ -7,10 +7,8 @@ export default class JmyController {
     summary: "Get Jmy",
   })
   @get()
-  static getJmy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJmy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JmyController {
   static createJmy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

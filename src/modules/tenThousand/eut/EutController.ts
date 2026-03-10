@@ -7,10 +7,8 @@ export default class EutController {
     summary: "Get Eut",
   })
   @get()
-  static getEut = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEut = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EutController {
   static createEut = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

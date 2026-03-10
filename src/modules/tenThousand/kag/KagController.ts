@@ -7,10 +7,8 @@ export default class KagController {
     summary: "Get Kag",
   })
   @get()
-  static getKag = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKag = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KagController {
   static createKag = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

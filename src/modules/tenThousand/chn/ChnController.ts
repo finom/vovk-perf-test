@@ -7,10 +7,8 @@ export default class ChnController {
     summary: "Get Chn",
   })
   @get()
-  static getChn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getChn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ChnController {
   static createChn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

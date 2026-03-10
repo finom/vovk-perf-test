@@ -7,10 +7,8 @@ export default class EleController {
     summary: "Get Ele",
   })
   @get()
-  static getEle = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEle = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EleController {
   static createEle = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

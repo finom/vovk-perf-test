@@ -7,10 +7,8 @@ export default class UpController {
     summary: "Get Up",
   })
   @get()
-  static getUp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getUp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class UpController {
   static createUp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

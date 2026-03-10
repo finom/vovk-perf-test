@@ -7,10 +7,8 @@ export default class MuzController {
     summary: "Get Muz",
   })
   @get()
-  static getMuz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMuz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MuzController {
   static createMuz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

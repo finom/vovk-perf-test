@@ -7,10 +7,8 @@ export default class CruController {
     summary: "Get Cru",
   })
   @get()
-  static getCru = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCru = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CruController {
   static createCru = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class BnmController {
     summary: "Get Bnm",
   })
   @get()
-  static getBnm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBnm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BnmController {
   static createBnm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class JutController {
     summary: "Get Jut",
   })
   @get()
-  static getJut = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJut = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JutController {
   static createJut = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

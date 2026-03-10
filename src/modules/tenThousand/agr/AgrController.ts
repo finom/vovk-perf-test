@@ -7,10 +7,8 @@ export default class AgrController {
     summary: "Get Agr",
   })
   @get()
-  static getAgr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAgr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AgrController {
   static createAgr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

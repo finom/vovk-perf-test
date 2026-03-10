@@ -7,10 +7,8 @@ export default class GsiController {
     summary: "Get Gsi",
   })
   @get()
-  static getGsi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGsi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GsiController {
   static createGsi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

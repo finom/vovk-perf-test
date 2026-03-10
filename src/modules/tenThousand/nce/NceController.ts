@@ -7,10 +7,8 @@ export default class NceController {
     summary: "Get Nce",
   })
   @get()
-  static getNce = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNce = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NceController {
   static createNce = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

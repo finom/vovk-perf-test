@@ -7,10 +7,8 @@ export default class EdkController {
     summary: "Get Edk",
   })
   @get()
-  static getEdk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEdk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EdkController {
   static createEdk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

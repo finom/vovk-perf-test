@@ -7,10 +7,8 @@ export default class LseController {
     summary: "Get Lse",
   })
   @get()
-  static getLse = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLse = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LseController {
   static createLse = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

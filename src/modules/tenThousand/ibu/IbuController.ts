@@ -7,10 +7,8 @@ export default class IbuController {
     summary: "Get Ibu",
   })
   @get()
-  static getIbu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIbu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IbuController {
   static createIbu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

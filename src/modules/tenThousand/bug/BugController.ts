@@ -7,10 +7,8 @@ export default class BugController {
     summary: "Get Bug",
   })
   @get()
-  static getBug = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBug = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BugController {
   static createBug = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

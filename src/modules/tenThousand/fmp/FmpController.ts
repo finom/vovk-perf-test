@@ -7,10 +7,8 @@ export default class FmpController {
     summary: "Get Fmp",
   })
   @get()
-  static getFmp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFmp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FmpController {
   static createFmp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

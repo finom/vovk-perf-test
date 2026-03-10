@@ -7,10 +7,8 @@ export default class FikController {
     summary: "Get Fik",
   })
   @get()
-  static getFik = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFik = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FikController {
   static createFik = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

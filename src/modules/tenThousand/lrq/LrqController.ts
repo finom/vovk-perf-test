@@ -7,10 +7,8 @@ export default class LrqController {
     summary: "Get Lrq",
   })
   @get()
-  static getLrq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLrq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LrqController {
   static createLrq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

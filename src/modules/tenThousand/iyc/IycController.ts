@@ -7,10 +7,8 @@ export default class IycController {
     summary: "Get Iyc",
   })
   @get()
-  static getIyc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIyc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IycController {
   static createIyc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

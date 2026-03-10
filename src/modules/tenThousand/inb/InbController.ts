@@ -7,10 +7,8 @@ export default class InbController {
     summary: "Get Inb",
   })
   @get()
-  static getInb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getInb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class InbController {
   static createInb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class MucController {
     summary: "Get Muc",
   })
   @get()
-  static getMuc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMuc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MucController {
   static createMuc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

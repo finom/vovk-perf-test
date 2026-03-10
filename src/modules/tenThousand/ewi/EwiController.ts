@@ -7,10 +7,8 @@ export default class EwiController {
     summary: "Get Ewi",
   })
   @get()
-  static getEwi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEwi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EwiController {
   static createEwi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

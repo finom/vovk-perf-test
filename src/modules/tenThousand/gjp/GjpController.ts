@@ -7,10 +7,8 @@ export default class GjpController {
     summary: "Get Gjp",
   })
   @get()
-  static getGjp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGjp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GjpController {
   static createGjp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

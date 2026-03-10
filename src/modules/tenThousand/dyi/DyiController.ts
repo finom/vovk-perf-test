@@ -7,10 +7,8 @@ export default class DyiController {
     summary: "Get Dyi",
   })
   @get()
-  static getDyi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDyi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DyiController {
   static createDyi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

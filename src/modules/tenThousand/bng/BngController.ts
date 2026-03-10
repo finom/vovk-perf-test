@@ -7,10 +7,8 @@ export default class BngController {
     summary: "Get Bng",
   })
   @get()
-  static getBng = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBng = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BngController {
   static createBng = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

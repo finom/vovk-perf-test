@@ -7,10 +7,8 @@ export default class IdtController {
     summary: "Get Idt",
   })
   @get()
-  static getIdt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIdt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IdtController {
   static createIdt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

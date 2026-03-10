@@ -7,10 +7,8 @@ export default class AnqController {
     summary: "Get Anq",
   })
   @get()
-  static getAnq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAnq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AnqController {
   static createAnq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

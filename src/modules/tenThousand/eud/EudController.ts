@@ -7,10 +7,8 @@ export default class EudController {
     summary: "Get Eud",
   })
   @get()
-  static getEud = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEud = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EudController {
   static createEud = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

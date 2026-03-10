@@ -7,10 +7,8 @@ export default class BalController {
     summary: "Get Bal",
   })
   @get()
-  static getBal = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBal = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BalController {
   static createBal = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

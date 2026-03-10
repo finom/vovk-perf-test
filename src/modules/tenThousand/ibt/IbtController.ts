@@ -7,10 +7,8 @@ export default class IbtController {
     summary: "Get Ibt",
   })
   @get()
-  static getIbt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIbt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IbtController {
   static createIbt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

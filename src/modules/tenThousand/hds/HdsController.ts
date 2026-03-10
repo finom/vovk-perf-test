@@ -7,10 +7,8 @@ export default class HdsController {
     summary: "Get Hds",
   })
   @get()
-  static getHds = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHds = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HdsController {
   static createHds = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

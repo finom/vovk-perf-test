@@ -7,10 +7,8 @@ export default class GabController {
     summary: "Get Gab",
   })
   @get()
-  static getGab = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGab = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GabController {
   static createGab = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

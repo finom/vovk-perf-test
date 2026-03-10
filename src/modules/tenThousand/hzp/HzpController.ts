@@ -7,10 +7,8 @@ export default class HzpController {
     summary: "Get Hzp",
   })
   @get()
-  static getHzp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHzp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HzpController {
   static createHzp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

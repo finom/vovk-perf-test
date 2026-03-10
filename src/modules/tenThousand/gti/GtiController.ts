@@ -7,10 +7,8 @@ export default class GtiController {
     summary: "Get Gti",
   })
   @get()
-  static getGti = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGti = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GtiController {
   static createGti = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

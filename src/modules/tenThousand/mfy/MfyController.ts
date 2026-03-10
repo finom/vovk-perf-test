@@ -7,10 +7,8 @@ export default class MfyController {
     summary: "Get Mfy",
   })
   @get()
-  static getMfy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMfy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MfyController {
   static createMfy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class MofController {
     summary: "Get Mof",
   })
   @get()
-  static getMof = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMof = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MofController {
   static createMof = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

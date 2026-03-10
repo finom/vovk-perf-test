@@ -7,10 +7,8 @@ export default class ArjController {
     summary: "Get Arj",
   })
   @get()
-  static getArj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getArj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ArjController {
   static createArj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

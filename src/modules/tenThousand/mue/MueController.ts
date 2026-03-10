@@ -7,10 +7,8 @@ export default class MueController {
     summary: "Get Mue",
   })
   @get()
-  static getMue = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMue = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MueController {
   static createMue = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class KwyController {
     summary: "Get Kwy",
   })
   @get()
-  static getKwy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKwy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KwyController {
   static createKwy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

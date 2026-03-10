@@ -7,10 +7,8 @@ export default class AnoController {
     summary: "Get Ano",
   })
   @get()
-  static getAno = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAno = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AnoController {
   static createAno = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

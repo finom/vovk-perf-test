@@ -7,10 +7,8 @@ export default class CelController {
     summary: "Get Cel",
   })
   @get()
-  static getCel = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCel = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CelController {
   static createCel = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

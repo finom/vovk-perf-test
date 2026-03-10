@@ -7,10 +7,8 @@ export default class GiwController {
     summary: "Get Giw",
   })
   @get()
-  static getGiw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGiw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GiwController {
   static createGiw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

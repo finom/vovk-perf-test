@@ -7,10 +7,8 @@ export default class IucController {
     summary: "Get Iuc",
   })
   @get()
-  static getIuc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIuc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IucController {
   static createIuc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

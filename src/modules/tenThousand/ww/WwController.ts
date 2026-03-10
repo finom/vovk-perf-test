@@ -7,10 +7,8 @@ export default class WwController {
     summary: "Get Ww",
   })
   @get()
-  static getWw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getWw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class WwController {
   static createWw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

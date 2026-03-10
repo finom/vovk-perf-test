@@ -7,10 +7,8 @@ export default class EsController {
     summary: "Get Es",
   })
   @get()
-  static getEs = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEs = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EsController {
   static createEs = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

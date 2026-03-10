@@ -7,10 +7,8 @@ export default class ImkController {
     summary: "Get Imk",
   })
   @get()
-  static getImk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getImk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ImkController {
   static createImk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

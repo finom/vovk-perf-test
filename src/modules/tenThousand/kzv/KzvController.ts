@@ -7,10 +7,8 @@ export default class KzvController {
     summary: "Get Kzv",
   })
   @get()
-  static getKzv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKzv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KzvController {
   static createKzv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

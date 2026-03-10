@@ -7,10 +7,8 @@ export default class MdoController {
     summary: "Get Mdo",
   })
   @get()
-  static getMdo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMdo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MdoController {
   static createMdo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

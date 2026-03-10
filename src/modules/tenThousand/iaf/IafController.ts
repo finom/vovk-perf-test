@@ -7,10 +7,8 @@ export default class IafController {
     summary: "Get Iaf",
   })
   @get()
-  static getIaf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIaf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IafController {
   static createIaf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

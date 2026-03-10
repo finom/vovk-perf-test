@@ -7,10 +7,8 @@ export default class JhxController {
     summary: "Get Jhx",
   })
   @get()
-  static getJhx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJhx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JhxController {
   static createJhx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

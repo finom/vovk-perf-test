@@ -7,10 +7,8 @@ export default class MflController {
     summary: "Get Mfl",
   })
   @get()
-  static getMfl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMfl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MflController {
   static createMfl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

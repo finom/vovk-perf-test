@@ -7,10 +7,8 @@ export default class EunController {
     summary: "Get Eun",
   })
   @get()
-  static getEun = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEun = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EunController {
   static createEun = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class SnController {
     summary: "Get Sn",
   })
   @get()
-  static getSn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getSn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class SnController {
   static createSn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

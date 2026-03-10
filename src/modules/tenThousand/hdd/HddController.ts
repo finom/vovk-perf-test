@@ -7,10 +7,8 @@ export default class HddController {
     summary: "Get Hdd",
   })
   @get()
-  static getHdd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHdd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HddController {
   static createHdd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

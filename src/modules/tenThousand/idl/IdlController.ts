@@ -7,10 +7,8 @@ export default class IdlController {
     summary: "Get Idl",
   })
   @get()
-  static getIdl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIdl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IdlController {
   static createIdl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

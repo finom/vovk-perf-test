@@ -7,10 +7,8 @@ export default class FbmController {
     summary: "Get Fbm",
   })
   @get()
-  static getFbm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFbm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FbmController {
   static createFbm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

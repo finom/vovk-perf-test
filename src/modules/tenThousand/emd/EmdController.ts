@@ -7,10 +7,8 @@ export default class EmdController {
     summary: "Get Emd",
   })
   @get()
-  static getEmd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEmd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EmdController {
   static createEmd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

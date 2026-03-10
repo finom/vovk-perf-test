@@ -7,10 +7,8 @@ export default class BmiController {
     summary: "Get Bmi",
   })
   @get()
-  static getBmi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBmi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BmiController {
   static createBmi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

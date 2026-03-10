@@ -7,10 +7,8 @@ export default class RiController {
     summary: "Get Ri",
   })
   @get()
-  static getRi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getRi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class RiController {
   static createRi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

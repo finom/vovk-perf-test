@@ -7,10 +7,8 @@ export default class BnqController {
     summary: "Get Bnq",
   })
   @get()
-  static getBnq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBnq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BnqController {
   static createBnq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

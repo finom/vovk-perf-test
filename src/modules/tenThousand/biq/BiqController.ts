@@ -7,10 +7,8 @@ export default class BiqController {
     summary: "Get Biq",
   })
   @get()
-  static getBiq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBiq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BiqController {
   static createBiq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

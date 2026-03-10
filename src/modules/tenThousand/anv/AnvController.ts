@@ -7,10 +7,8 @@ export default class AnvController {
     summary: "Get Anv",
   })
   @get()
-  static getAnv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAnv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AnvController {
   static createAnv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

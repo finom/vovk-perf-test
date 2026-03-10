@@ -7,10 +7,8 @@ export default class MniController {
     summary: "Get Mni",
   })
   @get()
-  static getMni = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMni = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MniController {
   static createMni = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

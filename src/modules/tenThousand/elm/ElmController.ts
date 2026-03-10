@@ -7,10 +7,8 @@ export default class ElmController {
     summary: "Get Elm",
   })
   @get()
-  static getElm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getElm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ElmController {
   static createElm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

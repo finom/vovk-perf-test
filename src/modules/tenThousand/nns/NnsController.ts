@@ -7,10 +7,8 @@ export default class NnsController {
     summary: "Get Nns",
   })
   @get()
-  static getNns = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNns = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NnsController {
   static createNns = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

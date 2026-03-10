@@ -7,10 +7,8 @@ export default class LwpController {
     summary: "Get Lwp",
   })
   @get()
-  static getLwp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLwp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LwpController {
   static createLwp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

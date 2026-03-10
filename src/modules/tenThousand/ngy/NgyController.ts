@@ -7,10 +7,8 @@ export default class NgyController {
     summary: "Get Ngy",
   })
   @get()
-  static getNgy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNgy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NgyController {
   static createNgy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

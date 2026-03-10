@@ -7,10 +7,8 @@ export default class WfController {
     summary: "Get Wf",
   })
   @get()
-  static getWf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getWf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class WfController {
   static createWf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

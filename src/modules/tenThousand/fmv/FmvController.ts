@@ -7,10 +7,8 @@ export default class FmvController {
     summary: "Get Fmv",
   })
   @get()
-  static getFmv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFmv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FmvController {
   static createFmv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class KbeController {
     summary: "Get Kbe",
   })
   @get()
-  static getKbe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKbe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KbeController {
   static createKbe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

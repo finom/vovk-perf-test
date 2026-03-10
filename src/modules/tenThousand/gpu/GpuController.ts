@@ -7,10 +7,8 @@ export default class GpuController {
     summary: "Get Gpu",
   })
   @get()
-  static getGpu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGpu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GpuController {
   static createGpu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

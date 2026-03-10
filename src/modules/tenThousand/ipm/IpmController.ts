@@ -7,10 +7,8 @@ export default class IpmController {
     summary: "Get Ipm",
   })
   @get()
-  static getIpm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIpm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IpmController {
   static createIpm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

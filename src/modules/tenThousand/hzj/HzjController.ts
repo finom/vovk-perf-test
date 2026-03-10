@@ -7,10 +7,8 @@ export default class HzjController {
     summary: "Get Hzj",
   })
   @get()
-  static getHzj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHzj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HzjController {
   static createHzj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

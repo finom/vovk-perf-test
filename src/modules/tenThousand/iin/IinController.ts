@@ -7,10 +7,8 @@ export default class IinController {
     summary: "Get Iin",
   })
   @get()
-  static getIin = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIin = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IinController {
   static createIin = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

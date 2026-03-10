@@ -7,10 +7,8 @@ export default class EveController {
     summary: "Get Eve",
   })
   @get()
-  static getEve = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEve = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EveController {
   static createEve = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

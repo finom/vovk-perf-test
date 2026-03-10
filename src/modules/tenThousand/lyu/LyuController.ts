@@ -7,10 +7,8 @@ export default class LyuController {
     summary: "Get Lyu",
   })
   @get()
-  static getLyu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLyu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LyuController {
   static createLyu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

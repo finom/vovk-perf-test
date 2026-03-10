@@ -7,10 +7,8 @@ export default class HtvController {
     summary: "Get Htv",
   })
   @get()
-  static getHtv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHtv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HtvController {
   static createHtv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

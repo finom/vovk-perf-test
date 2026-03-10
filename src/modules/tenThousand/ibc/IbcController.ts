@@ -7,10 +7,8 @@ export default class IbcController {
     summary: "Get Ibc",
   })
   @get()
-  static getIbc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIbc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IbcController {
   static createIbc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class AldController {
     summary: "Get Ald",
   })
   @get()
-  static getAld = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAld = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AldController {
   static createAld = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

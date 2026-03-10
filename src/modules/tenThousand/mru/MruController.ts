@@ -7,10 +7,8 @@ export default class MruController {
     summary: "Get Mru",
   })
   @get()
-  static getMru = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMru = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MruController {
   static createMru = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

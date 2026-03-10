@@ -7,10 +7,8 @@ export default class UoController {
     summary: "Get Uo",
   })
   @get()
-  static getUo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getUo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class UoController {
   static createUo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

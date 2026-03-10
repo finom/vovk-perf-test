@@ -7,10 +7,8 @@ export default class AzeController {
     summary: "Get Aze",
   })
   @get()
-  static getAze = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAze = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AzeController {
   static createAze = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

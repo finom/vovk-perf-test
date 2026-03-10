@@ -7,10 +7,8 @@ export default class HpnController {
     summary: "Get Hpn",
   })
   @get()
-  static getHpn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHpn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HpnController {
   static createHpn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

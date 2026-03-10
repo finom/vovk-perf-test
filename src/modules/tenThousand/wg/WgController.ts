@@ -7,10 +7,8 @@ export default class WgController {
     summary: "Get Wg",
   })
   @get()
-  static getWg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getWg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class WgController {
   static createWg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

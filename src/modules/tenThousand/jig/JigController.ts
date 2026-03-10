@@ -7,10 +7,8 @@ export default class JigController {
     summary: "Get Jig",
   })
   @get()
-  static getJig = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJig = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JigController {
   static createJig = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

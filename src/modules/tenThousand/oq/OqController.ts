@@ -7,10 +7,8 @@ export default class OqController {
     summary: "Get Oq",
   })
   @get()
-  static getOq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getOq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class OqController {
   static createOq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

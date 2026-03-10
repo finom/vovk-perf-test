@@ -7,10 +7,8 @@ export default class FppController {
     summary: "Get Fpp",
   })
   @get()
-  static getFpp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFpp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FppController {
   static createFpp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

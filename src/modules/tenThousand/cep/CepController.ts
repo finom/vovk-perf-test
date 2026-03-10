@@ -7,10 +7,8 @@ export default class CepController {
     summary: "Get Cep",
   })
   @get()
-  static getCep = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCep = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CepController {
   static createCep = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

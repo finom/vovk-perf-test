@@ -7,10 +7,8 @@ export default class LoqController {
     summary: "Get Loq",
   })
   @get()
-  static getLoq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLoq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LoqController {
   static createLoq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

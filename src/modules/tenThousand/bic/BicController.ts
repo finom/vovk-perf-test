@@ -7,10 +7,8 @@ export default class BicController {
     summary: "Get Bic",
   })
   @get()
-  static getBic = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBic = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BicController {
   static createBic = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

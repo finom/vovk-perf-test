@@ -7,10 +7,8 @@ export default class GltController {
     summary: "Get Glt",
   })
   @get()
-  static getGlt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGlt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GltController {
   static createGlt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class AaoController {
     summary: "Get Aao",
   })
   @get()
-  static getAao = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAao = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AaoController {
   static createAao = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

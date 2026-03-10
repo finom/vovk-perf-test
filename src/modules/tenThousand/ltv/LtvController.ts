@@ -7,10 +7,8 @@ export default class LtvController {
     summary: "Get Ltv",
   })
   @get()
-  static getLtv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLtv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LtvController {
   static createLtv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

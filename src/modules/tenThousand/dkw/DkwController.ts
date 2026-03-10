@@ -7,10 +7,8 @@ export default class DkwController {
     summary: "Get Dkw",
   })
   @get()
-  static getDkw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDkw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DkwController {
   static createDkw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

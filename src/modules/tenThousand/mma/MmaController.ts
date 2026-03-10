@@ -7,10 +7,8 @@ export default class MmaController {
     summary: "Get Mma",
   })
   @get()
-  static getMma = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMma = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MmaController {
   static createMma = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

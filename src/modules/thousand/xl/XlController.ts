@@ -7,10 +7,8 @@ export default class XlController {
     summary: "Get Xl",
   })
   @get()
-  static getXl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getXl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class XlController {
   static createXl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

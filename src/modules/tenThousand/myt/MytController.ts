@@ -7,10 +7,8 @@ export default class MytController {
     summary: "Get Myt",
   })
   @get()
-  static getMyt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMyt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MytController {
   static createMyt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

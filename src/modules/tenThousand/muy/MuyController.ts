@@ -7,10 +7,8 @@ export default class MuyController {
     summary: "Get Muy",
   })
   @get()
-  static getMuy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMuy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MuyController {
   static createMuy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

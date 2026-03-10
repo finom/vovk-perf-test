@@ -7,10 +7,8 @@ export default class FcvController {
     summary: "Get Fcv",
   })
   @get()
-  static getFcv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFcv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FcvController {
   static createFcv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

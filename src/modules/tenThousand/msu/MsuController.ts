@@ -7,10 +7,8 @@ export default class MsuController {
     summary: "Get Msu",
   })
   @get()
-  static getMsu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMsu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MsuController {
   static createMsu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

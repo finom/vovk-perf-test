@@ -7,10 +7,8 @@ export default class CcfController {
     summary: "Get Ccf",
   })
   @get()
-  static getCcf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCcf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CcfController {
   static createCcf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

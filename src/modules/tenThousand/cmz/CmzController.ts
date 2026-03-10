@@ -7,10 +7,8 @@ export default class CmzController {
     summary: "Get Cmz",
   })
   @get()
-  static getCmz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCmz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CmzController {
   static createCmz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

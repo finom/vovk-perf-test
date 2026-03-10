@@ -7,10 +7,8 @@ export default class HcpController {
     summary: "Get Hcp",
   })
   @get()
-  static getHcp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHcp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HcpController {
   static createHcp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

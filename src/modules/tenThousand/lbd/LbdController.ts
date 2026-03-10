@@ -7,10 +7,8 @@ export default class LbdController {
     summary: "Get Lbd",
   })
   @get()
-  static getLbd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLbd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LbdController {
   static createLbd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

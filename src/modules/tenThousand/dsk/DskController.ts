@@ -7,10 +7,8 @@ export default class DskController {
     summary: "Get Dsk",
   })
   @get()
-  static getDsk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDsk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DskController {
   static createDsk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

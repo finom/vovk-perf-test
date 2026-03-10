@@ -7,10 +7,8 @@ export default class AniController {
     summary: "Get Ani",
   })
   @get()
-  static getAni = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAni = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AniController {
   static createAni = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

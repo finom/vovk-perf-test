@@ -7,10 +7,8 @@ export default class BuyController {
     summary: "Get Buy",
   })
   @get()
-  static getBuy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBuy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BuyController {
   static createBuy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

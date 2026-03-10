@@ -7,10 +7,8 @@ export default class DelController {
     summary: "Get Del",
   })
   @get()
-  static getDel = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDel = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DelController {
   static createDel = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

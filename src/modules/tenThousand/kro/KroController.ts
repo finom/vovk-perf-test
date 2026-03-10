@@ -7,10 +7,8 @@ export default class KroController {
     summary: "Get Kro",
   })
   @get()
-  static getKro = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKro = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KroController {
   static createKro = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

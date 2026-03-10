@@ -7,10 +7,8 @@ export default class KunController {
     summary: "Get Kun",
   })
   @get()
-  static getKun = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKun = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KunController {
   static createKun = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

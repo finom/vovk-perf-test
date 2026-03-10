@@ -7,10 +7,8 @@ export default class EzkController {
     summary: "Get Ezk",
   })
   @get()
-  static getEzk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEzk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EzkController {
   static createEzk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

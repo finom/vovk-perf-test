@@ -7,10 +7,8 @@ export default class AkzController {
     summary: "Get Akz",
   })
   @get()
-  static getAkz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAkz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AkzController {
   static createAkz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

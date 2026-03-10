@@ -7,10 +7,8 @@ export default class CecController {
     summary: "Get Cec",
   })
   @get()
-  static getCec = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCec = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CecController {
   static createCec = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

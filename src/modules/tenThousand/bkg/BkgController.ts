@@ -7,10 +7,8 @@ export default class BkgController {
     summary: "Get Bkg",
   })
   @get()
-  static getBkg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBkg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BkgController {
   static createBkg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

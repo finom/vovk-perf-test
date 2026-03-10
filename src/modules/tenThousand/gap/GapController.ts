@@ -7,10 +7,8 @@ export default class GapController {
     summary: "Get Gap",
   })
   @get()
-  static getGap = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGap = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GapController {
   static createGap = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

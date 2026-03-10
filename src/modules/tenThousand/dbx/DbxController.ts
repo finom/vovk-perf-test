@@ -7,10 +7,8 @@ export default class DbxController {
     summary: "Get Dbx",
   })
   @get()
-  static getDbx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDbx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DbxController {
   static createDbx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

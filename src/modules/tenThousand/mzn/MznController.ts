@@ -7,10 +7,8 @@ export default class MznController {
     summary: "Get Mzn",
   })
   @get()
-  static getMzn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMzn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MznController {
   static createMzn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

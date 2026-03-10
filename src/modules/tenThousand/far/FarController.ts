@@ -7,10 +7,8 @@ export default class FarController {
     summary: "Get Far",
   })
   @get()
-  static getFar = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFar = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FarController {
   static createFar = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

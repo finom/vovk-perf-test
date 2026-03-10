@@ -7,10 +7,8 @@ export default class LjpController {
     summary: "Get Ljp",
   })
   @get()
-  static getLjp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLjp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LjpController {
   static createLjp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

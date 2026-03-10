@@ -7,10 +7,8 @@ export default class XvController {
     summary: "Get Xv",
   })
   @get()
-  static getXv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getXv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class XvController {
   static createXv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

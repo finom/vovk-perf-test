@@ -7,10 +7,8 @@ export default class NayController {
     summary: "Get Nay",
   })
   @get()
-  static getNay = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNay = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NayController {
   static createNay = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

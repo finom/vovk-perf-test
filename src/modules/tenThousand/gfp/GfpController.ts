@@ -7,10 +7,8 @@ export default class GfpController {
     summary: "Get Gfp",
   })
   @get()
-  static getGfp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGfp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GfpController {
   static createGfp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class GorController {
     summary: "Get Gor",
   })
   @get()
-  static getGor = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGor = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GorController {
   static createGor = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

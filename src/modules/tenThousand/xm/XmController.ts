@@ -7,10 +7,8 @@ export default class XmController {
     summary: "Get Xm",
   })
   @get()
-  static getXm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getXm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class XmController {
   static createXm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

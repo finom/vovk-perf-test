@@ -7,10 +7,8 @@ export default class BddController {
     summary: "Get Bdd",
   })
   @get()
-  static getBdd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBdd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BddController {
   static createBdd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

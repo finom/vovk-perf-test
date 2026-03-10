@@ -7,10 +7,8 @@ export default class AlgController {
     summary: "Get Alg",
   })
   @get()
-  static getAlg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAlg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AlgController {
   static createAlg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

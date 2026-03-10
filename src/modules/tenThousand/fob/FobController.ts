@@ -7,10 +7,8 @@ export default class FobController {
     summary: "Get Fob",
   })
   @get()
-  static getFob = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFob = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FobController {
   static createFob = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

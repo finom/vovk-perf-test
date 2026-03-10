@@ -7,10 +7,8 @@ export default class NigController {
     summary: "Get Nig",
   })
   @get()
-  static getNig = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNig = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NigController {
   static createNig = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class HiqController {
     summary: "Get Hiq",
   })
   @get()
-  static getHiq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHiq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HiqController {
   static createHiq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

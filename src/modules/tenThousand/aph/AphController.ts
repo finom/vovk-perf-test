@@ -7,10 +7,8 @@ export default class AphController {
     summary: "Get Aph",
   })
   @get()
-  static getAph = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAph = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AphController {
   static createAph = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

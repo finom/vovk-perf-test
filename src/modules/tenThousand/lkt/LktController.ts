@@ -7,10 +7,8 @@ export default class LktController {
     summary: "Get Lkt",
   })
   @get()
-  static getLkt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLkt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LktController {
   static createLkt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

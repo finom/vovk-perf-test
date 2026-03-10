@@ -7,10 +7,8 @@ export default class IsvController {
     summary: "Get Isv",
   })
   @get()
-  static getIsv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIsv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IsvController {
   static createIsv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

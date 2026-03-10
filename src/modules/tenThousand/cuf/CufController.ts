@@ -7,10 +7,8 @@ export default class CufController {
     summary: "Get Cuf",
   })
   @get()
-  static getCuf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCuf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CufController {
   static createCuf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

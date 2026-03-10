@@ -7,10 +7,8 @@ export default class JpyController {
     summary: "Get Jpy",
   })
   @get()
-  static getJpy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJpy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JpyController {
   static createJpy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

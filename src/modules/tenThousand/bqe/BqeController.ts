@@ -7,10 +7,8 @@ export default class BqeController {
     summary: "Get Bqe",
   })
   @get()
-  static getBqe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBqe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BqeController {
   static createBqe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

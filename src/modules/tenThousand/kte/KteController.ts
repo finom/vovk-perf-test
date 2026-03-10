@@ -7,10 +7,8 @@ export default class KteController {
     summary: "Get Kte",
   })
   @get()
-  static getKte = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKte = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KteController {
   static createKte = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

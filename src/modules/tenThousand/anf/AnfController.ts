@@ -7,10 +7,8 @@ export default class AnfController {
     summary: "Get Anf",
   })
   @get()
-  static getAnf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAnf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AnfController {
   static createAnf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

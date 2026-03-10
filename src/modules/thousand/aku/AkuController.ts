@@ -7,10 +7,8 @@ export default class AkuController {
     summary: "Get Aku",
   })
   @get()
-  static getAku = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAku = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AkuController {
   static createAku = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

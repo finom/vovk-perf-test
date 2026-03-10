@@ -7,10 +7,8 @@ export default class NqzController {
     summary: "Get Nqz",
   })
   @get()
-  static getNqz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNqz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NqzController {
   static createNqz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class NdrController {
     summary: "Get Ndr",
   })
   @get()
-  static getNdr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNdr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NdrController {
   static createNdr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

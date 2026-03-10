@@ -7,10 +7,8 @@ export default class HhjController {
     summary: "Get Hhj",
   })
   @get()
-  static getHhj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHhj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HhjController {
   static createHhj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

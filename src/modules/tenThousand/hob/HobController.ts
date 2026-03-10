@@ -7,10 +7,8 @@ export default class HobController {
     summary: "Get Hob",
   })
   @get()
-  static getHob = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHob = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HobController {
   static createHob = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

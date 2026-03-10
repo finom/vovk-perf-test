@@ -7,10 +7,8 @@ export default class CpsController {
     summary: "Get Cps",
   })
   @get()
-  static getCps = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCps = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CpsController {
   static createCps = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

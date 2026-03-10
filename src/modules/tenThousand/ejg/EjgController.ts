@@ -7,10 +7,8 @@ export default class EjgController {
     summary: "Get Ejg",
   })
   @get()
-  static getEjg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEjg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EjgController {
   static createEjg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

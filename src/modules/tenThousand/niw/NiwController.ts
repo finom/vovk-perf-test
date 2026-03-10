@@ -7,10 +7,8 @@ export default class NiwController {
     summary: "Get Niw",
   })
   @get()
-  static getNiw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNiw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NiwController {
   static createNiw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

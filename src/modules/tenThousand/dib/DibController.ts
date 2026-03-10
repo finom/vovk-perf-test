@@ -7,10 +7,8 @@ export default class DibController {
     summary: "Get Dib",
   })
   @get()
-  static getDib = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDib = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DibController {
   static createDib = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

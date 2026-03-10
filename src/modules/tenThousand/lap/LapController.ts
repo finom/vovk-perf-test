@@ -7,10 +7,8 @@ export default class LapController {
     summary: "Get Lap",
   })
   @get()
-  static getLap = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLap = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LapController {
   static createLap = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

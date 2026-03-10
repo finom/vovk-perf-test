@@ -7,10 +7,8 @@ export default class JfkController {
     summary: "Get Jfk",
   })
   @get()
-  static getJfk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJfk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JfkController {
   static createJfk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

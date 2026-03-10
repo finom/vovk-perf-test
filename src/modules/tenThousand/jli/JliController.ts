@@ -7,10 +7,8 @@ export default class JliController {
     summary: "Get Jli",
   })
   @get()
-  static getJli = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJli = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JliController {
   static createJli = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

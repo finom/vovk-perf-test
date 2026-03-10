@@ -7,10 +7,8 @@ export default class AtgController {
     summary: "Get Atg",
   })
   @get()
-  static getAtg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAtg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AtgController {
   static createAtg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

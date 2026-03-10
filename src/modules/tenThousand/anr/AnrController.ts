@@ -7,10 +7,8 @@ export default class AnrController {
     summary: "Get Anr",
   })
   @get()
-  static getAnr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAnr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AnrController {
   static createAnr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

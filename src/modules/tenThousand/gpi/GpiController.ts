@@ -7,10 +7,8 @@ export default class GpiController {
     summary: "Get Gpi",
   })
   @get()
-  static getGpi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGpi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GpiController {
   static createGpi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

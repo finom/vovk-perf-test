@@ -7,10 +7,8 @@ export default class KniController {
     summary: "Get Kni",
   })
   @get()
-  static getKni = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKni = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KniController {
   static createKni = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

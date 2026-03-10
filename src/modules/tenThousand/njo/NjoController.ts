@@ -7,10 +7,8 @@ export default class NjoController {
     summary: "Get Njo",
   })
   @get()
-  static getNjo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNjo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NjoController {
   static createNjo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

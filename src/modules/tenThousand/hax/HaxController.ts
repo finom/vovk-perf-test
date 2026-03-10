@@ -7,10 +7,8 @@ export default class HaxController {
     summary: "Get Hax",
   })
   @get()
-  static getHax = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHax = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HaxController {
   static createHax = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class CeqController {
     summary: "Get Ceq",
   })
   @get()
-  static getCeq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCeq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CeqController {
   static createCeq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

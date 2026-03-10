@@ -7,10 +7,8 @@ export default class FuxController {
     summary: "Get Fux",
   })
   @get()
-  static getFux = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFux = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FuxController {
   static createFux = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

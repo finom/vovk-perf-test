@@ -7,10 +7,8 @@ export default class EqlController {
     summary: "Get Eql",
   })
   @get()
-  static getEql = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEql = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EqlController {
   static createEql = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

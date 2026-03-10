@@ -7,10 +7,8 @@ export default class GaaController {
     summary: "Get Gaa",
   })
   @get()
-  static getGaa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGaa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GaaController {
   static createGaa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

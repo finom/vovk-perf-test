@@ -7,10 +7,8 @@ export default class DmlController {
     summary: "Get Dml",
   })
   @get()
-  static getDml = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDml = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DmlController {
   static createDml = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class NatController {
     summary: "Get Nat",
   })
   @get()
-  static getNat = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNat = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NatController {
   static createNat = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

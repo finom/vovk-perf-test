@@ -7,10 +7,8 @@ export default class CavController {
     summary: "Get Cav",
   })
   @get()
-  static getCav = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCav = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CavController {
   static createCav = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

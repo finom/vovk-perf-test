@@ -7,10 +7,8 @@ export default class FnkController {
     summary: "Get Fnk",
   })
   @get()
-  static getFnk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFnk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FnkController {
   static createFnk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

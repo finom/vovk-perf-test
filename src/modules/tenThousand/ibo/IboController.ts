@@ -7,10 +7,8 @@ export default class IboController {
     summary: "Get Ibo",
   })
   @get()
-  static getIbo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIbo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IboController {
   static createIbo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

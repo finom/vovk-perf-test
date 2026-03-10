@@ -7,10 +7,8 @@ export default class GaxController {
     summary: "Get Gax",
   })
   @get()
-  static getGax = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGax = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GaxController {
   static createGax = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

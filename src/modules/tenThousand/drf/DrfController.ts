@@ -7,10 +7,8 @@ export default class DrfController {
     summary: "Get Drf",
   })
   @get()
-  static getDrf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDrf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DrfController {
   static createDrf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

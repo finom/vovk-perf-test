@@ -7,10 +7,8 @@ export default class BtbController {
     summary: "Get Btb",
   })
   @get()
-  static getBtb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBtb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BtbController {
   static createBtb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

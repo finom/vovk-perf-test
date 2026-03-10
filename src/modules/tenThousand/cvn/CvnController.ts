@@ -7,10 +7,8 @@ export default class CvnController {
     summary: "Get Cvn",
   })
   @get()
-  static getCvn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCvn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CvnController {
   static createCvn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

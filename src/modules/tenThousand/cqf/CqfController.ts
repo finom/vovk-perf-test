@@ -7,10 +7,8 @@ export default class CqfController {
     summary: "Get Cqf",
   })
   @get()
-  static getCqf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCqf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CqfController {
   static createCqf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class DbvController {
     summary: "Get Dbv",
   })
   @get()
-  static getDbv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDbv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DbvController {
   static createDbv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

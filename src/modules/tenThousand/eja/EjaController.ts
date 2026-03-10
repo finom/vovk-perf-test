@@ -7,10 +7,8 @@ export default class EjaController {
     summary: "Get Eja",
   })
   @get()
-  static getEja = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEja = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EjaController {
   static createEja = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

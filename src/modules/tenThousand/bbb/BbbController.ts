@@ -7,10 +7,8 @@ export default class BbbController {
     summary: "Get Bbb",
   })
   @get()
-  static getBbb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBbb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BbbController {
   static createBbb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

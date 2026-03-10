@@ -7,10 +7,8 @@ export default class IocController {
     summary: "Get Ioc",
   })
   @get()
-  static getIoc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIoc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IocController {
   static createIoc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

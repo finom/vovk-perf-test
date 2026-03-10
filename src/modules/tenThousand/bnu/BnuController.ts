@@ -7,10 +7,8 @@ export default class BnuController {
     summary: "Get Bnu",
   })
   @get()
-  static getBnu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBnu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BnuController {
   static createBnu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

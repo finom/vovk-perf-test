@@ -7,10 +7,8 @@ export default class DmqController {
     summary: "Get Dmq",
   })
   @get()
-  static getDmq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDmq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DmqController {
   static createDmq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

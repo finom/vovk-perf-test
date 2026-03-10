@@ -7,10 +7,8 @@ export default class FisController {
     summary: "Get Fis",
   })
   @get()
-  static getFis = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFis = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FisController {
   static createFis = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class DppController {
     summary: "Get Dpp",
   })
   @get()
-  static getDpp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDpp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DppController {
   static createDpp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

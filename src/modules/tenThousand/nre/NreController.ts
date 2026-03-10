@@ -7,10 +7,8 @@ export default class NreController {
     summary: "Get Nre",
   })
   @get()
-  static getNre = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNre = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NreController {
   static createNre = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

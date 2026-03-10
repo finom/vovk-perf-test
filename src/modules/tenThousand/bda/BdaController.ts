@@ -7,10 +7,8 @@ export default class BdaController {
     summary: "Get Bda",
   })
   @get()
-  static getBda = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBda = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BdaController {
   static createBda = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

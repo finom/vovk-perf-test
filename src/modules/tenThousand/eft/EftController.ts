@@ -7,10 +7,8 @@ export default class EftController {
     summary: "Get Eft",
   })
   @get()
-  static getEft = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEft = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EftController {
   static createEft = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

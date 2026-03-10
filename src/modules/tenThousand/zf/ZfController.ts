@@ -7,10 +7,8 @@ export default class ZfController {
     summary: "Get Zf",
   })
   @get()
-  static getZf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getZf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ZfController {
   static createZf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

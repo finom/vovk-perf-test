@@ -7,10 +7,8 @@ export default class KwgController {
     summary: "Get Kwg",
   })
   @get()
-  static getKwg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKwg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KwgController {
   static createKwg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

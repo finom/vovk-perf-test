@@ -7,10 +7,8 @@ export default class EegController {
     summary: "Get Eeg",
   })
   @get()
-  static getEeg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEeg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EegController {
   static createEeg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

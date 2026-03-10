@@ -7,10 +7,8 @@ export default class EkmController {
     summary: "Get Ekm",
   })
   @get()
-  static getEkm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEkm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EkmController {
   static createEkm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

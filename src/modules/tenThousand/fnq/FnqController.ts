@@ -7,10 +7,8 @@ export default class FnqController {
     summary: "Get Fnq",
   })
   @get()
-  static getFnq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFnq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FnqController {
   static createFnq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

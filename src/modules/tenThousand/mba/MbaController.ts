@@ -7,10 +7,8 @@ export default class MbaController {
     summary: "Get Mba",
   })
   @get()
-  static getMba = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMba = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MbaController {
   static createMba = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

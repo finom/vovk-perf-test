@@ -7,10 +7,8 @@ export default class MebController {
     summary: "Get Meb",
   })
   @get()
-  static getMeb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMeb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MebController {
   static createMeb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

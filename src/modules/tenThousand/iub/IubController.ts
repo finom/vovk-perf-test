@@ -7,10 +7,8 @@ export default class IubController {
     summary: "Get Iub",
   })
   @get()
-  static getIub = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIub = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IubController {
   static createIub = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

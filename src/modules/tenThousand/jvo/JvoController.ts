@@ -7,10 +7,8 @@ export default class JvoController {
     summary: "Get Jvo",
   })
   @get()
-  static getJvo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJvo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JvoController {
   static createJvo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

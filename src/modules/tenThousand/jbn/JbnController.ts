@@ -7,10 +7,8 @@ export default class JbnController {
     summary: "Get Jbn",
   })
   @get()
-  static getJbn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJbn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JbnController {
   static createJbn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

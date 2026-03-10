@@ -7,10 +7,8 @@ export default class CauController {
     summary: "Get Cau",
   })
   @get()
-  static getCau = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCau = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CauController {
   static createCau = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

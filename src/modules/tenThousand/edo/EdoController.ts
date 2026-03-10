@@ -7,10 +7,8 @@ export default class EdoController {
     summary: "Get Edo",
   })
   @get()
-  static getEdo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEdo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EdoController {
   static createEdo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

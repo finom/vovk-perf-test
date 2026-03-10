@@ -7,10 +7,8 @@ export default class EtuController {
     summary: "Get Etu",
   })
   @get()
-  static getEtu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEtu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EtuController {
   static createEtu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

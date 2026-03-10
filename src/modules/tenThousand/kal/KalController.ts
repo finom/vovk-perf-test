@@ -7,10 +7,8 @@ export default class KalController {
     summary: "Get Kal",
   })
   @get()
-  static getKal = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKal = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KalController {
   static createKal = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

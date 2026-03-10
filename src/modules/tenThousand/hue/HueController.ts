@@ -7,10 +7,8 @@ export default class HueController {
     summary: "Get Hue",
   })
   @get()
-  static getHue = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHue = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HueController {
   static createHue = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

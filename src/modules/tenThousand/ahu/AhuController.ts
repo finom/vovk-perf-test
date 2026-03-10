@@ -7,10 +7,8 @@ export default class AhuController {
     summary: "Get Ahu",
   })
   @get()
-  static getAhu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAhu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AhuController {
   static createAhu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

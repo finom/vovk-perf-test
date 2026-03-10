@@ -7,10 +7,8 @@ export default class DoiController {
     summary: "Get Doi",
   })
   @get()
-  static getDoi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDoi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DoiController {
   static createDoi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class BtmController {
     summary: "Get Btm",
   })
   @get()
-  static getBtm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBtm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BtmController {
   static createBtm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

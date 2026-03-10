@@ -7,10 +7,8 @@ export default class IpeController {
     summary: "Get Ipe",
   })
   @get()
-  static getIpe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIpe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IpeController {
   static createIpe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

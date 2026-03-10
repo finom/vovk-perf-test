@@ -7,10 +7,8 @@ export default class AwbController {
     summary: "Get Awb",
   })
   @get()
-  static getAwb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAwb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AwbController {
   static createAwb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

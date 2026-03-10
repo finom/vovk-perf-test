@@ -7,10 +7,8 @@ export default class FtxController {
     summary: "Get Ftx",
   })
   @get()
-  static getFtx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFtx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FtxController {
   static createFtx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

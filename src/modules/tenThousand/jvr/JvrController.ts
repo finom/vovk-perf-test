@@ -7,10 +7,8 @@ export default class JvrController {
     summary: "Get Jvr",
   })
   @get()
-  static getJvr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJvr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JvrController {
   static createJvr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

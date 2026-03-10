@@ -7,10 +7,8 @@ export default class BekController {
     summary: "Get Bek",
   })
   @get()
-  static getBek = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBek = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BekController {
   static createBek = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

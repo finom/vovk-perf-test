@@ -7,10 +7,8 @@ export default class ClwController {
     summary: "Get Clw",
   })
   @get()
-  static getClw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getClw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ClwController {
   static createClw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

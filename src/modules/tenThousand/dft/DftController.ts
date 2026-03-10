@@ -7,10 +7,8 @@ export default class DftController {
     summary: "Get Dft",
   })
   @get()
-  static getDft = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDft = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DftController {
   static createDft = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

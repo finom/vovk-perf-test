@@ -7,10 +7,8 @@ export default class HexController {
     summary: "Get Hex",
   })
   @get()
-  static getHex = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHex = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HexController {
   static createHex = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

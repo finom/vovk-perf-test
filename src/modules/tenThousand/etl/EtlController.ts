@@ -7,10 +7,8 @@ export default class EtlController {
     summary: "Get Etl",
   })
   @get()
-  static getEtl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEtl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EtlController {
   static createEtl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

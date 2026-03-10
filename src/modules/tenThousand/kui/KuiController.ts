@@ -7,10 +7,8 @@ export default class KuiController {
     summary: "Get Kui",
   })
   @get()
-  static getKui = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKui = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KuiController {
   static createKui = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

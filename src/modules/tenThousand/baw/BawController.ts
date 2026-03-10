@@ -7,10 +7,8 @@ export default class BawController {
     summary: "Get Baw",
   })
   @get()
-  static getBaw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBaw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BawController {
   static createBaw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

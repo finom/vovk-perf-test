@@ -7,10 +7,8 @@ export default class MbyController {
     summary: "Get Mby",
   })
   @get()
-  static getMby = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMby = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MbyController {
   static createMby = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

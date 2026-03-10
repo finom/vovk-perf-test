@@ -7,10 +7,8 @@ export default class BtvController {
     summary: "Get Btv",
   })
   @get()
-  static getBtv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBtv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BtvController {
   static createBtv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

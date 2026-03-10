@@ -7,10 +7,8 @@ export default class KvcController {
     summary: "Get Kvc",
   })
   @get()
-  static getKvc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKvc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KvcController {
   static createKvc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

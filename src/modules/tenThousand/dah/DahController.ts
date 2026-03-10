@@ -7,10 +7,8 @@ export default class DahController {
     summary: "Get Dah",
   })
   @get()
-  static getDah = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDah = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DahController {
   static createDah = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

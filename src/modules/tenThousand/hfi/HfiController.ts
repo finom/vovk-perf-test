@@ -7,10 +7,8 @@ export default class HfiController {
     summary: "Get Hfi",
   })
   @get()
-  static getHfi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHfi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HfiController {
   static createHfi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

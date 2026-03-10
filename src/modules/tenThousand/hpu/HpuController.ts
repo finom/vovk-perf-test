@@ -7,10 +7,8 @@ export default class HpuController {
     summary: "Get Hpu",
   })
   @get()
-  static getHpu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHpu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HpuController {
   static createHpu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class FhqController {
     summary: "Get Fhq",
   })
   @get()
-  static getFhq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFhq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FhqController {
   static createFhq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class MndController {
     summary: "Get Mnd",
   })
   @get()
-  static getMnd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMnd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MndController {
   static createMnd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

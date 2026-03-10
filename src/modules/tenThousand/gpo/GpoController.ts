@@ -7,10 +7,8 @@ export default class GpoController {
     summary: "Get Gpo",
   })
   @get()
-  static getGpo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGpo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GpoController {
   static createGpo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

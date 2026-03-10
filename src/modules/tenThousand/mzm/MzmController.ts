@@ -7,10 +7,8 @@ export default class MzmController {
     summary: "Get Mzm",
   })
   @get()
-  static getMzm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMzm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MzmController {
   static createMzm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

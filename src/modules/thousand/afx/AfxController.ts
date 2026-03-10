@@ -7,10 +7,8 @@ export default class AfxController {
     summary: "Get Afx",
   })
   @get()
-  static getAfx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAfx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AfxController {
   static createAfx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class ElgController {
     summary: "Get Elg",
   })
   @get()
-  static getElg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getElg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ElgController {
   static createElg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

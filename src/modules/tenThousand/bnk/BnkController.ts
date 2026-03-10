@@ -7,10 +7,8 @@ export default class BnkController {
     summary: "Get Bnk",
   })
   @get()
-  static getBnk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBnk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BnkController {
   static createBnk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

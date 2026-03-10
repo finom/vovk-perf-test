@@ -7,10 +7,8 @@ export default class MorController {
     summary: "Get Mor",
   })
   @get()
-  static getMor = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMor = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MorController {
   static createMor = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

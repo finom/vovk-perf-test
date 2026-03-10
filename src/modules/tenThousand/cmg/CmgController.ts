@@ -7,10 +7,8 @@ export default class CmgController {
     summary: "Get Cmg",
   })
   @get()
-  static getCmg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCmg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CmgController {
   static createCmg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

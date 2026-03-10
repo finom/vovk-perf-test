@@ -7,10 +7,8 @@ export default class NtjController {
     summary: "Get Ntj",
   })
   @get()
-  static getNtj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNtj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NtjController {
   static createNtj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class AibController {
     summary: "Get Aib",
   })
   @get()
-  static getAib = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAib = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AibController {
   static createAib = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

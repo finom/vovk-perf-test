@@ -7,10 +7,8 @@ export default class KbwController {
     summary: "Get Kbw",
   })
   @get()
-  static getKbw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKbw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KbwController {
   static createKbw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

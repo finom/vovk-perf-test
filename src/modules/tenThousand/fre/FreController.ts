@@ -7,10 +7,8 @@ export default class FreController {
     summary: "Get Fre",
   })
   @get()
-  static getFre = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFre = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FreController {
   static createFre = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

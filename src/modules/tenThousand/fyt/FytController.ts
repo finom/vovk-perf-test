@@ -7,10 +7,8 @@ export default class FytController {
     summary: "Get Fyt",
   })
   @get()
-  static getFyt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFyt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FytController {
   static createFyt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

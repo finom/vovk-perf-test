@@ -7,10 +7,8 @@ export default class AsxController {
     summary: "Get Asx",
   })
   @get()
-  static getAsx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAsx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AsxController {
   static createAsx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

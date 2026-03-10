@@ -7,10 +7,8 @@ export default class CdjController {
     summary: "Get Cdj",
   })
   @get()
-  static getCdj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCdj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CdjController {
   static createCdj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

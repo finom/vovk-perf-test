@@ -7,10 +7,8 @@ export default class AlmController {
     summary: "Get Alm",
   })
   @get()
-  static getAlm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAlm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AlmController {
   static createAlm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

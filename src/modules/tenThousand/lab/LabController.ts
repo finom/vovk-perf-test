@@ -7,10 +7,8 @@ export default class LabController {
     summary: "Get Lab",
   })
   @get()
-  static getLab = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLab = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LabController {
   static createLab = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

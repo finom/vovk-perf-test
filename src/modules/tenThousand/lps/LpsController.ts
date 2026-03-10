@@ -7,10 +7,8 @@ export default class LpsController {
     summary: "Get Lps",
   })
   @get()
-  static getLps = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLps = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LpsController {
   static createLps = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class NpsController {
     summary: "Get Nps",
   })
   @get()
-  static getNps = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNps = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NpsController {
   static createNps = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

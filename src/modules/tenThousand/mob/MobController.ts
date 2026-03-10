@@ -7,10 +7,8 @@ export default class MobController {
     summary: "Get Mob",
   })
   @get()
-  static getMob = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMob = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MobController {
   static createMob = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IvrController {
     summary: "Get Ivr",
   })
   @get()
-  static getIvr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIvr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IvrController {
   static createIvr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

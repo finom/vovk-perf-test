@@ -7,10 +7,8 @@ export default class CyfController {
     summary: "Get Cyf",
   })
   @get()
-  static getCyf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCyf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CyfController {
   static createCyf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

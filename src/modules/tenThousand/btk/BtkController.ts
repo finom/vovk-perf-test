@@ -7,10 +7,8 @@ export default class BtkController {
     summary: "Get Btk",
   })
   @get()
-  static getBtk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBtk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BtkController {
   static createBtk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class NcnController {
     summary: "Get Ncn",
   })
   @get()
-  static getNcn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNcn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NcnController {
   static createNcn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

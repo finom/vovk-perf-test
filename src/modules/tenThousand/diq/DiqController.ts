@@ -7,10 +7,8 @@ export default class DiqController {
     summary: "Get Diq",
   })
   @get()
-  static getDiq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDiq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DiqController {
   static createDiq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

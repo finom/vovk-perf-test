@@ -7,10 +7,8 @@ export default class InuController {
     summary: "Get Inu",
   })
   @get()
-  static getInu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getInu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class InuController {
   static createInu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class NmhController {
     summary: "Get Nmh",
   })
   @get()
-  static getNmh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNmh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NmhController {
   static createNmh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class LovController {
     summary: "Get Lov",
   })
   @get()
-  static getLov = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLov = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LovController {
   static createLov = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class ExaController {
     summary: "Get Exa",
   })
   @get()
-  static getExa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getExa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ExaController {
   static createExa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

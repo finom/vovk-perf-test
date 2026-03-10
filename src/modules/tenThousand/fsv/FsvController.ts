@@ -7,10 +7,8 @@ export default class FsvController {
     summary: "Get Fsv",
   })
   @get()
-  static getFsv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFsv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FsvController {
   static createFsv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class XnController {
     summary: "Get Xn",
   })
   @get()
-  static getXn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getXn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class XnController {
   static createXn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

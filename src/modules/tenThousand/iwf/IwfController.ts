@@ -7,10 +7,8 @@ export default class IwfController {
     summary: "Get Iwf",
   })
   @get()
-  static getIwf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIwf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IwfController {
   static createIwf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

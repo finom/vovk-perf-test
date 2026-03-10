@@ -7,10 +7,8 @@ export default class EbdController {
     summary: "Get Ebd",
   })
   @get()
-  static getEbd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEbd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EbdController {
   static createEbd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

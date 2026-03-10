@@ -7,10 +7,8 @@ export default class AsiController {
     summary: "Get Asi",
   })
   @get()
-  static getAsi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAsi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AsiController {
   static createAsi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

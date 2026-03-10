@@ -7,10 +7,8 @@ export default class AznController {
     summary: "Get Azn",
   })
   @get()
-  static getAzn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAzn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AznController {
   static createAzn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class EreController {
     summary: "Get Ere",
   })
   @get()
-  static getEre = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEre = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EreController {
   static createEre = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

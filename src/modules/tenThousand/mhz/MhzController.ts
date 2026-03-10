@@ -7,10 +7,8 @@ export default class MhzController {
     summary: "Get Mhz",
   })
   @get()
-  static getMhz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMhz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MhzController {
   static createMhz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

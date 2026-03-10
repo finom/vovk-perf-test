@@ -7,10 +7,8 @@ export default class GhuController {
     summary: "Get Ghu",
   })
   @get()
-  static getGhu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGhu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GhuController {
   static createGhu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

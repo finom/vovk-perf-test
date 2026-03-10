@@ -7,10 +7,8 @@ export default class FucController {
     summary: "Get Fuc",
   })
   @get()
-  static getFuc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFuc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FucController {
   static createFuc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

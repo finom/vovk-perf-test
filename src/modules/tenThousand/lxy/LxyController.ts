@@ -7,10 +7,8 @@ export default class LxyController {
     summary: "Get Lxy",
   })
   @get()
-  static getLxy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLxy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LxyController {
   static createLxy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class KbqController {
     summary: "Get Kbq",
   })
   @get()
-  static getKbq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKbq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KbqController {
   static createKbq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

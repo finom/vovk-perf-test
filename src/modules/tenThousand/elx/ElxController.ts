@@ -7,10 +7,8 @@ export default class ElxController {
     summary: "Get Elx",
   })
   @get()
-  static getElx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getElx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ElxController {
   static createElx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

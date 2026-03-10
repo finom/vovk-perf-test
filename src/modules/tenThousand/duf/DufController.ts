@@ -7,10 +7,8 @@ export default class DufController {
     summary: "Get Duf",
   })
   @get()
-  static getDuf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDuf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DufController {
   static createDuf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class BakController {
     summary: "Get Bak",
   })
   @get()
-  static getBak = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBak = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BakController {
   static createBak = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class HetController {
     summary: "Get Het",
   })
   @get()
-  static getHet = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHet = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HetController {
   static createHet = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

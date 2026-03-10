@@ -7,10 +7,8 @@ export default class GegController {
     summary: "Get Geg",
   })
   @get()
-  static getGeg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGeg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GegController {
   static createGeg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

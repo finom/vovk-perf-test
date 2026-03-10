@@ -7,10 +7,8 @@ export default class AozController {
     summary: "Get Aoz",
   })
   @get()
-  static getAoz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAoz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AozController {
   static createAoz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class EcuController {
     summary: "Get Ecu",
   })
   @get()
-  static getEcu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEcu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EcuController {
   static createEcu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

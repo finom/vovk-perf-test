@@ -7,10 +7,8 @@ export default class JsiController {
     summary: "Get Jsi",
   })
   @get()
-  static getJsi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJsi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JsiController {
   static createJsi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

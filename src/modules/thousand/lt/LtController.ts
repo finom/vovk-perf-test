@@ -7,10 +7,8 @@ export default class LtController {
     summary: "Get Lt",
   })
   @get()
-  static getLt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LtController {
   static createLt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

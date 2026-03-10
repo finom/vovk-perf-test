@@ -7,10 +7,8 @@ export default class DiwController {
     summary: "Get Diw",
   })
   @get()
-  static getDiw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDiw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DiwController {
   static createDiw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

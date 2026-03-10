@@ -7,10 +7,8 @@ export default class NmkController {
     summary: "Get Nmk",
   })
   @get()
-  static getNmk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNmk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NmkController {
   static createNmk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

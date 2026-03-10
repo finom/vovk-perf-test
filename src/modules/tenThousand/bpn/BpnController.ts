@@ -7,10 +7,8 @@ export default class BpnController {
     summary: "Get Bpn",
   })
   @get()
-  static getBpn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBpn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BpnController {
   static createBpn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

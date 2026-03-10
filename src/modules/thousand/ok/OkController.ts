@@ -7,10 +7,8 @@ export default class OkController {
     summary: "Get Ok",
   })
   @get()
-  static getOk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getOk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class OkController {
   static createOk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

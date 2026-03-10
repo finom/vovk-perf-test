@@ -7,10 +7,8 @@ export default class MgrController {
     summary: "Get Mgr",
   })
   @get()
-  static getMgr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMgr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MgrController {
   static createMgr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

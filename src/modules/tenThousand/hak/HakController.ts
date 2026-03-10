@@ -7,10 +7,8 @@ export default class HakController {
     summary: "Get Hak",
   })
   @get()
-  static getHak = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHak = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HakController {
   static createHak = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

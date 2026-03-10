@@ -7,10 +7,8 @@ export default class JdkController {
     summary: "Get Jdk",
   })
   @get()
-  static getJdk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJdk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JdkController {
   static createJdk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

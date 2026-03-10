@@ -7,10 +7,8 @@ export default class DecController {
     summary: "Get Dec",
   })
   @get()
-  static getDec = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDec = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DecController {
   static createDec = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

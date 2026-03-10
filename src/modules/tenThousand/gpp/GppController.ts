@@ -7,10 +7,8 @@ export default class GppController {
     summary: "Get Gpp",
   })
   @get()
-  static getGpp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGpp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GppController {
   static createGpp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

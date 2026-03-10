@@ -7,10 +7,8 @@ export default class HkvController {
     summary: "Get Hkv",
   })
   @get()
-  static getHkv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHkv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HkvController {
   static createHkv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

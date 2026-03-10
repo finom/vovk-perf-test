@@ -7,10 +7,8 @@ export default class ApzController {
     summary: "Get Apz",
   })
   @get()
-  static getApz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getApz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ApzController {
   static createApz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class ImfController {
     summary: "Get Imf",
   })
   @get()
-  static getImf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getImf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ImfController {
   static createImf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

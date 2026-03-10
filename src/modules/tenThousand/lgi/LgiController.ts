@@ -7,10 +7,8 @@ export default class LgiController {
     summary: "Get Lgi",
   })
   @get()
-  static getLgi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLgi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LgiController {
   static createLgi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class NdqController {
     summary: "Get Ndq",
   })
   @get()
-  static getNdq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNdq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NdqController {
   static createNdq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

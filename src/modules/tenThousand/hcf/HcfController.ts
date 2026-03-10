@@ -7,10 +7,8 @@ export default class HcfController {
     summary: "Get Hcf",
   })
   @get()
-  static getHcf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHcf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HcfController {
   static createHcf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

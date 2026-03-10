@@ -7,10 +7,8 @@ export default class SuController {
     summary: "Get Su",
   })
   @get()
-  static getSu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getSu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class SuController {
   static createSu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

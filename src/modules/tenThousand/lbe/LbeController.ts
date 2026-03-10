@@ -7,10 +7,8 @@ export default class LbeController {
     summary: "Get Lbe",
   })
   @get()
-  static getLbe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLbe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LbeController {
   static createLbe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

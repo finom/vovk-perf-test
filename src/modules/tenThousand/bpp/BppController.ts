@@ -7,10 +7,8 @@ export default class BppController {
     summary: "Get Bpp",
   })
   @get()
-  static getBpp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBpp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BppController {
   static createBpp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

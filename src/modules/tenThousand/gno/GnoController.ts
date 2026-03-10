@@ -7,10 +7,8 @@ export default class GnoController {
     summary: "Get Gno",
   })
   @get()
-  static getGno = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGno = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GnoController {
   static createGno = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

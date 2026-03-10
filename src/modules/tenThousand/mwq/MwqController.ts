@@ -7,10 +7,8 @@ export default class MwqController {
     summary: "Get Mwq",
   })
   @get()
-  static getMwq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMwq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MwqController {
   static createMwq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class FbrController {
     summary: "Get Fbr",
   })
   @get()
-  static getFbr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFbr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FbrController {
   static createFbr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class AypController {
     summary: "Get Ayp",
   })
   @get()
-  static getAyp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAyp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AypController {
   static createAyp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

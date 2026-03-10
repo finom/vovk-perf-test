@@ -7,10 +7,8 @@ export default class MyaController {
     summary: "Get Mya",
   })
   @get()
-  static getMya = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMya = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MyaController {
   static createMya = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

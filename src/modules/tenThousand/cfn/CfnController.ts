@@ -7,10 +7,8 @@ export default class CfnController {
     summary: "Get Cfn",
   })
   @get()
-  static getCfn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCfn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CfnController {
   static createCfn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

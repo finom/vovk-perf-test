@@ -7,10 +7,8 @@ export default class JolController {
     summary: "Get Jol",
   })
   @get()
-  static getJol = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJol = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JolController {
   static createJol = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

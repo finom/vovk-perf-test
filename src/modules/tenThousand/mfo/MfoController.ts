@@ -7,10 +7,8 @@ export default class MfoController {
     summary: "Get Mfo",
   })
   @get()
-  static getMfo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMfo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MfoController {
   static createMfo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

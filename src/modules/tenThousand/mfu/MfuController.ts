@@ -7,10 +7,8 @@ export default class MfuController {
     summary: "Get Mfu",
   })
   @get()
-  static getMfu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMfu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MfuController {
   static createMfu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

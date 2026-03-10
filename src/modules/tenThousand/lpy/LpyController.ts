@@ -7,10 +7,8 @@ export default class LpyController {
     summary: "Get Lpy",
   })
   @get()
-  static getLpy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLpy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LpyController {
   static createLpy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

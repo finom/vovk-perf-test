@@ -7,10 +7,8 @@ export default class MapController {
     summary: "Get Map",
   })
   @get()
-  static getMap = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMap = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MapController {
   static createMap = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class EfkController {
     summary: "Get Efk",
   })
   @get()
-  static getEfk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEfk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EfkController {
   static createEfk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

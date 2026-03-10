@@ -7,10 +7,8 @@ export default class BibController {
     summary: "Get Bib",
   })
   @get()
-  static getBib = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBib = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BibController {
   static createBib = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class LrwController {
     summary: "Get Lrw",
   })
   @get()
-  static getLrw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLrw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LrwController {
   static createLrw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

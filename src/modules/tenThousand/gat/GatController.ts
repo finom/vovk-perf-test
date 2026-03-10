@@ -7,10 +7,8 @@ export default class GatController {
     summary: "Get Gat",
   })
   @get()
-  static getGat = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGat = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GatController {
   static createGat = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

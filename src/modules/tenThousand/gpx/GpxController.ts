@@ -7,10 +7,8 @@ export default class GpxController {
     summary: "Get Gpx",
   })
   @get()
-  static getGpx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGpx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GpxController {
   static createGpx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

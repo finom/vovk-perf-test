@@ -7,10 +7,8 @@ export default class JtaController {
     summary: "Get Jta",
   })
   @get()
-  static getJta = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJta = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JtaController {
   static createJta = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

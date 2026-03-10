@@ -7,10 +7,8 @@ export default class VrController {
     summary: "Get Vr",
   })
   @get()
-  static getVr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getVr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class VrController {
   static createVr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

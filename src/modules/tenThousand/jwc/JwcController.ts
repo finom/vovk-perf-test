@@ -7,10 +7,8 @@ export default class JwcController {
     summary: "Get Jwc",
   })
   @get()
-  static getJwc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJwc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JwcController {
   static createJwc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

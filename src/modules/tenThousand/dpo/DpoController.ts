@@ -7,10 +7,8 @@ export default class DpoController {
     summary: "Get Dpo",
   })
   @get()
-  static getDpo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDpo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DpoController {
   static createDpo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

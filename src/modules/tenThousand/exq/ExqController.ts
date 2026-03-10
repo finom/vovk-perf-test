@@ -7,10 +7,8 @@ export default class ExqController {
     summary: "Get Exq",
   })
   @get()
-  static getExq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getExq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ExqController {
   static createExq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

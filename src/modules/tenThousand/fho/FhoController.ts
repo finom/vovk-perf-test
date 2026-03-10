@@ -7,10 +7,8 @@ export default class FhoController {
     summary: "Get Fho",
   })
   @get()
-  static getFho = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFho = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FhoController {
   static createFho = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

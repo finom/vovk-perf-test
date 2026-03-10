@@ -7,10 +7,8 @@ export default class ImoController {
     summary: "Get Imo",
   })
   @get()
-  static getImo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getImo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ImoController {
   static createImo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

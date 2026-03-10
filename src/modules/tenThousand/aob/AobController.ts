@@ -7,10 +7,8 @@ export default class AobController {
     summary: "Get Aob",
   })
   @get()
-  static getAob = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAob = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AobController {
   static createAob = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

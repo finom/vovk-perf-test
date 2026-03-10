@@ -7,10 +7,8 @@ export default class GbhController {
     summary: "Get Gbh",
   })
   @get()
-  static getGbh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGbh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GbhController {
   static createGbh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

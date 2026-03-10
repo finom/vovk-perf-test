@@ -7,10 +7,8 @@ export default class NplController {
     summary: "Get Npl",
   })
   @get()
-  static getNpl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNpl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NplController {
   static createNpl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

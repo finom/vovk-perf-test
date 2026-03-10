@@ -7,10 +7,8 @@ export default class MwsController {
     summary: "Get Mws",
   })
   @get()
-  static getMws = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMws = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MwsController {
   static createMws = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

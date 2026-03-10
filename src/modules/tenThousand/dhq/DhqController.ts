@@ -7,10 +7,8 @@ export default class DhqController {
     summary: "Get Dhq",
   })
   @get()
-  static getDhq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDhq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DhqController {
   static createDhq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

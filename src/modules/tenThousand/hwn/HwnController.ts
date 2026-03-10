@@ -7,10 +7,8 @@ export default class HwnController {
     summary: "Get Hwn",
   })
   @get()
-  static getHwn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHwn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HwnController {
   static createHwn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

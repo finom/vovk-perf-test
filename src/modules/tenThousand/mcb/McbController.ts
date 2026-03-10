@@ -7,10 +7,8 @@ export default class McbController {
     summary: "Get Mcb",
   })
   @get()
-  static getMcb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMcb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class McbController {
   static createMcb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

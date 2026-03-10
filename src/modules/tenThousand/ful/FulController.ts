@@ -7,10 +7,8 @@ export default class FulController {
     summary: "Get Ful",
   })
   @get()
-  static getFul = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFul = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FulController {
   static createFul = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

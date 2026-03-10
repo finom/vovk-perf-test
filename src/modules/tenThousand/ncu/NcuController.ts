@@ -7,10 +7,8 @@ export default class NcuController {
     summary: "Get Ncu",
   })
   @get()
-  static getNcu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNcu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NcuController {
   static createNcu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

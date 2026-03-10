@@ -7,10 +7,8 @@ export default class IraController {
     summary: "Get Ira",
   })
   @get()
-  static getIra = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIra = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IraController {
   static createIra = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

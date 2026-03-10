@@ -7,10 +7,8 @@ export default class EttController {
     summary: "Get Ett",
   })
   @get()
-  static getEtt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEtt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EttController {
   static createEtt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

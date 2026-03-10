@@ -7,10 +7,8 @@ export default class DjvController {
     summary: "Get Djv",
   })
   @get()
-  static getDjv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDjv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DjvController {
   static createDjv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

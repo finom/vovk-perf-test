@@ -7,10 +7,8 @@ export default class KdpController {
     summary: "Get Kdp",
   })
   @get()
-  static getKdp = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKdp = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KdpController {
   static createKdp = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

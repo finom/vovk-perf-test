@@ -7,10 +7,8 @@ export default class EliController {
     summary: "Get Eli",
   })
   @get()
-  static getEli = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEli = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EliController {
   static createEli = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

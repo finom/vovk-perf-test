@@ -7,10 +7,8 @@ export default class JgiController {
     summary: "Get Jgi",
   })
   @get()
-  static getJgi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJgi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JgiController {
   static createJgi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IifController {
     summary: "Get Iif",
   })
   @get()
-  static getIif = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIif = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IifController {
   static createIif = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

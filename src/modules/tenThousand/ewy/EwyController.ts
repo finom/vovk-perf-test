@@ -7,10 +7,8 @@ export default class EwyController {
     summary: "Get Ewy",
   })
   @get()
-  static getEwy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEwy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EwyController {
   static createEwy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

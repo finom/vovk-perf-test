@@ -7,10 +7,8 @@ export default class MahController {
     summary: "Get Mah",
   })
   @get()
-  static getMah = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMah = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MahController {
   static createMah = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

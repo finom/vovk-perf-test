@@ -7,10 +7,8 @@ export default class ByxController {
     summary: "Get Byx",
   })
   @get()
-  static getByx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getByx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ByxController {
   static createByx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

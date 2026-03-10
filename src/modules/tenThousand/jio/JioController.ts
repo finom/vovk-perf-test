@@ -7,10 +7,8 @@ export default class JioController {
     summary: "Get Jio",
   })
   @get()
-  static getJio = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJio = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JioController {
   static createJio = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

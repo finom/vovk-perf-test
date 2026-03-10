@@ -7,10 +7,8 @@ export default class BteController {
     summary: "Get Bte",
   })
   @get()
-  static getBte = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBte = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BteController {
   static createBte = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

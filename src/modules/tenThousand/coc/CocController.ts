@@ -7,10 +7,8 @@ export default class CocController {
     summary: "Get Coc",
   })
   @get()
-  static getCoc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCoc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CocController {
   static createCoc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

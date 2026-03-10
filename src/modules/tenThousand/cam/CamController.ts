@@ -7,10 +7,8 @@ export default class CamController {
     summary: "Get Cam",
   })
   @get()
-  static getCam = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCam = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CamController {
   static createCam = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

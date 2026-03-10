@@ -7,10 +7,8 @@ export default class AzwController {
     summary: "Get Azw",
   })
   @get()
-  static getAzw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAzw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AzwController {
   static createAzw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

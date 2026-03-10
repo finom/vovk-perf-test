@@ -7,10 +7,8 @@ export default class MkiController {
     summary: "Get Mki",
   })
   @get()
-  static getMki = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMki = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MkiController {
   static createMki = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

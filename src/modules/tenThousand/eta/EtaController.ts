@@ -7,10 +7,8 @@ export default class EtaController {
     summary: "Get Eta",
   })
   @get()
-  static getEta = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEta = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EtaController {
   static createEta = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

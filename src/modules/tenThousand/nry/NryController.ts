@@ -7,10 +7,8 @@ export default class NryController {
     summary: "Get Nry",
   })
   @get()
-  static getNry = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNry = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NryController {
   static createNry = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class FevController {
     summary: "Get Fev",
   })
   @get()
-  static getFev = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFev = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FevController {
   static createFev = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class ByeController {
     summary: "Get Bye",
   })
   @get()
-  static getBye = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBye = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ByeController {
   static createBye = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

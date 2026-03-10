@@ -7,10 +7,8 @@ export default class BoqController {
     summary: "Get Boq",
   })
   @get()
-  static getBoq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBoq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BoqController {
   static createBoq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

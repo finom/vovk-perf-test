@@ -7,10 +7,8 @@ export default class CbdController {
     summary: "Get Cbd",
   })
   @get()
-  static getCbd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCbd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CbdController {
   static createCbd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

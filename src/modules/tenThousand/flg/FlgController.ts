@@ -7,10 +7,8 @@ export default class FlgController {
     summary: "Get Flg",
   })
   @get()
-  static getFlg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFlg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FlgController {
   static createFlg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

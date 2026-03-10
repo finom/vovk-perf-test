@@ -7,10 +7,8 @@ export default class IxaController {
     summary: "Get Ixa",
   })
   @get()
-  static getIxa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIxa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IxaController {
   static createIxa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

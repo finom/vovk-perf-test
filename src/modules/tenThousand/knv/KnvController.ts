@@ -7,10 +7,8 @@ export default class KnvController {
     summary: "Get Knv",
   })
   @get()
-  static getKnv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKnv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KnvController {
   static createKnv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

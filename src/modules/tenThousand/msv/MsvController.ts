@@ -7,10 +7,8 @@ export default class MsvController {
     summary: "Get Msv",
   })
   @get()
-  static getMsv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMsv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MsvController {
   static createMsv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

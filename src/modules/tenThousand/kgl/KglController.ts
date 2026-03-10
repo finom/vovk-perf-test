@@ -7,10 +7,8 @@ export default class KglController {
     summary: "Get Kgl",
   })
   @get()
-  static getKgl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKgl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KglController {
   static createKgl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

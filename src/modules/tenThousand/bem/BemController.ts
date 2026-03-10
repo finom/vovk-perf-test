@@ -7,10 +7,8 @@ export default class BemController {
     summary: "Get Bem",
   })
   @get()
-  static getBem = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBem = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BemController {
   static createBem = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

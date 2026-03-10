@@ -7,10 +7,8 @@ export default class AknController {
     summary: "Get Akn",
   })
   @get()
-  static getAkn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAkn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AknController {
   static createAkn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

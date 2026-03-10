@@ -7,10 +7,8 @@ export default class EtyController {
     summary: "Get Ety",
   })
   @get()
-  static getEty = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEty = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EtyController {
   static createEty = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

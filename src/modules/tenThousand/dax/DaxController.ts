@@ -7,10 +7,8 @@ export default class DaxController {
     summary: "Get Dax",
   })
   @get()
-  static getDax = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDax = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DaxController {
   static createDax = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

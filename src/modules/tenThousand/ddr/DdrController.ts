@@ -7,10 +7,8 @@ export default class DdrController {
     summary: "Get Ddr",
   })
   @get()
-  static getDdr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDdr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DdrController {
   static createDdr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class MutController {
     summary: "Get Mut",
   })
   @get()
-  static getMut = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMut = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MutController {
   static createMut = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

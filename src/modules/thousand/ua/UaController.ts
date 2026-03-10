@@ -7,10 +7,8 @@ export default class UaController {
     summary: "Get Ua",
   })
   @get()
-  static getUa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getUa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class UaController {
   static createUa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

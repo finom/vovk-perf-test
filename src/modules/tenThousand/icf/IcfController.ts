@@ -7,10 +7,8 @@ export default class IcfController {
     summary: "Get Icf",
   })
   @get()
-  static getIcf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIcf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IcfController {
   static createIcf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

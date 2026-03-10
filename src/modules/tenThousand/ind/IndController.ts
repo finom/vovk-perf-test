@@ -7,10 +7,8 @@ export default class IndController {
     summary: "Get Ind",
   })
   @get()
-  static getInd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getInd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IndController {
   static createInd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

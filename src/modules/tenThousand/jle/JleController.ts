@@ -7,10 +7,8 @@ export default class JleController {
     summary: "Get Jle",
   })
   @get()
-  static getJle = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJle = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JleController {
   static createJle = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

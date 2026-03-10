@@ -7,10 +7,8 @@ export default class NdmController {
     summary: "Get Ndm",
   })
   @get()
-  static getNdm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNdm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NdmController {
   static createNdm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

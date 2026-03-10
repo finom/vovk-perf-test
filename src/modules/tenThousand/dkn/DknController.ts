@@ -7,10 +7,8 @@ export default class DknController {
     summary: "Get Dkn",
   })
   @get()
-  static getDkn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDkn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DknController {
   static createDkn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

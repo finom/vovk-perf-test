@@ -7,10 +7,8 @@ export default class FwdController {
     summary: "Get Fwd",
   })
   @get()
-  static getFwd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFwd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FwdController {
   static createFwd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

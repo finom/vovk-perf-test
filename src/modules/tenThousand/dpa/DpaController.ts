@@ -7,10 +7,8 @@ export default class DpaController {
     summary: "Get Dpa",
   })
   @get()
-  static getDpa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDpa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DpaController {
   static createDpa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

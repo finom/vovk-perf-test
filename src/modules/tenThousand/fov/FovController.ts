@@ -7,10 +7,8 @@ export default class FovController {
     summary: "Get Fov",
   })
   @get()
-  static getFov = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFov = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FovController {
   static createFov = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

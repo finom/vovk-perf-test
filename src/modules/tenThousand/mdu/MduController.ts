@@ -7,10 +7,8 @@ export default class MduController {
     summary: "Get Mdu",
   })
   @get()
-  static getMdu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMdu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MduController {
   static createMdu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

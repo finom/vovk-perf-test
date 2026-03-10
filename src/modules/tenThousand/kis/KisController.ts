@@ -7,10 +7,8 @@ export default class KisController {
     summary: "Get Kis",
   })
   @get()
-  static getKis = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKis = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KisController {
   static createKis = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

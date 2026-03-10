@@ -7,10 +7,8 @@ export default class EztController {
     summary: "Get Ezt",
   })
   @get()
-  static getEzt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEzt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EztController {
   static createEzt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

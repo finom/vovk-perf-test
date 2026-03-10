@@ -7,10 +7,8 @@ export default class JmjController {
     summary: "Get Jmj",
   })
   @get()
-  static getJmj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJmj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JmjController {
   static createJmj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

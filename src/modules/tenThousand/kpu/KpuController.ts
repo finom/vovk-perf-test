@@ -7,10 +7,8 @@ export default class KpuController {
     summary: "Get Kpu",
   })
   @get()
-  static getKpu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKpu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KpuController {
   static createKpu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class AcoController {
     summary: "Get Aco",
   })
   @get()
-  static getAco = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAco = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AcoController {
   static createAco = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

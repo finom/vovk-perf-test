@@ -7,10 +7,8 @@ export default class MyxController {
     summary: "Get Myx",
   })
   @get()
-  static getMyx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMyx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MyxController {
   static createMyx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

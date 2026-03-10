@@ -7,10 +7,8 @@ export default class CarController {
     summary: "Get Car",
   })
   @get()
-  static getCar = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCar = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CarController {
   static createCar = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

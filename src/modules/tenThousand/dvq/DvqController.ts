@@ -7,10 +7,8 @@ export default class DvqController {
     summary: "Get Dvq",
   })
   @get()
-  static getDvq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDvq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DvqController {
   static createDvq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

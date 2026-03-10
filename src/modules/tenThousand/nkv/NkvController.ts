@@ -7,10 +7,8 @@ export default class NkvController {
     summary: "Get Nkv",
   })
   @get()
-  static getNkv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNkv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NkvController {
   static createNkv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

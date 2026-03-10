@@ -7,10 +7,8 @@ export default class EpnController {
     summary: "Get Epn",
   })
   @get()
-  static getEpn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEpn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EpnController {
   static createEpn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

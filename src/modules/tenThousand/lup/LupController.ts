@@ -7,10 +7,8 @@ export default class LupController {
     summary: "Get Lup",
   })
   @get()
-  static getLup = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLup = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LupController {
   static createLup = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

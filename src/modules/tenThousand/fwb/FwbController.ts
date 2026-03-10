@@ -7,10 +7,8 @@ export default class FwbController {
     summary: "Get Fwb",
   })
   @get()
-  static getFwb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFwb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FwbController {
   static createFwb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

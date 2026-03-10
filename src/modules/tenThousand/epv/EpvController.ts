@@ -7,10 +7,8 @@ export default class EpvController {
     summary: "Get Epv",
   })
   @get()
-  static getEpv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEpv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EpvController {
   static createEpv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

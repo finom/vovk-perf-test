@@ -7,10 +7,8 @@ export default class GixController {
     summary: "Get Gix",
   })
   @get()
-  static getGix = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGix = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GixController {
   static createGix = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

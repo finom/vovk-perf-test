@@ -7,10 +7,8 @@ export default class NefController {
     summary: "Get Nef",
   })
   @get()
-  static getNef = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNef = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NefController {
   static createNef = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

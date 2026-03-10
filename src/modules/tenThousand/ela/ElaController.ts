@@ -7,10 +7,8 @@ export default class ElaController {
     summary: "Get Ela",
   })
   @get()
-  static getEla = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEla = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ElaController {
   static createEla = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

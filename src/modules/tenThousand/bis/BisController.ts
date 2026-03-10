@@ -7,10 +7,8 @@ export default class BisController {
     summary: "Get Bis",
   })
   @get()
-  static getBis = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBis = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BisController {
   static createBis = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

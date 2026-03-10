@@ -7,10 +7,8 @@ export default class ApjController {
     summary: "Get Apj",
   })
   @get()
-  static getApj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getApj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ApjController {
   static createApj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

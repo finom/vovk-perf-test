@@ -7,10 +7,8 @@ export default class NsyController {
     summary: "Get Nsy",
   })
   @get()
-  static getNsy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNsy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NsyController {
   static createNsy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

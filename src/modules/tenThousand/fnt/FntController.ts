@@ -7,10 +7,8 @@ export default class FntController {
     summary: "Get Fnt",
   })
   @get()
-  static getFnt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFnt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FntController {
   static createFnt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

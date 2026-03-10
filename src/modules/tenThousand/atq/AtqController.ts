@@ -7,10 +7,8 @@ export default class AtqController {
     summary: "Get Atq",
   })
   @get()
-  static getAtq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAtq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AtqController {
   static createAtq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

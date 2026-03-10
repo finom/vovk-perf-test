@@ -7,10 +7,8 @@ export default class GdbController {
     summary: "Get Gdb",
   })
   @get()
-  static getGdb = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGdb = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GdbController {
   static createGdb = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

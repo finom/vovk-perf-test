@@ -7,10 +7,8 @@ export default class NmgController {
     summary: "Get Nmg",
   })
   @get()
-  static getNmg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNmg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NmgController {
   static createNmg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

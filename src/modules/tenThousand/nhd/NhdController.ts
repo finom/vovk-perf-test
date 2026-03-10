@@ -7,10 +7,8 @@ export default class NhdController {
     summary: "Get Nhd",
   })
   @get()
-  static getNhd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNhd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NhdController {
   static createNhd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

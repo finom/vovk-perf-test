@@ -7,10 +7,8 @@ export default class DedController {
     summary: "Get Ded",
   })
   @get()
-  static getDed = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDed = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DedController {
   static createDed = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

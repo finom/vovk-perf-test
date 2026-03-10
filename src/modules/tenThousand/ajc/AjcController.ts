@@ -7,10 +7,8 @@ export default class AjcController {
     summary: "Get Ajc",
   })
   @get()
-  static getAjc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAjc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AjcController {
   static createAjc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

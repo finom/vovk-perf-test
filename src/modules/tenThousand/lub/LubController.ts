@@ -7,10 +7,8 @@ export default class LubController {
     summary: "Get Lub",
   })
   @get()
-  static getLub = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLub = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LubController {
   static createLub = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

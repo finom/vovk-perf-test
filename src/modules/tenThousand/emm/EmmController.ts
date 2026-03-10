@@ -7,10 +7,8 @@ export default class EmmController {
     summary: "Get Emm",
   })
   @get()
-  static getEmm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEmm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EmmController {
   static createEmm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

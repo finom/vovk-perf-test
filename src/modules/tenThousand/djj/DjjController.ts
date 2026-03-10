@@ -7,10 +7,8 @@ export default class DjjController {
     summary: "Get Djj",
   })
   @get()
-  static getDjj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDjj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DjjController {
   static createDjj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

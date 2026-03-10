@@ -7,10 +7,8 @@ export default class GjyController {
     summary: "Get Gjy",
   })
   @get()
-  static getGjy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGjy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GjyController {
   static createGjy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

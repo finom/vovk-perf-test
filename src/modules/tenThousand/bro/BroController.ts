@@ -7,10 +7,8 @@ export default class BroController {
     summary: "Get Bro",
   })
   @get()
-  static getBro = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBro = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BroController {
   static createBro = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

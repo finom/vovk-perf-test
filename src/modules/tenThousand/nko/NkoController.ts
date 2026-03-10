@@ -7,10 +7,8 @@ export default class NkoController {
     summary: "Get Nko",
   })
   @get()
-  static getNko = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNko = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NkoController {
   static createNko = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IqoController {
     summary: "Get Iqo",
   })
   @get()
-  static getIqo = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIqo = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IqoController {
   static createIqo = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

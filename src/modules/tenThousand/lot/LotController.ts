@@ -7,10 +7,8 @@ export default class LotController {
     summary: "Get Lot",
   })
   @get()
-  static getLot = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getLot = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class LotController {
   static createLot = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

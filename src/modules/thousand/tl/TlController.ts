@@ -7,10 +7,8 @@ export default class TlController {
     summary: "Get Tl",
   })
   @get()
-  static getTl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getTl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class TlController {
   static createTl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

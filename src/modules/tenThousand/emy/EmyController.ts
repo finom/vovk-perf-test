@@ -7,10 +7,8 @@ export default class EmyController {
     summary: "Get Emy",
   })
   @get()
-  static getEmy = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEmy = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EmyController {
   static createEmy = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

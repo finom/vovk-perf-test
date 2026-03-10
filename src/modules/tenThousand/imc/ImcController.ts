@@ -7,10 +7,8 @@ export default class ImcController {
     summary: "Get Imc",
   })
   @get()
-  static getImc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getImc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ImcController {
   static createImc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class AkwController {
     summary: "Get Akw",
   })
   @get()
-  static getAkw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAkw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AkwController {
   static createAkw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

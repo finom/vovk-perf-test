@@ -7,10 +7,8 @@ export default class IbrController {
     summary: "Get Ibr",
   })
   @get()
-  static getIbr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIbr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IbrController {
   static createIbr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class AwkController {
     summary: "Get Awk",
   })
   @get()
-  static getAwk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAwk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AwkController {
   static createAwk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class KyiController {
     summary: "Get Kyi",
   })
   @get()
-  static getKyi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKyi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KyiController {
   static createKyi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

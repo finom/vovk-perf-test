@@ -7,10 +7,8 @@ export default class EiuController {
     summary: "Get Eiu",
   })
   @get()
-  static getEiu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEiu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EiuController {
   static createEiu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

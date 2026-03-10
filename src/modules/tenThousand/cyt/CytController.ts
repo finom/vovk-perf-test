@@ -7,10 +7,8 @@ export default class CytController {
     summary: "Get Cyt",
   })
   @get()
-  static getCyt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCyt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CytController {
   static createCyt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

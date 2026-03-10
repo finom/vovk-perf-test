@@ -7,10 +7,8 @@ export default class FdkController {
     summary: "Get Fdk",
   })
   @get()
-  static getFdk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFdk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FdkController {
   static createFdk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

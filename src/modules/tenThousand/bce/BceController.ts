@@ -7,10 +7,8 @@ export default class BceController {
     summary: "Get Bce",
   })
   @get()
-  static getBce = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBce = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BceController {
   static createBce = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

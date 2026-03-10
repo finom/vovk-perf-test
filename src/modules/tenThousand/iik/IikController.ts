@@ -7,10 +7,8 @@ export default class IikController {
     summary: "Get Iik",
   })
   @get()
-  static getIik = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIik = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IikController {
   static createIik = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

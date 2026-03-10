@@ -7,10 +7,8 @@ export default class HclController {
     summary: "Get Hcl",
   })
   @get()
-  static getHcl = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHcl = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HclController {
   static createHcl = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

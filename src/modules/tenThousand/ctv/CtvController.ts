@@ -7,10 +7,8 @@ export default class CtvController {
     summary: "Get Ctv",
   })
   @get()
-  static getCtv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCtv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CtvController {
   static createCtv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

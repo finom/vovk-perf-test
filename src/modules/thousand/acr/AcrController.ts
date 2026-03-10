@@ -7,10 +7,8 @@ export default class AcrController {
     summary: "Get Acr",
   })
   @get()
-  static getAcr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAcr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AcrController {
   static createAcr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

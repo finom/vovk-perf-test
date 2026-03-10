@@ -7,10 +7,8 @@ export default class IroController {
     summary: "Get Iro",
   })
   @get()
-  static getIro = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIro = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IroController {
   static createIro = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

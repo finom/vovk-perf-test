@@ -7,10 +7,8 @@ export default class DkeController {
     summary: "Get Dke",
   })
   @get()
-  static getDke = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDke = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DkeController {
   static createDke = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

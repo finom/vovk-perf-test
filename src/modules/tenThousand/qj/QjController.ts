@@ -7,10 +7,8 @@ export default class QjController {
     summary: "Get Qj",
   })
   @get()
-  static getQj = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getQj = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class QjController {
   static createQj = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

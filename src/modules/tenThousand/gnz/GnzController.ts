@@ -7,10 +7,8 @@ export default class GnzController {
     summary: "Get Gnz",
   })
   @get()
-  static getGnz = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGnz = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GnzController {
   static createGnz = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

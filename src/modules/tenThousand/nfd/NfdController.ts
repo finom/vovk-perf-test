@@ -7,10 +7,8 @@ export default class NfdController {
     summary: "Get Nfd",
   })
   @get()
-  static getNfd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNfd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NfdController {
   static createNfd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

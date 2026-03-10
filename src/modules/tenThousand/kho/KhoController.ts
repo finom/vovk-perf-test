@@ -7,10 +7,8 @@ export default class KhoController {
     summary: "Get Kho",
   })
   @get()
-  static getKho = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKho = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KhoController {
   static createKho = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

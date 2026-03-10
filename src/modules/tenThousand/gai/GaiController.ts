@@ -7,10 +7,8 @@ export default class GaiController {
     summary: "Get Gai",
   })
   @get()
-  static getGai = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGai = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GaiController {
   static createGai = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class MawController {
     summary: "Get Maw",
   })
   @get()
-  static getMaw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMaw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MawController {
   static createMaw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

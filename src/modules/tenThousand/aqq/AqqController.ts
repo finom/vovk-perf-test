@@ -7,10 +7,8 @@ export default class AqqController {
     summary: "Get Aqq",
   })
   @get()
-  static getAqq = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAqq = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AqqController {
   static createAqq = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

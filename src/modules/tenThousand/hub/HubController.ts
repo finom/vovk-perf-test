@@ -7,10 +7,8 @@ export default class HubController {
     summary: "Get Hub",
   })
   @get()
-  static getHub = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHub = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HubController {
   static createHub = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

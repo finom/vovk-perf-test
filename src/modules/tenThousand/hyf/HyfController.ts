@@ -7,10 +7,8 @@ export default class HyfController {
     summary: "Get Hyf",
   })
   @get()
-  static getHyf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHyf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HyfController {
   static createHyf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

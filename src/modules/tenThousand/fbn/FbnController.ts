@@ -7,10 +7,8 @@ export default class FbnController {
     summary: "Get Fbn",
   })
   @get()
-  static getFbn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFbn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FbnController {
   static createFbn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

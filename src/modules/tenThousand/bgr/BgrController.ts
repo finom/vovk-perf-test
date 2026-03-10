@@ -7,10 +7,8 @@ export default class BgrController {
     summary: "Get Bgr",
   })
   @get()
-  static getBgr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBgr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BgrController {
   static createBgr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IitController {
     summary: "Get Iit",
   })
   @get()
-  static getIit = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIit = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IitController {
   static createIit = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

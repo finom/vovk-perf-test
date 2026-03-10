@@ -7,10 +7,8 @@ export default class GmxController {
     summary: "Get Gmx",
   })
   @get()
-  static getGmx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGmx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GmxController {
   static createGmx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

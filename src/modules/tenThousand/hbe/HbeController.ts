@@ -7,10 +7,8 @@ export default class HbeController {
     summary: "Get Hbe",
   })
   @get()
-  static getHbe = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHbe = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HbeController {
   static createHbe = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

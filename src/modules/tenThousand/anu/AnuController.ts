@@ -7,10 +7,8 @@ export default class AnuController {
     summary: "Get Anu",
   })
   @get()
-  static getAnu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAnu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AnuController {
   static createAnu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

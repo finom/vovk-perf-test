@@ -7,10 +7,8 @@ export default class GoxController {
     summary: "Get Gox",
   })
   @get()
-  static getGox = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGox = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GoxController {
   static createGox = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

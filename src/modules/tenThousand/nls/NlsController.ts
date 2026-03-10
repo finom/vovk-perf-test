@@ -7,10 +7,8 @@ export default class NlsController {
     summary: "Get Nls",
   })
   @get()
-  static getNls = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNls = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NlsController {
   static createNls = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

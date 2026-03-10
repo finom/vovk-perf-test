@@ -7,10 +7,8 @@ export default class MjaController {
     summary: "Get Mja",
   })
   @get()
-  static getMja = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMja = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MjaController {
   static createMja = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

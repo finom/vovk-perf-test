@@ -7,10 +7,8 @@ export default class EgmController {
     summary: "Get Egm",
   })
   @get()
-  static getEgm = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEgm = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EgmController {
   static createEgm = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

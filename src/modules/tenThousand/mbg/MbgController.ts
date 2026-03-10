@@ -7,10 +7,8 @@ export default class MbgController {
     summary: "Get Mbg",
   })
   @get()
-  static getMbg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMbg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MbgController {
   static createMbg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class DyfController {
     summary: "Get Dyf",
   })
   @get()
-  static getDyf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDyf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DyfController {
   static createDyf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class ErnController {
     summary: "Get Ern",
   })
   @get()
-  static getErn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getErn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ErnController {
   static createErn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

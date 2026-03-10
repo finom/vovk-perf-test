@@ -7,10 +7,8 @@ export default class GsrController {
     summary: "Get Gsr",
   })
   @get()
-  static getGsr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGsr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GsrController {
   static createGsr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

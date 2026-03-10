@@ -7,10 +7,8 @@ export default class GrhController {
     summary: "Get Grh",
   })
   @get()
-  static getGrh = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getGrh = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class GrhController {
   static createGrh = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

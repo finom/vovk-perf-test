@@ -7,10 +7,8 @@ export default class AmvController {
     summary: "Get Amv",
   })
   @get()
-  static getAmv = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAmv = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AmvController {
   static createAmv = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

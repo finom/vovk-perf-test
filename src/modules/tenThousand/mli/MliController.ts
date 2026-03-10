@@ -7,10 +7,8 @@ export default class MliController {
     summary: "Get Mli",
   })
   @get()
-  static getMli = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMli = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MliController {
   static createMli = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

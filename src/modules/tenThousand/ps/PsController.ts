@@ -7,10 +7,8 @@ export default class PsController {
     summary: "Get Ps",
   })
   @get()
-  static getPs = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getPs = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class PsController {
   static createPs = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

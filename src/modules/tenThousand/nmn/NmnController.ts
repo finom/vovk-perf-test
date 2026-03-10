@@ -7,10 +7,8 @@ export default class NmnController {
     summary: "Get Nmn",
   })
   @get()
-  static getNmn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNmn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NmnController {
   static createNmn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

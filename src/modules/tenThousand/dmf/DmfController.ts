@@ -7,10 +7,8 @@ export default class DmfController {
     summary: "Get Dmf",
   })
   @get()
-  static getDmf = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDmf = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DmfController {
   static createDmf = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

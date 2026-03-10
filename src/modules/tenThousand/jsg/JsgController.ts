@@ -7,10 +7,8 @@ export default class JsgController {
     summary: "Get Jsg",
   })
   @get()
-  static getJsg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJsg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JsgController {
   static createJsg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

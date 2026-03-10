@@ -7,10 +7,8 @@ export default class IvdController {
     summary: "Get Ivd",
   })
   @get()
-  static getIvd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIvd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IvdController {
   static createIvd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

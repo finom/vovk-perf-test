@@ -7,10 +7,8 @@ export default class ApcController {
     summary: "Get Apc",
   })
   @get()
-  static getApc = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getApc = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class ApcController {
   static createApc = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

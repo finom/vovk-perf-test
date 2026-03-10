@@ -7,10 +7,8 @@ export default class AjrController {
     summary: "Get Ajr",
   })
   @get()
-  static getAjr = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAjr = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AjrController {
   static createAjr = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

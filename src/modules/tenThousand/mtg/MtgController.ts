@@ -7,10 +7,8 @@ export default class MtgController {
     summary: "Get Mtg",
   })
   @get()
-  static getMtg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMtg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MtgController {
   static createMtg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

@@ -7,10 +7,8 @@ export default class IdkController {
     summary: "Get Idk",
   })
   @get()
-  static getIdk = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIdk = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IdkController {
   static createIdk = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

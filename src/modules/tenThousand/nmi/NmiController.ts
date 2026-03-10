@@ -7,10 +7,8 @@ export default class NmiController {
     summary: "Get Nmi",
   })
   @get()
-  static getNmi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNmi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NmiController {
   static createNmi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

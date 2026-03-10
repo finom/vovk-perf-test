@@ -7,10 +7,8 @@ export default class NlgController {
     summary: "Get Nlg",
   })
   @get()
-  static getNlg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNlg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NlgController {
   static createNlg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

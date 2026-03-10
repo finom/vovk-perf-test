@@ -7,10 +7,8 @@ export default class HopController {
     summary: "Get Hop",
   })
   @get()
-  static getHop = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getHop = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class HopController {
   static createHop = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

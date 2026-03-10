@@ -7,10 +7,8 @@ export default class MleController {
     summary: "Get Mle",
   })
   @get()
-  static getMle = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMle = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MleController {
   static createMle = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

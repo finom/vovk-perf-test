@@ -7,10 +7,8 @@ export default class DfiController {
     summary: "Get Dfi",
   })
   @get()
-  static getDfi = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getDfi = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class DfiController {
   static createDfi = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

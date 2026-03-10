@@ -7,10 +7,8 @@ export default class BmnController {
     summary: "Get Bmn",
   })
   @get()
-  static getBmn = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBmn = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BmnController {
   static createBmn = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

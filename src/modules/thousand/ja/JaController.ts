@@ -7,10 +7,8 @@ export default class JaController {
     summary: "Get Ja",
   })
   @get()
-  static getJa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JaController {
   static createJa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

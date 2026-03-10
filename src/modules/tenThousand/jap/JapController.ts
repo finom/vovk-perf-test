@@ -7,10 +7,8 @@ export default class JapController {
     summary: "Get Jap",
   })
   @get()
-  static getJap = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getJap = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class JapController {
   static createJap = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

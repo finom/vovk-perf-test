@@ -7,10 +7,8 @@ export default class BniController {
     summary: "Get Bni",
   })
   @get()
-  static getBni = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getBni = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class BniController {
   static createBni = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

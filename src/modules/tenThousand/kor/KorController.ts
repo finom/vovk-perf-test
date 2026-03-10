@@ -7,10 +7,8 @@ export default class KorController {
     summary: "Get Kor",
   })
   @get()
-  static getKor = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getKor = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class KorController {
   static createKor = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

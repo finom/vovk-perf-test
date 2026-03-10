@@ -7,10 +7,8 @@ export default class EriController {
     summary: "Get Eri",
   })
   @get()
-  static getEri = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEri = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EriController {
   static createEri = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

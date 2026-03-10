@@ -7,10 +7,8 @@ export default class CkxController {
     summary: "Get Ckx",
   })
   @get()
-  static getCkx = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getCkx = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class CkxController {
   static createCkx = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

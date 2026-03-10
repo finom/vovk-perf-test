@@ -7,10 +7,8 @@ export default class MtwController {
     summary: "Get Mtw",
   })
   @get()
-  static getMtw = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMtw = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class MtwController {
   static createMtw = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

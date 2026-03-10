@@ -7,10 +7,8 @@ export default class EzdController {
     summary: "Get Ezd",
   })
   @get()
-  static getEzd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEzd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EzdController {
   static createEzd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

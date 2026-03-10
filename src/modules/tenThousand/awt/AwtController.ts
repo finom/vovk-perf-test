@@ -7,10 +7,8 @@ export default class AwtController {
     summary: "Get Awt",
   })
   @get()
-  static getAwt = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getAwt = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class AwtController {
   static createAwt = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

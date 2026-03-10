@@ -7,10 +7,8 @@ export default class FlaController {
     summary: "Get Fla",
   })
   @get()
-  static getFla = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getFla = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class FlaController {
   static createFla = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

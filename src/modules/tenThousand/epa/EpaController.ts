@@ -7,10 +7,8 @@ export default class EpaController {
     summary: "Get Epa",
   })
   @get()
-  static getEpa = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getEpa = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class EpaController {
   static createEpa = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

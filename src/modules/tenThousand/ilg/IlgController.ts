@@ -7,10 +7,8 @@ export default class IlgController {
     summary: "Get Ilg",
   })
   @get()
-  static getIlg = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getIlg = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class IlgController {
   static createIlg = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

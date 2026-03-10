@@ -7,10 +7,8 @@ export default class McuController {
     summary: "Get Mcu",
   })
   @get()
-  static getMcu = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getMcu = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class McuController {
   static createMcu = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }

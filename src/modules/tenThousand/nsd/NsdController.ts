@@ -7,10 +7,8 @@ export default class NsdController {
     summary: "Get Nsd",
   })
   @get()
-  static getNsd = procedure({
-    handle: () => {
-      return { get: true };
-    },
+  static getNsd = procedure().handle(() => {
+    return { get: true };
   });
 
   @operation({
@@ -20,8 +18,7 @@ export default class NsdController {
   static createNsd = procedure({
     disableServerSideValidation: ["params"],
     params: z.object({ id: z.string() }),
-    handle: (_req, { id }) => {
-      return { post: true, id };
-    },
+  }).handle((_req, { id }) => {
+    return { post: true, id };
   });
 }
