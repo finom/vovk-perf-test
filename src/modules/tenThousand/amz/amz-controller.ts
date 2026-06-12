@@ -1,0 +1,24 @@
+import { procedure, prefix, get, post, operation } from "vovk";
+import z from "zod";
+
+@prefix("amz")
+export default class AmzController {
+  @operation({
+    summary: "Get Amz",
+  })
+  @get()
+  static getAmz = procedure().handle(() => {
+    return { get: true };
+  });
+
+  @operation({
+    summary: "Create Amz",
+  })
+  @post("{id}")
+  static createAmz = procedure({
+    disableServerSideValidation: ["params"],
+    params: z.object({ id: z.string() }),
+  }).handle((_req, { id }) => {
+    return { post: true, id };
+  });
+}

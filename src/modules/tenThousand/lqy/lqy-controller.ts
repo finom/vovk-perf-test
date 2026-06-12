@@ -1,0 +1,24 @@
+import { procedure, prefix, get, post, operation } from "vovk";
+import z from "zod";
+
+@prefix("lqy")
+export default class LqyController {
+  @operation({
+    summary: "Get Lqy",
+  })
+  @get()
+  static getLqy = procedure().handle(() => {
+    return { get: true };
+  });
+
+  @operation({
+    summary: "Create Lqy",
+  })
+  @post("{id}")
+  static createLqy = procedure({
+    disableServerSideValidation: ["params"],
+    params: z.object({ id: z.string() }),
+  }).handle((_req, { id }) => {
+    return { post: true, id };
+  });
+}
